@@ -1,0 +1,11 @@
+<mat-toolbar class="header-toolbar">
+  <button mat-icon-button (click)="onClick()">
+    <mat-icon *ngIf="!opened">
+      menu
+    </mat-icon>
+    <mat-icon *ngIf="opened">
+      close
+    </mat-icon>
+  </button>
+  {{title}}
+</mat-toolbar>
