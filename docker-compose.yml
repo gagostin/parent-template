@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+
+  rest-db:
+    image: ${STACK_NAME}/rest-db
+    build:
+      context: docker/rest-db
+    volumes:
+      - rest-db-pgdata:/var/lib/postgresql/data
+      - ./docker/rest-db/resources/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./docker/rest-db/resources/testdata.sql:/docker-entrypoint-initdb.d/testdata.sql
+    env_file:
+      - docker/rest-db/resources/rest-db.env
+    ports:
+      - ${STACK_OFFSET}01:5432
+
+  rest:
+    image: ${STACK_NAME}/rest
+    build:
+      context: rest
+    env_file:
+      - rest/docker/rest.env
+    ports:
+      - ${STACK_OFFSET}02:8080
+      - ${STACK_OFFSET}03:8000
+    links:
+      - rest-db
+
+volumes:
+  rest-db-pgdata:
+    driver: local

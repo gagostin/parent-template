@@ -14,7 +14,6 @@
     <packaging>war</packaging>
 
     <dependencies>
-
         <dependency>
             <groupId>${project.parent.groupId}</groupId>
             <artifactId>configuration</artifactId>
@@ -68,7 +67,6 @@
             <artifactId>spring-data-jpa</artifactId>
             <version>${spring.boot.version}</version>
         </dependency>
-
     </dependencies>
 
     <build>
@@ -86,6 +84,19 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <version>${spring.boot.version}</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <mainClass>com.gago.rest.RestApplication</mainClass>
+                    <jvmArguments>
+                        -Xbootclasspath/a:..\configuration\src\main\resources -Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=8081
+                    </jvmArguments>
+                </configuration>
             </plugin>
         </plugins>
     </build>

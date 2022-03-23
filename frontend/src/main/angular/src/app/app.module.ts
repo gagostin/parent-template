@@ -9,9 +9,10 @@ import {MatSidenavModule} from "@angular/material/sidenav";
 import {MatButtonModule} from "@angular/material/button";
 import {MatIconModule} from "@angular/material/icon";
 import {MatDividerModule} from "@angular/material/divider";
-import { HeaderToolbarComponent } from './components/header-toolbar/header-toolbar.component';
-import { SidebarContainerComponent } from './components/sidebar-container/sidebar-container.component';
+import { HeaderToolbarComponent } from './design-system/header-toolbar/header-toolbar.component';
+import { SidebarContainerComponent } from './design-system/sidebar-container/sidebar-container.component';
 import {SidebarService} from "./services/sidebar/sidebar.service";
+import {FeaturesModule} from "./features/features.module";
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import {SidebarService} from "./services/sidebar/sidebar.service";
     MatSidenavModule,
     MatButtonModule,
     MatIconModule,
-    MatDividerModule
+    MatDividerModule,
+    FeaturesModule
   ],
   providers: [SidebarService],
   bootstrap: [AppComponent]
