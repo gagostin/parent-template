@@ -1,24 +1,9 @@
-#Creazione di una network
-```
-docker network create -d bridge parent-template
-```
+#Generate a token on GitHub
+1. Login to GitHub
+2. Profile > Settings > Developer settings > Personal access tokens
+3. Click on token and generate or regenerate
+4. Copy the token for use it
 
-#Build dell'immagine docker per il db postgres di rest
-Dal parent:
-```
-docker build -t rest-db -f docker/rest-db/Dockerfile .
-docker run -p 5432:5432 --net=parent-template --name rest-db --env-file docker/rest-db/resources/rest-db.env rest-db 
-```
-
-#Build dell'immagine docker per il rest
-###Prerequisito:
-Da /rest:
-```
-mvn clean install
-```
-In modo da generare il rest.war.\
-Poi, dalla root:
-```
-docker build -t rest -f docker/rest/Dockerfile .
-docker run -p 8080:8080 --net=parent-template --name rest rest
-```
+#Use the GitHub token on IntelliJ
+1. File > Settings > Version Control > GitHub
+2. On connection https://github.com use the generated token
