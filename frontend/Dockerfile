@@ -1,8 +1,10 @@
-FROM harbor.mgm.grouperci.com/common/httpd:2.4
+FROM node:14.17.0
 
-EXPOSE 80/tcp
+RUN mkdir /usr/src/app
+WORKDIR /usr/src/app
 
-COPY docker/httpd.conf /usr/local/apache2/conf/httpd.conf
-COPY target/front-end/app/ /usr/local/apache2/htdocs/rci/
-COPY target/front-end/cms/ /usr/local/apache2/htdocs/cms/
-COPY src/main/angular/src/environments/environment.dev.js /usr/local/apache2/htdocs/rci/environment.js
+RUN npm install -g @angular/cli@13.0.3
+
+COPY . /usr/src/app
+
+CMD ng serve --host 0.0.0.0 --port 4500

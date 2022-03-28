@@ -25,9 +25,6 @@
         <lombok.version>1.18.20</lombok.version>
         <postgres.version>42.2.23</postgres.version>
         <hibernate.version>5.4.32.Final</hibernate.version>
-        <node.version>v10.15.0</node.version>
-        <npm.version>6.4.1</npm.version>
-        <frontend.maven.plugin.version>1.6</frontend.maven.plugin.version>
     </properties>
 
 </project>

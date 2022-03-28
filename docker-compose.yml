@@ -27,6 +27,14 @@ services:
     links:
       - rest-db
 
+  frontend:
+    build:
+      context: frontend
+    volumes:
+    - './frontend/src/main/angular:/usr/src/app'
+    ports:
+    - ${STACK_OFFSET}04:4500
+
 volumes:
   rest-db-pgdata:
     driver: local
