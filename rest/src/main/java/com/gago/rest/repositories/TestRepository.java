@@ -1,6 +1,6 @@
 package com.gago.rest.repositories;
 
-import com.gago.rest.entities.Test;
+import com.gago.rest.models.Test;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;

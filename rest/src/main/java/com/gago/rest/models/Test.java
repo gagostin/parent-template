@@ -1,4 +1,4 @@
-package com.gago.rest.entities;
+package com.gago.rest.models;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

@@ -1,6 +1,6 @@
 package com.gago.rest.services;
 
-import com.gago.rest.entities.Test;
+import com.gago.rest.models.Test;
 import com.gago.rest.repositories.TestRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

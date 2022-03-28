@@ -9,5 +9,7 @@
 2. On connection https://github.com use the generated token
 
 #Da fare:
-1. Inserire la gestione di Keycloak come identity provider
-2. Inserire il wordpress
+1. Copiare la gestione di H2Configuration da otp
+2. Capire perché il test sul servizio è rosso
+3. Inserire la gestione di Keycloak come identity provider
+4. Inserire il wordpress
