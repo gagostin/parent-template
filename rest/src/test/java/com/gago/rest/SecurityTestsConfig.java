@@ -1,11 +1,12 @@
 package com.gago.rest;
 
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Profile;
+import org.keycloak.representations.AccessToken;
+import org.springframework.context.annotation.*;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.web.context.WebApplicationContext;
 
 @Profile("test")
 @Configuration
@@ -24,14 +25,13 @@ public class SecurityTestsConfig extends WebSecurityConfigurerAdapter {
         web.ignoring().antMatchers("/**");
     }
 
-//    @Bean
-//    @Scope(scopeName = WebApplicationContext.SCOPE_REQUEST, proxyMode = ScopedProxyMode.TARGET_CLASS)
-//    public AccessToken accessToken() {
-//        AccessToken accessToken = new AccessToken();
-//        accessToken.setSubject("abc");
-//        accessToken.setName("Tester");
-//
-//        return accessToken;
-//    }
+    @Bean
+    @Scope(scopeName = WebApplicationContext.SCOPE_REQUEST, proxyMode = ScopedProxyMode.TARGET_CLASS)
+    public AccessToken accessToken() {
+        AccessToken accessToken = new AccessToken();
+        accessToken.setSubject("abc");
+        accessToken.setName("Tester");
+        return accessToken;
+    }
 
 }

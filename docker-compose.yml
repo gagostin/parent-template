@@ -35,6 +35,25 @@ services:
     ports:
     - ${STACK_OFFSET}04:4500
 
+  keycloak-db:
+    image: postgres
+    volumes:
+      - keycloak-db-pgdata:/var/lib/postgresql/data
+      - ./docker/keycloak-db/init.sql:/docker-entrypoint-initdb.d/init.sql
+    env_file:
+      - docker/keycloak-db/keycloak-db.env
+    ports:
+      - ${STACK_OFFSET}05:5432
+
+  keycloak:
+    image: jboss/keycloak
+    env_file:
+      - docker/keycloak/keycloak.env
+    ports:
+      - ${STACK_OFFSET}06:8080
+
 volumes:
+  keycloak-db-pgdata:
+    driver: local
   rest-db-pgdata:
     driver: local

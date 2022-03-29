@@ -1,4 +1,4 @@
-package com.gago.rest.configurations;
+package com.gago.rest.configurations.db;
 
 import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
