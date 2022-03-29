@@ -20,7 +20,7 @@ import java.util.Properties;
 @Configuration
 @PropertySource("classpath:rest/db.properties")
 @Profile("!h2db")
-public class PostgresConfiguration {
+public class PostgresConfiguration extends DatabaseConfiguration{
 
     @Value("${entities.location}")
     private String entitiesLocation;
@@ -40,42 +40,40 @@ public class PostgresConfiguration {
     @Value("${postgres.dialect}")
     private String postgresDialect;
 
-    @Bean
-    public DataSource dataSource() {
-        DataSourceBuilder<?> dataSourceBuilder = DataSourceBuilder.create();
-        dataSourceBuilder.driverClassName(drivers);
-        dataSourceBuilder.url(url);
-        dataSourceBuilder.username(username);
-        dataSourceBuilder.password(password);
-        return dataSourceBuilder.build();
+    @Override
+    public String drivers() {
+        return drivers;
     }
 
-    @Bean
-    public LocalContainerEntityManagerFactoryBean entityManagerFactory(DataSource dataSource) {
-        LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
-        em.setDataSource(dataSource);
-        em.setPackagesToScan(entitiesLocation);
-
-        JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
-        em.setJpaVendorAdapter(vendorAdapter);
-
-        Properties properties = new Properties();
-        properties.setProperty("hibernate.dialect", postgresDialect);
-        em.setJpaProperties(properties);
-
-        return em;
+    @Override
+    public String url() {
+        return url;
     }
 
-    @Bean
-    public PlatformTransactionManager transactionManager(EntityManagerFactory entityManagerFactory) {
-        JpaTransactionManager transactionManager = new JpaTransactionManager();
-        transactionManager.setEntityManagerFactory(entityManagerFactory);
-        return transactionManager;
+    @Override
+    public String username() {
+        return username;
     }
 
-    @Bean
-    public PersistenceExceptionTranslationPostProcessor exceptionTranslation() {
-        return new PersistenceExceptionTranslationPostProcessor();
+    @Override
+    public String password() {
+        return password;
+    }
+
+    @Override
+    public String entitiesLocation() {
+        return entitiesLocation;
+    }
+
+    @Override
+    public String dialect() {
+        return postgresDialect;
+    }
+
+    @Override
+    public void init(DataSource dataSource) {
+        // All initialization scripts will be run externally by the Docker orchestrator
+        return;
     }
 
 }

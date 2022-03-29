@@ -2,6 +2,7 @@ package com.gago.rest.services;
 
 import com.gago.rest.models.Test;
 import com.gago.rest.utils.ComponentsLoader;
+import com.gago.rest.utils.DatabaseLoader;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -13,7 +14,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith(SpringExtension.class)
-@SpringBootTest(classes = ComponentsLoader.class)
+@SpringBootTest(classes = {ComponentsLoader.class, DatabaseLoader.class})
 @ActiveProfiles("h2db")
 public class TestServiceIT {
 
