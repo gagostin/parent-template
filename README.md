@@ -20,6 +20,7 @@ http://{keycloak_url}:{keycloak_port}/auth/realms/{realm_name}/account
 
 #Da fare:
 ```
-1. Inserire la gestione di Keycloak come identity provider
-2. Inserire il wordpress
+1. Fare un dump del database di keycloak dal pc di lavoro
+2. Dopo aver tirato su lo stack, verificarne il funzionamento
+3. Inserire il wordpress
 ```
