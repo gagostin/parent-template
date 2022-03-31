@@ -2,10 +2,8 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 13.1 (Debian 13.1-1.pgdg100+1)
--- Dumped by pg_dump version 13.1
-
--- Started on 2020-12-27 18:44:45 CET
+-- Dumped from database version 14.2 (Debian 14.2-1.pgdg110+1)
+-- Dumped by pg_dump version 14.2 (Debian 14.2-1.pgdg110+1)
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -18,31 +16,11 @@ SET xmloption = content;
 SET client_min_messages = warning;
 SET row_security = off;
 
---
--- TOC entry 3 (class 2615 OID 2200)
--- Name: public; Type: SCHEMA; Schema: -; Owner: keycloak-admin
---
-
-CREATE SCHEMA IF NOT EXISTS public;
-
-
-ALTER SCHEMA public OWNER TO "keycloak-admin";
-
---
--- TOC entry 3909 (class 0 OID 0)
--- Dependencies: 3
--- Name: SCHEMA public; Type: COMMENT; Schema: -; Owner: keycloak-admin
---
-
-COMMENT ON SCHEMA public IS 'standard public schema';
-
-
 SET default_tablespace = '';
 
 SET default_table_access_method = heap;
 
 --
--- TOC entry 200 (class 1259 OID 16385)
 -- Name: admin_event_entity; Type: TABLE; Schema: public; Owner: keycloak-admin
 --
 
@@ -65,7 +43,6 @@ CREATE TABLE public.admin_event_entity (
 ALTER TABLE public.admin_event_entity OWNER TO "keycloak-admin";
 
 --
--- TOC entry 201 (class 1259 OID 16391)
 -- Name: associated_policy; Type: TABLE; Schema: public; Owner: keycloak-admin
 --
 
@@ -78,7 +55,6 @@ CREATE TABLE public.associated_policy (
 ALTER TABLE public.associated_policy OWNER TO "keycloak-admin";
 
 --
--- TOC entry 202 (class 1259 OID 16394)
 -- Name: authentication_execution; Type: TABLE; Schema: public; Owner: keycloak-admin
 --
 
@@ -99,7 +75,6 @@ CREATE TABLE public.authentication_execution (
 ALTER TABLE public.authentication_execution OWNER TO "keycloak-admin";
 
 --
--- TOC entry 203 (class 1259 OID 16398)
 -- Name: authentication_flow; Type: TABLE; Schema: public; Owner: keycloak-admin
 --
 
@@ -117,7 +92,6 @@ CREATE TABLE public.authentication_flow (
 ALTER TABLE public.authentication_flow OWNER TO "keycloak-admin";
 
 --
--- TOC entry 204 (class 1259 OID 16407)
 -- Name: authenticator_config; Type: TABLE; Schema: public; Owner: keycloak-admin
 --
 
@@ -131,7 +105,6 @@ CREATE TABLE public.authenticator_config (
 ALTER TABLE public.authenticator_config OWNER TO "keycloak-admin";
 
 --
--- TOC entry 205 (class 1259 OID 16410)
 -- Name: authenticator_config_entry; Type: TABLE; Schema: public; Owner: keycloak-admin
 --
 
@@ -145,7 +118,6 @@ CREATE TABLE public.authenticator_config_entry (
 ALTER TABLE public.authenticator_config_entry OWNER TO "keycloak-admin";
 
 --
--- TOC entry 206 (class 1259 OID 16416)
 -- Name: broker_link; Type: TABLE; Schema: public; Owner: keycloak-admin
 --
 
@@ -163,7 +135,6 @@ CREATE TABLE public.broker_link (
 ALTER TABLE public.broker_link OWNER TO "keycloak-admin";
 
 --
--- TOC entry 207 (class 1259 OID 16422)
 -- Name: client; Type: TABLE; Schema: public; Owner: keycloak-admin
 --
 
@@ -200,7 +171,6 @@ CREATE TABLE public.client (
 ALTER TABLE public.client OWNER TO "keycloak-admin";
 
 --
--- TOC entry 208 (class 1259 OID 16441)
 -- Name: client_attributes; Type: TABLE; Schema: public; Owner: keycloak-admin
 --
 
@@ -214,7 +184,6 @@ CREATE TABLE public.client_attributes (
 ALTER TABLE public.client_attributes OWNER TO "keycloak-admin";
 
 --
--- TOC entry 209 (class 1259 OID 16447)
 -- Name: client_auth_flow_bindings; Type: TABLE; Schema: public; Owner: keycloak-admin
 --
 
@@ -228,20 +197,6 @@ CREATE TABLE public.client_auth_flow_bindings (
 ALTER TABLE public.client_auth_flow_bindings OWNER TO "keycloak-admin";
 
 --
--- TOC entry 210 (class 1259 OID 16450)
--- Name: client_default_roles; Type: TABLE; Schema: public; Owner: keycloak-admin
---
-
-CREATE TABLE public.client_default_roles (
-    client_id character varying(36) NOT NULL,
-    role_id character varying(36) NOT NULL
-);
-
-
-ALTER TABLE public.client_default_roles OWNER TO "keycloak-admin";
-
---
--- TOC entry 211 (class 1259 OID 16453)
 -- Name: client_initial_access; Type: TABLE; Schema: public; Owner: keycloak-admin
 --
 
@@ -258,7 +213,6 @@ CREATE TABLE public.client_initial_access (
 ALTER TABLE public.client_initial_access OWNER TO "keycloak-admin";
 
 --
--- TOC entry 212 (class 1259 OID 16456)
 -- Name: client_node_registrations; Type: TABLE; Schema: public; Owner: keycloak-admin
 --
 
@@ -272,7 +226,6 @@ CREATE TABLE public.client_node_registrations (
 ALTER TABLE public.client_node_registrations OWNER TO "keycloak-admin";
 
 --
--- TOC entry 213 (class 1259 OID 16459)
 -- Name: client_scope; Type: TABLE; Schema: public; Owner: keycloak-admin
 --
 
@@ -288,7 +241,6 @@ CREATE TABLE public.client_scope (
 ALTER TABLE public.client_scope OWNER TO "keycloak-admin";
 
 --
--- TOC entry 214 (class 1259 OID 16465)
 -- Name: client_scope_attributes; Type: TABLE; Schema: public; Owner: keycloak-admin
 --
 
@@ -302,13 +254,12 @@ CREATE TABLE public.client_scope_attributes (
 ALTER TABLE public.client_scope_attributes OWNER TO "keycloak-admin";
 
 --
--- TOC entry 215 (class 1259 OID 16471)
 -- Name: client_scope_client; Type: TABLE; Schema: public; Owner: keycloak-admin
 --
 
 CREATE TABLE public.client_scope_client (
-    client_id character varying(36) NOT NULL,
-    scope_id character varying(36) NOT NULL,
+    client_id character varying(255) NOT NULL,
+    scope_id character varying(255) NOT NULL,
     default_scope boolean DEFAULT false NOT NULL
 );
 
@@ -316,7 +267,6 @@ CREATE TABLE public.client_scope_client (
 ALTER TABLE public.client_scope_client OWNER TO "keycloak-admin";
 
 --
--- TOC entry 216 (class 1259 OID 16475)
 -- Name: client_scope_role_mapping; Type: TABLE; Schema: public; Owner: keycloak-admin
 --
 
@@ -329,7 +279,6 @@ CREATE TABLE public.client_scope_role_mapping (
 ALTER TABLE public.client_scope_role_mapping OWNER TO "keycloak-admin";
 
 --
--- TOC entry 217 (class 1259 OID 16478)
 -- Name: client_session; Type: TABLE; Schema: public; Owner: keycloak-admin
 --
 
@@ -350,7 +299,6 @@ CREATE TABLE public.client_session (
 ALTER TABLE public.client_session OWNER TO "keycloak-admin";
 
 --
--- TOC entry 218 (class 1259 OID 16484)
 -- Name: client_session_auth_status; Type: TABLE; Schema: public; Owner: keycloak-admin
 --
 
@@ -364,7 +312,6 @@ CREATE TABLE public.client_session_auth_status (
 ALTER TABLE public.client_session_auth_status OWNER TO "keycloak-admin";
 
 --
--- TOC entry 219 (class 1259 OID 16487)
 -- Name: client_session_note; Type: TABLE; Schema: public; Owner: keycloak-admin
 --
 
@@ -378,7 +325,6 @@ CREATE TABLE public.client_session_note (
 ALTER TABLE public.client_session_note OWNER TO "keycloak-admin";
 
 --
--- TOC entry 220 (class 1259 OID 16493)
 -- Name: client_session_prot_mapper; Type: TABLE; Schema: public; Owner: keycloak-admin
 --
 
@@ -391,7 +337,6 @@ CREATE TABLE public.client_session_prot_mapper (
 ALTER TABLE public.client_session_prot_mapper OWNER TO "keycloak-admin";
 
 --
--- TOC entry 221 (class 1259 OID 16496)
 -- Name: client_session_role; Type: TABLE; Schema: public; Owner: keycloak-admin
 --
 
@@ -404,7 +349,6 @@ CREATE TABLE public.client_session_role (
 ALTER TABLE public.client_session_role OWNER TO "keycloak-admin";
 
 --
--- TOC entry 222 (class 1259 OID 16499)
 -- Name: client_user_session_note; Type: TABLE; Schema: public; Owner: keycloak-admin
 --
 
@@ -418,7 +362,6 @@ CREATE TABLE public.client_user_session_note (
 ALTER TABLE public.client_user_session_note OWNER TO "keycloak-admin";
 
 --
--- TOC entry 223 (class 1259 OID 16505)
 -- Name: component; Type: TABLE; Schema: public; Owner: keycloak-admin
 --
 
@@ -436,7 +379,6 @@ CREATE TABLE public.component (
 ALTER TABLE public.component OWNER TO "keycloak-admin";
 
 --
--- TOC entry 224 (class 1259 OID 16511)
 -- Name: component_config; Type: TABLE; Schema: public; Owner: keycloak-admin
 --
 
@@ -451,7 +393,6 @@ CREATE TABLE public.component_config (
 ALTER TABLE public.component_config OWNER TO "keycloak-admin";
 
 --
--- TOC entry 225 (class 1259 OID 16517)
 -- Name: composite_role; Type: TABLE; Schema: public; Owner: keycloak-admin
 --
 
@@ -464,7 +405,6 @@ CREATE TABLE public.composite_role (
 ALTER TABLE public.composite_role OWNER TO "keycloak-admin";
 
 --
--- TOC entry 226 (class 1259 OID 16520)
 -- Name: credential; Type: TABLE; Schema: public; Owner: keycloak-admin
 --
 
@@ -484,7 +424,6 @@ CREATE TABLE public.credential (
 ALTER TABLE public.credential OWNER TO "keycloak-admin";
 
 --
--- TOC entry 227 (class 1259 OID 16526)
 -- Name: databasechangelog; Type: TABLE; Schema: public; Owner: keycloak-admin
 --
 
@@ -509,7 +448,6 @@ CREATE TABLE public.databasechangelog (
 ALTER TABLE public.databasechangelog OWNER TO "keycloak-admin";
 
 --
--- TOC entry 228 (class 1259 OID 16532)
 -- Name: databasechangeloglock; Type: TABLE; Schema: public; Owner: keycloak-admin
 --
 
@@ -524,7 +462,6 @@ CREATE TABLE public.databasechangeloglock (
 ALTER TABLE public.databasechangeloglock OWNER TO "keycloak-admin";
 
 --
--- TOC entry 229 (class 1259 OID 16535)
 -- Name: default_client_scope; Type: TABLE; Schema: public; Owner: keycloak-admin
 --
 
@@ -538,7 +475,6 @@ CREATE TABLE public.default_client_scope (
 ALTER TABLE public.default_client_scope OWNER TO "keycloak-admin";
 
 --
--- TOC entry 230 (class 1259 OID 16539)
 -- Name: event_entity; Type: TABLE; Schema: public; Owner: keycloak-admin
 --
 
@@ -559,7 +495,6 @@ CREATE TABLE public.event_entity (
 ALTER TABLE public.event_entity OWNER TO "keycloak-admin";
 
 --
--- TOC entry 231 (class 1259 OID 16545)
 -- Name: fed_user_attribute; Type: TABLE; Schema: public; Owner: keycloak-admin
 --
 
@@ -576,7 +511,6 @@ CREATE TABLE public.fed_user_attribute (
 ALTER TABLE public.fed_user_attribute OWNER TO "keycloak-admin";
 
 --
--- TOC entry 232 (class 1259 OID 16551)
 -- Name: fed_user_consent; Type: TABLE; Schema: public; Owner: keycloak-admin
 --
 
@@ -596,7 +530,6 @@ CREATE TABLE public.fed_user_consent (
 ALTER TABLE public.fed_user_consent OWNER TO "keycloak-admin";
 
 --
--- TOC entry 233 (class 1259 OID 16557)
 -- Name: fed_user_consent_cl_scope; Type: TABLE; Schema: public; Owner: keycloak-admin
 --
 
@@ -609,7 +542,6 @@ CREATE TABLE public.fed_user_consent_cl_scope (
 ALTER TABLE public.fed_user_consent_cl_scope OWNER TO "keycloak-admin";
 
 --
--- TOC entry 234 (class 1259 OID 16560)
 -- Name: fed_user_credential; Type: TABLE; Schema: public; Owner: keycloak-admin
 --
 
@@ -631,7 +563,6 @@ CREATE TABLE public.fed_user_credential (
 ALTER TABLE public.fed_user_credential OWNER TO "keycloak-admin";
 
 --
--- TOC entry 235 (class 1259 OID 16566)
 -- Name: fed_user_group_membership; Type: TABLE; Schema: public; Owner: keycloak-admin
 --
 
@@ -646,7 +577,6 @@ CREATE TABLE public.fed_user_group_membership (
 ALTER TABLE public.fed_user_group_membership OWNER TO "keycloak-admin";
 
 --
--- TOC entry 236 (class 1259 OID 16569)
 -- Name: fed_user_required_action; Type: TABLE; Schema: public; Owner: keycloak-admin
 --
 
@@ -661,7 +591,6 @@ CREATE TABLE public.fed_user_required_action (
 ALTER TABLE public.fed_user_required_action OWNER TO "keycloak-admin";
 
 --
--- TOC entry 237 (class 1259 OID 16576)
 -- Name: fed_user_role_mapping; Type: TABLE; Schema: public; Owner: keycloak-admin
 --
 
@@ -676,7 +605,6 @@ CREATE TABLE public.fed_user_role_mapping (
 ALTER TABLE public.fed_user_role_mapping OWNER TO "keycloak-admin";
 
 --
--- TOC entry 238 (class 1259 OID 16579)
 -- Name: federated_identity; Type: TABLE; Schema: public; Owner: keycloak-admin
 --
 
@@ -693,7 +621,6 @@ CREATE TABLE public.federated_identity (
 ALTER TABLE public.federated_identity OWNER TO "keycloak-admin";
 
 --
--- TOC entry 239 (class 1259 OID 16585)
 -- Name: federated_user; Type: TABLE; Schema: public; Owner: keycloak-admin
 --
 
@@ -707,7 +634,6 @@ CREATE TABLE public.federated_user (
 ALTER TABLE public.federated_user OWNER TO "keycloak-admin";
 
 --
--- TOC entry 240 (class 1259 OID 16591)
 -- Name: group_attribute; Type: TABLE; Schema: public; Owner: keycloak-admin
 --
 
@@ -722,7 +648,6 @@ CREATE TABLE public.group_attribute (
 ALTER TABLE public.group_attribute OWNER TO "keycloak-admin";
 
 --
--- TOC entry 241 (class 1259 OID 16598)
 -- Name: group_role_mapping; Type: TABLE; Schema: public; Owner: keycloak-admin
 --
 
@@ -735,7 +660,6 @@ CREATE TABLE public.group_role_mapping (
 ALTER TABLE public.group_role_mapping OWNER TO "keycloak-admin";
 
 --
--- TOC entry 242 (class 1259 OID 16601)
 -- Name: identity_provider; Type: TABLE; Schema: public; Owner: keycloak-admin
 --
 
@@ -759,7 +683,6 @@ CREATE TABLE public.identity_provider (
 ALTER TABLE public.identity_provider OWNER TO "keycloak-admin";
 
 --
--- TOC entry 243 (class 1259 OID 16613)
 -- Name: identity_provider_config; Type: TABLE; Schema: public; Owner: keycloak-admin
 --
 
@@ -773,7 +696,6 @@ CREATE TABLE public.identity_provider_config (
 ALTER TABLE public.identity_provider_config OWNER TO "keycloak-admin";
 
 --
--- TOC entry 244 (class 1259 OID 16619)
 -- Name: identity_provider_mapper; Type: TABLE; Schema: public; Owner: keycloak-admin
 --
 
@@ -789,7 +711,6 @@ CREATE TABLE public.identity_provider_mapper (
 ALTER TABLE public.identity_provider_mapper OWNER TO "keycloak-admin";
 
 --
--- TOC entry 245 (class 1259 OID 16625)
 -- Name: idp_mapper_config; Type: TABLE; Schema: public; Owner: keycloak-admin
 --
 
@@ -803,7 +724,6 @@ CREATE TABLE public.idp_mapper_config (
 ALTER TABLE public.idp_mapper_config OWNER TO "keycloak-admin";
 
 --
--- TOC entry 246 (class 1259 OID 16631)
 -- Name: keycloak_group; Type: TABLE; Schema: public; Owner: keycloak-admin
 --
 
@@ -818,7 +738,6 @@ CREATE TABLE public.keycloak_group (
 ALTER TABLE public.keycloak_group OWNER TO "keycloak-admin";
 
 --
--- TOC entry 247 (class 1259 OID 16634)
 -- Name: keycloak_role; Type: TABLE; Schema: public; Owner: keycloak-admin
 --
 
@@ -837,7 +756,6 @@ CREATE TABLE public.keycloak_role (
 ALTER TABLE public.keycloak_role OWNER TO "keycloak-admin";
 
 --
--- TOC entry 248 (class 1259 OID 16641)
 -- Name: migration_model; Type: TABLE; Schema: public; Owner: keycloak-admin
 --
 
@@ -851,7 +769,6 @@ CREATE TABLE public.migration_model (
 ALTER TABLE public.migration_model OWNER TO "keycloak-admin";
 
 --
--- TOC entry 249 (class 1259 OID 16645)
 -- Name: offline_client_session; Type: TABLE; Schema: public; Owner: keycloak-admin
 --
 
@@ -869,7 +786,6 @@ CREATE TABLE public.offline_client_session (
 ALTER TABLE public.offline_client_session OWNER TO "keycloak-admin";
 
 --
--- TOC entry 250 (class 1259 OID 16653)
 -- Name: offline_user_session; Type: TABLE; Schema: public; Owner: keycloak-admin
 --
 
@@ -887,7 +803,6 @@ CREATE TABLE public.offline_user_session (
 ALTER TABLE public.offline_user_session OWNER TO "keycloak-admin";
 
 --
--- TOC entry 251 (class 1259 OID 16660)
 -- Name: policy_config; Type: TABLE; Schema: public; Owner: keycloak-admin
 --
 
@@ -901,7 +816,6 @@ CREATE TABLE public.policy_config (
 ALTER TABLE public.policy_config OWNER TO "keycloak-admin";
 
 --
--- TOC entry 252 (class 1259 OID 16666)
 -- Name: protocol_mapper; Type: TABLE; Schema: public; Owner: keycloak-admin
 --
 
@@ -918,7 +832,6 @@ CREATE TABLE public.protocol_mapper (
 ALTER TABLE public.protocol_mapper OWNER TO "keycloak-admin";
 
 --
--- TOC entry 253 (class 1259 OID 16672)
 -- Name: protocol_mapper_config; Type: TABLE; Schema: public; Owner: keycloak-admin
 --
 
@@ -932,7 +845,6 @@ CREATE TABLE public.protocol_mapper_config (
 ALTER TABLE public.protocol_mapper_config OWNER TO "keycloak-admin";
 
 --
--- TOC entry 254 (class 1259 OID 16678)
 -- Name: realm; Type: TABLE; Schema: public; Owner: keycloak-admin
 --
 
@@ -988,28 +900,27 @@ CREATE TABLE public.realm (
     refresh_token_max_reuse integer DEFAULT 0,
     allow_user_managed_access boolean DEFAULT false NOT NULL,
     sso_max_lifespan_remember_me integer DEFAULT 0 NOT NULL,
-    sso_idle_timeout_remember_me integer DEFAULT 0 NOT NULL
+    sso_idle_timeout_remember_me integer DEFAULT 0 NOT NULL,
+    default_role character varying(255)
 );
 
 
 ALTER TABLE public.realm OWNER TO "keycloak-admin";
 
 --
--- TOC entry 255 (class 1259 OID 16712)
 -- Name: realm_attribute; Type: TABLE; Schema: public; Owner: keycloak-admin
 --
 
 CREATE TABLE public.realm_attribute (
     name character varying(255) NOT NULL,
-    value character varying(255),
-    realm_id character varying(36) NOT NULL
+    realm_id character varying(36) NOT NULL,
+    value text
 );
 
 
 ALTER TABLE public.realm_attribute OWNER TO "keycloak-admin";
 
 --
--- TOC entry 256 (class 1259 OID 16718)
 -- Name: realm_default_groups; Type: TABLE; Schema: public; Owner: keycloak-admin
 --
 
@@ -1022,20 +933,6 @@ CREATE TABLE public.realm_default_groups (
 ALTER TABLE public.realm_default_groups OWNER TO "keycloak-admin";
 
 --
--- TOC entry 257 (class 1259 OID 16721)
--- Name: realm_default_roles; Type: TABLE; Schema: public; Owner: keycloak-admin
---
-
-CREATE TABLE public.realm_default_roles (
-    realm_id character varying(36) NOT NULL,
-    role_id character varying(36) NOT NULL
-);
-
-
-ALTER TABLE public.realm_default_roles OWNER TO "keycloak-admin";
-
---
--- TOC entry 258 (class 1259 OID 16724)
 -- Name: realm_enabled_event_types; Type: TABLE; Schema: public; Owner: keycloak-admin
 --
 
@@ -1048,7 +945,6 @@ CREATE TABLE public.realm_enabled_event_types (
 ALTER TABLE public.realm_enabled_event_types OWNER TO "keycloak-admin";
 
 --
--- TOC entry 259 (class 1259 OID 16727)
 -- Name: realm_events_listeners; Type: TABLE; Schema: public; Owner: keycloak-admin
 --
 
@@ -1061,7 +957,19 @@ CREATE TABLE public.realm_events_listeners (
 ALTER TABLE public.realm_events_listeners OWNER TO "keycloak-admin";
 
 --
--- TOC entry 260 (class 1259 OID 16730)
+-- Name: realm_localizations; Type: TABLE; Schema: public; Owner: keycloak-admin
+--
+
+CREATE TABLE public.realm_localizations (
+    realm_id character varying(255) NOT NULL,
+    locale character varying(255) NOT NULL,
+    texts text NOT NULL
+);
+
+
+ALTER TABLE public.realm_localizations OWNER TO "keycloak-admin";
+
+--
 -- Name: realm_required_credential; Type: TABLE; Schema: public; Owner: keycloak-admin
 --
 
@@ -1077,7 +985,6 @@ CREATE TABLE public.realm_required_credential (
 ALTER TABLE public.realm_required_credential OWNER TO "keycloak-admin";
 
 --
--- TOC entry 261 (class 1259 OID 16738)
 -- Name: realm_smtp_config; Type: TABLE; Schema: public; Owner: keycloak-admin
 --
 
@@ -1091,7 +998,6 @@ CREATE TABLE public.realm_smtp_config (
 ALTER TABLE public.realm_smtp_config OWNER TO "keycloak-admin";
 
 --
--- TOC entry 262 (class 1259 OID 16744)
 -- Name: realm_supported_locales; Type: TABLE; Schema: public; Owner: keycloak-admin
 --
 
@@ -1104,7 +1010,6 @@ CREATE TABLE public.realm_supported_locales (
 ALTER TABLE public.realm_supported_locales OWNER TO "keycloak-admin";
 
 --
--- TOC entry 263 (class 1259 OID 16747)
 -- Name: redirect_uris; Type: TABLE; Schema: public; Owner: keycloak-admin
 --
 
@@ -1117,7 +1022,6 @@ CREATE TABLE public.redirect_uris (
 ALTER TABLE public.redirect_uris OWNER TO "keycloak-admin";
 
 --
--- TOC entry 264 (class 1259 OID 16750)
 -- Name: required_action_config; Type: TABLE; Schema: public; Owner: keycloak-admin
 --
 
@@ -1131,7 +1035,6 @@ CREATE TABLE public.required_action_config (
 ALTER TABLE public.required_action_config OWNER TO "keycloak-admin";
 
 --
--- TOC entry 265 (class 1259 OID 16756)
 -- Name: required_action_provider; Type: TABLE; Schema: public; Owner: keycloak-admin
 --
 
@@ -1150,7 +1053,6 @@ CREATE TABLE public.required_action_provider (
 ALTER TABLE public.required_action_provider OWNER TO "keycloak-admin";
 
 --
--- TOC entry 266 (class 1259 OID 16764)
 -- Name: resource_attribute; Type: TABLE; Schema: public; Owner: keycloak-admin
 --
 
@@ -1165,7 +1067,6 @@ CREATE TABLE public.resource_attribute (
 ALTER TABLE public.resource_attribute OWNER TO "keycloak-admin";
 
 --
--- TOC entry 267 (class 1259 OID 16771)
 -- Name: resource_policy; Type: TABLE; Schema: public; Owner: keycloak-admin
 --
 
@@ -1178,7 +1079,6 @@ CREATE TABLE public.resource_policy (
 ALTER TABLE public.resource_policy OWNER TO "keycloak-admin";
 
 --
--- TOC entry 268 (class 1259 OID 16774)
 -- Name: resource_scope; Type: TABLE; Schema: public; Owner: keycloak-admin
 --
 
@@ -1191,7 +1091,6 @@ CREATE TABLE public.resource_scope (
 ALTER TABLE public.resource_scope OWNER TO "keycloak-admin";
 
 --
--- TOC entry 269 (class 1259 OID 16777)
 -- Name: resource_server; Type: TABLE; Schema: public; Owner: keycloak-admin
 --
 
@@ -1206,7 +1105,6 @@ CREATE TABLE public.resource_server (
 ALTER TABLE public.resource_server OWNER TO "keycloak-admin";
 
 --
--- TOC entry 270 (class 1259 OID 16782)
 -- Name: resource_server_perm_ticket; Type: TABLE; Schema: public; Owner: keycloak-admin
 --
 
@@ -1226,7 +1124,6 @@ CREATE TABLE public.resource_server_perm_ticket (
 ALTER TABLE public.resource_server_perm_ticket OWNER TO "keycloak-admin";
 
 --
--- TOC entry 271 (class 1259 OID 16788)
 -- Name: resource_server_policy; Type: TABLE; Schema: public; Owner: keycloak-admin
 --
 
@@ -1245,7 +1142,6 @@ CREATE TABLE public.resource_server_policy (
 ALTER TABLE public.resource_server_policy OWNER TO "keycloak-admin";
 
 --
--- TOC entry 272 (class 1259 OID 16794)
 -- Name: resource_server_resource; Type: TABLE; Schema: public; Owner: keycloak-admin
 --
 
@@ -1264,7 +1160,6 @@ CREATE TABLE public.resource_server_resource (
 ALTER TABLE public.resource_server_resource OWNER TO "keycloak-admin";
 
 --
--- TOC entry 273 (class 1259 OID 16801)
 -- Name: resource_server_scope; Type: TABLE; Schema: public; Owner: keycloak-admin
 --
 
@@ -1280,7 +1175,6 @@ CREATE TABLE public.resource_server_scope (
 ALTER TABLE public.resource_server_scope OWNER TO "keycloak-admin";
 
 --
--- TOC entry 274 (class 1259 OID 16807)
 -- Name: resource_uris; Type: TABLE; Schema: public; Owner: keycloak-admin
 --
 
@@ -1293,7 +1187,6 @@ CREATE TABLE public.resource_uris (
 ALTER TABLE public.resource_uris OWNER TO "keycloak-admin";
 
 --
--- TOC entry 275 (class 1259 OID 16810)
 -- Name: role_attribute; Type: TABLE; Schema: public; Owner: keycloak-admin
 --
 
@@ -1308,7 +1201,6 @@ CREATE TABLE public.role_attribute (
 ALTER TABLE public.role_attribute OWNER TO "keycloak-admin";
 
 --
--- TOC entry 276 (class 1259 OID 16816)
 -- Name: scope_mapping; Type: TABLE; Schema: public; Owner: keycloak-admin
 --
 
@@ -1321,7 +1213,6 @@ CREATE TABLE public.scope_mapping (
 ALTER TABLE public.scope_mapping OWNER TO "keycloak-admin";
 
 --
--- TOC entry 277 (class 1259 OID 16819)
 -- Name: scope_policy; Type: TABLE; Schema: public; Owner: keycloak-admin
 --
 
@@ -1334,7 +1225,6 @@ CREATE TABLE public.scope_policy (
 ALTER TABLE public.scope_policy OWNER TO "keycloak-admin";
 
 --
--- TOC entry 278 (class 1259 OID 16822)
 -- Name: user_attribute; Type: TABLE; Schema: public; Owner: keycloak-admin
 --
 
@@ -1349,7 +1239,6 @@ CREATE TABLE public.user_attribute (
 ALTER TABLE public.user_attribute OWNER TO "keycloak-admin";
 
 --
--- TOC entry 279 (class 1259 OID 16829)
 -- Name: user_consent; Type: TABLE; Schema: public; Owner: keycloak-admin
 --
 
@@ -1367,7 +1256,6 @@ CREATE TABLE public.user_consent (
 ALTER TABLE public.user_consent OWNER TO "keycloak-admin";
 
 --
--- TOC entry 280 (class 1259 OID 16835)
 -- Name: user_consent_client_scope; Type: TABLE; Schema: public; Owner: keycloak-admin
 --
 
@@ -1380,7 +1268,6 @@ CREATE TABLE public.user_consent_client_scope (
 ALTER TABLE public.user_consent_client_scope OWNER TO "keycloak-admin";
 
 --
--- TOC entry 281 (class 1259 OID 16838)
 -- Name: user_entity; Type: TABLE; Schema: public; Owner: keycloak-admin
 --
 
@@ -1404,7 +1291,6 @@ CREATE TABLE public.user_entity (
 ALTER TABLE public.user_entity OWNER TO "keycloak-admin";
 
 --
--- TOC entry 282 (class 1259 OID 16847)
 -- Name: user_federation_config; Type: TABLE; Schema: public; Owner: keycloak-admin
 --
 
@@ -1418,7 +1304,6 @@ CREATE TABLE public.user_federation_config (
 ALTER TABLE public.user_federation_config OWNER TO "keycloak-admin";
 
 --
--- TOC entry 283 (class 1259 OID 16853)
 -- Name: user_federation_mapper; Type: TABLE; Schema: public; Owner: keycloak-admin
 --
 
@@ -1434,7 +1319,6 @@ CREATE TABLE public.user_federation_mapper (
 ALTER TABLE public.user_federation_mapper OWNER TO "keycloak-admin";
 
 --
--- TOC entry 284 (class 1259 OID 16859)
 -- Name: user_federation_mapper_config; Type: TABLE; Schema: public; Owner: keycloak-admin
 --
 
@@ -1448,7 +1332,6 @@ CREATE TABLE public.user_federation_mapper_config (
 ALTER TABLE public.user_federation_mapper_config OWNER TO "keycloak-admin";
 
 --
--- TOC entry 285 (class 1259 OID 16865)
 -- Name: user_federation_provider; Type: TABLE; Schema: public; Owner: keycloak-admin
 --
 
@@ -1467,7 +1350,6 @@ CREATE TABLE public.user_federation_provider (
 ALTER TABLE public.user_federation_provider OWNER TO "keycloak-admin";
 
 --
--- TOC entry 286 (class 1259 OID 16871)
 -- Name: user_group_membership; Type: TABLE; Schema: public; Owner: keycloak-admin
 --
 
@@ -1480,7 +1362,6 @@ CREATE TABLE public.user_group_membership (
 ALTER TABLE public.user_group_membership OWNER TO "keycloak-admin";
 
 --
--- TOC entry 287 (class 1259 OID 16874)
 -- Name: user_required_action; Type: TABLE; Schema: public; Owner: keycloak-admin
 --
 
@@ -1493,7 +1374,6 @@ CREATE TABLE public.user_required_action (
 ALTER TABLE public.user_required_action OWNER TO "keycloak-admin";
 
 --
--- TOC entry 288 (class 1259 OID 16878)
 -- Name: user_role_mapping; Type: TABLE; Schema: public; Owner: keycloak-admin
 --
 
@@ -1506,7 +1386,6 @@ CREATE TABLE public.user_role_mapping (
 ALTER TABLE public.user_role_mapping OWNER TO "keycloak-admin";
 
 --
--- TOC entry 289 (class 1259 OID 16881)
 -- Name: user_session; Type: TABLE; Schema: public; Owner: keycloak-admin
 --
 
@@ -1529,7 +1408,6 @@ CREATE TABLE public.user_session (
 ALTER TABLE public.user_session OWNER TO "keycloak-admin";
 
 --
--- TOC entry 290 (class 1259 OID 16888)
 -- Name: user_session_note; Type: TABLE; Schema: public; Owner: keycloak-admin
 --
 
@@ -1543,7 +1421,6 @@ CREATE TABLE public.user_session_note (
 ALTER TABLE public.user_session_note OWNER TO "keycloak-admin";
 
 --
--- TOC entry 291 (class 1259 OID 16894)
 -- Name: username_login_failure; Type: TABLE; Schema: public; Owner: keycloak-admin
 --
 
@@ -1560,7 +1437,6 @@ CREATE TABLE public.username_login_failure (
 ALTER TABLE public.username_login_failure OWNER TO "keycloak-admin";
 
 --
--- TOC entry 292 (class 1259 OID 16900)
 -- Name: web_origins; Type: TABLE; Schema: public; Owner: keycloak-admin
 --
 
@@ -1573,16 +1449,12 @@ CREATE TABLE public.web_origins (
 ALTER TABLE public.web_origins OWNER TO "keycloak-admin";
 
 --
--- TOC entry 3811 (class 0 OID 16385)
--- Dependencies: 200
 -- Data for Name: admin_event_entity; Type: TABLE DATA; Schema: public; Owner: keycloak-admin
 --
 
 
 
 --
--- TOC entry 3812 (class 0 OID 16391)
--- Dependencies: 201
 -- Data for Name: associated_policy; Type: TABLE DATA; Schema: public; Owner: keycloak-admin
 --
 
@@ -1590,8 +1462,6 @@ INSERT INTO public.associated_policy VALUES ('7e80b864-cbef-499c-b7b6-12570ce426
 
 
 --
--- TOC entry 3813 (class 0 OID 16394)
--- Dependencies: 202
 -- Data for Name: authentication_execution; Type: TABLE DATA; Schema: public; Owner: keycloak-admin
 --
 
@@ -1692,8 +1562,6 @@ INSERT INTO public.authentication_execution VALUES ('00898dbc-6c1d-44ff-92e4-178
 
 
 --
--- TOC entry 3814 (class 0 OID 16398)
--- Dependencies: 203
 -- Data for Name: authentication_flow; Type: TABLE DATA; Schema: public; Owner: keycloak-admin
 --
 
@@ -1740,8 +1608,6 @@ INSERT INTO public.authentication_flow VALUES ('b1bdd2c0-246c-4c35-b78d-0d0f705f
 
 
 --
--- TOC entry 3815 (class 0 OID 16407)
--- Dependencies: 204
 -- Data for Name: authenticator_config; Type: TABLE DATA; Schema: public; Owner: keycloak-admin
 --
 
@@ -1752,8 +1618,6 @@ INSERT INTO public.authenticator_config VALUES ('c30d2557-f281-4b1e-9724-160e89b
 
 
 --
--- TOC entry 3816 (class 0 OID 16410)
--- Dependencies: 205
 -- Data for Name: authenticator_config_entry; Type: TABLE DATA; Schema: public; Owner: keycloak-admin
 --
 
@@ -1764,16 +1628,12 @@ INSERT INTO public.authenticator_config_entry VALUES ('c30d2557-f281-4b1e-9724-1
 
 
 --
--- TOC entry 3817 (class 0 OID 16416)
--- Dependencies: 206
 -- Data for Name: broker_link; Type: TABLE DATA; Schema: public; Owner: keycloak-admin
 --
 
 
 
 --
--- TOC entry 3818 (class 0 OID 16422)
--- Dependencies: 207
 -- Data for Name: client; Type: TABLE DATA; Schema: public; Owner: keycloak-admin
 --
 
@@ -1782,20 +1642,18 @@ INSERT INTO public.client VALUES ('cb7fb9e0-3ecb-4bfc-bd42-5ada914d1848', true, 
 INSERT INTO public.client VALUES ('6f76a30f-a144-4cde-91aa-396cdb1bd041', true, false, 'account-console', 0, true, 'fe74b813-7091-4cc3-bc3d-58e213cb7d29', '/realms/master/account/', false, NULL, false, 'master', 'openid-connect', 0, false, false, '${client_account-console}', false, 'client-secret', '${authBaseUrl}', NULL, NULL, true, false, false, false);
 INSERT INTO public.client VALUES ('1330007e-73e9-4696-bb3a-0b9a5e0fc478', true, false, 'broker', 0, false, '53ee09c5-5fd9-4d1d-b1b2-e45f582e6a2c', NULL, false, NULL, false, 'master', 'openid-connect', 0, false, false, '${client_broker}', false, 'client-secret', NULL, NULL, NULL, true, false, false, false);
 INSERT INTO public.client VALUES ('a7b3085f-1a46-4dbd-bb45-65d206b6252a', true, false, 'security-admin-console', 0, true, 'b53f4f10-ee7f-4cd0-80d3-84090597f095', '/admin/master/console/', false, NULL, false, 'master', 'openid-connect', 0, false, false, '${client_security-admin-console}', false, 'client-secret', '${authAdminUrl}', NULL, NULL, true, false, false, false);
-INSERT INTO public.client VALUES ('2f681d28-3893-4210-a4e9-1837e9100c96', true, true, 'monthly-realm', 0, false, 'dcd09e8d-129c-4e55-817e-e8cbcbed1e10', NULL, true, NULL, false, 'master', NULL, 0, false, false, 'monthly Realm', false, 'client-secret', NULL, NULL, NULL, true, false, false, false);
 INSERT INTO public.client VALUES ('acaccaf4-1502-4957-92ac-1a90531360a9', true, false, 'realm-management', 0, false, '3a3f954d-8b93-4e39-87b2-0d2e2be8f747', NULL, true, NULL, false, 'monthly', 'openid-connect', 0, false, false, '${client_realm-management}', false, 'client-secret', NULL, NULL, NULL, true, false, false, false);
-INSERT INTO public.client VALUES ('237dc637-c5fd-4d16-834e-2b51960b157e', true, false, 'account', 0, false, '8cc48e00-7c4a-496d-8244-8e8ed29ccfea', '/realms/monthly/account/', false, NULL, false, 'monthly', 'openid-connect', 0, false, false, '${client_account}', false, 'client-secret', '${authBaseUrl}', NULL, NULL, true, false, false, false);
-INSERT INTO public.client VALUES ('e4bdf2ef-025f-46b8-a430-228614135818', true, false, 'account-console', 0, true, 'bf6a1248-52a6-4d36-a297-c95ac01e9d0c', '/realms/monthly/account/', false, NULL, false, 'monthly', 'openid-connect', 0, false, false, '${client_account-console}', false, 'client-secret', '${authBaseUrl}', NULL, NULL, true, false, false, false);
 INSERT INTO public.client VALUES ('0ca739d3-acc4-4418-8de5-b852d1d102df', true, false, 'broker', 0, false, '3ed4b37c-dd27-414b-8cd5-4ba3e4291c72', NULL, false, NULL, false, 'monthly', 'openid-connect', 0, false, false, '${client_broker}', false, 'client-secret', NULL, NULL, NULL, true, false, false, false);
-INSERT INTO public.client VALUES ('5bf30d61-eaf2-4820-9b11-3b22220902c5', true, false, 'security-admin-console', 0, true, '284b99ca-21cc-4f56-ad06-1a6d6b78f05e', '/admin/monthly/console/', false, NULL, false, 'monthly', 'openid-connect', 0, false, false, '${client_security-admin-console}', false, 'client-secret', '${authAdminUrl}', NULL, NULL, true, false, false, false);
 INSERT INTO public.client VALUES ('c6416b8c-6d60-4058-a323-1427f42ec623', true, false, 'admin-cli', 0, true, '9747cbd8-52c8-433a-b44d-54520730f8a8', NULL, false, NULL, false, 'monthly', 'openid-connect', 0, false, false, '${client_admin-cli}', false, 'client-secret', NULL, NULL, NULL, false, false, true, false);
-INSERT INTO public.client VALUES ('f5c6b235-7689-4b23-89df-98df00fca160', true, true, 'monthly-login-app', 0, false, 'd93fb7d2-46bc-42d0-9d4e-3ac917dcb962', '', false, NULL, false, 'monthly', 'openid-connect', -1, false, false, 'Monthly Login App', true, 'client-secret', 'http://localhost:8081', NULL, NULL, true, false, true, false);
 INSERT INTO public.client VALUES ('61cd8b8e-bf9d-4c47-b8af-596dcda6d716', true, false, 'admin-cli', 0, false, '20d9f569-dc7f-4951-afe4-ca3c2b766cec', NULL, false, NULL, false, 'master', 'openid-connect', 0, false, false, '${client_admin-cli}', true, 'client-secret', NULL, NULL, NULL, false, false, true, false);
+INSERT INTO public.client VALUES ('2f681d28-3893-4210-a4e9-1837e9100c96', true, true, 'app-realm', 0, false, 'dcd09e8d-129c-4e55-817e-e8cbcbed1e10', NULL, true, NULL, false, 'master', NULL, 0, false, false, 'monthly Realm', false, 'client-secret', NULL, NULL, NULL, true, false, false, false);
+INSERT INTO public.client VALUES ('5bf30d61-eaf2-4820-9b11-3b22220902c5', true, false, 'security-admin-console', 0, true, '284b99ca-21cc-4f56-ad06-1a6d6b78f05e', '/admin/app/console/', false, NULL, false, 'monthly', 'openid-connect', 0, false, false, '${client_security-admin-console}', false, 'client-secret', '${authAdminUrl}', NULL, NULL, true, false, false, false);
+INSERT INTO public.client VALUES ('237dc637-c5fd-4d16-834e-2b51960b157e', true, false, 'account', 0, false, '8cc48e00-7c4a-496d-8244-8e8ed29ccfea', '/realms/app/account/', false, NULL, false, 'monthly', 'openid-connect', 0, false, false, '${client_account}', false, 'client-secret', '${authBaseUrl}', NULL, NULL, true, false, false, false);
+INSERT INTO public.client VALUES ('e4bdf2ef-025f-46b8-a430-228614135818', true, false, 'account-console', 0, true, NULL, '/realms/app/account/', false, NULL, false, 'monthly', 'openid-connect', 0, false, false, '${client_account-console}', false, 'client-secret', '${authBaseUrl}', NULL, NULL, true, false, false, false);
+INSERT INTO public.client VALUES ('f5c6b235-7689-4b23-89df-98df00fca160', true, true, 'login-app', 0, false, 'd93fb7d2-46bc-42d0-9d4e-3ac917dcb962', '', false, NULL, false, 'monthly', 'openid-connect', -1, false, false, 'Login App', true, 'client-secret', 'http://localhost:8081', NULL, NULL, true, false, true, false);
 
 
 --
--- TOC entry 3819 (class 0 OID 16441)
--- Dependencies: 208
 -- Data for Name: client_attributes; Type: TABLE DATA; Schema: public; Owner: keycloak-admin
 --
 
@@ -1830,47 +1688,58 @@ INSERT INTO public.client_attributes VALUES ('61cd8b8e-bf9d-4c47-b8af-596dcda6d7
 INSERT INTO public.client_attributes VALUES ('61cd8b8e-bf9d-4c47-b8af-596dcda6d716', 'false', 'exclude.session.state.from.auth.response');
 INSERT INTO public.client_attributes VALUES ('61cd8b8e-bf9d-4c47-b8af-596dcda6d716', 'false', 'tls.client.certificate.bound.access.tokens');
 INSERT INTO public.client_attributes VALUES ('61cd8b8e-bf9d-4c47-b8af-596dcda6d716', 'false', 'display.on.consent.screen');
+INSERT INTO public.client_attributes VALUES ('e4bdf2ef-025f-46b8-a430-228614135818', 'false', 'saml.artifact.binding');
+INSERT INTO public.client_attributes VALUES ('e4bdf2ef-025f-46b8-a430-228614135818', 'false', 'saml.server.signature');
+INSERT INTO public.client_attributes VALUES ('e4bdf2ef-025f-46b8-a430-228614135818', 'false', 'saml.server.signature.keyinfo.ext');
+INSERT INTO public.client_attributes VALUES ('e4bdf2ef-025f-46b8-a430-228614135818', 'false', 'saml.assertion.signature');
+INSERT INTO public.client_attributes VALUES ('e4bdf2ef-025f-46b8-a430-228614135818', 'false', 'saml.client.signature');
+INSERT INTO public.client_attributes VALUES ('e4bdf2ef-025f-46b8-a430-228614135818', 'false', 'saml.encrypt');
+INSERT INTO public.client_attributes VALUES ('e4bdf2ef-025f-46b8-a430-228614135818', 'false', 'saml.authnstatement');
+INSERT INTO public.client_attributes VALUES ('e4bdf2ef-025f-46b8-a430-228614135818', 'false', 'saml.onetimeuse.condition');
+INSERT INTO public.client_attributes VALUES ('e4bdf2ef-025f-46b8-a430-228614135818', 'false', 'saml_force_name_id_format');
+INSERT INTO public.client_attributes VALUES ('e4bdf2ef-025f-46b8-a430-228614135818', 'false', 'saml.multivalued.roles');
+INSERT INTO public.client_attributes VALUES ('e4bdf2ef-025f-46b8-a430-228614135818', 'false', 'saml.force.post.binding');
+INSERT INTO public.client_attributes VALUES ('e4bdf2ef-025f-46b8-a430-228614135818', 'false', 'exclude.session.state.from.auth.response');
+INSERT INTO public.client_attributes VALUES ('e4bdf2ef-025f-46b8-a430-228614135818', 'false', 'oauth2.device.authorization.grant.enabled');
+INSERT INTO public.client_attributes VALUES ('e4bdf2ef-025f-46b8-a430-228614135818', 'false', 'oidc.ciba.grant.enabled');
+INSERT INTO public.client_attributes VALUES ('e4bdf2ef-025f-46b8-a430-228614135818', 'true', 'use.refresh.tokens');
+INSERT INTO public.client_attributes VALUES ('e4bdf2ef-025f-46b8-a430-228614135818', 'false', 'id.token.as.detached.signature');
+INSERT INTO public.client_attributes VALUES ('e4bdf2ef-025f-46b8-a430-228614135818', 'false', 'tls.client.certificate.bound.access.tokens');
+INSERT INTO public.client_attributes VALUES ('e4bdf2ef-025f-46b8-a430-228614135818', 'false', 'require.pushed.authorization.requests');
+INSERT INTO public.client_attributes VALUES ('e4bdf2ef-025f-46b8-a430-228614135818', 'false', 'client_credentials.use_refresh_token');
+INSERT INTO public.client_attributes VALUES ('e4bdf2ef-025f-46b8-a430-228614135818', 'false', 'display.on.consent.screen');
+INSERT INTO public.client_attributes VALUES ('e4bdf2ef-025f-46b8-a430-228614135818', 'false', 'backchannel.logout.session.required');
+INSERT INTO public.client_attributes VALUES ('e4bdf2ef-025f-46b8-a430-228614135818', 'false', 'backchannel.logout.revoke.offline.tokens');
+INSERT INTO public.client_attributes VALUES ('f5c6b235-7689-4b23-89df-98df00fca160', 'false', 'saml.artifact.binding');
+INSERT INTO public.client_attributes VALUES ('f5c6b235-7689-4b23-89df-98df00fca160', 'false', 'oauth2.device.authorization.grant.enabled');
+INSERT INTO public.client_attributes VALUES ('f5c6b235-7689-4b23-89df-98df00fca160', 'false', 'oidc.ciba.grant.enabled');
+INSERT INTO public.client_attributes VALUES ('f5c6b235-7689-4b23-89df-98df00fca160', 'true', 'use.refresh.tokens');
+INSERT INTO public.client_attributes VALUES ('f5c6b235-7689-4b23-89df-98df00fca160', 'false', 'id.token.as.detached.signature');
+INSERT INTO public.client_attributes VALUES ('f5c6b235-7689-4b23-89df-98df00fca160', 'false', 'require.pushed.authorization.requests');
+INSERT INTO public.client_attributes VALUES ('f5c6b235-7689-4b23-89df-98df00fca160', 'false', 'client_credentials.use_refresh_token');
+INSERT INTO public.client_attributes VALUES ('f5c6b235-7689-4b23-89df-98df00fca160', 'false', 'backchannel.logout.session.required');
+INSERT INTO public.client_attributes VALUES ('f5c6b235-7689-4b23-89df-98df00fca160', 'false', 'backchannel.logout.revoke.offline.tokens');
 
 
 --
--- TOC entry 3820 (class 0 OID 16447)
--- Dependencies: 209
 -- Data for Name: client_auth_flow_bindings; Type: TABLE DATA; Schema: public; Owner: keycloak-admin
 --
 
 
 
 --
--- TOC entry 3821 (class 0 OID 16450)
--- Dependencies: 210
--- Data for Name: client_default_roles; Type: TABLE DATA; Schema: public; Owner: keycloak-admin
---
-
-INSERT INTO public.client_default_roles VALUES ('cb7fb9e0-3ecb-4bfc-bd42-5ada914d1848', '15ab8020-ea70-4ec6-b192-45b82b40add4');
-INSERT INTO public.client_default_roles VALUES ('cb7fb9e0-3ecb-4bfc-bd42-5ada914d1848', '65d6ca47-a8ea-4be5-aa07-4f62db4a8b96');
-INSERT INTO public.client_default_roles VALUES ('237dc637-c5fd-4d16-834e-2b51960b157e', '6ee15ba2-d581-4f39-b819-77c64a6e7844');
-INSERT INTO public.client_default_roles VALUES ('237dc637-c5fd-4d16-834e-2b51960b157e', '04ab2a31-3da1-4a06-a8d3-f9a008d356d5');
-
-
---
--- TOC entry 3822 (class 0 OID 16453)
--- Dependencies: 211
 -- Data for Name: client_initial_access; Type: TABLE DATA; Schema: public; Owner: keycloak-admin
 --
 
 
 
 --
--- TOC entry 3823 (class 0 OID 16456)
--- Dependencies: 212
 -- Data for Name: client_node_registrations; Type: TABLE DATA; Schema: public; Owner: keycloak-admin
 --
 
 
 
 --
--- TOC entry 3824 (class 0 OID 16459)
--- Dependencies: 213
 -- Data for Name: client_scope; Type: TABLE DATA; Schema: public; Owner: keycloak-admin
 --
 
@@ -1895,8 +1764,6 @@ INSERT INTO public.client_scope VALUES ('680b199d-863d-4b5a-abd8-26424060a491', 
 
 
 --
--- TOC entry 3825 (class 0 OID 16465)
--- Dependencies: 214
 -- Data for Name: client_scope_attributes; Type: TABLE DATA; Schema: public; Owner: keycloak-admin
 --
 
@@ -1951,8 +1818,6 @@ INSERT INTO public.client_scope_attributes VALUES ('680b199d-863d-4b5a-abd8-2642
 
 
 --
--- TOC entry 3826 (class 0 OID 16471)
--- Dependencies: 215
 -- Data for Name: client_scope_client; Type: TABLE DATA; Schema: public; Owner: keycloak-admin
 --
 
@@ -2085,8 +1950,6 @@ INSERT INTO public.client_scope_client VALUES ('f5c6b235-7689-4b23-89df-98df00fc
 
 
 --
--- TOC entry 3827 (class 0 OID 16475)
--- Dependencies: 216
 -- Data for Name: client_scope_role_mapping; Type: TABLE DATA; Schema: public; Owner: keycloak-admin
 --
 
@@ -2095,56 +1958,42 @@ INSERT INTO public.client_scope_role_mapping VALUES ('028becdd-bc86-42ef-a954-11
 
 
 --
--- TOC entry 3828 (class 0 OID 16478)
--- Dependencies: 217
 -- Data for Name: client_session; Type: TABLE DATA; Schema: public; Owner: keycloak-admin
 --
 
 
 
 --
--- TOC entry 3829 (class 0 OID 16484)
--- Dependencies: 218
 -- Data for Name: client_session_auth_status; Type: TABLE DATA; Schema: public; Owner: keycloak-admin
 --
 
 
 
 --
--- TOC entry 3830 (class 0 OID 16487)
--- Dependencies: 219
 -- Data for Name: client_session_note; Type: TABLE DATA; Schema: public; Owner: keycloak-admin
 --
 
 
 
 --
--- TOC entry 3831 (class 0 OID 16493)
--- Dependencies: 220
 -- Data for Name: client_session_prot_mapper; Type: TABLE DATA; Schema: public; Owner: keycloak-admin
 --
 
 
 
 --
--- TOC entry 3832 (class 0 OID 16496)
--- Dependencies: 221
 -- Data for Name: client_session_role; Type: TABLE DATA; Schema: public; Owner: keycloak-admin
 --
 
 
 
 --
--- TOC entry 3833 (class 0 OID 16499)
--- Dependencies: 222
 -- Data for Name: client_user_session_note; Type: TABLE DATA; Schema: public; Owner: keycloak-admin
 --
 
 
 
 --
--- TOC entry 3834 (class 0 OID 16505)
--- Dependencies: 223
 -- Data for Name: component; Type: TABLE DATA; Schema: public; Owner: keycloak-admin
 --
 
@@ -2170,11 +2019,10 @@ INSERT INTO public.component VALUES ('d64cdd24-19a9-4258-92f4-7fa14a0c5d62', 'Al
 INSERT INTO public.component VALUES ('32643e8b-1195-4089-b7f5-9dbfcf0784f2', 'Allowed Client Scopes', 'monthly', 'allowed-client-templates', 'org.keycloak.services.clientregistration.policy.ClientRegistrationPolicy', 'monthly', 'anonymous');
 INSERT INTO public.component VALUES ('6645fbd7-3c23-471b-a614-77735a5de30e', 'Allowed Protocol Mapper Types', 'monthly', 'allowed-protocol-mappers', 'org.keycloak.services.clientregistration.policy.ClientRegistrationPolicy', 'monthly', 'authenticated');
 INSERT INTO public.component VALUES ('d40d85fa-b555-4b58-8615-b487f6593c36', 'Allowed Client Scopes', 'monthly', 'allowed-client-templates', 'org.keycloak.services.clientregistration.policy.ClientRegistrationPolicy', 'monthly', 'authenticated');
+INSERT INTO public.component VALUES ('dbeb2cef-25f7-4de1-b10a-b20bffe49508', NULL, 'monthly', 'declarative-user-profile', 'org.keycloak.userprofile.UserProfileProvider', 'monthly', NULL);
 
 
 --
--- TOC entry 3835 (class 0 OID 16511)
--- Dependencies: 224
 -- Data for Name: component_config; Type: TABLE DATA; Schema: public; Owner: keycloak-admin
 --
 
@@ -2243,8 +2091,6 @@ INSERT INTO public.component_config VALUES ('0e75c488-a481-4743-9d8d-12d487219a7
 
 
 --
--- TOC entry 3836 (class 0 OID 16517)
--- Dependencies: 225
 -- Data for Name: composite_role; Type: TABLE DATA; Schema: public; Owner: keycloak-admin
 --
 
@@ -2336,25 +2182,27 @@ INSERT INTO public.composite_role VALUES ('4e4f69dc-33d0-4de2-8b13-5e4d25e8d0ba'
 INSERT INTO public.composite_role VALUES ('4e4f69dc-33d0-4de2-8b13-5e4d25e8d0ba', '8962c9ae-578d-471a-87c2-fd347f0713c1');
 INSERT INTO public.composite_role VALUES ('4e4f69dc-33d0-4de2-8b13-5e4d25e8d0ba', 'f906d21c-3057-4f04-82a9-7f2e6362a651');
 INSERT INTO public.composite_role VALUES ('4e4f69dc-33d0-4de2-8b13-5e4d25e8d0ba', '8ebd77a7-fdd9-45ba-a4f9-24dcdca3d84b');
+INSERT INTO public.composite_role VALUES ('e458c786-edf0-4b59-9c89-d1d2528db20b', 'e707184d-2fe4-4be1-9a90-b7f77da5090a');
+INSERT INTO public.composite_role VALUES ('e458c786-edf0-4b59-9c89-d1d2528db20b', '7f9c2f0a-4b51-4ca4-b254-70b72b08262f');
+INSERT INTO public.composite_role VALUES ('e458c786-edf0-4b59-9c89-d1d2528db20b', '6ee15ba2-d581-4f39-b819-77c64a6e7844');
+INSERT INTO public.composite_role VALUES ('e458c786-edf0-4b59-9c89-d1d2528db20b', '04ab2a31-3da1-4a06-a8d3-f9a008d356d5');
+INSERT INTO public.composite_role VALUES ('e0aff75d-0516-4c7a-8deb-68508f180082', '2ef36f95-dfce-44c2-af52-fb3cddaa713e');
+INSERT INTO public.composite_role VALUES ('e0aff75d-0516-4c7a-8deb-68508f180082', '3ad06f96-de63-4ca8-8a16-d66add08b413');
+INSERT INTO public.composite_role VALUES ('e0aff75d-0516-4c7a-8deb-68508f180082', '15ab8020-ea70-4ec6-b192-45b82b40add4');
+INSERT INTO public.composite_role VALUES ('e0aff75d-0516-4c7a-8deb-68508f180082', '65d6ca47-a8ea-4be5-aa07-4f62db4a8b96');
+INSERT INTO public.composite_role VALUES ('e458c786-edf0-4b59-9c89-d1d2528db20b', '4e4f69dc-33d0-4de2-8b13-5e4d25e8d0ba');
+INSERT INTO public.composite_role VALUES ('e458c786-edf0-4b59-9c89-d1d2528db20b', 'b245b684-78ed-40fd-88d8-fcd82f3bb2ea');
 
 
 --
--- TOC entry 3837 (class 0 OID 16520)
--- Dependencies: 226
 -- Data for Name: credential; Type: TABLE DATA; Schema: public; Owner: keycloak-admin
 --
 
 INSERT INTO public.credential VALUES ('9cb90543-9544-4d0e-9498-825aa3485e66', NULL, 'password', '2cf387a2-bc07-4267-b7f5-97c827688286', 1607450910661, NULL, '{"value":"E651Nb6PwYhLqUDFT6fFd5ZiWDD6A3C9O7C0vhY+6jUALvZveSjWyNHEX9ljpV7ggs1CwChYlob6Ab6q7ooceg==","salt":"kjUip5XbaNsqnJ5woV3g3A=="}', '{"hashIterations":27500,"algorithm":"pbkdf2-sha256"}', 10);
 INSERT INTO public.credential VALUES ('6a04a241-23fe-47cf-82f9-b11ab670a0c4', NULL, 'password', '429cf9d8-b393-43de-a895-7d08277e9aff', 1607452195514, NULL, '{"value":"0tb8kuQPmQdZ872hpOHe/bI9WvSBr/Ep34V6PdNWeyTLmZnBMkDTHn9BwdfE5cYrjYtDXDAMNhR2uEH8WY8TrQ==","salt":"48WpkPyC/LNXsxuJCH5XXg=="}', '{"hashIterations":27500,"algorithm":"pbkdf2-sha256"}', 10);
-INSERT INTO public.credential VALUES ('888b1078-8410-4682-ad6e-db8fbc13b752', NULL, 'password', '1aa91684-b96b-450a-b46a-63d0d7cec865', 1607456153619, NULL, '{"value":"TopcsjtzC/Ngq3qn5pb5QuI5CSfJiOseklVhI6DbjA6KwqljKh+pucNNIGXLIE4xT9SmjviHpFunKp84mi0H3w==","salt":"ebanomJBlBK6nEtyi0XbcA=="}', '{"hashIterations":27500,"algorithm":"pbkdf2-sha256"}', 10);
-INSERT INTO public.credential VALUES ('e5d3ee4e-5a12-4e2a-a9b5-ad4e6043cbc6', NULL, 'password', '32a4bd56-c282-44b7-983f-4bf57abbabc9', 1608929229079, NULL, '{"value":"9EawtQCArFhTZdqhw1JKrpcwmv4lxVIPlU/rMLP+R5yfoX1g2UhaNcdmry1RQwTFi3I/C5baKUNb0WkL7lOMgQ==","salt":"lQkio8ab5tkNIClnpQFmzg=="}', '{"hashIterations":27500,"algorithm":"pbkdf2-sha256"}', 10);
-INSERT INTO public.credential VALUES ('6103988c-6c75-4464-942a-cf26e07d37ea', NULL, 'password', '222f643f-090a-47fd-a941-2de7495703ae', 1608929263036, NULL, '{"value":"fTDxANQIiUaF6vSKGgdZ0mTu/37cNqW/kB1YL6tPN75wV+4L67HHCR5CCPYYJ/PItByCqU35I+nVZtjmPIoEAA==","salt":"erSCBLH0yY8iJmfeqA4HZw=="}', '{"hashIterations":27500,"algorithm":"pbkdf2-sha256"}', 10);
-INSERT INTO public.credential VALUES ('851bee54-86bc-4049-80b0-f70d04f65580', NULL, 'password', '8312e837-9861-47c4-ae27-d56d8efb2c10', 1609090471949, NULL, '{"value":"vF5ooe1LVfMQO4uif9a/CijgjkpYqPupaZl+TCU5uZHQKN6NIDwOb9RmQi40uJvYDYPWo/2WimK0lLbHHS2bgA==","salt":"QO9Tww4cnkEGnUPh81IjGQ=="}', '{"hashIterations":27500,"algorithm":"pbkdf2-sha256"}', 10);
 
 
 --
--- TOC entry 3838 (class 0 OID 16526)
--- Dependencies: 227
 -- Data for Name: databasechangelog; Type: TABLE DATA; Schema: public; Owner: keycloak-admin
 --
 
@@ -2443,11 +2291,30 @@ INSERT INTO public.databasechangelog VALUES ('9.0.1-KEYCLOAK-12579-drop-constrai
 INSERT INTO public.databasechangelog VALUES ('9.0.1-KEYCLOAK-12579-add-not-null-constraint', 'keycloak', 'META-INF/jpa-changelog-9.0.1.xml', '2020-12-08 17:58:46.484591', 83, 'EXECUTED', '7:0a211980d27fafe3ff50d19a3a29b538', 'addNotNullConstraint columnName=PARENT_GROUP, tableName=KEYCLOAK_GROUP', '', NULL, '3.5.4', NULL, NULL, '7450325144');
 INSERT INTO public.databasechangelog VALUES ('9.0.1-KEYCLOAK-12579-recreate-constraints', 'keycloak', 'META-INF/jpa-changelog-9.0.1.xml', '2020-12-08 17:58:46.486208', 84, 'MARK_RAN', '7:a161e2ae671a9020fff61e996a207377', 'addUniqueConstraint constraintName=SIBLING_NAMES, tableName=KEYCLOAK_GROUP', '', NULL, '3.5.4', NULL, NULL, '7450325144');
 INSERT INTO public.databasechangelog VALUES ('9.0.1-add-index-to-events', 'keycloak', 'META-INF/jpa-changelog-9.0.1.xml', '2020-12-08 17:58:46.490043', 85, 'EXECUTED', '7:01c49302201bdf815b0a18d1f98a55dc', 'createIndex indexName=IDX_EVENT_TIME, tableName=EVENT_ENTITY', '', NULL, '3.5.4', NULL, NULL, '7450325144');
+INSERT INTO public.databasechangelog VALUES ('8.0.0-updating-credential-data-not-oracle-fixed', 'keycloak', 'META-INF/jpa-changelog-8.0.0.xml', '2022-03-29 13:19:14.558297', 86, 'MARK_RAN', '7:3979a0ae07ac465e920ca696532fc736', 'update tableName=CREDENTIAL; update tableName=CREDENTIAL; update tableName=CREDENTIAL; update tableName=FED_USER_CREDENTIAL; update tableName=FED_USER_CREDENTIAL; update tableName=FED_USER_CREDENTIAL', '', NULL, '3.5.4', NULL, NULL, '8559954513');
+INSERT INTO public.databasechangelog VALUES ('8.0.0-updating-credential-data-oracle-fixed', 'keycloak', 'META-INF/jpa-changelog-8.0.0.xml', '2022-03-29 13:19:14.585356', 87, 'MARK_RAN', '7:5abfde4c259119d143bd2fbf49ac2bca', 'update tableName=CREDENTIAL; update tableName=CREDENTIAL; update tableName=CREDENTIAL; update tableName=FED_USER_CREDENTIAL; update tableName=FED_USER_CREDENTIAL; update tableName=FED_USER_CREDENTIAL', '', NULL, '3.5.4', NULL, NULL, '8559954513');
+INSERT INTO public.databasechangelog VALUES ('map-remove-ri', 'keycloak', 'META-INF/jpa-changelog-11.0.0.xml', '2022-03-29 13:19:14.621912', 88, 'EXECUTED', '7:3dace6b144c11f53f1ad2c0361279b86', 'dropForeignKeyConstraint baseTableName=REALM, constraintName=FK_TRAF444KK6QRKMS7N56AIWQ5Y; dropForeignKeyConstraint baseTableName=KEYCLOAK_ROLE, constraintName=FK_KJHO5LE2C0RAL09FL8CM9WFW9', '', NULL, '3.5.4', NULL, NULL, '8559954513');
+INSERT INTO public.databasechangelog VALUES ('map-remove-ri', 'keycloak', 'META-INF/jpa-changelog-12.0.0.xml', '2022-03-29 13:19:14.667678', 89, 'EXECUTED', '7:578d0b92077eaf2ab95ad0ec087aa903', 'dropForeignKeyConstraint baseTableName=REALM_DEFAULT_GROUPS, constraintName=FK_DEF_GROUPS_GROUP; dropForeignKeyConstraint baseTableName=REALM_DEFAULT_ROLES, constraintName=FK_H4WPD7W4HSOOLNI3H0SW7BTJE; dropForeignKeyConstraint baseTableName=CLIENT...', '', NULL, '3.5.4', NULL, NULL, '8559954513');
+INSERT INTO public.databasechangelog VALUES ('12.1.0-add-realm-localization-table', 'keycloak', 'META-INF/jpa-changelog-12.0.0.xml', '2022-03-29 13:19:14.71224', 90, 'EXECUTED', '7:c95abe90d962c57a09ecaee57972835d', 'createTable tableName=REALM_LOCALIZATIONS; addPrimaryKey tableName=REALM_LOCALIZATIONS', '', NULL, '3.5.4', NULL, NULL, '8559954513');
+INSERT INTO public.databasechangelog VALUES ('default-roles', 'keycloak', 'META-INF/jpa-changelog-13.0.0.xml', '2022-03-29 13:19:14.774564', 91, 'EXECUTED', '7:f1313bcc2994a5c4dc1062ed6d8282d3', 'addColumn tableName=REALM; customChange', '', NULL, '3.5.4', NULL, NULL, '8559954513');
+INSERT INTO public.databasechangelog VALUES ('default-roles-cleanup', 'keycloak', 'META-INF/jpa-changelog-13.0.0.xml', '2022-03-29 13:19:14.796368', 92, 'EXECUTED', '7:90d763b52eaffebefbcbde55f269508b', 'dropTable tableName=REALM_DEFAULT_ROLES; dropTable tableName=CLIENT_DEFAULT_ROLES', '', NULL, '3.5.4', NULL, NULL, '8559954513');
+INSERT INTO public.databasechangelog VALUES ('13.0.0-KEYCLOAK-16844', 'keycloak', 'META-INF/jpa-changelog-13.0.0.xml', '2022-03-29 13:19:14.912813', 93, 'EXECUTED', '7:d554f0cb92b764470dccfa5e0014a7dd', 'createIndex indexName=IDX_OFFLINE_USS_PRELOAD, tableName=OFFLINE_USER_SESSION', '', NULL, '3.5.4', NULL, NULL, '8559954513');
+INSERT INTO public.databasechangelog VALUES ('map-remove-ri-13.0.0', 'keycloak', 'META-INF/jpa-changelog-13.0.0.xml', '2022-03-29 13:19:14.948958', 94, 'EXECUTED', '7:73193e3ab3c35cf0f37ccea3bf783764', 'dropForeignKeyConstraint baseTableName=DEFAULT_CLIENT_SCOPE, constraintName=FK_R_DEF_CLI_SCOPE_SCOPE; dropForeignKeyConstraint baseTableName=CLIENT_SCOPE_CLIENT, constraintName=FK_C_CLI_SCOPE_SCOPE; dropForeignKeyConstraint baseTableName=CLIENT_SC...', '', NULL, '3.5.4', NULL, NULL, '8559954513');
+INSERT INTO public.databasechangelog VALUES ('13.0.0-KEYCLOAK-17992-drop-constraints', 'keycloak', 'META-INF/jpa-changelog-13.0.0.xml', '2022-03-29 13:19:14.957526', 95, 'MARK_RAN', '7:90a1e74f92e9cbaa0c5eab80b8a037f3', 'dropPrimaryKey constraintName=C_CLI_SCOPE_BIND, tableName=CLIENT_SCOPE_CLIENT; dropIndex indexName=IDX_CLSCOPE_CL, tableName=CLIENT_SCOPE_CLIENT; dropIndex indexName=IDX_CL_CLSCOPE, tableName=CLIENT_SCOPE_CLIENT', '', NULL, '3.5.4', NULL, NULL, '8559954513');
+INSERT INTO public.databasechangelog VALUES ('13.0.0-increase-column-size-federated', 'keycloak', 'META-INF/jpa-changelog-13.0.0.xml', '2022-03-29 13:19:14.991736', 96, 'EXECUTED', '7:5b9248f29cd047c200083cc6d8388b16', 'modifyDataType columnName=CLIENT_ID, tableName=CLIENT_SCOPE_CLIENT; modifyDataType columnName=SCOPE_ID, tableName=CLIENT_SCOPE_CLIENT', '', NULL, '3.5.4', NULL, NULL, '8559954513');
+INSERT INTO public.databasechangelog VALUES ('13.0.0-KEYCLOAK-17992-recreate-constraints', 'keycloak', 'META-INF/jpa-changelog-13.0.0.xml', '2022-03-29 13:19:14.99847', 97, 'MARK_RAN', '7:64db59e44c374f13955489e8990d17a1', 'addNotNullConstraint columnName=CLIENT_ID, tableName=CLIENT_SCOPE_CLIENT; addNotNullConstraint columnName=SCOPE_ID, tableName=CLIENT_SCOPE_CLIENT; addPrimaryKey constraintName=C_CLI_SCOPE_BIND, tableName=CLIENT_SCOPE_CLIENT; createIndex indexName=...', '', NULL, '3.5.4', NULL, NULL, '8559954513');
+INSERT INTO public.databasechangelog VALUES ('json-string-accomodation-fixed', 'keycloak', 'META-INF/jpa-changelog-13.0.0.xml', '2022-03-29 13:19:15.030027', 98, 'EXECUTED', '7:329a578cdb43262fff975f0a7f6cda60', 'addColumn tableName=REALM_ATTRIBUTE; update tableName=REALM_ATTRIBUTE; dropColumn columnName=VALUE, tableName=REALM_ATTRIBUTE; renameColumn newColumnName=VALUE, oldColumnName=VALUE_NEW, tableName=REALM_ATTRIBUTE', '', NULL, '3.5.4', NULL, NULL, '8559954513');
+INSERT INTO public.databasechangelog VALUES ('14.0.0-KEYCLOAK-11019', 'keycloak', 'META-INF/jpa-changelog-14.0.0.xml', '2022-03-29 13:19:15.210604', 99, 'EXECUTED', '7:fae0de241ac0fd0bbc2b380b85e4f567', 'createIndex indexName=IDX_OFFLINE_CSS_PRELOAD, tableName=OFFLINE_CLIENT_SESSION; createIndex indexName=IDX_OFFLINE_USS_BY_USER, tableName=OFFLINE_USER_SESSION; createIndex indexName=IDX_OFFLINE_USS_BY_USERSESS, tableName=OFFLINE_USER_SESSION', '', NULL, '3.5.4', NULL, NULL, '8559954513');
+INSERT INTO public.databasechangelog VALUES ('14.0.0-KEYCLOAK-18286', 'keycloak', 'META-INF/jpa-changelog-14.0.0.xml', '2022-03-29 13:19:15.221861', 100, 'MARK_RAN', '7:075d54e9180f49bb0c64ca4218936e81', 'createIndex indexName=IDX_CLIENT_ATT_BY_NAME_VALUE, tableName=CLIENT_ATTRIBUTES', '', NULL, '3.5.4', NULL, NULL, '8559954513');
+INSERT INTO public.databasechangelog VALUES ('14.0.0-KEYCLOAK-18286-revert', 'keycloak', 'META-INF/jpa-changelog-14.0.0.xml', '2022-03-29 13:19:15.23549', 101, 'MARK_RAN', '7:06499836520f4f6b3d05e35a59324910', 'dropIndex indexName=IDX_CLIENT_ATT_BY_NAME_VALUE, tableName=CLIENT_ATTRIBUTES', '', NULL, '3.5.4', NULL, NULL, '8559954513');
+INSERT INTO public.databasechangelog VALUES ('14.0.0-KEYCLOAK-18286-supported-dbs', 'keycloak', 'META-INF/jpa-changelog-14.0.0.xml', '2022-03-29 13:19:15.281413', 102, 'EXECUTED', '7:fad08e83c77d0171ec166bc9bc5d390a', 'createIndex indexName=IDX_CLIENT_ATT_BY_NAME_VALUE, tableName=CLIENT_ATTRIBUTES', '', NULL, '3.5.4', NULL, NULL, '8559954513');
+INSERT INTO public.databasechangelog VALUES ('14.0.0-KEYCLOAK-18286-unsupported-dbs', 'keycloak', 'META-INF/jpa-changelog-14.0.0.xml', '2022-03-29 13:19:15.292627', 103, 'MARK_RAN', '7:3d2b23076e59c6f70bae703aa01be35b', 'createIndex indexName=IDX_CLIENT_ATT_BY_NAME_VALUE, tableName=CLIENT_ATTRIBUTES', '', NULL, '3.5.4', NULL, NULL, '8559954513');
+INSERT INTO public.databasechangelog VALUES ('KEYCLOAK-17267-add-index-to-user-attributes', 'keycloak', 'META-INF/jpa-changelog-14.0.0.xml', '2022-03-29 13:19:15.344104', 104, 'EXECUTED', '7:1a7f28ff8d9e53aeb879d76ea3d9341a', 'createIndex indexName=IDX_USER_ATTRIBUTE_NAME, tableName=USER_ATTRIBUTE', '', NULL, '3.5.4', NULL, NULL, '8559954513');
+INSERT INTO public.databasechangelog VALUES ('KEYCLOAK-18146-add-saml-art-binding-identifier', 'keycloak', 'META-INF/jpa-changelog-14.0.0.xml', '2022-03-29 13:19:15.355519', 105, 'EXECUTED', '7:2fd554456fed4a82c698c555c5b751b6', 'customChange', '', NULL, '3.5.4', NULL, NULL, '8559954513');
+INSERT INTO public.databasechangelog VALUES ('15.0.0-KEYCLOAK-18467', 'keycloak', 'META-INF/jpa-changelog-15.0.0.xml', '2022-03-29 13:19:15.374895', 106, 'EXECUTED', '7:b06356d66c2790ecc2ae54ba0458397a', 'addColumn tableName=REALM_LOCALIZATIONS; update tableName=REALM_LOCALIZATIONS; dropColumn columnName=TEXTS, tableName=REALM_LOCALIZATIONS; renameColumn newColumnName=TEXTS, oldColumnName=TEXTS_NEW, tableName=REALM_LOCALIZATIONS; addNotNullConstrai...', '', NULL, '3.5.4', NULL, NULL, '8559954513');
 
 
 --
--- TOC entry 3839 (class 0 OID 16532)
--- Dependencies: 228
 -- Data for Name: databasechangeloglock; Type: TABLE DATA; Schema: public; Owner: keycloak-admin
 --
 
@@ -2457,8 +2324,6 @@ INSERT INTO public.databasechangeloglock VALUES (1001, false, NULL, NULL);
 
 
 --
--- TOC entry 3840 (class 0 OID 16535)
--- Dependencies: 229
 -- Data for Name: default_client_scope; Type: TABLE DATA; Schema: public; Owner: keycloak-admin
 --
 
@@ -2483,144 +2348,108 @@ INSERT INTO public.default_client_scope VALUES ('monthly', '680b199d-863d-4b5a-a
 
 
 --
--- TOC entry 3841 (class 0 OID 16539)
--- Dependencies: 230
 -- Data for Name: event_entity; Type: TABLE DATA; Schema: public; Owner: keycloak-admin
 --
 
 
 
 --
--- TOC entry 3842 (class 0 OID 16545)
--- Dependencies: 231
 -- Data for Name: fed_user_attribute; Type: TABLE DATA; Schema: public; Owner: keycloak-admin
 --
 
 
 
 --
--- TOC entry 3843 (class 0 OID 16551)
--- Dependencies: 232
 -- Data for Name: fed_user_consent; Type: TABLE DATA; Schema: public; Owner: keycloak-admin
 --
 
 
 
 --
--- TOC entry 3844 (class 0 OID 16557)
--- Dependencies: 233
 -- Data for Name: fed_user_consent_cl_scope; Type: TABLE DATA; Schema: public; Owner: keycloak-admin
 --
 
 
 
 --
--- TOC entry 3845 (class 0 OID 16560)
--- Dependencies: 234
 -- Data for Name: fed_user_credential; Type: TABLE DATA; Schema: public; Owner: keycloak-admin
 --
 
 
 
 --
--- TOC entry 3846 (class 0 OID 16566)
--- Dependencies: 235
 -- Data for Name: fed_user_group_membership; Type: TABLE DATA; Schema: public; Owner: keycloak-admin
 --
 
 
 
 --
--- TOC entry 3847 (class 0 OID 16569)
--- Dependencies: 236
 -- Data for Name: fed_user_required_action; Type: TABLE DATA; Schema: public; Owner: keycloak-admin
 --
 
 
 
 --
--- TOC entry 3848 (class 0 OID 16576)
--- Dependencies: 237
 -- Data for Name: fed_user_role_mapping; Type: TABLE DATA; Schema: public; Owner: keycloak-admin
 --
 
 
 
 --
--- TOC entry 3849 (class 0 OID 16579)
--- Dependencies: 238
 -- Data for Name: federated_identity; Type: TABLE DATA; Schema: public; Owner: keycloak-admin
 --
 
 
 
 --
--- TOC entry 3850 (class 0 OID 16585)
--- Dependencies: 239
 -- Data for Name: federated_user; Type: TABLE DATA; Schema: public; Owner: keycloak-admin
 --
 
 
 
 --
--- TOC entry 3851 (class 0 OID 16591)
--- Dependencies: 240
 -- Data for Name: group_attribute; Type: TABLE DATA; Schema: public; Owner: keycloak-admin
 --
 
 
 
 --
--- TOC entry 3852 (class 0 OID 16598)
--- Dependencies: 241
 -- Data for Name: group_role_mapping; Type: TABLE DATA; Schema: public; Owner: keycloak-admin
 --
 
 
 
 --
--- TOC entry 3853 (class 0 OID 16601)
--- Dependencies: 242
 -- Data for Name: identity_provider; Type: TABLE DATA; Schema: public; Owner: keycloak-admin
 --
 
 
 
 --
--- TOC entry 3854 (class 0 OID 16613)
--- Dependencies: 243
 -- Data for Name: identity_provider_config; Type: TABLE DATA; Schema: public; Owner: keycloak-admin
 --
 
 
 
 --
--- TOC entry 3855 (class 0 OID 16619)
--- Dependencies: 244
 -- Data for Name: identity_provider_mapper; Type: TABLE DATA; Schema: public; Owner: keycloak-admin
 --
 
 
 
 --
--- TOC entry 3856 (class 0 OID 16625)
--- Dependencies: 245
 -- Data for Name: idp_mapper_config; Type: TABLE DATA; Schema: public; Owner: keycloak-admin
 --
 
 
 
 --
--- TOC entry 3857 (class 0 OID 16631)
--- Dependencies: 246
 -- Data for Name: keycloak_group; Type: TABLE DATA; Schema: public; Owner: keycloak-admin
 --
 
 
 
 --
--- TOC entry 3858 (class 0 OID 16634)
--- Dependencies: 247
 -- Data for Name: keycloak_role; Type: TABLE DATA; Schema: public; Owner: keycloak-admin
 --
 
@@ -2702,36 +2531,33 @@ INSERT INTO public.keycloak_role VALUES ('7f9c2f0a-4b51-4ca4-b254-70b72b08262f',
 INSERT INTO public.keycloak_role VALUES ('b245b684-78ed-40fd-88d8-fcd82f3bb2ea', 'f5c6b235-7689-4b23-89df-98df00fca160', true, NULL, 'USER', 'monthly', 'f5c6b235-7689-4b23-89df-98df00fca160', NULL);
 INSERT INTO public.keycloak_role VALUES ('8d2ec278-e302-4a2d-a265-3c7b3830a30b', 'f5c6b235-7689-4b23-89df-98df00fca160', true, NULL, 'uma_protection', 'monthly', 'f5c6b235-7689-4b23-89df-98df00fca160', NULL);
 INSERT INTO public.keycloak_role VALUES ('4e4f69dc-33d0-4de2-8b13-5e4d25e8d0ba', 'f5c6b235-7689-4b23-89df-98df00fca160', true, NULL, 'ADMIN', 'monthly', 'f5c6b235-7689-4b23-89df-98df00fca160', NULL);
+INSERT INTO public.keycloak_role VALUES ('e458c786-edf0-4b59-9c89-d1d2528db20b', 'monthly', false, '${role_default-roles-monthly}', 'default-roles-monthly', 'monthly', NULL, 'monthly');
+INSERT INTO public.keycloak_role VALUES ('e0aff75d-0516-4c7a-8deb-68508f180082', 'master', false, '${role_default-roles-master}', 'default-roles-master', 'master', NULL, 'master');
+INSERT INTO public.keycloak_role VALUES ('9dd443b8-c420-4b0f-b826-14d05cb511c1', '237dc637-c5fd-4d16-834e-2b51960b157e', true, '${role_delete-account}', 'delete-account', 'monthly', '237dc637-c5fd-4d16-834e-2b51960b157e', NULL);
+INSERT INTO public.keycloak_role VALUES ('7ec172d4-d757-4dff-9125-7462b3fb967c', 'cb7fb9e0-3ecb-4bfc-bd42-5ada914d1848', true, '${role_delete-account}', 'delete-account', 'master', 'cb7fb9e0-3ecb-4bfc-bd42-5ada914d1848', NULL);
 
 
 --
--- TOC entry 3859 (class 0 OID 16641)
--- Dependencies: 248
 -- Data for Name: migration_model; Type: TABLE DATA; Schema: public; Owner: keycloak-admin
 --
 
 INSERT INTO public.migration_model VALUES ('y3upl', '10.0.2', 1607450329);
+INSERT INTO public.migration_model VALUES ('wkwj1', '16.1.1', 1648559961);
 
 
 --
--- TOC entry 3860 (class 0 OID 16645)
--- Dependencies: 249
 -- Data for Name: offline_client_session; Type: TABLE DATA; Schema: public; Owner: keycloak-admin
 --
 
 
 
 --
--- TOC entry 3861 (class 0 OID 16653)
--- Dependencies: 250
 -- Data for Name: offline_user_session; Type: TABLE DATA; Schema: public; Owner: keycloak-admin
 --
 
 
 
 --
--- TOC entry 3862 (class 0 OID 16660)
--- Dependencies: 251
 -- Data for Name: policy_config; Type: TABLE DATA; Schema: public; Owner: keycloak-admin
 --
 
@@ -2742,8 +2568,6 @@ INSERT INTO public.policy_config VALUES ('7e80b864-cbef-499c-b7b6-12570ce426dc',
 
 
 --
--- TOC entry 3863 (class 0 OID 16666)
--- Dependencies: 252
 -- Data for Name: protocol_mapper; Type: TABLE DATA; Schema: public; Owner: keycloak-admin
 --
 
@@ -2813,8 +2637,6 @@ INSERT INTO public.protocol_mapper VALUES ('1ad829f6-b994-4de3-8079-edb7e433d0d8
 
 
 --
--- TOC entry 3864 (class 0 OID 16672)
--- Dependencies: 253
 -- Data for Name: protocol_mapper_config; Type: TABLE DATA; Schema: public; Owner: keycloak-admin
 --
 
@@ -3147,113 +2969,105 @@ INSERT INTO public.protocol_mapper_config VALUES ('1ad829f6-b994-4de3-8079-edb7e
 
 
 --
--- TOC entry 3865 (class 0 OID 16678)
--- Dependencies: 254
 -- Data for Name: realm; Type: TABLE DATA; Schema: public; Owner: keycloak-admin
 --
 
-INSERT INTO public.realm VALUES ('master', 60, 300, 60, NULL, NULL, NULL, true, false, 0, NULL, 'master', 0, NULL, false, false, false, false, 'EXTERNAL', 1800, 36000, false, false, 'd372285d-fea6-470c-8e4d-8fd86d529378', 1800, false, NULL, false, false, false, false, 0, 1, 30, 6, 'HmacSHA1', 'totp', '0146dc46-4d51-4713-a13f-1f8cc1fc4964', '66fdb4cd-9e72-445b-bb45-91b08b62a6c7', 'd6789e83-3013-4cfc-9822-5ff1ecd7b3db', 'ff25ce1d-266a-42b4-98a2-5618507111e8', 'e8179734-58bc-43d3-9ec9-b2983a3dc17f', 2592000, false, 900, true, false, 'b9e557e7-ea2a-40ee-b2b4-39a72e1e7f1b', 0, false, 0, 0);
-INSERT INTO public.realm VALUES ('monthly', 60, 300, 300, NULL, NULL, NULL, true, false, 0, NULL, 'monthly', 0, NULL, true, false, false, false, 'EXTERNAL', 1800, 36000, false, false, '2f681d28-3893-4210-a4e9-1837e9100c96', 1800, false, NULL, false, false, false, false, 0, 1, 30, 6, 'HmacSHA1', 'totp', 'a09309ca-ec34-4d9b-97fd-3b468ff4c994', 'a857775d-6b3c-4013-96b5-5eb9ab7af1ff', 'cde95596-664c-4360-a11c-e9f799fb4380', '24dad399-e154-482a-bc8b-e36de576a7da', '9094d152-9dca-4d7f-9113-8d82eba81c1c', 2592000, false, 900, true, false, 'f911c6fc-3139-42f2-9ab6-a074b48d5fd6', 0, false, 0, 0);
+INSERT INTO public.realm VALUES ('master', 60, 300, 60, NULL, NULL, NULL, true, false, 0, NULL, 'master', 0, NULL, false, false, false, false, 'EXTERNAL', 1800, 36000, false, false, 'd372285d-fea6-470c-8e4d-8fd86d529378', 1800, false, NULL, false, false, false, false, 0, 1, 30, 6, 'HmacSHA1', 'totp', '0146dc46-4d51-4713-a13f-1f8cc1fc4964', '66fdb4cd-9e72-445b-bb45-91b08b62a6c7', 'd6789e83-3013-4cfc-9822-5ff1ecd7b3db', 'ff25ce1d-266a-42b4-98a2-5618507111e8', 'e8179734-58bc-43d3-9ec9-b2983a3dc17f', 2592000, false, 900, true, false, 'b9e557e7-ea2a-40ee-b2b4-39a72e1e7f1b', 0, false, 0, 0, 'e0aff75d-0516-4c7a-8deb-68508f180082');
+INSERT INTO public.realm VALUES ('monthly', 60, 300, 300, NULL, NULL, NULL, true, false, 0, NULL, 'app', 0, NULL, true, false, false, false, 'EXTERNAL', 1800, 36000, false, false, '2f681d28-3893-4210-a4e9-1837e9100c96', 1800, false, NULL, false, false, false, false, 0, 1, 30, 6, 'HmacSHA1', 'totp', 'a09309ca-ec34-4d9b-97fd-3b468ff4c994', 'a857775d-6b3c-4013-96b5-5eb9ab7af1ff', 'cde95596-664c-4360-a11c-e9f799fb4380', '24dad399-e154-482a-bc8b-e36de576a7da', '9094d152-9dca-4d7f-9113-8d82eba81c1c', 2592000, false, 900, true, false, 'f911c6fc-3139-42f2-9ab6-a074b48d5fd6', 0, false, 0, 0, 'e458c786-edf0-4b59-9c89-d1d2528db20b');
 
 
 --
--- TOC entry 3866 (class 0 OID 16712)
--- Dependencies: 255
 -- Data for Name: realm_attribute; Type: TABLE DATA; Schema: public; Owner: keycloak-admin
 --
 
-INSERT INTO public.realm_attribute VALUES ('_browser_header.contentSecurityPolicyReportOnly', '', 'master');
-INSERT INTO public.realm_attribute VALUES ('_browser_header.xContentTypeOptions', 'nosniff', 'master');
-INSERT INTO public.realm_attribute VALUES ('_browser_header.xRobotsTag', 'none', 'master');
-INSERT INTO public.realm_attribute VALUES ('_browser_header.xFrameOptions', 'SAMEORIGIN', 'master');
-INSERT INTO public.realm_attribute VALUES ('_browser_header.contentSecurityPolicy', 'frame-src ''self''; frame-ancestors ''self''; object-src ''none'';', 'master');
-INSERT INTO public.realm_attribute VALUES ('_browser_header.xXSSProtection', '1; mode=block', 'master');
-INSERT INTO public.realm_attribute VALUES ('_browser_header.strictTransportSecurity', 'max-age=31536000; includeSubDomains', 'master');
-INSERT INTO public.realm_attribute VALUES ('bruteForceProtected', 'false', 'master');
-INSERT INTO public.realm_attribute VALUES ('permanentLockout', 'false', 'master');
-INSERT INTO public.realm_attribute VALUES ('maxFailureWaitSeconds', '900', 'master');
-INSERT INTO public.realm_attribute VALUES ('minimumQuickLoginWaitSeconds', '60', 'master');
-INSERT INTO public.realm_attribute VALUES ('waitIncrementSeconds', '60', 'master');
-INSERT INTO public.realm_attribute VALUES ('quickLoginCheckMilliSeconds', '1000', 'master');
-INSERT INTO public.realm_attribute VALUES ('maxDeltaTimeSeconds', '43200', 'master');
-INSERT INTO public.realm_attribute VALUES ('failureFactor', '30', 'master');
-INSERT INTO public.realm_attribute VALUES ('displayName', 'Keycloak', 'master');
-INSERT INTO public.realm_attribute VALUES ('displayNameHtml', '<div class="kc-logo-text"><span>Keycloak</span></div>', 'master');
-INSERT INTO public.realm_attribute VALUES ('offlineSessionMaxLifespanEnabled', 'false', 'master');
-INSERT INTO public.realm_attribute VALUES ('offlineSessionMaxLifespan', '5184000', 'master');
-INSERT INTO public.realm_attribute VALUES ('clientSessionIdleTimeout', '0', 'monthly');
-INSERT INTO public.realm_attribute VALUES ('clientSessionMaxLifespan', '0', 'monthly');
-INSERT INTO public.realm_attribute VALUES ('displayName', 'Monthly', 'monthly');
-INSERT INTO public.realm_attribute VALUES ('bruteForceProtected', 'false', 'monthly');
-INSERT INTO public.realm_attribute VALUES ('permanentLockout', 'false', 'monthly');
-INSERT INTO public.realm_attribute VALUES ('maxFailureWaitSeconds', '900', 'monthly');
-INSERT INTO public.realm_attribute VALUES ('minimumQuickLoginWaitSeconds', '60', 'monthly');
-INSERT INTO public.realm_attribute VALUES ('waitIncrementSeconds', '60', 'monthly');
-INSERT INTO public.realm_attribute VALUES ('quickLoginCheckMilliSeconds', '1000', 'monthly');
-INSERT INTO public.realm_attribute VALUES ('maxDeltaTimeSeconds', '43200', 'monthly');
-INSERT INTO public.realm_attribute VALUES ('failureFactor', '30', 'monthly');
-INSERT INTO public.realm_attribute VALUES ('actionTokenGeneratedByAdminLifespan', '43200', 'monthly');
-INSERT INTO public.realm_attribute VALUES ('actionTokenGeneratedByUserLifespan', '300', 'monthly');
-INSERT INTO public.realm_attribute VALUES ('offlineSessionMaxLifespanEnabled', 'false', 'monthly');
-INSERT INTO public.realm_attribute VALUES ('offlineSessionMaxLifespan', '36000', 'monthly');
-INSERT INTO public.realm_attribute VALUES ('webAuthnPolicyRpEntityName', 'keycloak', 'monthly');
-INSERT INTO public.realm_attribute VALUES ('webAuthnPolicySignatureAlgorithms', 'ES256', 'monthly');
-INSERT INTO public.realm_attribute VALUES ('webAuthnPolicyRpId', '', 'monthly');
-INSERT INTO public.realm_attribute VALUES ('webAuthnPolicyAttestationConveyancePreference', 'not specified', 'monthly');
-INSERT INTO public.realm_attribute VALUES ('webAuthnPolicyAuthenticatorAttachment', 'not specified', 'monthly');
-INSERT INTO public.realm_attribute VALUES ('webAuthnPolicyRequireResidentKey', 'not specified', 'monthly');
-INSERT INTO public.realm_attribute VALUES ('webAuthnPolicyUserVerificationRequirement', 'not specified', 'monthly');
-INSERT INTO public.realm_attribute VALUES ('webAuthnPolicyCreateTimeout', '0', 'monthly');
-INSERT INTO public.realm_attribute VALUES ('webAuthnPolicyAvoidSameAuthenticatorRegister', 'false', 'monthly');
-INSERT INTO public.realm_attribute VALUES ('webAuthnPolicyRpEntityNamePasswordless', 'keycloak', 'monthly');
-INSERT INTO public.realm_attribute VALUES ('webAuthnPolicySignatureAlgorithmsPasswordless', 'ES256', 'monthly');
-INSERT INTO public.realm_attribute VALUES ('webAuthnPolicyRpIdPasswordless', '', 'monthly');
-INSERT INTO public.realm_attribute VALUES ('webAuthnPolicyAttestationConveyancePreferencePasswordless', 'not specified', 'monthly');
-INSERT INTO public.realm_attribute VALUES ('webAuthnPolicyAuthenticatorAttachmentPasswordless', 'not specified', 'monthly');
-INSERT INTO public.realm_attribute VALUES ('webAuthnPolicyRequireResidentKeyPasswordless', 'not specified', 'monthly');
-INSERT INTO public.realm_attribute VALUES ('webAuthnPolicyUserVerificationRequirementPasswordless', 'not specified', 'monthly');
-INSERT INTO public.realm_attribute VALUES ('webAuthnPolicyCreateTimeoutPasswordless', '0', 'monthly');
-INSERT INTO public.realm_attribute VALUES ('webAuthnPolicyAvoidSameAuthenticatorRegisterPasswordless', 'false', 'monthly');
-INSERT INTO public.realm_attribute VALUES ('_browser_header.contentSecurityPolicyReportOnly', '', 'monthly');
-INSERT INTO public.realm_attribute VALUES ('_browser_header.xContentTypeOptions', 'nosniff', 'monthly');
-INSERT INTO public.realm_attribute VALUES ('_browser_header.xRobotsTag', 'none', 'monthly');
-INSERT INTO public.realm_attribute VALUES ('_browser_header.xFrameOptions', 'SAMEORIGIN', 'monthly');
-INSERT INTO public.realm_attribute VALUES ('_browser_header.contentSecurityPolicy', 'frame-src ''self''; frame-ancestors ''self''; object-src ''none'';', 'monthly');
-INSERT INTO public.realm_attribute VALUES ('_browser_header.xXSSProtection', '1; mode=block', 'monthly');
-INSERT INTO public.realm_attribute VALUES ('_browser_header.strictTransportSecurity', 'max-age=31536000; includeSubDomains', 'monthly');
+INSERT INTO public.realm_attribute VALUES ('_browser_header.contentSecurityPolicyReportOnly', 'master', '');
+INSERT INTO public.realm_attribute VALUES ('_browser_header.xContentTypeOptions', 'master', 'nosniff');
+INSERT INTO public.realm_attribute VALUES ('_browser_header.xRobotsTag', 'master', 'none');
+INSERT INTO public.realm_attribute VALUES ('_browser_header.xFrameOptions', 'master', 'SAMEORIGIN');
+INSERT INTO public.realm_attribute VALUES ('_browser_header.contentSecurityPolicy', 'master', 'frame-src ''self''; frame-ancestors ''self''; object-src ''none'';');
+INSERT INTO public.realm_attribute VALUES ('_browser_header.xXSSProtection', 'master', '1; mode=block');
+INSERT INTO public.realm_attribute VALUES ('_browser_header.strictTransportSecurity', 'master', 'max-age=31536000; includeSubDomains');
+INSERT INTO public.realm_attribute VALUES ('bruteForceProtected', 'master', 'false');
+INSERT INTO public.realm_attribute VALUES ('permanentLockout', 'master', 'false');
+INSERT INTO public.realm_attribute VALUES ('maxFailureWaitSeconds', 'master', '900');
+INSERT INTO public.realm_attribute VALUES ('minimumQuickLoginWaitSeconds', 'master', '60');
+INSERT INTO public.realm_attribute VALUES ('waitIncrementSeconds', 'master', '60');
+INSERT INTO public.realm_attribute VALUES ('quickLoginCheckMilliSeconds', 'master', '1000');
+INSERT INTO public.realm_attribute VALUES ('maxDeltaTimeSeconds', 'master', '43200');
+INSERT INTO public.realm_attribute VALUES ('failureFactor', 'master', '30');
+INSERT INTO public.realm_attribute VALUES ('displayName', 'master', 'Keycloak');
+INSERT INTO public.realm_attribute VALUES ('displayNameHtml', 'master', '<div class="kc-logo-text"><span>Keycloak</span></div>');
+INSERT INTO public.realm_attribute VALUES ('offlineSessionMaxLifespanEnabled', 'master', 'false');
+INSERT INTO public.realm_attribute VALUES ('offlineSessionMaxLifespan', 'master', '5184000');
+INSERT INTO public.realm_attribute VALUES ('clientSessionIdleTimeout', 'monthly', '0');
+INSERT INTO public.realm_attribute VALUES ('clientSessionMaxLifespan', 'monthly', '0');
+INSERT INTO public.realm_attribute VALUES ('client-policies.profiles', 'master', '{"profiles":[]}');
+INSERT INTO public.realm_attribute VALUES ('client-policies.policies', 'master', '{"policies":[]}');
+INSERT INTO public.realm_attribute VALUES ('cibaBackchannelTokenDeliveryMode', 'monthly', 'poll');
+INSERT INTO public.realm_attribute VALUES ('cibaExpiresIn', 'monthly', '120');
+INSERT INTO public.realm_attribute VALUES ('cibaAuthRequestedUserHint', 'monthly', 'login_hint');
+INSERT INTO public.realm_attribute VALUES ('parRequestUriLifespan', 'monthly', '60');
+INSERT INTO public.realm_attribute VALUES ('cibaInterval', 'monthly', '5');
+INSERT INTO public.realm_attribute VALUES ('userProfileEnabled', 'monthly', 'false');
+INSERT INTO public.realm_attribute VALUES ('displayName', 'monthly', 'App');
+INSERT INTO public.realm_attribute VALUES ('bruteForceProtected', 'monthly', 'false');
+INSERT INTO public.realm_attribute VALUES ('permanentLockout', 'monthly', 'false');
+INSERT INTO public.realm_attribute VALUES ('maxFailureWaitSeconds', 'monthly', '900');
+INSERT INTO public.realm_attribute VALUES ('minimumQuickLoginWaitSeconds', 'monthly', '60');
+INSERT INTO public.realm_attribute VALUES ('waitIncrementSeconds', 'monthly', '60');
+INSERT INTO public.realm_attribute VALUES ('quickLoginCheckMilliSeconds', 'monthly', '1000');
+INSERT INTO public.realm_attribute VALUES ('maxDeltaTimeSeconds', 'monthly', '43200');
+INSERT INTO public.realm_attribute VALUES ('failureFactor', 'monthly', '30');
+INSERT INTO public.realm_attribute VALUES ('actionTokenGeneratedByAdminLifespan', 'monthly', '43200');
+INSERT INTO public.realm_attribute VALUES ('actionTokenGeneratedByUserLifespan', 'monthly', '300');
+INSERT INTO public.realm_attribute VALUES ('oauth2DeviceCodeLifespan', 'monthly', '600');
+INSERT INTO public.realm_attribute VALUES ('oauth2DevicePollingInterval', 'monthly', '600');
+INSERT INTO public.realm_attribute VALUES ('offlineSessionMaxLifespanEnabled', 'monthly', 'false');
+INSERT INTO public.realm_attribute VALUES ('offlineSessionMaxLifespan', 'monthly', '36000');
+INSERT INTO public.realm_attribute VALUES ('clientOfflineSessionIdleTimeout', 'monthly', '0');
+INSERT INTO public.realm_attribute VALUES ('clientOfflineSessionMaxLifespan', 'monthly', '0');
+INSERT INTO public.realm_attribute VALUES ('webAuthnPolicyRpEntityName', 'monthly', 'keycloak');
+INSERT INTO public.realm_attribute VALUES ('webAuthnPolicySignatureAlgorithms', 'monthly', 'ES256');
+INSERT INTO public.realm_attribute VALUES ('webAuthnPolicyRpId', 'monthly', '');
+INSERT INTO public.realm_attribute VALUES ('webAuthnPolicyAttestationConveyancePreference', 'monthly', 'not specified');
+INSERT INTO public.realm_attribute VALUES ('webAuthnPolicyAuthenticatorAttachment', 'monthly', 'not specified');
+INSERT INTO public.realm_attribute VALUES ('webAuthnPolicyRequireResidentKey', 'monthly', 'not specified');
+INSERT INTO public.realm_attribute VALUES ('webAuthnPolicyUserVerificationRequirement', 'monthly', 'not specified');
+INSERT INTO public.realm_attribute VALUES ('webAuthnPolicyCreateTimeout', 'monthly', '0');
+INSERT INTO public.realm_attribute VALUES ('webAuthnPolicyAvoidSameAuthenticatorRegister', 'monthly', 'false');
+INSERT INTO public.realm_attribute VALUES ('webAuthnPolicyRpEntityNamePasswordless', 'monthly', 'keycloak');
+INSERT INTO public.realm_attribute VALUES ('webAuthnPolicySignatureAlgorithmsPasswordless', 'monthly', 'ES256');
+INSERT INTO public.realm_attribute VALUES ('webAuthnPolicyRpIdPasswordless', 'monthly', '');
+INSERT INTO public.realm_attribute VALUES ('webAuthnPolicyAttestationConveyancePreferencePasswordless', 'monthly', 'not specified');
+INSERT INTO public.realm_attribute VALUES ('webAuthnPolicyAuthenticatorAttachmentPasswordless', 'monthly', 'not specified');
+INSERT INTO public.realm_attribute VALUES ('webAuthnPolicyRequireResidentKeyPasswordless', 'monthly', 'not specified');
+INSERT INTO public.realm_attribute VALUES ('webAuthnPolicyUserVerificationRequirementPasswordless', 'monthly', 'not specified');
+INSERT INTO public.realm_attribute VALUES ('webAuthnPolicyCreateTimeoutPasswordless', 'monthly', '0');
+INSERT INTO public.realm_attribute VALUES ('webAuthnPolicyAvoidSameAuthenticatorRegisterPasswordless', 'monthly', 'false');
+INSERT INTO public.realm_attribute VALUES ('client-policies.profiles', 'monthly', '{"profiles":[]}');
+INSERT INTO public.realm_attribute VALUES ('client-policies.policies', 'monthly', '{"policies":[]}');
+INSERT INTO public.realm_attribute VALUES ('_browser_header.contentSecurityPolicyReportOnly', 'monthly', '');
+INSERT INTO public.realm_attribute VALUES ('_browser_header.xContentTypeOptions', 'monthly', 'nosniff');
+INSERT INTO public.realm_attribute VALUES ('_browser_header.xRobotsTag', 'monthly', 'none');
+INSERT INTO public.realm_attribute VALUES ('_browser_header.xFrameOptions', 'monthly', 'SAMEORIGIN');
+INSERT INTO public.realm_attribute VALUES ('_browser_header.contentSecurityPolicy', 'monthly', 'frame-src ''self''; frame-ancestors ''self''; object-src ''none'';');
+INSERT INTO public.realm_attribute VALUES ('_browser_header.xXSSProtection', 'monthly', '1; mode=block');
+INSERT INTO public.realm_attribute VALUES ('_browser_header.strictTransportSecurity', 'monthly', 'max-age=31536000; includeSubDomains');
 
 
 --
--- TOC entry 3867 (class 0 OID 16718)
--- Dependencies: 256
 -- Data for Name: realm_default_groups; Type: TABLE DATA; Schema: public; Owner: keycloak-admin
 --
 
 
 
 --
--- TOC entry 3868 (class 0 OID 16721)
--- Dependencies: 257
--- Data for Name: realm_default_roles; Type: TABLE DATA; Schema: public; Owner: keycloak-admin
---
-
-INSERT INTO public.realm_default_roles VALUES ('master', '2ef36f95-dfce-44c2-af52-fb3cddaa713e');
-INSERT INTO public.realm_default_roles VALUES ('master', '3ad06f96-de63-4ca8-8a16-d66add08b413');
-INSERT INTO public.realm_default_roles VALUES ('monthly', 'e707184d-2fe4-4be1-9a90-b7f77da5090a');
-INSERT INTO public.realm_default_roles VALUES ('monthly', '7f9c2f0a-4b51-4ca4-b254-70b72b08262f');
-
-
---
--- TOC entry 3869 (class 0 OID 16724)
--- Dependencies: 258
 -- Data for Name: realm_enabled_event_types; Type: TABLE DATA; Schema: public; Owner: keycloak-admin
 --
 
 
 
 --
--- TOC entry 3870 (class 0 OID 16727)
--- Dependencies: 259
 -- Data for Name: realm_events_listeners; Type: TABLE DATA; Schema: public; Owner: keycloak-admin
 --
 
@@ -3262,8 +3076,12 @@ INSERT INTO public.realm_events_listeners VALUES ('monthly', 'jboss-logging');
 
 
 --
--- TOC entry 3871 (class 0 OID 16730)
--- Dependencies: 260
+-- Data for Name: realm_localizations; Type: TABLE DATA; Schema: public; Owner: keycloak-admin
+--
+
+
+
+--
 -- Data for Name: realm_required_credential; Type: TABLE DATA; Schema: public; Owner: keycloak-admin
 --
 
@@ -3272,47 +3090,37 @@ INSERT INTO public.realm_required_credential VALUES ('password', 'password', tru
 
 
 --
--- TOC entry 3872 (class 0 OID 16738)
--- Dependencies: 261
 -- Data for Name: realm_smtp_config; Type: TABLE DATA; Schema: public; Owner: keycloak-admin
 --
 
 
 
 --
--- TOC entry 3873 (class 0 OID 16744)
--- Dependencies: 262
 -- Data for Name: realm_supported_locales; Type: TABLE DATA; Schema: public; Owner: keycloak-admin
 --
 
 
 
 --
--- TOC entry 3874 (class 0 OID 16747)
--- Dependencies: 263
 -- Data for Name: redirect_uris; Type: TABLE DATA; Schema: public; Owner: keycloak-admin
 --
 
 INSERT INTO public.redirect_uris VALUES ('cb7fb9e0-3ecb-4bfc-bd42-5ada914d1848', '/realms/master/account/*');
 INSERT INTO public.redirect_uris VALUES ('6f76a30f-a144-4cde-91aa-396cdb1bd041', '/realms/master/account/*');
 INSERT INTO public.redirect_uris VALUES ('a7b3085f-1a46-4dbd-bb45-65d206b6252a', '/admin/master/console/*');
-INSERT INTO public.redirect_uris VALUES ('237dc637-c5fd-4d16-834e-2b51960b157e', '/realms/monthly/account/*');
-INSERT INTO public.redirect_uris VALUES ('e4bdf2ef-025f-46b8-a430-228614135818', '/realms/monthly/account/*');
-INSERT INTO public.redirect_uris VALUES ('5bf30d61-eaf2-4820-9b11-3b22220902c5', '/admin/monthly/console/*');
+INSERT INTO public.redirect_uris VALUES ('5bf30d61-eaf2-4820-9b11-3b22220902c5', '/admin/app/console/*');
+INSERT INTO public.redirect_uris VALUES ('237dc637-c5fd-4d16-834e-2b51960b157e', '/realms/app/account/*');
+INSERT INTO public.redirect_uris VALUES ('e4bdf2ef-025f-46b8-a430-228614135818', '/realms/app/account/*');
 INSERT INTO public.redirect_uris VALUES ('f5c6b235-7689-4b23-89df-98df00fca160', 'http://localhost:8081');
 
 
 --
--- TOC entry 3875 (class 0 OID 16750)
--- Dependencies: 264
 -- Data for Name: required_action_config; Type: TABLE DATA; Schema: public; Owner: keycloak-admin
 --
 
 
 
 --
--- TOC entry 3876 (class 0 OID 16756)
--- Dependencies: 265
 -- Data for Name: required_action_provider; Type: TABLE DATA; Schema: public; Owner: keycloak-admin
 --
 
@@ -3328,35 +3136,29 @@ INSERT INTO public.required_action_provider VALUES ('0af4a96c-dd67-46bb-a65a-c2e
 INSERT INTO public.required_action_provider VALUES ('f5552c73-8f30-4438-932d-7664d5300640', 'UPDATE_PASSWORD', 'Update Password', 'monthly', true, false, 'UPDATE_PASSWORD', 30);
 INSERT INTO public.required_action_provider VALUES ('fdabd9a5-ffa7-4630-8468-7227946d469d', 'terms_and_conditions', 'Terms and Conditions', 'monthly', false, false, 'terms_and_conditions', 20);
 INSERT INTO public.required_action_provider VALUES ('8784eae8-4f2b-45e2-b57f-664cf3115a22', 'update_user_locale', 'Update User Locale', 'monthly', true, false, 'update_user_locale', 1000);
+INSERT INTO public.required_action_provider VALUES ('2bc572d9-f341-41be-bab7-82e475284968', 'delete_account', 'Delete Account', 'monthly', false, false, 'delete_account', 60);
+INSERT INTO public.required_action_provider VALUES ('c7a7ee83-c11d-4cc7-ab73-f749b60ecf2a', 'delete_account', 'Delete Account', 'master', false, false, 'delete_account', 60);
 
 
 --
--- TOC entry 3877 (class 0 OID 16764)
--- Dependencies: 266
 -- Data for Name: resource_attribute; Type: TABLE DATA; Schema: public; Owner: keycloak-admin
 --
 
 
 
 --
--- TOC entry 3878 (class 0 OID 16771)
--- Dependencies: 267
 -- Data for Name: resource_policy; Type: TABLE DATA; Schema: public; Owner: keycloak-admin
 --
 
 
 
 --
--- TOC entry 3879 (class 0 OID 16774)
--- Dependencies: 268
 -- Data for Name: resource_scope; Type: TABLE DATA; Schema: public; Owner: keycloak-admin
 --
 
 
 
 --
--- TOC entry 3880 (class 0 OID 16777)
--- Dependencies: 269
 -- Data for Name: resource_server; Type: TABLE DATA; Schema: public; Owner: keycloak-admin
 --
 
@@ -3364,16 +3166,12 @@ INSERT INTO public.resource_server VALUES ('f5c6b235-7689-4b23-89df-98df00fca160
 
 
 --
--- TOC entry 3881 (class 0 OID 16782)
--- Dependencies: 270
 -- Data for Name: resource_server_perm_ticket; Type: TABLE DATA; Schema: public; Owner: keycloak-admin
 --
 
 
 
 --
--- TOC entry 3882 (class 0 OID 16788)
--- Dependencies: 271
 -- Data for Name: resource_server_policy; Type: TABLE DATA; Schema: public; Owner: keycloak-admin
 --
 
@@ -3382,8 +3180,6 @@ INSERT INTO public.resource_server_policy VALUES ('7e80b864-cbef-499c-b7b6-12570
 
 
 --
--- TOC entry 3883 (class 0 OID 16794)
--- Dependencies: 272
 -- Data for Name: resource_server_resource; Type: TABLE DATA; Schema: public; Owner: keycloak-admin
 --
 
@@ -3391,16 +3187,12 @@ INSERT INTO public.resource_server_resource VALUES ('6b59651e-687e-4c11-a627-2bd
 
 
 --
--- TOC entry 3884 (class 0 OID 16801)
--- Dependencies: 273
 -- Data for Name: resource_server_scope; Type: TABLE DATA; Schema: public; Owner: keycloak-admin
 --
 
 
 
 --
--- TOC entry 3885 (class 0 OID 16807)
--- Dependencies: 274
 -- Data for Name: resource_uris; Type: TABLE DATA; Schema: public; Owner: keycloak-admin
 --
 
@@ -3408,16 +3200,12 @@ INSERT INTO public.resource_uris VALUES ('6b59651e-687e-4c11-a627-2bd0cb31977f',
 
 
 --
--- TOC entry 3886 (class 0 OID 16810)
--- Dependencies: 275
 -- Data for Name: role_attribute; Type: TABLE DATA; Schema: public; Owner: keycloak-admin
 --
 
 
 
 --
--- TOC entry 3887 (class 0 OID 16816)
--- Dependencies: 276
 -- Data for Name: scope_mapping; Type: TABLE DATA; Schema: public; Owner: keycloak-admin
 --
 
@@ -3426,104 +3214,76 @@ INSERT INTO public.scope_mapping VALUES ('e4bdf2ef-025f-46b8-a430-228614135818',
 
 
 --
--- TOC entry 3888 (class 0 OID 16819)
--- Dependencies: 277
 -- Data for Name: scope_policy; Type: TABLE DATA; Schema: public; Owner: keycloak-admin
 --
 
 
 
 --
--- TOC entry 3889 (class 0 OID 16822)
--- Dependencies: 278
 -- Data for Name: user_attribute; Type: TABLE DATA; Schema: public; Owner: keycloak-admin
 --
 
 
 
 --
--- TOC entry 3890 (class 0 OID 16829)
--- Dependencies: 279
 -- Data for Name: user_consent; Type: TABLE DATA; Schema: public; Owner: keycloak-admin
 --
 
 
 
 --
--- TOC entry 3891 (class 0 OID 16835)
--- Dependencies: 280
 -- Data for Name: user_consent_client_scope; Type: TABLE DATA; Schema: public; Owner: keycloak-admin
 --
 
 
 
 --
--- TOC entry 3892 (class 0 OID 16838)
--- Dependencies: 281
 -- Data for Name: user_entity; Type: TABLE DATA; Schema: public; Owner: keycloak-admin
 --
 
 INSERT INTO public.user_entity VALUES ('2cf387a2-bc07-4267-b7f5-97c827688286', NULL, '3017fc3f-7fee-4344-b983-1fe6285890c3', false, true, NULL, NULL, NULL, 'master', 'admin', 1607450910472, NULL, 0);
 INSERT INTO public.user_entity VALUES ('429cf9d8-b393-43de-a895-7d08277e9aff', 'giordano.agostini@yahoo.it', 'giordano.agostini@yahoo.it', true, true, NULL, 'Giordano', 'Agostini', 'monthly', 'gagostin', 1607452168770, NULL, 0);
-INSERT INTO public.user_entity VALUES ('1aa91684-b96b-450a-b46a-63d0d7cec865', 'luca.mommi@libero.it', 'luca.mommi@libero.it', false, true, NULL, 'Luca', 'Mommi', 'monthly', 'lmommi', 1607456153506, NULL, 0);
-INSERT INTO public.user_entity VALUES ('cf1ffab2-0894-4a83-9d3b-969097e748fc', NULL, '76505042-4db7-4d43-811c-7975b58b262d', false, true, NULL, NULL, NULL, 'monthly', 'service-account-monthly-login-app', 1607531189808, 'f5c6b235-7689-4b23-89df-98df00fca160', 0);
-INSERT INTO public.user_entity VALUES ('222f643f-090a-47fd-a941-2de7495703ae', 'monthly.test.user@yopmail.com', 'monthly.test.user@yopmail.com', false, true, NULL, 'Test', 'User', 'monthly', 'testuser', 1608816650260, NULL, 0);
-INSERT INTO public.user_entity VALUES ('32a4bd56-c282-44b7-983f-4bf57abbabc9', 'monthly.no.profile@yopmail.com', 'monthly.no.profile@yopmail.com', false, true, NULL, 'No', 'Profile', 'monthly', 'noprofile', 1608929186269, NULL, 0);
 INSERT INTO public.user_entity VALUES ('e432075e-c82a-4c55-9f8d-625b30db0d9c', NULL, 'd43c2efd-914d-47ba-9b54-ec3bf8bf88c9', false, true, NULL, NULL, NULL, 'master', 'service-account-admin-cli', 1609065834208, '61cd8b8e-bf9d-4c47-b8af-596dcda6d716', 0);
-INSERT INTO public.user_entity VALUES ('8312e837-9861-47c4-ae27-d56d8efb2c10', 'monthly.admin@yopmail.com', 'monthly.admin@yopmail.com', false, true, NULL, 'Monthly', 'Admin', 'monthly', 'monthly-admin', 1609090414878, NULL, 0);
+INSERT INTO public.user_entity VALUES ('cf1ffab2-0894-4a83-9d3b-969097e748fc', NULL, '76505042-4db7-4d43-811c-7975b58b262d', false, true, NULL, NULL, NULL, 'monthly', 'service-account-login-app', 1607531189808, 'f5c6b235-7689-4b23-89df-98df00fca160', 0);
 
 
 --
--- TOC entry 3893 (class 0 OID 16847)
--- Dependencies: 282
 -- Data for Name: user_federation_config; Type: TABLE DATA; Schema: public; Owner: keycloak-admin
 --
 
 
 
 --
--- TOC entry 3894 (class 0 OID 16853)
--- Dependencies: 283
 -- Data for Name: user_federation_mapper; Type: TABLE DATA; Schema: public; Owner: keycloak-admin
 --
 
 
 
 --
--- TOC entry 3895 (class 0 OID 16859)
--- Dependencies: 284
 -- Data for Name: user_federation_mapper_config; Type: TABLE DATA; Schema: public; Owner: keycloak-admin
 --
 
 
 
 --
--- TOC entry 3896 (class 0 OID 16865)
--- Dependencies: 285
 -- Data for Name: user_federation_provider; Type: TABLE DATA; Schema: public; Owner: keycloak-admin
 --
 
 
 
 --
--- TOC entry 3897 (class 0 OID 16871)
--- Dependencies: 286
 -- Data for Name: user_group_membership; Type: TABLE DATA; Schema: public; Owner: keycloak-admin
 --
 
 
 
 --
--- TOC entry 3898 (class 0 OID 16874)
--- Dependencies: 287
 -- Data for Name: user_required_action; Type: TABLE DATA; Schema: public; Owner: keycloak-admin
 --
 
 
 
 --
--- TOC entry 3899 (class 0 OID 16878)
--- Dependencies: 288
 -- Data for Name: user_role_mapping; Type: TABLE DATA; Schema: public; Owner: keycloak-admin
 --
 
@@ -3536,64 +3296,38 @@ INSERT INTO public.user_role_mapping VALUES ('04ab2a31-3da1-4a06-a8d3-f9a008d356
 INSERT INTO public.user_role_mapping VALUES ('6ee15ba2-d581-4f39-b819-77c64a6e7844', '429cf9d8-b393-43de-a895-7d08277e9aff');
 INSERT INTO public.user_role_mapping VALUES ('7f9c2f0a-4b51-4ca4-b254-70b72b08262f', '429cf9d8-b393-43de-a895-7d08277e9aff');
 INSERT INTO public.user_role_mapping VALUES ('e707184d-2fe4-4be1-9a90-b7f77da5090a', '429cf9d8-b393-43de-a895-7d08277e9aff');
-INSERT INTO public.user_role_mapping VALUES ('04ab2a31-3da1-4a06-a8d3-f9a008d356d5', '1aa91684-b96b-450a-b46a-63d0d7cec865');
-INSERT INTO public.user_role_mapping VALUES ('6ee15ba2-d581-4f39-b819-77c64a6e7844', '1aa91684-b96b-450a-b46a-63d0d7cec865');
-INSERT INTO public.user_role_mapping VALUES ('7f9c2f0a-4b51-4ca4-b254-70b72b08262f', '1aa91684-b96b-450a-b46a-63d0d7cec865');
-INSERT INTO public.user_role_mapping VALUES ('e707184d-2fe4-4be1-9a90-b7f77da5090a', '1aa91684-b96b-450a-b46a-63d0d7cec865');
 INSERT INTO public.user_role_mapping VALUES ('04ab2a31-3da1-4a06-a8d3-f9a008d356d5', 'cf1ffab2-0894-4a83-9d3b-969097e748fc');
 INSERT INTO public.user_role_mapping VALUES ('6ee15ba2-d581-4f39-b819-77c64a6e7844', 'cf1ffab2-0894-4a83-9d3b-969097e748fc');
 INSERT INTO public.user_role_mapping VALUES ('7f9c2f0a-4b51-4ca4-b254-70b72b08262f', 'cf1ffab2-0894-4a83-9d3b-969097e748fc');
 INSERT INTO public.user_role_mapping VALUES ('e707184d-2fe4-4be1-9a90-b7f77da5090a', 'cf1ffab2-0894-4a83-9d3b-969097e748fc');
 INSERT INTO public.user_role_mapping VALUES ('8d2ec278-e302-4a2d-a265-3c7b3830a30b', 'cf1ffab2-0894-4a83-9d3b-969097e748fc');
-INSERT INTO public.user_role_mapping VALUES ('04ab2a31-3da1-4a06-a8d3-f9a008d356d5', '222f643f-090a-47fd-a941-2de7495703ae');
-INSERT INTO public.user_role_mapping VALUES ('6ee15ba2-d581-4f39-b819-77c64a6e7844', '222f643f-090a-47fd-a941-2de7495703ae');
-INSERT INTO public.user_role_mapping VALUES ('7f9c2f0a-4b51-4ca4-b254-70b72b08262f', '222f643f-090a-47fd-a941-2de7495703ae');
-INSERT INTO public.user_role_mapping VALUES ('e707184d-2fe4-4be1-9a90-b7f77da5090a', '222f643f-090a-47fd-a941-2de7495703ae');
-INSERT INTO public.user_role_mapping VALUES ('b245b684-78ed-40fd-88d8-fcd82f3bb2ea', '222f643f-090a-47fd-a941-2de7495703ae');
-INSERT INTO public.user_role_mapping VALUES ('04ab2a31-3da1-4a06-a8d3-f9a008d356d5', '32a4bd56-c282-44b7-983f-4bf57abbabc9');
-INSERT INTO public.user_role_mapping VALUES ('6ee15ba2-d581-4f39-b819-77c64a6e7844', '32a4bd56-c282-44b7-983f-4bf57abbabc9');
-INSERT INTO public.user_role_mapping VALUES ('7f9c2f0a-4b51-4ca4-b254-70b72b08262f', '32a4bd56-c282-44b7-983f-4bf57abbabc9');
-INSERT INTO public.user_role_mapping VALUES ('e707184d-2fe4-4be1-9a90-b7f77da5090a', '32a4bd56-c282-44b7-983f-4bf57abbabc9');
-INSERT INTO public.user_role_mapping VALUES ('b245b684-78ed-40fd-88d8-fcd82f3bb2ea', '32a4bd56-c282-44b7-983f-4bf57abbabc9');
 INSERT INTO public.user_role_mapping VALUES ('15ab8020-ea70-4ec6-b192-45b82b40add4', 'e432075e-c82a-4c55-9f8d-625b30db0d9c');
 INSERT INTO public.user_role_mapping VALUES ('65d6ca47-a8ea-4be5-aa07-4f62db4a8b96', 'e432075e-c82a-4c55-9f8d-625b30db0d9c');
 INSERT INTO public.user_role_mapping VALUES ('2ef36f95-dfce-44c2-af52-fb3cddaa713e', 'e432075e-c82a-4c55-9f8d-625b30db0d9c');
 INSERT INTO public.user_role_mapping VALUES ('3ad06f96-de63-4ca8-8a16-d66add08b413', 'e432075e-c82a-4c55-9f8d-625b30db0d9c');
 INSERT INTO public.user_role_mapping VALUES ('b245b684-78ed-40fd-88d8-fcd82f3bb2ea', '429cf9d8-b393-43de-a895-7d08277e9aff');
-INSERT INTO public.user_role_mapping VALUES ('04ab2a31-3da1-4a06-a8d3-f9a008d356d5', '8312e837-9861-47c4-ae27-d56d8efb2c10');
-INSERT INTO public.user_role_mapping VALUES ('6ee15ba2-d581-4f39-b819-77c64a6e7844', '8312e837-9861-47c4-ae27-d56d8efb2c10');
-INSERT INTO public.user_role_mapping VALUES ('7f9c2f0a-4b51-4ca4-b254-70b72b08262f', '8312e837-9861-47c4-ae27-d56d8efb2c10');
-INSERT INTO public.user_role_mapping VALUES ('e707184d-2fe4-4be1-9a90-b7f77da5090a', '8312e837-9861-47c4-ae27-d56d8efb2c10');
-INSERT INTO public.user_role_mapping VALUES ('4e4f69dc-33d0-4de2-8b13-5e4d25e8d0ba', '8312e837-9861-47c4-ae27-d56d8efb2c10');
+INSERT INTO public.user_role_mapping VALUES ('e458c786-edf0-4b59-9c89-d1d2528db20b', '429cf9d8-b393-43de-a895-7d08277e9aff');
 
 
 --
--- TOC entry 3900 (class 0 OID 16881)
--- Dependencies: 289
 -- Data for Name: user_session; Type: TABLE DATA; Schema: public; Owner: keycloak-admin
 --
 
 
 
 --
--- TOC entry 3901 (class 0 OID 16888)
--- Dependencies: 290
 -- Data for Name: user_session_note; Type: TABLE DATA; Schema: public; Owner: keycloak-admin
 --
 
 
 
 --
--- TOC entry 3902 (class 0 OID 16894)
--- Dependencies: 291
 -- Data for Name: username_login_failure; Type: TABLE DATA; Schema: public; Owner: keycloak-admin
 --
 
 
 
 --
--- TOC entry 3903 (class 0 OID 16900)
--- Dependencies: 292
 -- Data for Name: web_origins; Type: TABLE DATA; Schema: public; Owner: keycloak-admin
 --
 
@@ -3602,7 +3336,6 @@ INSERT INTO public.web_origins VALUES ('5bf30d61-eaf2-4820-9b11-3b22220902c5', '
 
 
 --
--- TOC entry 3587 (class 2606 OID 16904)
 -- Name: username_login_failure CONSTRAINT_17-2; Type: CONSTRAINT; Schema: public; Owner: keycloak-admin
 --
 
@@ -3611,7 +3344,6 @@ ALTER TABLE ONLY public.username_login_failure
 
 
 --
--- TOC entry 3443 (class 2606 OID 16906)
 -- Name: keycloak_role UK_J3RWUVD56ONTGSUHOGM184WW2-2; Type: CONSTRAINT; Schema: public; Owner: keycloak-admin
 --
 
@@ -3620,7 +3352,6 @@ ALTER TABLE ONLY public.keycloak_role
 
 
 --
--- TOC entry 3325 (class 2606 OID 16908)
 -- Name: client_auth_flow_bindings c_cli_flow_bind; Type: CONSTRAINT; Schema: public; Owner: keycloak-admin
 --
 
@@ -3629,7 +3360,6 @@ ALTER TABLE ONLY public.client_auth_flow_bindings
 
 
 --
--- TOC entry 3345 (class 2606 OID 16910)
 -- Name: client_scope_client c_cli_scope_bind; Type: CONSTRAINT; Schema: public; Owner: keycloak-admin
 --
 
@@ -3638,7 +3368,6 @@ ALTER TABLE ONLY public.client_scope_client
 
 
 --
--- TOC entry 3332 (class 2606 OID 16912)
 -- Name: client_initial_access cnstr_client_init_acc_pk; Type: CONSTRAINT; Schema: public; Owner: keycloak-admin
 --
 
@@ -3647,7 +3376,6 @@ ALTER TABLE ONLY public.client_initial_access
 
 
 --
--- TOC entry 3474 (class 2606 OID 16914)
 -- Name: realm_default_groups con_group_id_def_groups; Type: CONSTRAINT; Schema: public; Owner: keycloak-admin
 --
 
@@ -3656,7 +3384,6 @@ ALTER TABLE ONLY public.realm_default_groups
 
 
 --
--- TOC entry 3316 (class 2606 OID 16916)
 -- Name: broker_link constr_broker_link_pk; Type: CONSTRAINT; Schema: public; Owner: keycloak-admin
 --
 
@@ -3665,7 +3392,6 @@ ALTER TABLE ONLY public.broker_link
 
 
 --
--- TOC entry 3364 (class 2606 OID 16918)
 -- Name: client_user_session_note constr_cl_usr_ses_note; Type: CONSTRAINT; Schema: public; Owner: keycloak-admin
 --
 
@@ -3674,16 +3400,6 @@ ALTER TABLE ONLY public.client_user_session_note
 
 
 --
--- TOC entry 3327 (class 2606 OID 16920)
--- Name: client_default_roles constr_client_default_roles; Type: CONSTRAINT; Schema: public; Owner: keycloak-admin
---
-
-ALTER TABLE ONLY public.client_default_roles
-    ADD CONSTRAINT constr_client_default_roles PRIMARY KEY (client_id, role_id);
-
-
---
--- TOC entry 3370 (class 2606 OID 16922)
 -- Name: component_config constr_component_config_pk; Type: CONSTRAINT; Schema: public; Owner: keycloak-admin
 --
 
@@ -3692,7 +3408,6 @@ ALTER TABLE ONLY public.component_config
 
 
 --
--- TOC entry 3366 (class 2606 OID 16924)
 -- Name: component constr_component_pk; Type: CONSTRAINT; Schema: public; Owner: keycloak-admin
 --
 
@@ -3701,7 +3416,6 @@ ALTER TABLE ONLY public.component
 
 
 --
--- TOC entry 3407 (class 2606 OID 16926)
 -- Name: fed_user_required_action constr_fed_required_action; Type: CONSTRAINT; Schema: public; Owner: keycloak-admin
 --
 
@@ -3710,7 +3424,6 @@ ALTER TABLE ONLY public.fed_user_required_action
 
 
 --
--- TOC entry 3389 (class 2606 OID 16928)
 -- Name: fed_user_attribute constr_fed_user_attr_pk; Type: CONSTRAINT; Schema: public; Owner: keycloak-admin
 --
 
@@ -3719,7 +3432,6 @@ ALTER TABLE ONLY public.fed_user_attribute
 
 
 --
--- TOC entry 3392 (class 2606 OID 16930)
 -- Name: fed_user_consent constr_fed_user_consent_pk; Type: CONSTRAINT; Schema: public; Owner: keycloak-admin
 --
 
@@ -3728,7 +3440,6 @@ ALTER TABLE ONLY public.fed_user_consent
 
 
 --
--- TOC entry 3399 (class 2606 OID 16932)
 -- Name: fed_user_credential constr_fed_user_cred_pk; Type: CONSTRAINT; Schema: public; Owner: keycloak-admin
 --
 
@@ -3737,7 +3448,6 @@ ALTER TABLE ONLY public.fed_user_credential
 
 
 --
--- TOC entry 3403 (class 2606 OID 16934)
 -- Name: fed_user_group_membership constr_fed_user_group; Type: CONSTRAINT; Schema: public; Owner: keycloak-admin
 --
 
@@ -3746,7 +3456,6 @@ ALTER TABLE ONLY public.fed_user_group_membership
 
 
 --
--- TOC entry 3411 (class 2606 OID 16936)
 -- Name: fed_user_role_mapping constr_fed_user_role; Type: CONSTRAINT; Schema: public; Owner: keycloak-admin
 --
 
@@ -3755,7 +3464,6 @@ ALTER TABLE ONLY public.fed_user_role_mapping
 
 
 --
--- TOC entry 3419 (class 2606 OID 16938)
 -- Name: federated_user constr_federated_user; Type: CONSTRAINT; Schema: public; Owner: keycloak-admin
 --
 
@@ -3764,7 +3472,6 @@ ALTER TABLE ONLY public.federated_user
 
 
 --
--- TOC entry 3476 (class 2606 OID 16940)
 -- Name: realm_default_groups constr_realm_default_groups; Type: CONSTRAINT; Schema: public; Owner: keycloak-admin
 --
 
@@ -3773,7 +3480,6 @@ ALTER TABLE ONLY public.realm_default_groups
 
 
 --
--- TOC entry 3484 (class 2606 OID 16942)
 -- Name: realm_enabled_event_types constr_realm_enabl_event_types; Type: CONSTRAINT; Schema: public; Owner: keycloak-admin
 --
 
@@ -3782,7 +3488,6 @@ ALTER TABLE ONLY public.realm_enabled_event_types
 
 
 --
--- TOC entry 3487 (class 2606 OID 16944)
 -- Name: realm_events_listeners constr_realm_events_listeners; Type: CONSTRAINT; Schema: public; Owner: keycloak-admin
 --
 
@@ -3791,7 +3496,6 @@ ALTER TABLE ONLY public.realm_events_listeners
 
 
 --
--- TOC entry 3494 (class 2606 OID 16946)
 -- Name: realm_supported_locales constr_realm_supported_locales; Type: CONSTRAINT; Schema: public; Owner: keycloak-admin
 --
 
@@ -3800,7 +3504,6 @@ ALTER TABLE ONLY public.realm_supported_locales
 
 
 --
--- TOC entry 3427 (class 2606 OID 16948)
 -- Name: identity_provider constraint_2b; Type: CONSTRAINT; Schema: public; Owner: keycloak-admin
 --
 
@@ -3809,7 +3512,6 @@ ALTER TABLE ONLY public.identity_provider
 
 
 --
--- TOC entry 3323 (class 2606 OID 16950)
 -- Name: client_attributes constraint_3c; Type: CONSTRAINT; Schema: public; Owner: keycloak-admin
 --
 
@@ -3818,7 +3520,6 @@ ALTER TABLE ONLY public.client_attributes
 
 
 --
--- TOC entry 3386 (class 2606 OID 16952)
 -- Name: event_entity constraint_4; Type: CONSTRAINT; Schema: public; Owner: keycloak-admin
 --
 
@@ -3827,7 +3528,6 @@ ALTER TABLE ONLY public.event_entity
 
 
 --
--- TOC entry 3415 (class 2606 OID 16954)
 -- Name: federated_identity constraint_40; Type: CONSTRAINT; Schema: public; Owner: keycloak-admin
 --
 
@@ -3836,7 +3536,6 @@ ALTER TABLE ONLY public.federated_identity
 
 
 --
--- TOC entry 3466 (class 2606 OID 16956)
 -- Name: realm constraint_4a; Type: CONSTRAINT; Schema: public; Owner: keycloak-admin
 --
 
@@ -3845,7 +3544,6 @@ ALTER TABLE ONLY public.realm
 
 
 --
--- TOC entry 3362 (class 2606 OID 16958)
 -- Name: client_session_role constraint_5; Type: CONSTRAINT; Schema: public; Owner: keycloak-admin
 --
 
@@ -3854,7 +3552,6 @@ ALTER TABLE ONLY public.client_session_role
 
 
 --
--- TOC entry 3583 (class 2606 OID 16960)
 -- Name: user_session constraint_57; Type: CONSTRAINT; Schema: public; Owner: keycloak-admin
 --
 
@@ -3863,7 +3560,6 @@ ALTER TABLE ONLY public.user_session
 
 
 --
--- TOC entry 3571 (class 2606 OID 16962)
 -- Name: user_federation_provider constraint_5c; Type: CONSTRAINT; Schema: public; Owner: keycloak-admin
 --
 
@@ -3872,7 +3568,6 @@ ALTER TABLE ONLY public.user_federation_provider
 
 
 --
--- TOC entry 3358 (class 2606 OID 16964)
 -- Name: client_session_note constraint_5e; Type: CONSTRAINT; Schema: public; Owner: keycloak-admin
 --
 
@@ -3881,7 +3576,6 @@ ALTER TABLE ONLY public.client_session_note
 
 
 --
--- TOC entry 3318 (class 2606 OID 16966)
 -- Name: client constraint_7; Type: CONSTRAINT; Schema: public; Owner: keycloak-admin
 --
 
@@ -3890,7 +3584,6 @@ ALTER TABLE ONLY public.client
 
 
 --
--- TOC entry 3353 (class 2606 OID 16968)
 -- Name: client_session constraint_8; Type: CONSTRAINT; Schema: public; Owner: keycloak-admin
 --
 
@@ -3899,7 +3592,6 @@ ALTER TABLE ONLY public.client_session
 
 
 --
--- TOC entry 3539 (class 2606 OID 16970)
 -- Name: scope_mapping constraint_81; Type: CONSTRAINT; Schema: public; Owner: keycloak-admin
 --
 
@@ -3908,7 +3600,6 @@ ALTER TABLE ONLY public.scope_mapping
 
 
 --
--- TOC entry 3335 (class 2606 OID 16972)
 -- Name: client_node_registrations constraint_84; Type: CONSTRAINT; Schema: public; Owner: keycloak-admin
 --
 
@@ -3917,7 +3608,6 @@ ALTER TABLE ONLY public.client_node_registrations
 
 
 --
--- TOC entry 3471 (class 2606 OID 16974)
 -- Name: realm_attribute constraint_9; Type: CONSTRAINT; Schema: public; Owner: keycloak-admin
 --
 
@@ -3926,7 +3616,6 @@ ALTER TABLE ONLY public.realm_attribute
 
 
 --
--- TOC entry 3490 (class 2606 OID 16976)
 -- Name: realm_required_credential constraint_92; Type: CONSTRAINT; Schema: public; Owner: keycloak-admin
 --
 
@@ -3935,7 +3624,6 @@ ALTER TABLE ONLY public.realm_required_credential
 
 
 --
--- TOC entry 3445 (class 2606 OID 16978)
 -- Name: keycloak_role constraint_a; Type: CONSTRAINT; Schema: public; Owner: keycloak-admin
 --
 
@@ -3944,7 +3632,6 @@ ALTER TABLE ONLY public.keycloak_role
 
 
 --
--- TOC entry 3299 (class 2606 OID 16980)
 -- Name: admin_event_entity constraint_admin_event_entity; Type: CONSTRAINT; Schema: public; Owner: keycloak-admin
 --
 
@@ -3953,7 +3640,6 @@ ALTER TABLE ONLY public.admin_event_entity
 
 
 --
--- TOC entry 3314 (class 2606 OID 16982)
 -- Name: authenticator_config_entry constraint_auth_cfg_pk; Type: CONSTRAINT; Schema: public; Owner: keycloak-admin
 --
 
@@ -3962,7 +3648,6 @@ ALTER TABLE ONLY public.authenticator_config_entry
 
 
 --
--- TOC entry 3304 (class 2606 OID 16984)
 -- Name: authentication_execution constraint_auth_exec_pk; Type: CONSTRAINT; Schema: public; Owner: keycloak-admin
 --
 
@@ -3971,7 +3656,6 @@ ALTER TABLE ONLY public.authentication_execution
 
 
 --
--- TOC entry 3308 (class 2606 OID 16986)
 -- Name: authentication_flow constraint_auth_flow_pk; Type: CONSTRAINT; Schema: public; Owner: keycloak-admin
 --
 
@@ -3980,7 +3664,6 @@ ALTER TABLE ONLY public.authentication_flow
 
 
 --
--- TOC entry 3311 (class 2606 OID 16988)
 -- Name: authenticator_config constraint_auth_pk; Type: CONSTRAINT; Schema: public; Owner: keycloak-admin
 --
 
@@ -3989,7 +3672,6 @@ ALTER TABLE ONLY public.authenticator_config
 
 
 --
--- TOC entry 3356 (class 2606 OID 16990)
 -- Name: client_session_auth_status constraint_auth_status_pk; Type: CONSTRAINT; Schema: public; Owner: keycloak-admin
 --
 
@@ -3998,7 +3680,6 @@ ALTER TABLE ONLY public.client_session_auth_status
 
 
 --
--- TOC entry 3580 (class 2606 OID 16992)
 -- Name: user_role_mapping constraint_c; Type: CONSTRAINT; Schema: public; Owner: keycloak-admin
 --
 
@@ -4007,7 +3688,6 @@ ALTER TABLE ONLY public.user_role_mapping
 
 
 --
--- TOC entry 3373 (class 2606 OID 16994)
 -- Name: composite_role constraint_composite_role; Type: CONSTRAINT; Schema: public; Owner: keycloak-admin
 --
 
@@ -4016,7 +3696,6 @@ ALTER TABLE ONLY public.composite_role
 
 
 --
--- TOC entry 3360 (class 2606 OID 16996)
 -- Name: client_session_prot_mapper constraint_cs_pmp_pk; Type: CONSTRAINT; Schema: public; Owner: keycloak-admin
 --
 
@@ -4025,7 +3704,6 @@ ALTER TABLE ONLY public.client_session_prot_mapper
 
 
 --
--- TOC entry 3432 (class 2606 OID 16998)
 -- Name: identity_provider_config constraint_d; Type: CONSTRAINT; Schema: public; Owner: keycloak-admin
 --
 
@@ -4034,7 +3712,6 @@ ALTER TABLE ONLY public.identity_provider_config
 
 
 --
--- TOC entry 3458 (class 2606 OID 17000)
 -- Name: policy_config constraint_dpc; Type: CONSTRAINT; Schema: public; Owner: keycloak-admin
 --
 
@@ -4043,7 +3720,6 @@ ALTER TABLE ONLY public.policy_config
 
 
 --
--- TOC entry 3492 (class 2606 OID 17002)
 -- Name: realm_smtp_config constraint_e; Type: CONSTRAINT; Schema: public; Owner: keycloak-admin
 --
 
@@ -4052,7 +3728,6 @@ ALTER TABLE ONLY public.realm_smtp_config
 
 
 --
--- TOC entry 3377 (class 2606 OID 17004)
 -- Name: credential constraint_f; Type: CONSTRAINT; Schema: public; Owner: keycloak-admin
 --
 
@@ -4061,7 +3736,6 @@ ALTER TABLE ONLY public.credential
 
 
 --
--- TOC entry 3563 (class 2606 OID 17006)
 -- Name: user_federation_config constraint_f9; Type: CONSTRAINT; Schema: public; Owner: keycloak-admin
 --
 
@@ -4070,7 +3744,6 @@ ALTER TABLE ONLY public.user_federation_config
 
 
 --
--- TOC entry 3515 (class 2606 OID 17008)
 -- Name: resource_server_perm_ticket constraint_fapmt; Type: CONSTRAINT; Schema: public; Owner: keycloak-admin
 --
 
@@ -4079,7 +3752,6 @@ ALTER TABLE ONLY public.resource_server_perm_ticket
 
 
 --
--- TOC entry 3524 (class 2606 OID 17010)
 -- Name: resource_server_resource constraint_farsr; Type: CONSTRAINT; Schema: public; Owner: keycloak-admin
 --
 
@@ -4088,7 +3760,6 @@ ALTER TABLE ONLY public.resource_server_resource
 
 
 --
--- TOC entry 3519 (class 2606 OID 17012)
 -- Name: resource_server_policy constraint_farsrp; Type: CONSTRAINT; Schema: public; Owner: keycloak-admin
 --
 
@@ -4097,7 +3768,6 @@ ALTER TABLE ONLY public.resource_server_policy
 
 
 --
--- TOC entry 3301 (class 2606 OID 17014)
 -- Name: associated_policy constraint_farsrpap; Type: CONSTRAINT; Schema: public; Owner: keycloak-admin
 --
 
@@ -4106,7 +3776,6 @@ ALTER TABLE ONLY public.associated_policy
 
 
 --
--- TOC entry 3507 (class 2606 OID 17016)
 -- Name: resource_policy constraint_farsrpp; Type: CONSTRAINT; Schema: public; Owner: keycloak-admin
 --
 
@@ -4115,7 +3784,6 @@ ALTER TABLE ONLY public.resource_policy
 
 
 --
--- TOC entry 3529 (class 2606 OID 17018)
 -- Name: resource_server_scope constraint_farsrs; Type: CONSTRAINT; Schema: public; Owner: keycloak-admin
 --
 
@@ -4124,7 +3792,6 @@ ALTER TABLE ONLY public.resource_server_scope
 
 
 --
--- TOC entry 3510 (class 2606 OID 17020)
 -- Name: resource_scope constraint_farsrsp; Type: CONSTRAINT; Schema: public; Owner: keycloak-admin
 --
 
@@ -4133,7 +3800,6 @@ ALTER TABLE ONLY public.resource_scope
 
 
 --
--- TOC entry 3542 (class 2606 OID 17022)
 -- Name: scope_policy constraint_farsrsps; Type: CONSTRAINT; Schema: public; Owner: keycloak-admin
 --
 
@@ -4142,7 +3808,6 @@ ALTER TABLE ONLY public.scope_policy
 
 
 --
--- TOC entry 3556 (class 2606 OID 17024)
 -- Name: user_entity constraint_fb; Type: CONSTRAINT; Schema: public; Owner: keycloak-admin
 --
 
@@ -4151,7 +3816,6 @@ ALTER TABLE ONLY public.user_entity
 
 
 --
--- TOC entry 3569 (class 2606 OID 17026)
 -- Name: user_federation_mapper_config constraint_fedmapper_cfg_pm; Type: CONSTRAINT; Schema: public; Owner: keycloak-admin
 --
 
@@ -4160,7 +3824,6 @@ ALTER TABLE ONLY public.user_federation_mapper_config
 
 
 --
--- TOC entry 3565 (class 2606 OID 17028)
 -- Name: user_federation_mapper constraint_fedmapperpm; Type: CONSTRAINT; Schema: public; Owner: keycloak-admin
 --
 
@@ -4169,7 +3832,6 @@ ALTER TABLE ONLY public.user_federation_mapper
 
 
 --
--- TOC entry 3397 (class 2606 OID 17030)
 -- Name: fed_user_consent_cl_scope constraint_fgrntcsnt_clsc_pm; Type: CONSTRAINT; Schema: public; Owner: keycloak-admin
 --
 
@@ -4178,7 +3840,6 @@ ALTER TABLE ONLY public.fed_user_consent_cl_scope
 
 
 --
--- TOC entry 3553 (class 2606 OID 17032)
 -- Name: user_consent_client_scope constraint_grntcsnt_clsc_pm; Type: CONSTRAINT; Schema: public; Owner: keycloak-admin
 --
 
@@ -4187,7 +3848,6 @@ ALTER TABLE ONLY public.user_consent_client_scope
 
 
 --
--- TOC entry 3548 (class 2606 OID 17034)
 -- Name: user_consent constraint_grntcsnt_pm; Type: CONSTRAINT; Schema: public; Owner: keycloak-admin
 --
 
@@ -4196,7 +3856,6 @@ ALTER TABLE ONLY public.user_consent
 
 
 --
--- TOC entry 3439 (class 2606 OID 17036)
 -- Name: keycloak_group constraint_group; Type: CONSTRAINT; Schema: public; Owner: keycloak-admin
 --
 
@@ -4205,7 +3864,6 @@ ALTER TABLE ONLY public.keycloak_group
 
 
 --
--- TOC entry 3421 (class 2606 OID 17038)
 -- Name: group_attribute constraint_group_attribute_pk; Type: CONSTRAINT; Schema: public; Owner: keycloak-admin
 --
 
@@ -4214,7 +3872,6 @@ ALTER TABLE ONLY public.group_attribute
 
 
 --
--- TOC entry 3424 (class 2606 OID 17040)
 -- Name: group_role_mapping constraint_group_role; Type: CONSTRAINT; Schema: public; Owner: keycloak-admin
 --
 
@@ -4223,7 +3880,6 @@ ALTER TABLE ONLY public.group_role_mapping
 
 
 --
--- TOC entry 3434 (class 2606 OID 17042)
 -- Name: identity_provider_mapper constraint_idpm; Type: CONSTRAINT; Schema: public; Owner: keycloak-admin
 --
 
@@ -4232,7 +3888,6 @@ ALTER TABLE ONLY public.identity_provider_mapper
 
 
 --
--- TOC entry 3437 (class 2606 OID 17044)
 -- Name: idp_mapper_config constraint_idpmconfig; Type: CONSTRAINT; Schema: public; Owner: keycloak-admin
 --
 
@@ -4241,7 +3896,6 @@ ALTER TABLE ONLY public.idp_mapper_config
 
 
 --
--- TOC entry 3449 (class 2606 OID 17046)
 -- Name: migration_model constraint_migmod; Type: CONSTRAINT; Schema: public; Owner: keycloak-admin
 --
 
@@ -4250,7 +3904,6 @@ ALTER TABLE ONLY public.migration_model
 
 
 --
--- TOC entry 3452 (class 2606 OID 17048)
 -- Name: offline_client_session constraint_offl_cl_ses_pk3; Type: CONSTRAINT; Schema: public; Owner: keycloak-admin
 --
 
@@ -4259,7 +3912,6 @@ ALTER TABLE ONLY public.offline_client_session
 
 
 --
--- TOC entry 3455 (class 2606 OID 17050)
 -- Name: offline_user_session constraint_offl_us_ses_pk2; Type: CONSTRAINT; Schema: public; Owner: keycloak-admin
 --
 
@@ -4268,7 +3920,6 @@ ALTER TABLE ONLY public.offline_user_session
 
 
 --
--- TOC entry 3460 (class 2606 OID 17052)
 -- Name: protocol_mapper constraint_pcm; Type: CONSTRAINT; Schema: public; Owner: keycloak-admin
 --
 
@@ -4277,7 +3928,6 @@ ALTER TABLE ONLY public.protocol_mapper
 
 
 --
--- TOC entry 3464 (class 2606 OID 17054)
 -- Name: protocol_mapper_config constraint_pmconfig; Type: CONSTRAINT; Schema: public; Owner: keycloak-admin
 --
 
@@ -4286,16 +3936,6 @@ ALTER TABLE ONLY public.protocol_mapper_config
 
 
 --
--- TOC entry 3479 (class 2606 OID 17056)
--- Name: realm_default_roles constraint_realm_default_roles; Type: CONSTRAINT; Schema: public; Owner: keycloak-admin
---
-
-ALTER TABLE ONLY public.realm_default_roles
-    ADD CONSTRAINT constraint_realm_default_roles PRIMARY KEY (realm_id, role_id);
-
-
---
--- TOC entry 3497 (class 2606 OID 17058)
 -- Name: redirect_uris constraint_redirect_uris; Type: CONSTRAINT; Schema: public; Owner: keycloak-admin
 --
 
@@ -4304,7 +3944,6 @@ ALTER TABLE ONLY public.redirect_uris
 
 
 --
--- TOC entry 3500 (class 2606 OID 17060)
 -- Name: required_action_config constraint_req_act_cfg_pk; Type: CONSTRAINT; Schema: public; Owner: keycloak-admin
 --
 
@@ -4313,7 +3952,6 @@ ALTER TABLE ONLY public.required_action_config
 
 
 --
--- TOC entry 3502 (class 2606 OID 17062)
 -- Name: required_action_provider constraint_req_act_prv_pk; Type: CONSTRAINT; Schema: public; Owner: keycloak-admin
 --
 
@@ -4322,7 +3960,6 @@ ALTER TABLE ONLY public.required_action_provider
 
 
 --
--- TOC entry 3577 (class 2606 OID 17064)
 -- Name: user_required_action constraint_required_action; Type: CONSTRAINT; Schema: public; Owner: keycloak-admin
 --
 
@@ -4331,7 +3968,6 @@ ALTER TABLE ONLY public.user_required_action
 
 
 --
--- TOC entry 3534 (class 2606 OID 17066)
 -- Name: resource_uris constraint_resour_uris_pk; Type: CONSTRAINT; Schema: public; Owner: keycloak-admin
 --
 
@@ -4340,7 +3976,6 @@ ALTER TABLE ONLY public.resource_uris
 
 
 --
--- TOC entry 3536 (class 2606 OID 17068)
 -- Name: role_attribute constraint_role_attribute_pk; Type: CONSTRAINT; Schema: public; Owner: keycloak-admin
 --
 
@@ -4349,7 +3984,6 @@ ALTER TABLE ONLY public.role_attribute
 
 
 --
--- TOC entry 3545 (class 2606 OID 17070)
 -- Name: user_attribute constraint_user_attribute_pk; Type: CONSTRAINT; Schema: public; Owner: keycloak-admin
 --
 
@@ -4358,7 +3992,6 @@ ALTER TABLE ONLY public.user_attribute
 
 
 --
--- TOC entry 3574 (class 2606 OID 17072)
 -- Name: user_group_membership constraint_user_group; Type: CONSTRAINT; Schema: public; Owner: keycloak-admin
 --
 
@@ -4367,7 +4000,6 @@ ALTER TABLE ONLY public.user_group_membership
 
 
 --
--- TOC entry 3585 (class 2606 OID 17074)
 -- Name: user_session_note constraint_usn_pk; Type: CONSTRAINT; Schema: public; Owner: keycloak-admin
 --
 
@@ -4376,7 +4008,6 @@ ALTER TABLE ONLY public.user_session_note
 
 
 --
--- TOC entry 3589 (class 2606 OID 17076)
 -- Name: web_origins constraint_web_origins; Type: CONSTRAINT; Schema: public; Owner: keycloak-admin
 --
 
@@ -4385,7 +4016,6 @@ ALTER TABLE ONLY public.web_origins
 
 
 --
--- TOC entry 3343 (class 2606 OID 17078)
 -- Name: client_scope_attributes pk_cl_tmpl_attr; Type: CONSTRAINT; Schema: public; Owner: keycloak-admin
 --
 
@@ -4394,7 +4024,6 @@ ALTER TABLE ONLY public.client_scope_attributes
 
 
 --
--- TOC entry 3338 (class 2606 OID 17080)
 -- Name: client_scope pk_cli_template; Type: CONSTRAINT; Schema: public; Owner: keycloak-admin
 --
 
@@ -4403,7 +4032,6 @@ ALTER TABLE ONLY public.client_scope
 
 
 --
--- TOC entry 3380 (class 2606 OID 17082)
 -- Name: databasechangeloglock pk_databasechangeloglock; Type: CONSTRAINT; Schema: public; Owner: keycloak-admin
 --
 
@@ -4412,7 +4040,6 @@ ALTER TABLE ONLY public.databasechangeloglock
 
 
 --
--- TOC entry 3513 (class 2606 OID 17084)
 -- Name: resource_server pk_resource_server; Type: CONSTRAINT; Schema: public; Owner: keycloak-admin
 --
 
@@ -4421,7 +4048,6 @@ ALTER TABLE ONLY public.resource_server
 
 
 --
--- TOC entry 3351 (class 2606 OID 17086)
 -- Name: client_scope_role_mapping pk_template_scope; Type: CONSTRAINT; Schema: public; Owner: keycloak-admin
 --
 
@@ -4430,7 +4056,6 @@ ALTER TABLE ONLY public.client_scope_role_mapping
 
 
 --
--- TOC entry 3384 (class 2606 OID 17088)
 -- Name: default_client_scope r_def_cli_scope_bind; Type: CONSTRAINT; Schema: public; Owner: keycloak-admin
 --
 
@@ -4439,7 +4064,14 @@ ALTER TABLE ONLY public.default_client_scope
 
 
 --
--- TOC entry 3505 (class 2606 OID 17090)
+-- Name: realm_localizations realm_localizations_pkey; Type: CONSTRAINT; Schema: public; Owner: keycloak-admin
+--
+
+ALTER TABLE ONLY public.realm_localizations
+    ADD CONSTRAINT realm_localizations_pkey PRIMARY KEY (realm_id, locale);
+
+
+--
 -- Name: resource_attribute res_attr_pk; Type: CONSTRAINT; Schema: public; Owner: keycloak-admin
 --
 
@@ -4448,7 +4080,6 @@ ALTER TABLE ONLY public.resource_attribute
 
 
 --
--- TOC entry 3441 (class 2606 OID 17092)
 -- Name: keycloak_group sibling_names; Type: CONSTRAINT; Schema: public; Owner: keycloak-admin
 --
 
@@ -4457,7 +4088,6 @@ ALTER TABLE ONLY public.keycloak_group
 
 
 --
--- TOC entry 3430 (class 2606 OID 17094)
 -- Name: identity_provider uk_2daelwnibji49avxsrtuf6xj33; Type: CONSTRAINT; Schema: public; Owner: keycloak-admin
 --
 
@@ -4466,16 +4096,6 @@ ALTER TABLE ONLY public.identity_provider
 
 
 --
--- TOC entry 3330 (class 2606 OID 17096)
--- Name: client_default_roles uk_8aelwnibji49avxsrtuf6xjow; Type: CONSTRAINT; Schema: public; Owner: keycloak-admin
---
-
-ALTER TABLE ONLY public.client_default_roles
-    ADD CONSTRAINT uk_8aelwnibji49avxsrtuf6xjow UNIQUE (role_id);
-
-
---
--- TOC entry 3321 (class 2606 OID 17098)
 -- Name: client uk_b71cjlbenv945rb6gcon438at; Type: CONSTRAINT; Schema: public; Owner: keycloak-admin
 --
 
@@ -4484,7 +4104,6 @@ ALTER TABLE ONLY public.client
 
 
 --
--- TOC entry 3340 (class 2606 OID 17100)
 -- Name: client_scope uk_cli_scope; Type: CONSTRAINT; Schema: public; Owner: keycloak-admin
 --
 
@@ -4493,7 +4112,6 @@ ALTER TABLE ONLY public.client_scope
 
 
 --
--- TOC entry 3559 (class 2606 OID 17102)
 -- Name: user_entity uk_dykn684sl8up1crfei6eckhd7; Type: CONSTRAINT; Schema: public; Owner: keycloak-admin
 --
 
@@ -4502,7 +4120,6 @@ ALTER TABLE ONLY public.user_entity
 
 
 --
--- TOC entry 3527 (class 2606 OID 17104)
 -- Name: resource_server_resource uk_frsr6t700s9v50bu18ws5ha6; Type: CONSTRAINT; Schema: public; Owner: keycloak-admin
 --
 
@@ -4511,7 +4128,6 @@ ALTER TABLE ONLY public.resource_server_resource
 
 
 --
--- TOC entry 3517 (class 2606 OID 17106)
 -- Name: resource_server_perm_ticket uk_frsr6t700s9v50bu18ws5pmt; Type: CONSTRAINT; Schema: public; Owner: keycloak-admin
 --
 
@@ -4520,7 +4136,6 @@ ALTER TABLE ONLY public.resource_server_perm_ticket
 
 
 --
--- TOC entry 3522 (class 2606 OID 17108)
 -- Name: resource_server_policy uk_frsrpt700s9v50bu18ws5ha6; Type: CONSTRAINT; Schema: public; Owner: keycloak-admin
 --
 
@@ -4529,7 +4144,6 @@ ALTER TABLE ONLY public.resource_server_policy
 
 
 --
--- TOC entry 3532 (class 2606 OID 17110)
 -- Name: resource_server_scope uk_frsrst700s9v50bu18ws5ha6; Type: CONSTRAINT; Schema: public; Owner: keycloak-admin
 --
 
@@ -4538,16 +4152,6 @@ ALTER TABLE ONLY public.resource_server_scope
 
 
 --
--- TOC entry 3482 (class 2606 OID 17112)
--- Name: realm_default_roles uk_h4wpd7w4hsoolni3h0sw7btje; Type: CONSTRAINT; Schema: public; Owner: keycloak-admin
---
-
-ALTER TABLE ONLY public.realm_default_roles
-    ADD CONSTRAINT uk_h4wpd7w4hsoolni3h0sw7btje UNIQUE (role_id);
-
-
---
--- TOC entry 3551 (class 2606 OID 17114)
 -- Name: user_consent uk_jkuwuvd56ontgsuhogm8uewrt; Type: CONSTRAINT; Schema: public; Owner: keycloak-admin
 --
 
@@ -4556,7 +4160,6 @@ ALTER TABLE ONLY public.user_consent
 
 
 --
--- TOC entry 3469 (class 2606 OID 17116)
 -- Name: realm uk_orvsdmla56612eaefiq6wl5oi; Type: CONSTRAINT; Schema: public; Owner: keycloak-admin
 --
 
@@ -4565,7 +4168,6 @@ ALTER TABLE ONLY public.realm
 
 
 --
--- TOC entry 3561 (class 2606 OID 17118)
 -- Name: user_entity uk_ru8tt6t700s9v50bu18ws5ha6; Type: CONSTRAINT; Schema: public; Owner: keycloak-admin
 --
 
@@ -4574,7 +4176,6 @@ ALTER TABLE ONLY public.user_entity
 
 
 --
--- TOC entry 3302 (class 1259 OID 17119)
 -- Name: idx_assoc_pol_assoc_pol_id; Type: INDEX; Schema: public; Owner: keycloak-admin
 --
 
@@ -4582,7 +4183,6 @@ CREATE INDEX idx_assoc_pol_assoc_pol_id ON public.associated_policy USING btree 
 
 
 --
--- TOC entry 3312 (class 1259 OID 17120)
 -- Name: idx_auth_config_realm; Type: INDEX; Schema: public; Owner: keycloak-admin
 --
 
@@ -4590,7 +4190,6 @@ CREATE INDEX idx_auth_config_realm ON public.authenticator_config USING btree (r
 
 
 --
--- TOC entry 3305 (class 1259 OID 17121)
 -- Name: idx_auth_exec_flow; Type: INDEX; Schema: public; Owner: keycloak-admin
 --
 
@@ -4598,7 +4197,6 @@ CREATE INDEX idx_auth_exec_flow ON public.authentication_execution USING btree (
 
 
 --
--- TOC entry 3306 (class 1259 OID 17122)
 -- Name: idx_auth_exec_realm_flow; Type: INDEX; Schema: public; Owner: keycloak-admin
 --
 
@@ -4606,7 +4204,6 @@ CREATE INDEX idx_auth_exec_realm_flow ON public.authentication_execution USING b
 
 
 --
--- TOC entry 3309 (class 1259 OID 17123)
 -- Name: idx_auth_flow_realm; Type: INDEX; Schema: public; Owner: keycloak-admin
 --
 
@@ -4614,7 +4211,6 @@ CREATE INDEX idx_auth_flow_realm ON public.authentication_flow USING btree (real
 
 
 --
--- TOC entry 3346 (class 1259 OID 17124)
 -- Name: idx_cl_clscope; Type: INDEX; Schema: public; Owner: keycloak-admin
 --
 
@@ -4622,15 +4218,13 @@ CREATE INDEX idx_cl_clscope ON public.client_scope_client USING btree (scope_id)
 
 
 --
--- TOC entry 3328 (class 1259 OID 17125)
--- Name: idx_client_def_roles_client; Type: INDEX; Schema: public; Owner: keycloak-admin
+-- Name: idx_client_att_by_name_value; Type: INDEX; Schema: public; Owner: keycloak-admin
 --
 
-CREATE INDEX idx_client_def_roles_client ON public.client_default_roles USING btree (client_id);
+CREATE INDEX idx_client_att_by_name_value ON public.client_attributes USING btree (name, ((value)::character varying(250)));
 
 
 --
--- TOC entry 3319 (class 1259 OID 17126)
 -- Name: idx_client_id; Type: INDEX; Schema: public; Owner: keycloak-admin
 --
 
@@ -4638,7 +4232,6 @@ CREATE INDEX idx_client_id ON public.client USING btree (client_id);
 
 
 --
--- TOC entry 3333 (class 1259 OID 17127)
 -- Name: idx_client_init_acc_realm; Type: INDEX; Schema: public; Owner: keycloak-admin
 --
 
@@ -4646,7 +4239,6 @@ CREATE INDEX idx_client_init_acc_realm ON public.client_initial_access USING btr
 
 
 --
--- TOC entry 3354 (class 1259 OID 17128)
 -- Name: idx_client_session_session; Type: INDEX; Schema: public; Owner: keycloak-admin
 --
 
@@ -4654,7 +4246,6 @@ CREATE INDEX idx_client_session_session ON public.client_session USING btree (se
 
 
 --
--- TOC entry 3341 (class 1259 OID 17129)
 -- Name: idx_clscope_attrs; Type: INDEX; Schema: public; Owner: keycloak-admin
 --
 
@@ -4662,7 +4253,6 @@ CREATE INDEX idx_clscope_attrs ON public.client_scope_attributes USING btree (sc
 
 
 --
--- TOC entry 3347 (class 1259 OID 17130)
 -- Name: idx_clscope_cl; Type: INDEX; Schema: public; Owner: keycloak-admin
 --
 
@@ -4670,7 +4260,6 @@ CREATE INDEX idx_clscope_cl ON public.client_scope_client USING btree (client_id
 
 
 --
--- TOC entry 3461 (class 1259 OID 17131)
 -- Name: idx_clscope_protmap; Type: INDEX; Schema: public; Owner: keycloak-admin
 --
 
@@ -4678,7 +4267,6 @@ CREATE INDEX idx_clscope_protmap ON public.protocol_mapper USING btree (client_s
 
 
 --
--- TOC entry 3348 (class 1259 OID 17132)
 -- Name: idx_clscope_role; Type: INDEX; Schema: public; Owner: keycloak-admin
 --
 
@@ -4686,7 +4274,6 @@ CREATE INDEX idx_clscope_role ON public.client_scope_role_mapping USING btree (s
 
 
 --
--- TOC entry 3371 (class 1259 OID 17133)
 -- Name: idx_compo_config_compo; Type: INDEX; Schema: public; Owner: keycloak-admin
 --
 
@@ -4694,7 +4281,6 @@ CREATE INDEX idx_compo_config_compo ON public.component_config USING btree (comp
 
 
 --
--- TOC entry 3367 (class 1259 OID 17134)
 -- Name: idx_component_provider_type; Type: INDEX; Schema: public; Owner: keycloak-admin
 --
 
@@ -4702,7 +4288,6 @@ CREATE INDEX idx_component_provider_type ON public.component USING btree (provid
 
 
 --
--- TOC entry 3368 (class 1259 OID 17135)
 -- Name: idx_component_realm; Type: INDEX; Schema: public; Owner: keycloak-admin
 --
 
@@ -4710,7 +4295,6 @@ CREATE INDEX idx_component_realm ON public.component USING btree (realm_id);
 
 
 --
--- TOC entry 3374 (class 1259 OID 17136)
 -- Name: idx_composite; Type: INDEX; Schema: public; Owner: keycloak-admin
 --
 
@@ -4718,7 +4302,6 @@ CREATE INDEX idx_composite ON public.composite_role USING btree (composite);
 
 
 --
--- TOC entry 3375 (class 1259 OID 17137)
 -- Name: idx_composite_child; Type: INDEX; Schema: public; Owner: keycloak-admin
 --
 
@@ -4726,7 +4309,6 @@ CREATE INDEX idx_composite_child ON public.composite_role USING btree (child_rol
 
 
 --
--- TOC entry 3381 (class 1259 OID 17138)
 -- Name: idx_defcls_realm; Type: INDEX; Schema: public; Owner: keycloak-admin
 --
 
@@ -4734,7 +4316,6 @@ CREATE INDEX idx_defcls_realm ON public.default_client_scope USING btree (realm_
 
 
 --
--- TOC entry 3382 (class 1259 OID 17139)
 -- Name: idx_defcls_scope; Type: INDEX; Schema: public; Owner: keycloak-admin
 --
 
@@ -4742,7 +4323,6 @@ CREATE INDEX idx_defcls_scope ON public.default_client_scope USING btree (scope_
 
 
 --
--- TOC entry 3387 (class 1259 OID 17140)
 -- Name: idx_event_time; Type: INDEX; Schema: public; Owner: keycloak-admin
 --
 
@@ -4750,7 +4330,6 @@ CREATE INDEX idx_event_time ON public.event_entity USING btree (realm_id, event_
 
 
 --
--- TOC entry 3416 (class 1259 OID 17141)
 -- Name: idx_fedidentity_feduser; Type: INDEX; Schema: public; Owner: keycloak-admin
 --
 
@@ -4758,7 +4337,6 @@ CREATE INDEX idx_fedidentity_feduser ON public.federated_identity USING btree (f
 
 
 --
--- TOC entry 3417 (class 1259 OID 17142)
 -- Name: idx_fedidentity_user; Type: INDEX; Schema: public; Owner: keycloak-admin
 --
 
@@ -4766,7 +4344,6 @@ CREATE INDEX idx_fedidentity_user ON public.federated_identity USING btree (user
 
 
 --
--- TOC entry 3390 (class 1259 OID 17143)
 -- Name: idx_fu_attribute; Type: INDEX; Schema: public; Owner: keycloak-admin
 --
 
@@ -4774,7 +4351,6 @@ CREATE INDEX idx_fu_attribute ON public.fed_user_attribute USING btree (user_id,
 
 
 --
--- TOC entry 3393 (class 1259 OID 17144)
 -- Name: idx_fu_cnsnt_ext; Type: INDEX; Schema: public; Owner: keycloak-admin
 --
 
@@ -4782,7 +4358,6 @@ CREATE INDEX idx_fu_cnsnt_ext ON public.fed_user_consent USING btree (user_id, c
 
 
 --
--- TOC entry 3394 (class 1259 OID 17145)
 -- Name: idx_fu_consent; Type: INDEX; Schema: public; Owner: keycloak-admin
 --
 
@@ -4790,7 +4365,6 @@ CREATE INDEX idx_fu_consent ON public.fed_user_consent USING btree (user_id, cli
 
 
 --
--- TOC entry 3395 (class 1259 OID 17146)
 -- Name: idx_fu_consent_ru; Type: INDEX; Schema: public; Owner: keycloak-admin
 --
 
@@ -4798,7 +4372,6 @@ CREATE INDEX idx_fu_consent_ru ON public.fed_user_consent USING btree (realm_id,
 
 
 --
--- TOC entry 3400 (class 1259 OID 17147)
 -- Name: idx_fu_credential; Type: INDEX; Schema: public; Owner: keycloak-admin
 --
 
@@ -4806,7 +4379,6 @@ CREATE INDEX idx_fu_credential ON public.fed_user_credential USING btree (user_i
 
 
 --
--- TOC entry 3401 (class 1259 OID 17148)
 -- Name: idx_fu_credential_ru; Type: INDEX; Schema: public; Owner: keycloak-admin
 --
 
@@ -4814,7 +4386,6 @@ CREATE INDEX idx_fu_credential_ru ON public.fed_user_credential USING btree (rea
 
 
 --
--- TOC entry 3404 (class 1259 OID 17149)
 -- Name: idx_fu_group_membership; Type: INDEX; Schema: public; Owner: keycloak-admin
 --
 
@@ -4822,7 +4393,6 @@ CREATE INDEX idx_fu_group_membership ON public.fed_user_group_membership USING b
 
 
 --
--- TOC entry 3405 (class 1259 OID 17150)
 -- Name: idx_fu_group_membership_ru; Type: INDEX; Schema: public; Owner: keycloak-admin
 --
 
@@ -4830,7 +4400,6 @@ CREATE INDEX idx_fu_group_membership_ru ON public.fed_user_group_membership USIN
 
 
 --
--- TOC entry 3408 (class 1259 OID 17151)
 -- Name: idx_fu_required_action; Type: INDEX; Schema: public; Owner: keycloak-admin
 --
 
@@ -4838,7 +4407,6 @@ CREATE INDEX idx_fu_required_action ON public.fed_user_required_action USING btr
 
 
 --
--- TOC entry 3409 (class 1259 OID 17152)
 -- Name: idx_fu_required_action_ru; Type: INDEX; Schema: public; Owner: keycloak-admin
 --
 
@@ -4846,7 +4414,6 @@ CREATE INDEX idx_fu_required_action_ru ON public.fed_user_required_action USING 
 
 
 --
--- TOC entry 3412 (class 1259 OID 17153)
 -- Name: idx_fu_role_mapping; Type: INDEX; Schema: public; Owner: keycloak-admin
 --
 
@@ -4854,7 +4421,6 @@ CREATE INDEX idx_fu_role_mapping ON public.fed_user_role_mapping USING btree (us
 
 
 --
--- TOC entry 3413 (class 1259 OID 17154)
 -- Name: idx_fu_role_mapping_ru; Type: INDEX; Schema: public; Owner: keycloak-admin
 --
 
@@ -4862,7 +4428,6 @@ CREATE INDEX idx_fu_role_mapping_ru ON public.fed_user_role_mapping USING btree 
 
 
 --
--- TOC entry 3422 (class 1259 OID 17155)
 -- Name: idx_group_attr_group; Type: INDEX; Schema: public; Owner: keycloak-admin
 --
 
@@ -4870,7 +4435,6 @@ CREATE INDEX idx_group_attr_group ON public.group_attribute USING btree (group_i
 
 
 --
--- TOC entry 3425 (class 1259 OID 17156)
 -- Name: idx_group_role_mapp_group; Type: INDEX; Schema: public; Owner: keycloak-admin
 --
 
@@ -4878,7 +4442,6 @@ CREATE INDEX idx_group_role_mapp_group ON public.group_role_mapping USING btree 
 
 
 --
--- TOC entry 3435 (class 1259 OID 17157)
 -- Name: idx_id_prov_mapp_realm; Type: INDEX; Schema: public; Owner: keycloak-admin
 --
 
@@ -4886,7 +4449,6 @@ CREATE INDEX idx_id_prov_mapp_realm ON public.identity_provider_mapper USING btr
 
 
 --
--- TOC entry 3428 (class 1259 OID 17158)
 -- Name: idx_ident_prov_realm; Type: INDEX; Schema: public; Owner: keycloak-admin
 --
 
@@ -4894,7 +4456,6 @@ CREATE INDEX idx_ident_prov_realm ON public.identity_provider USING btree (realm
 
 
 --
--- TOC entry 3446 (class 1259 OID 17159)
 -- Name: idx_keycloak_role_client; Type: INDEX; Schema: public; Owner: keycloak-admin
 --
 
@@ -4902,7 +4463,6 @@ CREATE INDEX idx_keycloak_role_client ON public.keycloak_role USING btree (clien
 
 
 --
--- TOC entry 3447 (class 1259 OID 17160)
 -- Name: idx_keycloak_role_realm; Type: INDEX; Schema: public; Owner: keycloak-admin
 --
 
@@ -4910,7 +4470,27 @@ CREATE INDEX idx_keycloak_role_realm ON public.keycloak_role USING btree (realm)
 
 
 --
--- TOC entry 3456 (class 1259 OID 17161)
+-- Name: idx_offline_css_preload; Type: INDEX; Schema: public; Owner: keycloak-admin
+--
+
+CREATE INDEX idx_offline_css_preload ON public.offline_client_session USING btree (client_id, offline_flag);
+
+
+--
+-- Name: idx_offline_uss_by_user; Type: INDEX; Schema: public; Owner: keycloak-admin
+--
+
+CREATE INDEX idx_offline_uss_by_user ON public.offline_user_session USING btree (user_id, realm_id, offline_flag);
+
+
+--
+-- Name: idx_offline_uss_by_usersess; Type: INDEX; Schema: public; Owner: keycloak-admin
+--
+
+CREATE INDEX idx_offline_uss_by_usersess ON public.offline_user_session USING btree (realm_id, offline_flag, user_session_id);
+
+
+--
 -- Name: idx_offline_uss_createdon; Type: INDEX; Schema: public; Owner: keycloak-admin
 --
 
@@ -4918,7 +4498,13 @@ CREATE INDEX idx_offline_uss_createdon ON public.offline_user_session USING btre
 
 
 --
--- TOC entry 3462 (class 1259 OID 17162)
+-- Name: idx_offline_uss_preload; Type: INDEX; Schema: public; Owner: keycloak-admin
+--
+
+CREATE INDEX idx_offline_uss_preload ON public.offline_user_session USING btree (offline_flag, created_on, user_session_id);
+
+
+--
 -- Name: idx_protocol_mapper_client; Type: INDEX; Schema: public; Owner: keycloak-admin
 --
 
@@ -4926,7 +4512,6 @@ CREATE INDEX idx_protocol_mapper_client ON public.protocol_mapper USING btree (c
 
 
 --
--- TOC entry 3472 (class 1259 OID 17163)
 -- Name: idx_realm_attr_realm; Type: INDEX; Schema: public; Owner: keycloak-admin
 --
 
@@ -4934,7 +4519,6 @@ CREATE INDEX idx_realm_attr_realm ON public.realm_attribute USING btree (realm_i
 
 
 --
--- TOC entry 3336 (class 1259 OID 17164)
 -- Name: idx_realm_clscope; Type: INDEX; Schema: public; Owner: keycloak-admin
 --
 
@@ -4942,7 +4526,6 @@ CREATE INDEX idx_realm_clscope ON public.client_scope USING btree (realm_id);
 
 
 --
--- TOC entry 3477 (class 1259 OID 17165)
 -- Name: idx_realm_def_grp_realm; Type: INDEX; Schema: public; Owner: keycloak-admin
 --
 
@@ -4950,15 +4533,6 @@ CREATE INDEX idx_realm_def_grp_realm ON public.realm_default_groups USING btree 
 
 
 --
--- TOC entry 3480 (class 1259 OID 17166)
--- Name: idx_realm_def_roles_realm; Type: INDEX; Schema: public; Owner: keycloak-admin
---
-
-CREATE INDEX idx_realm_def_roles_realm ON public.realm_default_roles USING btree (realm_id);
-
-
---
--- TOC entry 3488 (class 1259 OID 17167)
 -- Name: idx_realm_evt_list_realm; Type: INDEX; Schema: public; Owner: keycloak-admin
 --
 
@@ -4966,7 +4540,6 @@ CREATE INDEX idx_realm_evt_list_realm ON public.realm_events_listeners USING btr
 
 
 --
--- TOC entry 3485 (class 1259 OID 17168)
 -- Name: idx_realm_evt_types_realm; Type: INDEX; Schema: public; Owner: keycloak-admin
 --
 
@@ -4974,7 +4547,6 @@ CREATE INDEX idx_realm_evt_types_realm ON public.realm_enabled_event_types USING
 
 
 --
--- TOC entry 3467 (class 1259 OID 17169)
 -- Name: idx_realm_master_adm_cli; Type: INDEX; Schema: public; Owner: keycloak-admin
 --
 
@@ -4982,7 +4554,6 @@ CREATE INDEX idx_realm_master_adm_cli ON public.realm USING btree (master_admin_
 
 
 --
--- TOC entry 3495 (class 1259 OID 17170)
 -- Name: idx_realm_supp_local_realm; Type: INDEX; Schema: public; Owner: keycloak-admin
 --
 
@@ -4990,7 +4561,6 @@ CREATE INDEX idx_realm_supp_local_realm ON public.realm_supported_locales USING 
 
 
 --
--- TOC entry 3498 (class 1259 OID 17171)
 -- Name: idx_redir_uri_client; Type: INDEX; Schema: public; Owner: keycloak-admin
 --
 
@@ -4998,7 +4568,6 @@ CREATE INDEX idx_redir_uri_client ON public.redirect_uris USING btree (client_id
 
 
 --
--- TOC entry 3503 (class 1259 OID 17172)
 -- Name: idx_req_act_prov_realm; Type: INDEX; Schema: public; Owner: keycloak-admin
 --
 
@@ -5006,7 +4575,6 @@ CREATE INDEX idx_req_act_prov_realm ON public.required_action_provider USING btr
 
 
 --
--- TOC entry 3508 (class 1259 OID 17173)
 -- Name: idx_res_policy_policy; Type: INDEX; Schema: public; Owner: keycloak-admin
 --
 
@@ -5014,7 +4582,6 @@ CREATE INDEX idx_res_policy_policy ON public.resource_policy USING btree (policy
 
 
 --
--- TOC entry 3511 (class 1259 OID 17174)
 -- Name: idx_res_scope_scope; Type: INDEX; Schema: public; Owner: keycloak-admin
 --
 
@@ -5022,7 +4589,6 @@ CREATE INDEX idx_res_scope_scope ON public.resource_scope USING btree (scope_id)
 
 
 --
--- TOC entry 3520 (class 1259 OID 17175)
 -- Name: idx_res_serv_pol_res_serv; Type: INDEX; Schema: public; Owner: keycloak-admin
 --
 
@@ -5030,7 +4596,6 @@ CREATE INDEX idx_res_serv_pol_res_serv ON public.resource_server_policy USING bt
 
 
 --
--- TOC entry 3525 (class 1259 OID 17176)
 -- Name: idx_res_srv_res_res_srv; Type: INDEX; Schema: public; Owner: keycloak-admin
 --
 
@@ -5038,7 +4603,6 @@ CREATE INDEX idx_res_srv_res_res_srv ON public.resource_server_resource USING bt
 
 
 --
--- TOC entry 3530 (class 1259 OID 17177)
 -- Name: idx_res_srv_scope_res_srv; Type: INDEX; Schema: public; Owner: keycloak-admin
 --
 
@@ -5046,7 +4610,6 @@ CREATE INDEX idx_res_srv_scope_res_srv ON public.resource_server_scope USING btr
 
 
 --
--- TOC entry 3537 (class 1259 OID 17178)
 -- Name: idx_role_attribute; Type: INDEX; Schema: public; Owner: keycloak-admin
 --
 
@@ -5054,7 +4617,6 @@ CREATE INDEX idx_role_attribute ON public.role_attribute USING btree (role_id);
 
 
 --
--- TOC entry 3349 (class 1259 OID 17179)
 -- Name: idx_role_clscope; Type: INDEX; Schema: public; Owner: keycloak-admin
 --
 
@@ -5062,7 +4624,6 @@ CREATE INDEX idx_role_clscope ON public.client_scope_role_mapping USING btree (r
 
 
 --
--- TOC entry 3540 (class 1259 OID 17180)
 -- Name: idx_scope_mapping_role; Type: INDEX; Schema: public; Owner: keycloak-admin
 --
 
@@ -5070,7 +4631,6 @@ CREATE INDEX idx_scope_mapping_role ON public.scope_mapping USING btree (role_id
 
 
 --
--- TOC entry 3543 (class 1259 OID 17181)
 -- Name: idx_scope_policy_policy; Type: INDEX; Schema: public; Owner: keycloak-admin
 --
 
@@ -5078,7 +4638,6 @@ CREATE INDEX idx_scope_policy_policy ON public.scope_policy USING btree (policy_
 
 
 --
--- TOC entry 3450 (class 1259 OID 17182)
 -- Name: idx_update_time; Type: INDEX; Schema: public; Owner: keycloak-admin
 --
 
@@ -5086,7 +4645,6 @@ CREATE INDEX idx_update_time ON public.migration_model USING btree (update_time)
 
 
 --
--- TOC entry 3453 (class 1259 OID 17183)
 -- Name: idx_us_sess_id_on_cl_sess; Type: INDEX; Schema: public; Owner: keycloak-admin
 --
 
@@ -5094,7 +4652,6 @@ CREATE INDEX idx_us_sess_id_on_cl_sess ON public.offline_client_session USING bt
 
 
 --
--- TOC entry 3554 (class 1259 OID 17184)
 -- Name: idx_usconsent_clscope; Type: INDEX; Schema: public; Owner: keycloak-admin
 --
 
@@ -5102,7 +4659,6 @@ CREATE INDEX idx_usconsent_clscope ON public.user_consent_client_scope USING btr
 
 
 --
--- TOC entry 3546 (class 1259 OID 17185)
 -- Name: idx_user_attribute; Type: INDEX; Schema: public; Owner: keycloak-admin
 --
 
@@ -5110,7 +4666,13 @@ CREATE INDEX idx_user_attribute ON public.user_attribute USING btree (user_id);
 
 
 --
--- TOC entry 3549 (class 1259 OID 17186)
+-- Name: idx_user_attribute_name; Type: INDEX; Schema: public; Owner: keycloak-admin
+--
+
+CREATE INDEX idx_user_attribute_name ON public.user_attribute USING btree (name, value);
+
+
+--
 -- Name: idx_user_consent; Type: INDEX; Schema: public; Owner: keycloak-admin
 --
 
@@ -5118,7 +4680,6 @@ CREATE INDEX idx_user_consent ON public.user_consent USING btree (user_id);
 
 
 --
--- TOC entry 3378 (class 1259 OID 17187)
 -- Name: idx_user_credential; Type: INDEX; Schema: public; Owner: keycloak-admin
 --
 
@@ -5126,7 +4687,6 @@ CREATE INDEX idx_user_credential ON public.credential USING btree (user_id);
 
 
 --
--- TOC entry 3557 (class 1259 OID 17188)
 -- Name: idx_user_email; Type: INDEX; Schema: public; Owner: keycloak-admin
 --
 
@@ -5134,7 +4694,6 @@ CREATE INDEX idx_user_email ON public.user_entity USING btree (email);
 
 
 --
--- TOC entry 3575 (class 1259 OID 17189)
 -- Name: idx_user_group_mapping; Type: INDEX; Schema: public; Owner: keycloak-admin
 --
 
@@ -5142,7 +4701,6 @@ CREATE INDEX idx_user_group_mapping ON public.user_group_membership USING btree 
 
 
 --
--- TOC entry 3578 (class 1259 OID 17190)
 -- Name: idx_user_reqactions; Type: INDEX; Schema: public; Owner: keycloak-admin
 --
 
@@ -5150,7 +4708,6 @@ CREATE INDEX idx_user_reqactions ON public.user_required_action USING btree (use
 
 
 --
--- TOC entry 3581 (class 1259 OID 17191)
 -- Name: idx_user_role_mapping; Type: INDEX; Schema: public; Owner: keycloak-admin
 --
 
@@ -5158,7 +4715,6 @@ CREATE INDEX idx_user_role_mapping ON public.user_role_mapping USING btree (user
 
 
 --
--- TOC entry 3566 (class 1259 OID 17192)
 -- Name: idx_usr_fed_map_fed_prv; Type: INDEX; Schema: public; Owner: keycloak-admin
 --
 
@@ -5166,7 +4722,6 @@ CREATE INDEX idx_usr_fed_map_fed_prv ON public.user_federation_mapper USING btre
 
 
 --
--- TOC entry 3567 (class 1259 OID 17193)
 -- Name: idx_usr_fed_map_realm; Type: INDEX; Schema: public; Owner: keycloak-admin
 --
 
@@ -5174,7 +4729,6 @@ CREATE INDEX idx_usr_fed_map_realm ON public.user_federation_mapper USING btree 
 
 
 --
--- TOC entry 3572 (class 1259 OID 17194)
 -- Name: idx_usr_fed_prv_realm; Type: INDEX; Schema: public; Owner: keycloak-admin
 --
 
@@ -5182,7 +4736,6 @@ CREATE INDEX idx_usr_fed_prv_realm ON public.user_federation_provider USING btre
 
 
 --
--- TOC entry 3590 (class 1259 OID 17195)
 -- Name: idx_web_orig_client; Type: INDEX; Schema: public; Owner: keycloak-admin
 --
 
@@ -5190,7 +4743,6 @@ CREATE INDEX idx_web_orig_client ON public.web_origins USING btree (client_id);
 
 
 --
--- TOC entry 3610 (class 2606 OID 17196)
 -- Name: client_session_auth_status auth_status_constraint; Type: FK CONSTRAINT; Schema: public; Owner: keycloak-admin
 --
 
@@ -5199,7 +4751,6 @@ ALTER TABLE ONLY public.client_session_auth_status
 
 
 --
--- TOC entry 3626 (class 2606 OID 17201)
 -- Name: identity_provider fk2b4ebc52ae5c3b34; Type: FK CONSTRAINT; Schema: public; Owner: keycloak-admin
 --
 
@@ -5208,7 +4759,6 @@ ALTER TABLE ONLY public.identity_provider
 
 
 --
--- TOC entry 3598 (class 2606 OID 17206)
 -- Name: client_attributes fk3c47c64beacca966; Type: FK CONSTRAINT; Schema: public; Owner: keycloak-admin
 --
 
@@ -5217,7 +4767,6 @@ ALTER TABLE ONLY public.client_attributes
 
 
 --
--- TOC entry 3622 (class 2606 OID 17211)
 -- Name: federated_identity fk404288b92ef007a6; Type: FK CONSTRAINT; Schema: public; Owner: keycloak-admin
 --
 
@@ -5226,7 +4775,6 @@ ALTER TABLE ONLY public.federated_identity
 
 
 --
--- TOC entry 3602 (class 2606 OID 17216)
 -- Name: client_node_registrations fk4129723ba992f594; Type: FK CONSTRAINT; Schema: public; Owner: keycloak-admin
 --
 
@@ -5235,7 +4783,6 @@ ALTER TABLE ONLY public.client_node_registrations
 
 
 --
--- TOC entry 3611 (class 2606 OID 17221)
 -- Name: client_session_note fk5edfb00ff51c2736; Type: FK CONSTRAINT; Schema: public; Owner: keycloak-admin
 --
 
@@ -5244,7 +4791,6 @@ ALTER TABLE ONLY public.client_session_note
 
 
 --
--- TOC entry 3679 (class 2606 OID 17226)
 -- Name: user_session_note fk5edfb00ff51d3472; Type: FK CONSTRAINT; Schema: public; Owner: keycloak-admin
 --
 
@@ -5253,7 +4799,6 @@ ALTER TABLE ONLY public.user_session_note
 
 
 --
--- TOC entry 3613 (class 2606 OID 17231)
 -- Name: client_session_role fk_11b7sgqw18i532811v7o2dv76; Type: FK CONSTRAINT; Schema: public; Owner: keycloak-admin
 --
 
@@ -5262,7 +4807,6 @@ ALTER TABLE ONLY public.client_session_role
 
 
 --
--- TOC entry 3648 (class 2606 OID 17236)
 -- Name: redirect_uris fk_1burs8pb4ouj97h5wuppahv9f; Type: FK CONSTRAINT; Schema: public; Owner: keycloak-admin
 --
 
@@ -5271,7 +4815,6 @@ ALTER TABLE ONLY public.redirect_uris
 
 
 --
--- TOC entry 3675 (class 2606 OID 17241)
 -- Name: user_federation_provider fk_1fj32f6ptolw2qy60cd8n01e8; Type: FK CONSTRAINT; Schema: public; Owner: keycloak-admin
 --
 
@@ -5280,7 +4823,6 @@ ALTER TABLE ONLY public.user_federation_provider
 
 
 --
--- TOC entry 3612 (class 2606 OID 17246)
 -- Name: client_session_prot_mapper fk_33a8sgqw18i532811v7o2dk89; Type: FK CONSTRAINT; Schema: public; Owner: keycloak-admin
 --
 
@@ -5289,7 +4831,6 @@ ALTER TABLE ONLY public.client_session_prot_mapper
 
 
 --
--- TOC entry 3645 (class 2606 OID 17251)
 -- Name: realm_required_credential fk_5hg65lybevavkqfki3kponh9v; Type: FK CONSTRAINT; Schema: public; Owner: keycloak-admin
 --
 
@@ -5298,7 +4839,6 @@ ALTER TABLE ONLY public.realm_required_credential
 
 
 --
--- TOC entry 3650 (class 2606 OID 17256)
 -- Name: resource_attribute fk_5hrm2vlf9ql5fu022kqepovbr; Type: FK CONSTRAINT; Schema: public; Owner: keycloak-admin
 --
 
@@ -5307,7 +4847,6 @@ ALTER TABLE ONLY public.resource_attribute
 
 
 --
--- TOC entry 3668 (class 2606 OID 17261)
 -- Name: user_attribute fk_5hrm2vlf9ql5fu043kqepovbr; Type: FK CONSTRAINT; Schema: public; Owner: keycloak-admin
 --
 
@@ -5316,7 +4855,6 @@ ALTER TABLE ONLY public.user_attribute
 
 
 --
--- TOC entry 3677 (class 2606 OID 17266)
 -- Name: user_required_action fk_6qj3w1jw9cvafhe19bwsiuvmd; Type: FK CONSTRAINT; Schema: public; Owner: keycloak-admin
 --
 
@@ -5325,7 +4863,6 @@ ALTER TABLE ONLY public.user_required_action
 
 
 --
--- TOC entry 3631 (class 2606 OID 17271)
 -- Name: keycloak_role fk_6vyqfe4cn4wlq8r6kt5vdsj5c; Type: FK CONSTRAINT; Schema: public; Owner: keycloak-admin
 --
 
@@ -5334,7 +4871,6 @@ ALTER TABLE ONLY public.keycloak_role
 
 
 --
--- TOC entry 3646 (class 2606 OID 17276)
 -- Name: realm_smtp_config fk_70ej8xdxgxd0b9hh6180irr0o; Type: FK CONSTRAINT; Schema: public; Owner: keycloak-admin
 --
 
@@ -5343,16 +4879,6 @@ ALTER TABLE ONLY public.realm_smtp_config
 
 
 --
--- TOC entry 3599 (class 2606 OID 17281)
--- Name: client_default_roles fk_8aelwnibji49avxsrtuf6xjow; Type: FK CONSTRAINT; Schema: public; Owner: keycloak-admin
---
-
-ALTER TABLE ONLY public.client_default_roles
-    ADD CONSTRAINT fk_8aelwnibji49avxsrtuf6xjow FOREIGN KEY (role_id) REFERENCES public.keycloak_role(id);
-
-
---
--- TOC entry 3638 (class 2606 OID 17286)
 -- Name: realm_attribute fk_8shxd6l3e9atqukacxgpffptw; Type: FK CONSTRAINT; Schema: public; Owner: keycloak-admin
 --
 
@@ -5361,7 +4887,6 @@ ALTER TABLE ONLY public.realm_attribute
 
 
 --
--- TOC entry 3617 (class 2606 OID 17291)
 -- Name: composite_role fk_a63wvekftu8jo1pnj81e7mce2; Type: FK CONSTRAINT; Schema: public; Owner: keycloak-admin
 --
 
@@ -5370,7 +4895,6 @@ ALTER TABLE ONLY public.composite_role
 
 
 --
--- TOC entry 3593 (class 2606 OID 17296)
 -- Name: authentication_execution fk_auth_exec_flow; Type: FK CONSTRAINT; Schema: public; Owner: keycloak-admin
 --
 
@@ -5379,7 +4903,6 @@ ALTER TABLE ONLY public.authentication_execution
 
 
 --
--- TOC entry 3594 (class 2606 OID 17301)
 -- Name: authentication_execution fk_auth_exec_realm; Type: FK CONSTRAINT; Schema: public; Owner: keycloak-admin
 --
 
@@ -5388,7 +4911,6 @@ ALTER TABLE ONLY public.authentication_execution
 
 
 --
--- TOC entry 3595 (class 2606 OID 17306)
 -- Name: authentication_flow fk_auth_flow_realm; Type: FK CONSTRAINT; Schema: public; Owner: keycloak-admin
 --
 
@@ -5397,7 +4919,6 @@ ALTER TABLE ONLY public.authentication_flow
 
 
 --
--- TOC entry 3596 (class 2606 OID 17311)
 -- Name: authenticator_config fk_auth_realm; Type: FK CONSTRAINT; Schema: public; Owner: keycloak-admin
 --
 
@@ -5406,7 +4927,6 @@ ALTER TABLE ONLY public.authenticator_config
 
 
 --
--- TOC entry 3609 (class 2606 OID 17316)
 -- Name: client_session fk_b4ao2vcvat6ukau74wbwtfqo1; Type: FK CONSTRAINT; Schema: public; Owner: keycloak-admin
 --
 
@@ -5415,7 +4935,6 @@ ALTER TABLE ONLY public.client_session
 
 
 --
--- TOC entry 3678 (class 2606 OID 17321)
 -- Name: user_role_mapping fk_c4fqv34p1mbylloxang7b1q3l; Type: FK CONSTRAINT; Schema: public; Owner: keycloak-admin
 --
 
@@ -5424,25 +4943,6 @@ ALTER TABLE ONLY public.user_role_mapping
 
 
 --
--- TOC entry 3605 (class 2606 OID 17326)
--- Name: client_scope_client fk_c_cli_scope_client; Type: FK CONSTRAINT; Schema: public; Owner: keycloak-admin
---
-
-ALTER TABLE ONLY public.client_scope_client
-    ADD CONSTRAINT fk_c_cli_scope_client FOREIGN KEY (client_id) REFERENCES public.client(id);
-
-
---
--- TOC entry 3606 (class 2606 OID 17331)
--- Name: client_scope_client fk_c_cli_scope_scope; Type: FK CONSTRAINT; Schema: public; Owner: keycloak-admin
---
-
-ALTER TABLE ONLY public.client_scope_client
-    ADD CONSTRAINT fk_c_cli_scope_scope FOREIGN KEY (scope_id) REFERENCES public.client_scope(id);
-
-
---
--- TOC entry 3604 (class 2606 OID 17336)
 -- Name: client_scope_attributes fk_cl_scope_attr_scope; Type: FK CONSTRAINT; Schema: public; Owner: keycloak-admin
 --
 
@@ -5451,16 +4951,6 @@ ALTER TABLE ONLY public.client_scope_attributes
 
 
 --
--- TOC entry 3607 (class 2606 OID 17341)
--- Name: client_scope_role_mapping fk_cl_scope_rm_role; Type: FK CONSTRAINT; Schema: public; Owner: keycloak-admin
---
-
-ALTER TABLE ONLY public.client_scope_role_mapping
-    ADD CONSTRAINT fk_cl_scope_rm_role FOREIGN KEY (role_id) REFERENCES public.keycloak_role(id);
-
-
---
--- TOC entry 3608 (class 2606 OID 17346)
 -- Name: client_scope_role_mapping fk_cl_scope_rm_scope; Type: FK CONSTRAINT; Schema: public; Owner: keycloak-admin
 --
 
@@ -5469,7 +4959,6 @@ ALTER TABLE ONLY public.client_scope_role_mapping
 
 
 --
--- TOC entry 3614 (class 2606 OID 17351)
 -- Name: client_user_session_note fk_cl_usr_ses_note; Type: FK CONSTRAINT; Schema: public; Owner: keycloak-admin
 --
 
@@ -5478,7 +4967,6 @@ ALTER TABLE ONLY public.client_user_session_note
 
 
 --
--- TOC entry 3634 (class 2606 OID 17356)
 -- Name: protocol_mapper fk_cli_scope_mapper; Type: FK CONSTRAINT; Schema: public; Owner: keycloak-admin
 --
 
@@ -5487,7 +4975,6 @@ ALTER TABLE ONLY public.protocol_mapper
 
 
 --
--- TOC entry 3601 (class 2606 OID 17361)
 -- Name: client_initial_access fk_client_init_acc_realm; Type: FK CONSTRAINT; Schema: public; Owner: keycloak-admin
 --
 
@@ -5496,7 +4983,6 @@ ALTER TABLE ONLY public.client_initial_access
 
 
 --
--- TOC entry 3616 (class 2606 OID 17366)
 -- Name: component_config fk_component_config; Type: FK CONSTRAINT; Schema: public; Owner: keycloak-admin
 --
 
@@ -5505,7 +4991,6 @@ ALTER TABLE ONLY public.component_config
 
 
 --
--- TOC entry 3615 (class 2606 OID 17371)
 -- Name: component fk_component_realm; Type: FK CONSTRAINT; Schema: public; Owner: keycloak-admin
 --
 
@@ -5514,16 +4999,6 @@ ALTER TABLE ONLY public.component
 
 
 --
--- TOC entry 3639 (class 2606 OID 17376)
--- Name: realm_default_groups fk_def_groups_group; Type: FK CONSTRAINT; Schema: public; Owner: keycloak-admin
---
-
-ALTER TABLE ONLY public.realm_default_groups
-    ADD CONSTRAINT fk_def_groups_group FOREIGN KEY (group_id) REFERENCES public.keycloak_group(id);
-
-
---
--- TOC entry 3640 (class 2606 OID 17381)
 -- Name: realm_default_groups fk_def_groups_realm; Type: FK CONSTRAINT; Schema: public; Owner: keycloak-admin
 --
 
@@ -5532,16 +5007,6 @@ ALTER TABLE ONLY public.realm_default_groups
 
 
 --
--- TOC entry 3641 (class 2606 OID 17386)
--- Name: realm_default_roles fk_evudb1ppw84oxfax2drs03icc; Type: FK CONSTRAINT; Schema: public; Owner: keycloak-admin
---
-
-ALTER TABLE ONLY public.realm_default_roles
-    ADD CONSTRAINT fk_evudb1ppw84oxfax2drs03icc FOREIGN KEY (realm_id) REFERENCES public.realm(id);
-
-
---
--- TOC entry 3674 (class 2606 OID 17391)
 -- Name: user_federation_mapper_config fk_fedmapper_cfg; Type: FK CONSTRAINT; Schema: public; Owner: keycloak-admin
 --
 
@@ -5550,7 +5015,6 @@ ALTER TABLE ONLY public.user_federation_mapper_config
 
 
 --
--- TOC entry 3672 (class 2606 OID 17396)
 -- Name: user_federation_mapper fk_fedmapperpm_fedprv; Type: FK CONSTRAINT; Schema: public; Owner: keycloak-admin
 --
 
@@ -5559,7 +5023,6 @@ ALTER TABLE ONLY public.user_federation_mapper
 
 
 --
--- TOC entry 3673 (class 2606 OID 17401)
 -- Name: user_federation_mapper fk_fedmapperpm_realm; Type: FK CONSTRAINT; Schema: public; Owner: keycloak-admin
 --
 
@@ -5568,7 +5031,6 @@ ALTER TABLE ONLY public.user_federation_mapper
 
 
 --
--- TOC entry 3591 (class 2606 OID 17406)
 -- Name: associated_policy fk_frsr5s213xcx4wnkog82ssrfy; Type: FK CONSTRAINT; Schema: public; Owner: keycloak-admin
 --
 
@@ -5577,7 +5039,6 @@ ALTER TABLE ONLY public.associated_policy
 
 
 --
--- TOC entry 3666 (class 2606 OID 17411)
 -- Name: scope_policy fk_frsrasp13xcx4wnkog82ssrfy; Type: FK CONSTRAINT; Schema: public; Owner: keycloak-admin
 --
 
@@ -5586,7 +5047,6 @@ ALTER TABLE ONLY public.scope_policy
 
 
 --
--- TOC entry 3655 (class 2606 OID 17416)
 -- Name: resource_server_perm_ticket fk_frsrho213xcx4wnkog82sspmt; Type: FK CONSTRAINT; Schema: public; Owner: keycloak-admin
 --
 
@@ -5595,7 +5055,6 @@ ALTER TABLE ONLY public.resource_server_perm_ticket
 
 
 --
--- TOC entry 3660 (class 2606 OID 17421)
 -- Name: resource_server_resource fk_frsrho213xcx4wnkog82ssrfy; Type: FK CONSTRAINT; Schema: public; Owner: keycloak-admin
 --
 
@@ -5604,7 +5063,6 @@ ALTER TABLE ONLY public.resource_server_resource
 
 
 --
--- TOC entry 3656 (class 2606 OID 17426)
 -- Name: resource_server_perm_ticket fk_frsrho213xcx4wnkog83sspmt; Type: FK CONSTRAINT; Schema: public; Owner: keycloak-admin
 --
 
@@ -5613,7 +5071,6 @@ ALTER TABLE ONLY public.resource_server_perm_ticket
 
 
 --
--- TOC entry 3657 (class 2606 OID 17431)
 -- Name: resource_server_perm_ticket fk_frsrho213xcx4wnkog84sspmt; Type: FK CONSTRAINT; Schema: public; Owner: keycloak-admin
 --
 
@@ -5622,7 +5079,6 @@ ALTER TABLE ONLY public.resource_server_perm_ticket
 
 
 --
--- TOC entry 3592 (class 2606 OID 17436)
 -- Name: associated_policy fk_frsrpas14xcx4wnkog82ssrfy; Type: FK CONSTRAINT; Schema: public; Owner: keycloak-admin
 --
 
@@ -5631,7 +5087,6 @@ ALTER TABLE ONLY public.associated_policy
 
 
 --
--- TOC entry 3667 (class 2606 OID 17441)
 -- Name: scope_policy fk_frsrpass3xcx4wnkog82ssrfy; Type: FK CONSTRAINT; Schema: public; Owner: keycloak-admin
 --
 
@@ -5640,7 +5095,6 @@ ALTER TABLE ONLY public.scope_policy
 
 
 --
--- TOC entry 3658 (class 2606 OID 17446)
 -- Name: resource_server_perm_ticket fk_frsrpo2128cx4wnkog82ssrfy; Type: FK CONSTRAINT; Schema: public; Owner: keycloak-admin
 --
 
@@ -5649,7 +5103,6 @@ ALTER TABLE ONLY public.resource_server_perm_ticket
 
 
 --
--- TOC entry 3659 (class 2606 OID 17451)
 -- Name: resource_server_policy fk_frsrpo213xcx4wnkog82ssrfy; Type: FK CONSTRAINT; Schema: public; Owner: keycloak-admin
 --
 
@@ -5658,7 +5111,6 @@ ALTER TABLE ONLY public.resource_server_policy
 
 
 --
--- TOC entry 3653 (class 2606 OID 17456)
 -- Name: resource_scope fk_frsrpos13xcx4wnkog82ssrfy; Type: FK CONSTRAINT; Schema: public; Owner: keycloak-admin
 --
 
@@ -5667,7 +5119,6 @@ ALTER TABLE ONLY public.resource_scope
 
 
 --
--- TOC entry 3651 (class 2606 OID 17461)
 -- Name: resource_policy fk_frsrpos53xcx4wnkog82ssrfy; Type: FK CONSTRAINT; Schema: public; Owner: keycloak-admin
 --
 
@@ -5676,7 +5127,6 @@ ALTER TABLE ONLY public.resource_policy
 
 
 --
--- TOC entry 3652 (class 2606 OID 17466)
 -- Name: resource_policy fk_frsrpp213xcx4wnkog82ssrfy; Type: FK CONSTRAINT; Schema: public; Owner: keycloak-admin
 --
 
@@ -5685,7 +5135,6 @@ ALTER TABLE ONLY public.resource_policy
 
 
 --
--- TOC entry 3654 (class 2606 OID 17471)
 -- Name: resource_scope fk_frsrps213xcx4wnkog82ssrfy; Type: FK CONSTRAINT; Schema: public; Owner: keycloak-admin
 --
 
@@ -5694,7 +5143,6 @@ ALTER TABLE ONLY public.resource_scope
 
 
 --
--- TOC entry 3661 (class 2606 OID 17476)
 -- Name: resource_server_scope fk_frsrso213xcx4wnkog82ssrfy; Type: FK CONSTRAINT; Schema: public; Owner: keycloak-admin
 --
 
@@ -5703,7 +5151,6 @@ ALTER TABLE ONLY public.resource_server_scope
 
 
 --
--- TOC entry 3618 (class 2606 OID 17481)
 -- Name: composite_role fk_gr7thllb9lu8q4vqa4524jjy8; Type: FK CONSTRAINT; Schema: public; Owner: keycloak-admin
 --
 
@@ -5712,7 +5159,6 @@ ALTER TABLE ONLY public.composite_role
 
 
 --
--- TOC entry 3670 (class 2606 OID 17486)
 -- Name: user_consent_client_scope fk_grntcsnt_clsc_usc; Type: FK CONSTRAINT; Schema: public; Owner: keycloak-admin
 --
 
@@ -5721,7 +5167,6 @@ ALTER TABLE ONLY public.user_consent_client_scope
 
 
 --
--- TOC entry 3669 (class 2606 OID 17491)
 -- Name: user_consent fk_grntcsnt_user; Type: FK CONSTRAINT; Schema: public; Owner: keycloak-admin
 --
 
@@ -5730,7 +5175,6 @@ ALTER TABLE ONLY public.user_consent
 
 
 --
--- TOC entry 3623 (class 2606 OID 17496)
 -- Name: group_attribute fk_group_attribute_group; Type: FK CONSTRAINT; Schema: public; Owner: keycloak-admin
 --
 
@@ -5739,16 +5183,6 @@ ALTER TABLE ONLY public.group_attribute
 
 
 --
--- TOC entry 3630 (class 2606 OID 17501)
--- Name: keycloak_group fk_group_realm; Type: FK CONSTRAINT; Schema: public; Owner: keycloak-admin
---
-
-ALTER TABLE ONLY public.keycloak_group
-    ADD CONSTRAINT fk_group_realm FOREIGN KEY (realm_id) REFERENCES public.realm(id);
-
-
---
--- TOC entry 3624 (class 2606 OID 17506)
 -- Name: group_role_mapping fk_group_role_group; Type: FK CONSTRAINT; Schema: public; Owner: keycloak-admin
 --
 
@@ -5757,25 +5191,6 @@ ALTER TABLE ONLY public.group_role_mapping
 
 
 --
--- TOC entry 3625 (class 2606 OID 17511)
--- Name: group_role_mapping fk_group_role_role; Type: FK CONSTRAINT; Schema: public; Owner: keycloak-admin
---
-
-ALTER TABLE ONLY public.group_role_mapping
-    ADD CONSTRAINT fk_group_role_role FOREIGN KEY (role_id) REFERENCES public.keycloak_role(id);
-
-
---
--- TOC entry 3642 (class 2606 OID 17516)
--- Name: realm_default_roles fk_h4wpd7w4hsoolni3h0sw7btje; Type: FK CONSTRAINT; Schema: public; Owner: keycloak-admin
---
-
-ALTER TABLE ONLY public.realm_default_roles
-    ADD CONSTRAINT fk_h4wpd7w4hsoolni3h0sw7btje FOREIGN KEY (role_id) REFERENCES public.keycloak_role(id);
-
-
---
--- TOC entry 3643 (class 2606 OID 17521)
 -- Name: realm_enabled_event_types fk_h846o4h0w8epx5nwedrf5y69j; Type: FK CONSTRAINT; Schema: public; Owner: keycloak-admin
 --
 
@@ -5784,7 +5199,6 @@ ALTER TABLE ONLY public.realm_enabled_event_types
 
 
 --
--- TOC entry 3644 (class 2606 OID 17526)
 -- Name: realm_events_listeners fk_h846o4h0w8epx5nxev9f5y69j; Type: FK CONSTRAINT; Schema: public; Owner: keycloak-admin
 --
 
@@ -5793,7 +5207,6 @@ ALTER TABLE ONLY public.realm_events_listeners
 
 
 --
--- TOC entry 3628 (class 2606 OID 17531)
 -- Name: identity_provider_mapper fk_idpm_realm; Type: FK CONSTRAINT; Schema: public; Owner: keycloak-admin
 --
 
@@ -5802,7 +5215,6 @@ ALTER TABLE ONLY public.identity_provider_mapper
 
 
 --
--- TOC entry 3629 (class 2606 OID 17536)
 -- Name: idp_mapper_config fk_idpmconfig; Type: FK CONSTRAINT; Schema: public; Owner: keycloak-admin
 --
 
@@ -5811,16 +5223,6 @@ ALTER TABLE ONLY public.idp_mapper_config
 
 
 --
--- TOC entry 3632 (class 2606 OID 17541)
--- Name: keycloak_role fk_kjho5le2c0ral09fl8cm9wfw9; Type: FK CONSTRAINT; Schema: public; Owner: keycloak-admin
---
-
-ALTER TABLE ONLY public.keycloak_role
-    ADD CONSTRAINT fk_kjho5le2c0ral09fl8cm9wfw9 FOREIGN KEY (client) REFERENCES public.client(id);
-
-
---
--- TOC entry 3680 (class 2606 OID 17546)
 -- Name: web_origins fk_lojpho213xcx4wnkog82ssrfy; Type: FK CONSTRAINT; Schema: public; Owner: keycloak-admin
 --
 
@@ -5829,16 +5231,6 @@ ALTER TABLE ONLY public.web_origins
 
 
 --
--- TOC entry 3600 (class 2606 OID 17551)
--- Name: client_default_roles fk_nuilts7klwqw2h8m2b5joytky; Type: FK CONSTRAINT; Schema: public; Owner: keycloak-admin
---
-
-ALTER TABLE ONLY public.client_default_roles
-    ADD CONSTRAINT fk_nuilts7klwqw2h8m2b5joytky FOREIGN KEY (client_id) REFERENCES public.client(id);
-
-
---
--- TOC entry 3664 (class 2606 OID 17556)
 -- Name: scope_mapping fk_ouse064plmlr732lxjcn1q5f1; Type: FK CONSTRAINT; Schema: public; Owner: keycloak-admin
 --
 
@@ -5847,25 +5239,6 @@ ALTER TABLE ONLY public.scope_mapping
 
 
 --
--- TOC entry 3665 (class 2606 OID 17561)
--- Name: scope_mapping fk_p3rh9grku11kqfrs4fltt7rnq; Type: FK CONSTRAINT; Schema: public; Owner: keycloak-admin
---
-
-ALTER TABLE ONLY public.scope_mapping
-    ADD CONSTRAINT fk_p3rh9grku11kqfrs4fltt7rnq FOREIGN KEY (role_id) REFERENCES public.keycloak_role(id);
-
-
---
--- TOC entry 3597 (class 2606 OID 17566)
--- Name: client fk_p56ctinxxb9gsk57fo49f9tac; Type: FK CONSTRAINT; Schema: public; Owner: keycloak-admin
---
-
-ALTER TABLE ONLY public.client
-    ADD CONSTRAINT fk_p56ctinxxb9gsk57fo49f9tac FOREIGN KEY (realm_id) REFERENCES public.realm(id);
-
-
---
--- TOC entry 3635 (class 2606 OID 17571)
 -- Name: protocol_mapper fk_pcm_realm; Type: FK CONSTRAINT; Schema: public; Owner: keycloak-admin
 --
 
@@ -5874,7 +5247,6 @@ ALTER TABLE ONLY public.protocol_mapper
 
 
 --
--- TOC entry 3619 (class 2606 OID 17576)
 -- Name: credential fk_pfyr0glasqyl0dei3kl69r6v0; Type: FK CONSTRAINT; Schema: public; Owner: keycloak-admin
 --
 
@@ -5883,7 +5255,6 @@ ALTER TABLE ONLY public.credential
 
 
 --
--- TOC entry 3636 (class 2606 OID 17581)
 -- Name: protocol_mapper_config fk_pmconfig; Type: FK CONSTRAINT; Schema: public; Owner: keycloak-admin
 --
 
@@ -5892,7 +5263,6 @@ ALTER TABLE ONLY public.protocol_mapper_config
 
 
 --
--- TOC entry 3620 (class 2606 OID 17586)
 -- Name: default_client_scope fk_r_def_cli_scope_realm; Type: FK CONSTRAINT; Schema: public; Owner: keycloak-admin
 --
 
@@ -5901,25 +5271,6 @@ ALTER TABLE ONLY public.default_client_scope
 
 
 --
--- TOC entry 3621 (class 2606 OID 17591)
--- Name: default_client_scope fk_r_def_cli_scope_scope; Type: FK CONSTRAINT; Schema: public; Owner: keycloak-admin
---
-
-ALTER TABLE ONLY public.default_client_scope
-    ADD CONSTRAINT fk_r_def_cli_scope_scope FOREIGN KEY (scope_id) REFERENCES public.client_scope(id);
-
-
---
--- TOC entry 3603 (class 2606 OID 17596)
--- Name: client_scope fk_realm_cli_scope; Type: FK CONSTRAINT; Schema: public; Owner: keycloak-admin
---
-
-ALTER TABLE ONLY public.client_scope
-    ADD CONSTRAINT fk_realm_cli_scope FOREIGN KEY (realm_id) REFERENCES public.realm(id);
-
-
---
--- TOC entry 3649 (class 2606 OID 17601)
 -- Name: required_action_provider fk_req_act_realm; Type: FK CONSTRAINT; Schema: public; Owner: keycloak-admin
 --
 
@@ -5928,7 +5279,6 @@ ALTER TABLE ONLY public.required_action_provider
 
 
 --
--- TOC entry 3662 (class 2606 OID 17606)
 -- Name: resource_uris fk_resource_server_uris; Type: FK CONSTRAINT; Schema: public; Owner: keycloak-admin
 --
 
@@ -5937,7 +5287,6 @@ ALTER TABLE ONLY public.resource_uris
 
 
 --
--- TOC entry 3663 (class 2606 OID 17611)
 -- Name: role_attribute fk_role_attribute_id; Type: FK CONSTRAINT; Schema: public; Owner: keycloak-admin
 --
 
@@ -5946,7 +5295,6 @@ ALTER TABLE ONLY public.role_attribute
 
 
 --
--- TOC entry 3647 (class 2606 OID 17616)
 -- Name: realm_supported_locales fk_supported_locales_realm; Type: FK CONSTRAINT; Schema: public; Owner: keycloak-admin
 --
 
@@ -5955,7 +5303,6 @@ ALTER TABLE ONLY public.realm_supported_locales
 
 
 --
--- TOC entry 3671 (class 2606 OID 17621)
 -- Name: user_federation_config fk_t13hpu1j94r2ebpekr39x5eu5; Type: FK CONSTRAINT; Schema: public; Owner: keycloak-admin
 --
 
@@ -5964,16 +5311,6 @@ ALTER TABLE ONLY public.user_federation_config
 
 
 --
--- TOC entry 3637 (class 2606 OID 17626)
--- Name: realm fk_traf444kk6qrkms7n56aiwq5y; Type: FK CONSTRAINT; Schema: public; Owner: keycloak-admin
---
-
-ALTER TABLE ONLY public.realm
-    ADD CONSTRAINT fk_traf444kk6qrkms7n56aiwq5y FOREIGN KEY (master_admin_client) REFERENCES public.client(id);
-
-
---
--- TOC entry 3676 (class 2606 OID 17631)
 -- Name: user_group_membership fk_user_group_user; Type: FK CONSTRAINT; Schema: public; Owner: keycloak-admin
 --
 
@@ -5982,7 +5319,6 @@ ALTER TABLE ONLY public.user_group_membership
 
 
 --
--- TOC entry 3633 (class 2606 OID 17636)
 -- Name: policy_config fkdc34197cf864c4e43; Type: FK CONSTRAINT; Schema: public; Owner: keycloak-admin
 --
 
@@ -5991,15 +5327,12 @@ ALTER TABLE ONLY public.policy_config
 
 
 --
--- TOC entry 3627 (class 2606 OID 17641)
 -- Name: identity_provider_config fkdc4897cf864c4e43; Type: FK CONSTRAINT; Schema: public; Owner: keycloak-admin
 --
 
 ALTER TABLE ONLY public.identity_provider_config
     ADD CONSTRAINT fkdc4897cf864c4e43 FOREIGN KEY (identity_provider_id) REFERENCES public.identity_provider(internal_id);
 
-
--- Completed on 2020-12-27 18:44:48 CET
 
 --
 -- PostgreSQL database dump complete
