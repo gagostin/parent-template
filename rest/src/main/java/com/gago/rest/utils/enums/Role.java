@@ -6,8 +6,8 @@ import lombok.Getter;
 @AllArgsConstructor
 public enum Role {
 
-    ROLE_ADMIN("ADMIN"),
-    ROLE_USER("USER");
+    ROLE_USER("user"),
+    ROLE_ADMIN("admin");
 
     @Getter
     String onKeycloak;
