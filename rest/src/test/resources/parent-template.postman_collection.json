@@ -31,7 +31,7 @@
 							"urlencoded": [
 								{
 									"key": "client_id",
-									"value": "{{keycloak-login-app}}",
+									"value": "{{keycloak-client-id}}",
 									"type": "text"
 								},
 								{
@@ -83,7 +83,7 @@
 							"urlencoded": [
 								{
 									"key": "client_id",
-									"value": "parent-template-login-app",
+									"value": "{{keycloak-client-id}}",
 									"type": "text"
 								},
 								{
@@ -141,16 +141,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/v1/parent-template/tests",
+							"raw": "http://localhost:10002/rest/tests",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
-							"port": "8080",
+							"port": "10002",
 							"path": [
-								"api",
-								"v1",
-								"parent-template",
+								"rest",
 								"tests"
 							]
 						}
@@ -158,6 +156,77 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "Get Token Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = JSON.parse(responseBody);\r",
+							"postman.setEnvironmentVariable(\"access-token\", data.access_token);\r",
+							"postman.setEnvironmentVariable(\"refresh-token\", data.refresh_token);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "client_id",
+							"value": "spring-template",
+							"type": "text"
+						},
+						{
+							"key": "client_secret",
+							"value": "RVswpo2PjTQDjFAHjS2vyXJangSw0Bb3",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "giordano.agostini@yahoo.it",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "Password0.",
+							"type": "text"
+						},
+						{
+							"key": "grant_type",
+							"value": "password",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://dev.docker.it.grouperci.com:9088/auth/realms/dealer/protocol/openid-connect/token",
+					"protocol": "http",
+					"host": [
+						"dev",
+						"docker",
+						"it",
+						"grouperci",
+						"com"
+					],
+					"port": "9088",
+					"path": [
+						"auth",
+						"realms",
+						"dealer",
+						"protocol",
+						"openid-connect",
+						"token"
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }
