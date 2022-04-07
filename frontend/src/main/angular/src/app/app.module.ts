@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import {APP_INITIALIZER, NgModule} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -11,14 +11,16 @@ import {MatIconModule} from "@angular/material/icon";
 import {MatDividerModule} from "@angular/material/divider";
 import { HeaderToolbarComponent } from './design-system/header-toolbar/header-toolbar.component';
 import { SidebarContainerComponent } from './design-system/sidebar-container/sidebar-container.component';
-import {SidebarService} from "./services/sidebar/sidebar.service";
 import {FeaturesModule} from "./features/features.module";
+import {KeycloakAngularModule, KeycloakService} from "keycloak-angular";
+import {initializeKeycloak} from "./init/keycloak-init";
+import {AuthService} from "./services/auth/auth.service";
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderToolbarComponent,
-    SidebarContainerComponent
+    SidebarContainerComponent,
   ],
   imports: [
     BrowserModule,
@@ -29,9 +31,19 @@ import {FeaturesModule} from "./features/features.module";
     MatButtonModule,
     MatIconModule,
     MatDividerModule,
-    FeaturesModule
+    FeaturesModule,
+    KeycloakAngularModule
   ],
-  providers: [SidebarService],
+  providers: [
+    KeycloakService,
+    {
+      provide: APP_INITIALIZER,
+      useFactory: initializeKeycloak,
+      multi: true,
+      deps: [ KeycloakService ],
+    },
+    AuthService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

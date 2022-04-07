@@ -3,7 +3,7 @@ import {MatSidenav} from "@angular/material/sidenav";
 import {SidebarService} from "../../services/sidebar/sidebar.service";
 
 @Component({
-  selector: 'app-root-container',
+  selector: 'app-sidebar-container',
   templateUrl: './sidebar-container.component.html',
   styleUrls: ['./sidebar-container.component.scss']
 })
