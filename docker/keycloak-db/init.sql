@@ -1644,13 +1644,14 @@ INSERT INTO public.client VALUES ('43ac882b-a9c0-4e8a-8851-3d3419ed570e', true, 
 INSERT INTO public.client VALUES ('cd4d3103-f083-4933-afc8-6399043aaa66', true, false, 'security-admin-console', 0, true, NULL, '/admin/master/console/', false, NULL, false, 'master', 'openid-connect', 0, false, false, '${client_security-admin-console}', false, 'client-secret', '${authAdminUrl}', NULL, NULL, true, false, false, false);
 INSERT INTO public.client VALUES ('b46dc46b-9d7b-4a81-9339-4459b3db0ba5', true, false, 'admin-cli', 0, true, NULL, NULL, false, NULL, false, 'master', 'openid-connect', 0, false, false, '${client_admin-cli}', false, 'client-secret', NULL, NULL, NULL, false, false, true, false);
 INSERT INTO public.client VALUES ('9b6f8857-c6c4-48e6-951d-a45f290a3e82', true, false, 'parent-template-realm', 0, false, NULL, NULL, true, NULL, false, 'master', NULL, 0, false, false, 'parent-template Realm', false, 'client-secret', NULL, NULL, NULL, true, false, false, false);
+INSERT INTO public.client VALUES ('7b9964d4-537f-4616-b008-badf72767f68', true, true, 'parent-template-frontend', 0, true, NULL, NULL, false, NULL, false, 'parent-template', 'openid-connect', -1, false, false, 'Parent Template Frontend', false, 'client-secret', NULL, NULL, NULL, true, true, false, false);
 INSERT INTO public.client VALUES ('f53779a4-0976-4de3-815f-117b48bb478a', true, false, 'realm-management', 0, false, NULL, NULL, true, NULL, false, 'parent-template', 'openid-connect', 0, false, false, '${client_realm-management}', false, 'client-secret', NULL, NULL, NULL, true, false, false, false);
 INSERT INTO public.client VALUES ('88b896f1-605b-49ca-8c64-1423555d4fc2', true, false, 'account', 0, true, NULL, '/realms/parent-template/account/', false, NULL, false, 'parent-template', 'openid-connect', 0, false, false, '${client_account}', false, 'client-secret', '${authBaseUrl}', NULL, NULL, true, false, false, false);
 INSERT INTO public.client VALUES ('0bb37522-ffa3-4d31-b308-c999e72a48e5', true, false, 'account-console', 0, true, NULL, '/realms/parent-template/account/', false, NULL, false, 'parent-template', 'openid-connect', 0, false, false, '${client_account-console}', false, 'client-secret', '${authBaseUrl}', NULL, NULL, true, false, false, false);
 INSERT INTO public.client VALUES ('87064351-10df-4638-84d9-b242f925af79', true, false, 'broker', 0, false, NULL, NULL, true, NULL, false, 'parent-template', 'openid-connect', 0, false, false, '${client_broker}', false, 'client-secret', NULL, NULL, NULL, true, false, false, false);
 INSERT INTO public.client VALUES ('49f50ce3-f706-4303-b307-f1f6a6adb185', true, false, 'security-admin-console', 0, true, NULL, '/admin/parent-template/console/', false, NULL, false, 'parent-template', 'openid-connect', 0, false, false, '${client_security-admin-console}', false, 'client-secret', '${authAdminUrl}', NULL, NULL, true, false, false, false);
 INSERT INTO public.client VALUES ('aa0f44d1-ab03-483f-b490-1beb8c6364be', true, false, 'admin-cli', 0, true, NULL, NULL, false, NULL, false, 'parent-template', 'openid-connect', 0, false, false, '${client_admin-cli}', false, 'client-secret', NULL, NULL, NULL, false, false, true, false);
-INSERT INTO public.client VALUES ('5d503869-9917-4d5e-92fb-a965be3efa9e', true, true, 'parent-template-login-app', 0, false, 'NgRUBwhLhqgSMHnQGmYyH7Y74nMLBsRZ', NULL, false, NULL, false, 'parent-template', 'openid-connect', -1, false, false, 'Parent Template Login App', true, 'client-secret', '', NULL, NULL, true, false, true, false);
+INSERT INTO public.client VALUES ('5d503869-9917-4d5e-92fb-a965be3efa9e', true, true, 'parent-template-backend', 0, false, 'NgRUBwhLhqgSMHnQGmYyH7Y74nMLBsRZ', NULL, false, NULL, false, 'parent-template', 'openid-connect', -1, false, false, 'Parent Template Backend', true, 'client-secret', 'http://localhost:4200', NULL, NULL, true, false, false, false);
 
 
 --
@@ -1683,6 +1684,28 @@ INSERT INTO public.client_attributes VALUES ('5d503869-9917-4d5e-92fb-a965be3efa
 INSERT INTO public.client_attributes VALUES ('5d503869-9917-4d5e-92fb-a965be3efa9e', 'false', 'require.pushed.authorization.requests');
 INSERT INTO public.client_attributes VALUES ('5d503869-9917-4d5e-92fb-a965be3efa9e', 'false', 'client_credentials.use_refresh_token');
 INSERT INTO public.client_attributes VALUES ('5d503869-9917-4d5e-92fb-a965be3efa9e', 'false', 'display.on.consent.screen');
+INSERT INTO public.client_attributes VALUES ('7b9964d4-537f-4616-b008-badf72767f68', 'true', 'backchannel.logout.session.required');
+INSERT INTO public.client_attributes VALUES ('7b9964d4-537f-4616-b008-badf72767f68', 'false', 'backchannel.logout.revoke.offline.tokens');
+INSERT INTO public.client_attributes VALUES ('7b9964d4-537f-4616-b008-badf72767f68', 'false', 'saml.artifact.binding');
+INSERT INTO public.client_attributes VALUES ('7b9964d4-537f-4616-b008-badf72767f68', 'false', 'saml.server.signature');
+INSERT INTO public.client_attributes VALUES ('7b9964d4-537f-4616-b008-badf72767f68', 'false', 'saml.server.signature.keyinfo.ext');
+INSERT INTO public.client_attributes VALUES ('7b9964d4-537f-4616-b008-badf72767f68', 'false', 'saml.assertion.signature');
+INSERT INTO public.client_attributes VALUES ('7b9964d4-537f-4616-b008-badf72767f68', 'false', 'saml.client.signature');
+INSERT INTO public.client_attributes VALUES ('7b9964d4-537f-4616-b008-badf72767f68', 'false', 'saml.encrypt');
+INSERT INTO public.client_attributes VALUES ('7b9964d4-537f-4616-b008-badf72767f68', 'false', 'saml.authnstatement');
+INSERT INTO public.client_attributes VALUES ('7b9964d4-537f-4616-b008-badf72767f68', 'false', 'saml.onetimeuse.condition');
+INSERT INTO public.client_attributes VALUES ('7b9964d4-537f-4616-b008-badf72767f68', 'false', 'saml_force_name_id_format');
+INSERT INTO public.client_attributes VALUES ('7b9964d4-537f-4616-b008-badf72767f68', 'false', 'saml.multivalued.roles');
+INSERT INTO public.client_attributes VALUES ('7b9964d4-537f-4616-b008-badf72767f68', 'false', 'saml.force.post.binding');
+INSERT INTO public.client_attributes VALUES ('7b9964d4-537f-4616-b008-badf72767f68', 'false', 'exclude.session.state.from.auth.response');
+INSERT INTO public.client_attributes VALUES ('7b9964d4-537f-4616-b008-badf72767f68', 'false', 'oauth2.device.authorization.grant.enabled');
+INSERT INTO public.client_attributes VALUES ('7b9964d4-537f-4616-b008-badf72767f68', 'false', 'oidc.ciba.grant.enabled');
+INSERT INTO public.client_attributes VALUES ('7b9964d4-537f-4616-b008-badf72767f68', 'true', 'use.refresh.tokens');
+INSERT INTO public.client_attributes VALUES ('7b9964d4-537f-4616-b008-badf72767f68', 'false', 'id.token.as.detached.signature');
+INSERT INTO public.client_attributes VALUES ('7b9964d4-537f-4616-b008-badf72767f68', 'false', 'tls.client.certificate.bound.access.tokens');
+INSERT INTO public.client_attributes VALUES ('7b9964d4-537f-4616-b008-badf72767f68', 'false', 'require.pushed.authorization.requests');
+INSERT INTO public.client_attributes VALUES ('7b9964d4-537f-4616-b008-badf72767f68', 'false', 'client_credentials.use_refresh_token');
+INSERT INTO public.client_attributes VALUES ('7b9964d4-537f-4616-b008-badf72767f68', 'false', 'display.on.consent.screen');
 
 
 --
@@ -1889,6 +1912,14 @@ INSERT INTO public.client_scope_client VALUES ('5d503869-9917-4d5e-92fb-a965be3e
 INSERT INTO public.client_scope_client VALUES ('5d503869-9917-4d5e-92fb-a965be3efa9e', '8418a2a8-ce3f-413c-abfe-993e120485c2', false);
 INSERT INTO public.client_scope_client VALUES ('5d503869-9917-4d5e-92fb-a965be3efa9e', 'c731bf75-5798-4a55-b13a-8204dc0237e3', false);
 INSERT INTO public.client_scope_client VALUES ('5d503869-9917-4d5e-92fb-a965be3efa9e', '1db64da0-add0-41ee-aa19-182e59293840', false);
+INSERT INTO public.client_scope_client VALUES ('7b9964d4-537f-4616-b008-badf72767f68', '1f046dd2-6c70-4dd1-aa95-68059d84dcf3', true);
+INSERT INTO public.client_scope_client VALUES ('7b9964d4-537f-4616-b008-badf72767f68', '696124a2-cd43-47c2-8c67-3907af107470', true);
+INSERT INTO public.client_scope_client VALUES ('7b9964d4-537f-4616-b008-badf72767f68', 'f318802c-fe18-464b-9ede-3afeea29ca8a', true);
+INSERT INTO public.client_scope_client VALUES ('7b9964d4-537f-4616-b008-badf72767f68', '1b6d97d0-e3a0-4d38-be1f-b6335f86cdb6', true);
+INSERT INTO public.client_scope_client VALUES ('7b9964d4-537f-4616-b008-badf72767f68', 'a49b27ac-7301-4b0c-88a6-8e73ad56cb0b', false);
+INSERT INTO public.client_scope_client VALUES ('7b9964d4-537f-4616-b008-badf72767f68', '8418a2a8-ce3f-413c-abfe-993e120485c2', false);
+INSERT INTO public.client_scope_client VALUES ('7b9964d4-537f-4616-b008-badf72767f68', 'c731bf75-5798-4a55-b13a-8204dc0237e3', false);
+INSERT INTO public.client_scope_client VALUES ('7b9964d4-537f-4616-b008-badf72767f68', '1db64da0-add0-41ee-aa19-182e59293840', false);
 
 
 --
@@ -1963,7 +1994,7 @@ INSERT INTO public.component VALUES ('2419a881-73e3-4e37-9128-a7da95d77299', 'Al
 INSERT INTO public.component VALUES ('0163db50-681c-4384-8b15-03d7c0dfec4d', 'Allowed Client Scopes', 'parent-template', 'allowed-client-templates', 'org.keycloak.services.clientregistration.policy.ClientRegistrationPolicy', 'parent-template', 'anonymous');
 INSERT INTO public.component VALUES ('d096255b-1c07-4243-a381-bd54380836a1', 'Allowed Protocol Mapper Types', 'parent-template', 'allowed-protocol-mappers', 'org.keycloak.services.clientregistration.policy.ClientRegistrationPolicy', 'parent-template', 'authenticated');
 INSERT INTO public.component VALUES ('b95375a6-c790-4ef9-87dd-22463adadb65', 'Allowed Client Scopes', 'parent-template', 'allowed-client-templates', 'org.keycloak.services.clientregistration.policy.ClientRegistrationPolicy', 'parent-template', 'authenticated');
-INSERT INTO public.component VALUES ('7bad4a86-f0e4-49c9-ae78-8fa826aaba54', NULL, 'parent-template', 'declarative-user-profile', 'org.keycloak.userprofile.UserProfileProvider', 'parent-template', NULL);
+INSERT INTO public.component VALUES ('f04aa001-5127-4e28-83ed-ab7c2fe95674', NULL, 'parent-template', 'declarative-user-profile', 'org.keycloak.userprofile.UserProfileProvider', 'parent-template', NULL);
 
 
 --
@@ -2882,8 +2913,8 @@ INSERT INTO public.protocol_mapper_config VALUES ('81077bd3-1540-43f2-9c8b-2f426
 -- Data for Name: realm; Type: TABLE DATA; Schema: public; Owner: keycloak-admin
 --
 
+INSERT INTO public.realm VALUES ('parent-template', 60, 300, 300, NULL, NULL, NULL, true, false, 0, NULL, 'parent-template', 0, NULL, true, true, true, false, 'EXTERNAL', 1800, 36000, false, false, '9b6f8857-c6c4-48e6-951d-a45f290a3e82', 1800, false, NULL, true, false, false, false, 0, 1, 30, 6, 'HmacSHA1', 'totp', '82364aa2-40d8-4f92-8309-a5958ab8dac3', '837430a4-78ca-44eb-95d3-8147a395d0eb', '2fcc99e3-cddb-491d-9e65-20a1dff91bbf', '7f4a07d7-e2c0-49dd-9f1c-ebae0a3f89a2', 'cc3959aa-9008-46cd-ac52-63b38ae2cbdf', 2592000, false, 900, true, false, '1dbe2914-ca96-4da0-9529-e0c04dedc573', 0, false, 0, 0, 'f04d71df-ade0-4368-a25b-a242601f18f2');
 INSERT INTO public.realm VALUES ('master', 60, 300, 60, NULL, NULL, NULL, true, false, 0, NULL, 'master', 0, NULL, false, false, false, false, 'EXTERNAL', 1800, 36000, false, false, '7af949cd-12c7-4505-9df1-b1f682a178c9', 1800, false, NULL, false, false, false, false, 0, 1, 30, 6, 'HmacSHA1', 'totp', '58e94817-50de-44f5-9448-cdf8dd84cecd', '57f7d0b2-e78a-43f2-a059-91e28916d384', '0669636e-19a4-424f-bb4b-8296055e79ca', 'fc675049-c9f2-43b1-83a3-eaf36435f11a', 'af2f5fc2-f9ab-4f16-8835-4c630196bb0b', 2592000, false, 900, true, false, '1911a259-1a0b-472a-9a03-f50bd524e111', 0, false, 0, 0, 'b980df10-d53e-47fd-b9da-c9b8c7d63743');
-INSERT INTO public.realm VALUES ('parent-template', 60, 300, 300, NULL, NULL, NULL, true, false, 0, NULL, 'parent-template', 0, NULL, false, false, false, false, 'EXTERNAL', 1800, 36000, false, false, '9b6f8857-c6c4-48e6-951d-a45f290a3e82', 1800, false, NULL, false, false, false, false, 0, 1, 30, 6, 'HmacSHA1', 'totp', '82364aa2-40d8-4f92-8309-a5958ab8dac3', '837430a4-78ca-44eb-95d3-8147a395d0eb', '2fcc99e3-cddb-491d-9e65-20a1dff91bbf', '7f4a07d7-e2c0-49dd-9f1c-ebae0a3f89a2', 'cc3959aa-9008-46cd-ac52-63b38ae2cbdf', 2592000, false, 900, true, false, '1dbe2914-ca96-4da0-9529-e0c04dedc573', 0, false, 0, 0, 'f04d71df-ade0-4368-a25b-a242601f18f2');
 
 
 --
@@ -2918,6 +2949,10 @@ INSERT INTO public.realm_attribute VALUES ('cibaInterval', 'parent-template', '5
 INSERT INTO public.realm_attribute VALUES ('cibaAuthRequestedUserHint', 'parent-template', 'login_hint');
 INSERT INTO public.realm_attribute VALUES ('parRequestUriLifespan', 'parent-template', '60');
 INSERT INTO public.realm_attribute VALUES ('userProfileEnabled', 'parent-template', 'false');
+INSERT INTO public.realm_attribute VALUES ('clientSessionIdleTimeout', 'parent-template', '0');
+INSERT INTO public.realm_attribute VALUES ('clientSessionMaxLifespan', 'parent-template', '0');
+INSERT INTO public.realm_attribute VALUES ('clientOfflineSessionIdleTimeout', 'parent-template', '0');
+INSERT INTO public.realm_attribute VALUES ('clientOfflineSessionMaxLifespan', 'parent-template', '0');
 INSERT INTO public.realm_attribute VALUES ('displayName', 'parent-template', 'Parent Template');
 INSERT INTO public.realm_attribute VALUES ('bruteForceProtected', 'parent-template', 'false');
 INSERT INTO public.realm_attribute VALUES ('permanentLockout', 'parent-template', 'false');
@@ -2932,10 +2967,6 @@ INSERT INTO public.realm_attribute VALUES ('actionTokenGeneratedByUserLifespan',
 INSERT INTO public.realm_attribute VALUES ('defaultSignatureAlgorithm', 'parent-template', 'RS256');
 INSERT INTO public.realm_attribute VALUES ('offlineSessionMaxLifespanEnabled', 'parent-template', 'false');
 INSERT INTO public.realm_attribute VALUES ('offlineSessionMaxLifespan', 'parent-template', '5184000');
-INSERT INTO public.realm_attribute VALUES ('clientSessionIdleTimeout', 'parent-template', '0');
-INSERT INTO public.realm_attribute VALUES ('clientSessionMaxLifespan', 'parent-template', '0');
-INSERT INTO public.realm_attribute VALUES ('clientOfflineSessionIdleTimeout', 'parent-template', '0');
-INSERT INTO public.realm_attribute VALUES ('clientOfflineSessionMaxLifespan', 'parent-template', '0');
 INSERT INTO public.realm_attribute VALUES ('webAuthnPolicyRpEntityName', 'parent-template', 'keycloak');
 INSERT INTO public.realm_attribute VALUES ('webAuthnPolicySignatureAlgorithms', 'parent-template', 'ES256');
 INSERT INTO public.realm_attribute VALUES ('webAuthnPolicyRpId', 'parent-template', '');
@@ -3021,7 +3052,8 @@ INSERT INTO public.redirect_uris VALUES ('cd4d3103-f083-4933-afc8-6399043aaa66',
 INSERT INTO public.redirect_uris VALUES ('88b896f1-605b-49ca-8c64-1423555d4fc2', '/realms/parent-template/account/*');
 INSERT INTO public.redirect_uris VALUES ('0bb37522-ffa3-4d31-b308-c999e72a48e5', '/realms/parent-template/account/*');
 INSERT INTO public.redirect_uris VALUES ('49f50ce3-f706-4303-b307-f1f6a6adb185', '/admin/parent-template/console/*');
-INSERT INTO public.redirect_uris VALUES ('5d503869-9917-4d5e-92fb-a965be3efa9e', 'http://localhost:10004/*');
+INSERT INTO public.redirect_uris VALUES ('7b9964d4-537f-4616-b008-badf72767f68', 'http://localhost:4200/');
+INSERT INTO public.redirect_uris VALUES ('5d503869-9917-4d5e-92fb-a965be3efa9e', 'http://localhost:4200/*');
 
 
 --
@@ -3153,7 +3185,7 @@ INSERT INTO public.scope_mapping VALUES ('0bb37522-ffa3-4d31-b308-c999e72a48e5',
 
 INSERT INTO public.user_entity VALUES ('afb9eb48-31c2-44fd-95df-98eab656509f', NULL, 'a2892a2e-657c-413c-a318-a3513cf6c483', false, true, NULL, NULL, NULL, 'master', 'admin', 1648731729829, NULL, 0);
 INSERT INTO public.user_entity VALUES ('e8bf1bce-112d-434a-bafa-a8f7defcce8c', 'giordano.agostini@yahoo.it', 'giordano.agostini@yahoo.it', false, true, NULL, 'Giordano', 'Agostini', 'parent-template', 'gagostin', 1648733852004, NULL, 0);
-INSERT INTO public.user_entity VALUES ('a7bba840-523d-4fda-bc40-ef653e55a829', NULL, '04cce649-6d36-4d0a-87b1-67f0e9b1c89e', false, true, NULL, NULL, NULL, 'parent-template', 'service-account-parent-template-login-app', 1648737272774, '5d503869-9917-4d5e-92fb-a965be3efa9e', 0);
+INSERT INTO public.user_entity VALUES ('a7bba840-523d-4fda-bc40-ef653e55a829', NULL, '04cce649-6d36-4d0a-87b1-67f0e9b1c89e', false, true, NULL, NULL, NULL, 'parent-template', 'service-account-parent-template-backend', 1648737272774, '5d503869-9917-4d5e-92fb-a965be3efa9e', 0);
 
 
 --
@@ -3246,6 +3278,8 @@ INSERT INTO public.user_role_mapping VALUES ('c373822a-7ecb-4d44-8743-55b69db581
 
 INSERT INTO public.web_origins VALUES ('cd4d3103-f083-4933-afc8-6399043aaa66', '+');
 INSERT INTO public.web_origins VALUES ('49f50ce3-f706-4303-b307-f1f6a6adb185', '+');
+INSERT INTO public.web_origins VALUES ('7b9964d4-537f-4616-b008-badf72767f68', '*');
+INSERT INTO public.web_origins VALUES ('5d503869-9917-4d5e-92fb-a965be3efa9e', '*');
 
 
 --

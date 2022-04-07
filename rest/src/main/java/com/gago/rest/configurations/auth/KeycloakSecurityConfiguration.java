@@ -6,6 +6,7 @@ import org.keycloak.adapters.springboot.KeycloakSpringBootConfigResolver;
 import org.keycloak.adapters.springsecurity.authentication.KeycloakAuthenticationProvider;
 import org.keycloak.adapters.springsecurity.config.KeycloakWebSecurityConfigurerAdapter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -23,11 +24,14 @@ import org.springframework.security.web.authentication.session.SessionAuthentica
 @EnableGlobalMethodSecurity(jsr250Enabled = true)
 public class KeycloakSecurityConfiguration extends KeycloakWebSecurityConfigurerAdapter {
 
+    @Value("${spring.mvc.servlet.path}")
+    private String restBasePath;
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         super.configure(http);
         http.authorizeRequests()
-                .antMatchers(HttpMethod.GET, "/api/v1/parent-template/tests").hasAnyRole(Role.ROLE_USER.getOnKeycloak())
+                .antMatchers(HttpMethod.GET, restBasePath + "/tests").hasAnyRole(Role.ROLE_USER.getOnKeycloak())
                 .anyRequest()
                 .authenticated();
         http.csrf().disable();
