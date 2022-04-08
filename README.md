@@ -35,8 +35,6 @@ NB. The / is for "root": when the dump command was execute, I was in the root fo
 
 #Da fare:
 ```
-1. Capire perché non funziona il token che stacco da keycloak con spring security (con docker compose)
-2. Esternalizzare application.properties di rest
-3. Verificare funzionamento frontend con docker
-4. Inserire il wordpress
+1. Verificare funzionamento frontend con docker
+2. Inserire il wordpress
 ```

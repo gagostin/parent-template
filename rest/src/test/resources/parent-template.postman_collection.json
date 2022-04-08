@@ -141,14 +141,13 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:10002/rest/tests",
+							"raw": "http://localhost:10002/tests",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "10002",
 							"path": [
-								"rest",
 								"tests"
 							]
 						}

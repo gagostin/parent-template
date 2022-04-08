@@ -10,6 +10,6 @@ public enum Role {
     ROLE_ADMIN("admin");
 
     @Getter
-    String onKeycloak;
+    final String onKeycloak;
 
 }
