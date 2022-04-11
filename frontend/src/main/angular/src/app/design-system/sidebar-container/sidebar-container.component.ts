@@ -12,7 +12,7 @@ export class SidebarContainerComponent implements AfterViewInit {
   @ViewChild(MatSidenav) public sidenav: MatSidenav;
 
   constructor(
-    private sidebarService : SidebarService
+    public sidebarService : SidebarService
   ) { }
 
   ngAfterViewInit() {

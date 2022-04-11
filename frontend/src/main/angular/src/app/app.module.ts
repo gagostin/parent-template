@@ -15,12 +15,14 @@ import {FeaturesModule} from "./features/features.module";
 import {KeycloakAngularModule, KeycloakService} from "keycloak-angular";
 import {initializeKeycloak} from "./init/keycloak-init";
 import {AuthService} from "./services/auth/auth.service";
+import { LoggedPageComponent } from './design-system/logged-page/logged-page.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderToolbarComponent,
     SidebarContainerComponent,
+    LoggedPageComponent,
   ],
   imports: [
     BrowserModule,
