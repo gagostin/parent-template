@@ -1651,7 +1651,7 @@ INSERT INTO public.client VALUES ('0bb37522-ffa3-4d31-b308-c999e72a48e5', true, 
 INSERT INTO public.client VALUES ('87064351-10df-4638-84d9-b242f925af79', true, false, 'broker', 0, false, NULL, NULL, true, NULL, false, 'parent-template', 'openid-connect', 0, false, false, '${client_broker}', false, 'client-secret', NULL, NULL, NULL, true, false, false, false);
 INSERT INTO public.client VALUES ('49f50ce3-f706-4303-b307-f1f6a6adb185', true, false, 'security-admin-console', 0, true, NULL, '/admin/parent-template/console/', false, NULL, false, 'parent-template', 'openid-connect', 0, false, false, '${client_security-admin-console}', false, 'client-secret', '${authAdminUrl}', NULL, NULL, true, false, false, false);
 INSERT INTO public.client VALUES ('aa0f44d1-ab03-483f-b490-1beb8c6364be', true, false, 'admin-cli', 0, true, NULL, NULL, false, NULL, false, 'parent-template', 'openid-connect', 0, false, false, '${client_admin-cli}', false, 'client-secret', NULL, NULL, NULL, false, false, true, false);
-INSERT INTO public.client VALUES ('5d503869-9917-4d5e-92fb-a965be3efa9e', true, true, 'parent-template-backend', 0, false, 'NgRUBwhLhqgSMHnQGmYyH7Y74nMLBsRZ', NULL, false, NULL, false, 'parent-template', 'openid-connect', -1, false, false, 'Parent Template Backend', true, 'client-secret', 'http://localhost:4200', NULL, NULL, true, false, false, false);
+INSERT INTO public.client VALUES ('5d503869-9917-4d5e-92fb-a965be3efa9e', true, true, 'parent-template-backend', 0, false, 'u7otPk0Vq4YTLsxehcACIAkmcbQjbmHp', '', false, NULL, false, 'parent-template', 'openid-connect', -1, false, false, 'Parent Template Backend', true, 'client-secret', '', NULL, NULL, true, true, true, false);
 
 
 --
@@ -3052,8 +3052,8 @@ INSERT INTO public.redirect_uris VALUES ('cd4d3103-f083-4933-afc8-6399043aaa66',
 INSERT INTO public.redirect_uris VALUES ('88b896f1-605b-49ca-8c64-1423555d4fc2', '/realms/parent-template/account/*');
 INSERT INTO public.redirect_uris VALUES ('0bb37522-ffa3-4d31-b308-c999e72a48e5', '/realms/parent-template/account/*');
 INSERT INTO public.redirect_uris VALUES ('49f50ce3-f706-4303-b307-f1f6a6adb185', '/admin/parent-template/console/*');
-INSERT INTO public.redirect_uris VALUES ('7b9964d4-537f-4616-b008-badf72767f68', 'http://localhost:4200/');
-INSERT INTO public.redirect_uris VALUES ('5d503869-9917-4d5e-92fb-a965be3efa9e', 'http://localhost:4200/*');
+INSERT INTO public.redirect_uris VALUES ('5d503869-9917-4d5e-92fb-a965be3efa9e', 'http://localhost:8080');
+INSERT INTO public.redirect_uris VALUES ('7b9964d4-537f-4616-b008-badf72767f68', 'http://localhost:10004/');
 
 
 --
@@ -3278,8 +3278,8 @@ INSERT INTO public.user_role_mapping VALUES ('c373822a-7ecb-4d44-8743-55b69db581
 
 INSERT INTO public.web_origins VALUES ('cd4d3103-f083-4933-afc8-6399043aaa66', '+');
 INSERT INTO public.web_origins VALUES ('49f50ce3-f706-4303-b307-f1f6a6adb185', '+');
-INSERT INTO public.web_origins VALUES ('7b9964d4-537f-4616-b008-badf72767f68', '*');
 INSERT INTO public.web_origins VALUES ('5d503869-9917-4d5e-92fb-a965be3efa9e', '*');
+INSERT INTO public.web_origins VALUES ('7b9964d4-537f-4616-b008-badf72767f68', '*');
 
 
 --

@@ -35,6 +35,6 @@ NB. The / is for "root": when the dump command was execute, I was in the root fo
 
 #Da fare:
 ```
-1. Verificare funzionamento frontend con docker
-2. Inserire il wordpress
+1. Usare la pagina home per fare una chiamata al BE e visualizzare gli elementi di test ritornati
+2. Inserire il wordpress su docker-compose e inserirci tutte le stringhe statiche del progetto
 ```
