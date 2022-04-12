@@ -16,6 +16,8 @@ import {KeycloakAngularModule, KeycloakService} from "keycloak-angular";
 import {initializeKeycloak} from "./init/keycloak-init";
 import {AuthService} from "./services/auth/auth.service";
 import { LoggedPageComponent } from './design-system/logged-page/logged-page.component';
+import {HttpClientModule} from "@angular/common/http";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -34,7 +36,8 @@ import { LoggedPageComponent } from './design-system/logged-page/logged-page.com
     MatIconModule,
     MatDividerModule,
     FeaturesModule,
-    KeycloakAngularModule
+    KeycloakAngularModule,
+    HttpClientModule
   ],
   providers: [
     KeycloakService,

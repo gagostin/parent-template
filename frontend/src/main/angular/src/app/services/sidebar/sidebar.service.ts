@@ -1,7 +1,8 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {MatSidenav} from "@angular/material/sidenav";
 import {KeycloakService} from "keycloak-angular";
 import {Router} from "@angular/router";
+import {UserInformation} from "../../models/auth";
 
 @Injectable({
   providedIn: 'root'
@@ -9,12 +10,7 @@ import {Router} from "@angular/router";
 export class SidebarService {
 
   private sidenav: MatSidenav;
-  public userInformation: UserInformation = {
-    name : '',
-    surname : '',
-    email : '',
-    username : ''
-  };
+  public userInformation: UserInformation = new UserInformation();
 
   constructor(
     private keycloakService: KeycloakService,
@@ -56,11 +52,4 @@ export class SidebarService {
   public actionLogout() {
     this.keycloakService.logout();
   }
-}
-
-export interface UserInformation {
-  name?: string;
-  surname?: string;
-  email?: string;
-  username?: string;
 }

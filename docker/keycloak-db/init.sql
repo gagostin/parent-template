@@ -3053,7 +3053,7 @@ INSERT INTO public.redirect_uris VALUES ('88b896f1-605b-49ca-8c64-1423555d4fc2',
 INSERT INTO public.redirect_uris VALUES ('0bb37522-ffa3-4d31-b308-c999e72a48e5', '/realms/parent-template/account/*');
 INSERT INTO public.redirect_uris VALUES ('49f50ce3-f706-4303-b307-f1f6a6adb185', '/admin/parent-template/console/*');
 INSERT INTO public.redirect_uris VALUES ('5d503869-9917-4d5e-92fb-a965be3efa9e', 'http://localhost:8080');
-INSERT INTO public.redirect_uris VALUES ('7b9964d4-537f-4616-b008-badf72767f68', 'http://localhost:10004/');
+INSERT INTO public.redirect_uris VALUES ('7b9964d4-537f-4616-b008-badf72767f68', 'http://localhost:10004/*');
 
 
 --

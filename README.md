@@ -35,6 +35,7 @@ NB. The / is for "root": when the dump command was execute, I was in the root fo
 
 #Da fare:
 ```
-1. Usare la pagina home per fare una chiamata al BE e visualizzare gli elementi di test ritornati
+0. Nel container frontend non funziona material; probabilmente c'è da installarlo con un RUN nel dockerfile
+1. Indagare sull'esistenza di un sistema di storage dati open source
 2. Inserire il wordpress su docker-compose e inserirci tutte le stringhe statiche del progetto
 ```

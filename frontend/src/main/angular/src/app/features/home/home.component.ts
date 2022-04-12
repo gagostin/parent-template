@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {RestService} from "../../services/rest/rest.service";
+import {Test} from "../../models/rest";
 
 @Component({
   selector: 'app-home',
@@ -7,9 +9,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  public tests : Test[];
+
+  constructor(
+    private restService : RestService
+  ) { }
 
   ngOnInit(): void {
+    this.restService.getAllTests().toPromise().then(
+      response => {
+        if(response !== undefined) this.tests = response
+      },
+      errors => console.log(errors)
+    );
+
   }
 
 }

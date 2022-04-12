@@ -141,12 +141,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:10002/tests",
-							"protocol": "http",
+							"raw": "{{rest-base-url}}/tests",
 							"host": [
-								"localhost"
+								"{{rest-base-url}}"
 							],
-							"port": "10002",
 							"path": [
 								"tests"
 							]
@@ -155,77 +153,6 @@
 					"response": []
 				}
 			]
-		},
-		{
-			"name": "Get Token Copy",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"var data = JSON.parse(responseBody);\r",
-							"postman.setEnvironmentVariable(\"access-token\", data.access_token);\r",
-							"postman.setEnvironmentVariable(\"refresh-token\", data.refresh_token);"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "urlencoded",
-					"urlencoded": [
-						{
-							"key": "client_id",
-							"value": "spring-template",
-							"type": "text"
-						},
-						{
-							"key": "client_secret",
-							"value": "RVswpo2PjTQDjFAHjS2vyXJangSw0Bb3",
-							"type": "text"
-						},
-						{
-							"key": "username",
-							"value": "giordano.agostini@yahoo.it",
-							"type": "text"
-						},
-						{
-							"key": "password",
-							"value": "Password0.",
-							"type": "text"
-						},
-						{
-							"key": "grant_type",
-							"value": "password",
-							"type": "text"
-						}
-					]
-				},
-				"url": {
-					"raw": "http://dev.docker.it.grouperci.com:9088/auth/realms/dealer/protocol/openid-connect/token",
-					"protocol": "http",
-					"host": [
-						"dev",
-						"docker",
-						"it",
-						"grouperci",
-						"com"
-					],
-					"port": "9088",
-					"path": [
-						"auth",
-						"realms",
-						"dealer",
-						"protocol",
-						"openid-connect",
-						"token"
-					]
-				}
-			},
-			"response": []
 		}
 	]
 }
