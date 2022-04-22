@@ -28,12 +28,11 @@ services:
       - rest-db
 
   frontend:
+    image: ${STACK_NAME}/frontend
     build:
       context: frontend
-    volumes:
-    - './frontend/src/main/angular:/usr/src/app'
     ports:
-    - ${STACK_OFFSET}04:4500
+    - ${STACK_OFFSET}04:80
 
   keycloak-db:
     image: postgres

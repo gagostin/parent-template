@@ -1,10 +1,7 @@
-FROM node:14.17.0
+FROM nginx:alpine
 
-RUN mkdir /usr/src/app
-WORKDIR /usr/src/app
+WORKDIR /usr/share/nginx/html
+RUN rm -rf ./*
+COPY /src/main/angular/dist/angular .
 
-RUN npm install -g @angular/cli@13.0.3
-
-COPY . /usr/src/app
-
-CMD ng serve --host 0.0.0.0 --port 4500
+ENTRYPOINT ["nginx", "-g", "daemon off;"]

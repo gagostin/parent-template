@@ -35,7 +35,8 @@ NB. The / is for "root": when the dump command was execute, I was in the root fo
 
 #Da fare:
 ```
-0. Nel container frontend non funziona material; probabilmente c'è da installarlo con un RUN nel dockerfile
-1. Indagare sull'esistenza di un sistema di storage dati open source
+0. Al click del pulsante logout, nginx da errore (forse non capisce che l'url 
+deve tornare su localhost:10004 e quindi essere redirezionato di nuovo su Keycloak
+1. Indagare sull'esistenza di un sistema di storage dati open source (MinIO)
 2. Inserire il wordpress su docker-compose e inserirci tutte le stringhe statiche del progetto
 ```
