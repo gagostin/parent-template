@@ -48,8 +48,10 @@ services:
     image: jboss/keycloak
     env_file:
       - docker/keycloak/keycloak.env
+    volumes:
+      - ./docker/keycloak/https/:/etc/x509/https
     ports:
-      - ${STACK_OFFSET}06:8080
+      - ${STACK_OFFSET}06:8443
 
 volumes:
   keycloak-db-pgdata:
