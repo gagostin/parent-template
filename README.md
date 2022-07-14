@@ -33,6 +33,14 @@ docker cp {container_id}:/{dump_filename}.sql {pc_path}
 ```
 NB. The / is for "root": when the dump command was execute, I was in the root folder of docker container, so the dump file was created there)
 
+#Wordpress installation
+```
+username: admin
+password: admin
+email: parent-template-wordpress@yopmail.com
+site-name: parent-template
+```
+
 #Da fare:
 ```
 0. Al click del pulsante logout, nginx da errore (forse non capisce che l'url 
