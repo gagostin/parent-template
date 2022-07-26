@@ -51,8 +51,27 @@ services:
     ports:
       - ${STACK_OFFSET}06:8080
 
+  wordpress-db:
+    image: mysql
+    volumes:
+      - wordpress-db-data:/var/lib/mysql
+    restart: always
+    env_file:
+      - docker/wordpress-db/wordpress-db.env
+    ports:
+      - ${STACK_OFFSET}07:5432
+
+  wordpress:
+    image: wordpress:latest
+    volumes:
+      - wordpress-data:/var/www/html
+    ports:
+      - ${STACK_OFFSET}08:80
+    env_file:
+      - docker/wordpress/wordpress.env
+
 volumes:
-  keycloak-db-pgdata:
-    driver: local
-  rest-db-pgdata:
-    driver: local
+  keycloak-db-pgdata: {}
+  rest-db-pgdata: {}
+  wordpress-db-data: {}
+  wordpress-data: {}

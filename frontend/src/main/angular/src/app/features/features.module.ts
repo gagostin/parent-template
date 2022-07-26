@@ -1,7 +1,7 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {ProfileComponent} from './profile/profile.component';
-import {HomeComponent} from './home/home.component';
+import {ProfileComponent} from './content/profile/profile.component';
+import {HomeComponent} from './content/home/home.component';
 
 
 @NgModule({
