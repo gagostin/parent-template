@@ -9,13 +9,13 @@ import {MatSidenavModule} from "@angular/material/sidenav";
 import {MatButtonModule} from "@angular/material/button";
 import {MatIconModule} from "@angular/material/icon";
 import {MatDividerModule} from "@angular/material/divider";
-import {HeaderToolbarComponent} from './design-system/header-toolbar/header-toolbar.component';
-import {SidebarContainerComponent} from './design-system/sidebar-container/sidebar-container.component';
+import {HeaderToolbarComponent} from './features/bars/header-toolbar/header-toolbar.component';
+import {SidebarContainerComponent} from './features/bars/sidebar-container/sidebar-container.component';
 import {FeaturesModule} from "./features/features.module";
 import {KeycloakAngularModule, KeycloakService} from "keycloak-angular";
 import {initializeKeycloak} from "./init/keycloak-init";
 import {AuthService} from "./services/auth/auth.service";
-import {LoggedPageComponent} from './design-system/logged-page/logged-page.component';
+import {LoggedPageComponent} from './features/structure/logged-page/logged-page.component';
 import {HttpClientModule} from "@angular/common/http";
 import {CmsService} from "./services/cms/cms.service";
 

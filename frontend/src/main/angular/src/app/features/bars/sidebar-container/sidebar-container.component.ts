@@ -1,7 +1,7 @@
 import {AfterViewInit, Component, ViewChild} from '@angular/core';
 import {MatSidenav} from "@angular/material/sidenav";
-import {SidebarService} from "../../services/sidebar/sidebar.service";
-import {AbstractComponent} from "../../commons/abstract-component";
+import {SidebarService} from "../../../services/sidebar/sidebar.service";
+import {AbstractComponent} from "../../../commons/abstract-component";
 
 @Component({
   selector: 'app-sidebar-container',

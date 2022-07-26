@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {RestService} from "../../services/rest/rest.service";
-import {Test} from "../../models/rest";
-import {AbstractComponent} from "../../commons/abstract-component";
+import {RestService} from "../../../services/rest/rest.service";
+import {Test} from "../../../models/rest";
+import {AbstractComponent} from "../../../commons/abstract-component";
 
 @Component({
   selector: 'app-home',

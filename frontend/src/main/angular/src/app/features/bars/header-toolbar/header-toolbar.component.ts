@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {AbstractComponent} from "../../commons/abstract-component";
+import {AbstractComponent} from "../../../commons/abstract-component";
 
 @Component({
   selector: 'app-header-toolbar',
