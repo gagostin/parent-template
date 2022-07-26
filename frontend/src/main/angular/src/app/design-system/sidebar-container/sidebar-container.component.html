@@ -14,18 +14,18 @@
 
     <button mat-button class="sidebar-menu-button" (click)="sidebarService.actionHome()">
       <mat-icon>home</mat-icon>
-      <span>Home</span>
+      <span>{{fields.sidebar_container_home_button_text}}</span>
     </button>
     <button mat-button class="sidebar-menu-button" (click)="sidebarService.actionProfile()">
       <mat-icon>person</mat-icon>
-      <span>Profile</span>
+      <span>{{fields.sidebar_container_profile_button_text}}</span>
     </button>
 
     <mat-divider class="sidebar-divider"></mat-divider>
 
     <button mat-button class="sidebar-menu-button" (click)="sidebarService.actionLogout()">
       <mat-icon>logout</mat-icon>
-      <span>Logout</span>
+      <span>{{fields.sidebar_container_logout_button_text}}</span>
     </button>
   </mat-sidenav>
 

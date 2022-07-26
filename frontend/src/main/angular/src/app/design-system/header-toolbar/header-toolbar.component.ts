@@ -1,18 +1,21 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {AbstractComponent} from "../../commons/abstract-component";
 
 @Component({
   selector: 'app-header-toolbar',
   templateUrl: './header-toolbar.component.html',
   styleUrls: ['./header-toolbar.component.scss']
 })
-export class HeaderToolbarComponent implements OnInit {
+export class HeaderToolbarComponent extends AbstractComponent implements OnInit {
 
   @Input() title: string;
   @Input() opened: boolean;
 
   @Output() onButtonClicked: EventEmitter<any> = new EventEmitter<any>();
 
-  constructor() { }
+  constructor() {
+    super('logged-page');
+  }
 
   ngOnInit(): void {
   }
