@@ -8,6 +8,11 @@
 1. File > Settings > Version Control > GitHub
 2. On connection https://github.com use the generated token
 
+# Token in use
+```
+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
+```
+
 # Keycloak URLs
 Administration console 
 ```
