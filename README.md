@@ -18,14 +18,15 @@ User console
 http://{keycloak_url}:{keycloak_port}/auth/realms/{realm_name}/account
 ```
 
-# Create a dump of keycloak database
-Connecting to docker container of keycloak db
+# Create a dump of postgres/mysql database
+Connecting to docker container of db
 ```
 docker exec -it {container_id} bash
 ```
 Create the .sql dump from command line
 ```
-pg_dump -U {db_username} -W -F p --inserts --encoding=UTF-8 {db_name} > {dump_filename}.sql
+postgres:   pg_dump -U {db_username} -W -F p --inserts --encoding=UTF-8 {db_name} > {dump_filename}.sql
+mysql:      mysqldump -u {db_username} --password={db_password} --default-character-set=utf8 --no-tablespaces {db_name} > {dump_filename}.sql
 ```
 Extract the .sql dump file from the docker container to pc
 ```
@@ -45,8 +46,5 @@ The url for the login is: ```http://localhost:10008/wp-admin```
 
 # Da fare:
 ```
-0. Al click del pulsante logout, nginx da errore (forse non capisce che l'url 
-deve tornare su localhost:10004 e quindi essere redirezionato di nuovo su Keycloak
-1. Indagare sull'esistenza di un sistema di storage dati open source (MinIO)
-2. Inserire il wordpress su docker-compose e inserirci tutte le stringhe statiche del progetto
+Indagare sull'esistenza di un sistema di storage dati open source (MinIO)
 ```
