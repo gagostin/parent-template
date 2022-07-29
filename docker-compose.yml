@@ -35,7 +35,7 @@ services:
     - ${STACK_OFFSET}04:80
 
   keycloak-db:
-    image: postgres
+    image: postgres:13.3
     volumes:
       - keycloak-db-pgdata:/var/lib/postgresql/data
       - ./docker/keycloak-db/init.sql:/docker-entrypoint-initdb.d/init.sql
@@ -45,14 +45,14 @@ services:
       - ${STACK_OFFSET}05:5432
 
   keycloak:
-    image: jboss/keycloak
+    image: jboss/keycloak:16.1.1
     env_file:
       - docker/keycloak/keycloak.env
     ports:
       - ${STACK_OFFSET}06:8080
 
   wordpress-db:
-    image: mysql
+    image: mysql:8.0
     volumes:
       - wordpress-db-data:/var/lib/mysql
       - ./docker/wordpress-db/init.sql:/docker-entrypoint-initdb.d/init.sql
@@ -63,7 +63,7 @@ services:
       - ${STACK_OFFSET}07:5432
 
   wordpress:
-    image: wordpress:latest
+    image: wordpress:php8.1-fpm-alpine
     volumes:
       - wordpress-data:/var/www/html
     ports:
