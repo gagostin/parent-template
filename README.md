@@ -47,4 +47,5 @@ The url for the login is: ```http://localhost:10008/wp-admin```
 # Da fare:
 ```
 Indagare sull'esistenza di un sistema di storage dati open source (MinIO)
+Capire perché l'immagine wordpress mi funziona solo con la versione latest (non può stare)
 ```
