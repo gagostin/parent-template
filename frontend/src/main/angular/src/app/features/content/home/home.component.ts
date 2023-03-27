@@ -15,7 +15,7 @@ export class HomeComponent extends AbstractComponent implements OnInit {
   constructor(
     private restService : RestService
   ) {
-    super('home-page');
+    super('homePage');
   }
 
   ngOnInit(): void {

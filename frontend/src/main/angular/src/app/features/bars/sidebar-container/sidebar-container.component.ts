@@ -15,7 +15,7 @@ export class SidebarContainerComponent extends AbstractComponent implements Afte
   constructor(
     public sidebarService : SidebarService
   ) {
-    super('logged-page');
+    super('loggedPage');
   }
 
   ngAfterViewInit() {

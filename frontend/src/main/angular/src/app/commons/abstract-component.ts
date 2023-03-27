@@ -1,20 +1,17 @@
-import { environment } from 'src/environments/environment';
-import { Directive } from '@angular/core';
-import {CmsService} from "../services/cms/cms.service";
+import {environment} from 'src/environments/environment';
+import * as fields from 'src/lang/it.json';
+import {Directive} from '@angular/core';
 
 @Directive()
 export class AbstractComponent {
 
-  public fields: any = {};
+  public fields: any;
   public env: any;
 
-  constructor(public slug?: string) {
+  constructor(public slug : string) {
     this.env = environment;
 
-    if (this.slug) {
-      this.fields = CmsService.getPageFields(this.slug);
-    } else {
-      this.fields = CmsService.getPageFields();
-    }
+    this.fields = fields[slug];
   }
+
 }

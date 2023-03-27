@@ -14,7 +14,7 @@ export class HeaderToolbarComponent extends AbstractComponent implements OnInit 
   @Output() onButtonClicked: EventEmitter<any> = new EventEmitter<any>();
 
   constructor() {
-    super('logged-page');
+    super('loggedPage');
   }
 
   ngOnInit(): void {

@@ -1,0 +1,12 @@
+{
+  "loggedPage" : {
+    "headerToolbarTitle" : "Parent Template",
+    "sidebarContainerHomeButtonText" : "Pagina iniziale",
+    "sidebarContainerProfileButtonText" : "Profilo",
+    "sidebarContainerLogoutButtonText" : "Esci"
+  },
+  "homePage" : {
+
+  }
+
+}

@@ -17,7 +17,6 @@ import {initializeKeycloak} from "./init/keycloak-init";
 import {AuthService} from "./services/auth/auth.service";
 import {LoggedPageComponent} from './features/structure/logged-page/logged-page.component';
 import {HttpClientModule} from "@angular/common/http";
-import {CmsService} from "./services/cms/cms.service";
 
 @NgModule({
   declarations: [
@@ -47,16 +46,7 @@ import {CmsService} from "./services/cms/cms.service";
       multi: true,
       deps: [ KeycloakService ]
     },
-    AuthService,
-    CmsService,
-    {
-      provide: APP_INITIALIZER,
-      useFactory: (cmsService : CmsService) => () => {
-        return cmsService.initPages()
-      },
-      multi: true,
-      deps: [ CmsService ]
-    }
+    AuthService
   ],
   bootstrap: [AppComponent]
 })
