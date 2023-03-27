@@ -60,7 +60,7 @@ services:
     env_file:
       - docker/wordpress-db/wordpress-db.env
     ports:
-      - ${STACK_OFFSET}07:5432
+      - ${STACK_OFFSET}07:3306
 
   wordpress:
     image: wordpress:latest
