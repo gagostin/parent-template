@@ -8,11 +8,6 @@
 1. File > Settings > Version Control > GitHub
 2. On connection https://github.com use the generated token
 
-# Token in use
-```
-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
-```
-
 # Keycloak URLs
 Administration console 
 ```
@@ -52,4 +47,6 @@ The url for the login is: ```http://localhost:10008/wp-admin```
 # Da fare:
 ```
 Indagare sull'esistenza di un sistema di storage dati open source (MinIO)
+Capire perché l'immagine wordpress mi funziona solo con la versione latest (non può stare)
+Ci sono problemi sulla rotta /home
 ```
