@@ -39,8 +39,7 @@
 }
 
 .sidebar-name {
-  margin: 0;
-  margin-top: 8px;
+  margin: 8px 0 0;
   font-weight: normal;
 }
 
@@ -54,18 +53,4 @@
   margin-top: 2px;
   font-size: 0.7rem;
   color: lightgray;
-}
-
-.sidebar-content {
-  height: calc(100vh - 98px);
-  margin: 16px;
-  margin-left: 32px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  font-size: 2rem;
-  color: lightgray;
-
-  border-radius: 10px;
 }

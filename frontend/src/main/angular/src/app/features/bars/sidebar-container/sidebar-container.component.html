@@ -2,7 +2,7 @@
 
   <mat-sidenav class="sidebar">
 
-    <img class="sidebar-avatar mat-elevation-z8" src="https://compass-media.vogue.it/photos/60f05b0899a003d298c3ca50/2:3/w_1920,c_limit/Thimothe%CC%81%20Chalamet%20Cannes%202021.jpg">
+    <img class="sidebar-avatar mat-elevation-z8" src="https://scontent-mxp1-1.xx.fbcdn.net/v/t39.30808-6/243833120_4312757138774194_4740647264459023927_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=FrC7RCa4M7cAX_oJmwe&_nc_ht=scontent-mxp1-1.xx&oh=00_AfBOxf5aU59lJfy1nJF5k-xJ59eObLRjaUjUc-hAIzvlZw&oe=642A52C5">
     <h4 class="sidebar-name">{{sidebarService.userInformation.name}} {{sidebarService.userInformation.surname}}</h4>
     <p class="sidebar-email">{{sidebarService.userInformation.email}}</p>
 
@@ -11,6 +11,7 @@
     <p class="sidebar-designation">Software Engineer</p>
 
     <mat-divider class="sidebar-divider"></mat-divider>
+
 
     <button mat-button class="sidebar-menu-button" (click)="sidebarService.actionHome()">
       <mat-icon>home</mat-icon>
@@ -30,7 +31,7 @@
   </mat-sidenav>
 
   <mat-sidenav-content>
-    <div class="sidebar-content mat-elevation-z4">
+    <div class="mat-elevation-z4">
       <router-outlet></router-outlet>
     </div>
   </mat-sidenav-content>

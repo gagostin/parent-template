@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, ViewChild, ViewEncapsulation} from '@angular/core';
 import {MatSidenav} from "@angular/material/sidenav";
 import {SidebarService} from "../../../services/sidebar/sidebar.service";
 import {AbstractComponent} from "../../../commons/abstract-component";

@@ -1,7 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {RestService} from "../../../services/rest/rest.service";
-import {Test} from "../../../models/rest";
 import {AbstractComponent} from "../../../commons/abstract-component";
+import {CalendarOptions} from "@fullcalendar/core";
+import dayGridPlugin from "@fullcalendar/daygrid";
+import interactionPlugin from "@fullcalendar/interaction";
+import timeGrigPlugin from '@fullcalendar/timegrid';
 
 @Component({
   selector: 'app-home',
@@ -10,22 +12,43 @@ import {AbstractComponent} from "../../../commons/abstract-component";
 })
 export class HomeComponent extends AbstractComponent implements OnInit {
 
-  public tests : Test[];
+  Events: any[] = [];
+  calendarOptions: CalendarOptions = {
+    plugins: [
+      dayGridPlugin,
+      timeGrigPlugin,
+      interactionPlugin,
+    ],
+    headerToolbar: {
+      left: 'prev,next today',
+      center: 'title',
+      right: 'dayGridMonth,timeGridWeek,timeGridDay'
+    },
+    initialView: 'dayGridMonth',
+    weekends: false,
+    editable: true,
+    selectable: true,
+    selectMirror: true,
+    dayMaxEvents: true,
+    height: "100%"
+  };
 
-  constructor(
-    private restService : RestService
-  ) {
+  constructor() {
     super('homePage');
   }
 
-  ngOnInit(): void {
-    this.restService.getAllTests().toPromise().then(
-      response => {
-        if(response !== undefined) this.tests = response
-      },
-      errors => console.log(errors)
-    );
+  onDateClick(res: any) {
+    alert('Clicked on date : ' + res.dateStr);
+  }
 
+  ngOnInit() {
+    setTimeout(() => {
+      this.calendarOptions = {
+        initialView: 'dayGridMonth',
+        dateClick: this.onDateClick.bind(this),
+        events: this.Events,
+      };
+    }, 2500);
   }
 
 }
