@@ -52,4 +52,5 @@ export class SidebarService {
   public actionLogout() {
     this.keycloakService.logout();
   }
+
 }

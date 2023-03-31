@@ -4,6 +4,7 @@ import {Calendar} from "@fullcalendar/core";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import interactionPlugin from "@fullcalendar/interaction";
 import timeGrigPlugin from '@fullcalendar/timegrid';
+import {SidebarService} from "../../../services/sidebar/sidebar.service";
 
 @Component({
   selector: 'app-home',
@@ -48,6 +49,8 @@ export class HomeComponent extends AbstractComponent implements OnInit {
         hour12: false
       },
       dateClick: this.onDateClick.bind(this),
+      eventClick: this.onEventClick.bind(this),
+      select: this.onSelection.bind(this),
       events: this.events
     });
 
@@ -56,19 +59,37 @@ export class HomeComponent extends AbstractComponent implements OnInit {
 
 
   onDateClick(res: any) {
-    console.log(res);
+    // console.log(res);
 
-    let event = this.calendar.addEvent({
-      title: 'Commessa non disponibile',
-      start: res.dateStr + 'T09:00:00',
-      end: res.dateStr + 'T18:00:00',
-      allDay: false,
-      editable: true,
-      color: 'red'
-    });
+    // let event = this.calendar.addEvent({
+    //   title: 'Commessa non disponibile',
+    //   start: res.dateStr + 'T09:00:00',
+    //   end: res.dateStr + 'T18:00:00',
+    //   allDay: false,
+    //   editable: true,
+    //   color: 'red'
+    // });
+    //
+    // // TODO: in questo momento sto salvando degli oggetti di tipo EventImpl, devo salvare solo il json
+    // this.events.push(event);
+  }
 
-    // TODO: in questo momento sto salvando degli oggetti di tipo EventImpl, devo salvare solo il json
-    this.events.push(event);
+  onEventClick(res: any) {
+    // console.log("event clicked: " + res);
+  }
+
+  onSelection(res: any) {
+    switch (res.view.type) {
+      case 'dayGridMonth':
+        console.log('dayGridMonth selected');
+        break;
+      case 'timeGridWeek':
+        console.log('timeGridWeek selected');
+        break;
+      case 'timeGridDay':
+        console.log('timeGridDay selected');
+        break;
+    }
   }
 
 }
