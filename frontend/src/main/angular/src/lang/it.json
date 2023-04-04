@@ -6,7 +6,12 @@
     "sidebarContainerLogoutButtonText" : "Esci"
   },
   "homePage" : {
-
+    "calendar" : {
+      "selectedDayButtonText" : "focus",
+      "addEventButtonText" : "Aggiungi evento",
+      "editEventButtonText" : "Modifica evento",
+      "deleteEventButtonText" : "Rimuovi evento"
+    }
   }
 
 }
