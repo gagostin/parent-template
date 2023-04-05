@@ -17,6 +17,7 @@ import {initializeKeycloak} from "./init/keycloak-init";
 import {AuthService} from "./services/auth/auth.service";
 import {LoggedPageComponent} from './features/structure/logged-page/logged-page.component';
 import {HttpClientModule} from "@angular/common/http";
+import {DatePipe} from "@angular/common";
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import {HttpClientModule} from "@angular/common/http";
       multi: true,
       deps: [ KeycloakService ]
     },
-    AuthService
+    AuthService,
+    DatePipe
   ],
   bootstrap: [AppComponent]
 })

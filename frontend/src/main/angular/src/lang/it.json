@@ -7,7 +7,7 @@
   },
   "homePage" : {
     "calendar" : {
-      "selectedDayButtonText" : "focus",
+      "focusButtonText" : "focus",
       "addEventButtonText" : "Aggiungi evento",
       "editEventButtonText" : "Modifica evento",
       "deleteEventButtonText" : "Rimuovi evento"

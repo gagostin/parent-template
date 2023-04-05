@@ -3,6 +3,8 @@ import {Calendar} from "@fullcalendar/core";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGrigPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
+import {EventImpl} from "@fullcalendar/core/internal";
+import {DatePipe} from "@angular/common";
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +14,9 @@ export class CalendarService {
   calendar : Calendar;
   selected : any = null;
 
-  constructor() { }
+  constructor(
+    private datePipe : DatePipe
+  ) { }
 
   public buildCalendar(fullCalendarElement: HTMLElement, fields: any, initialEvents: any[]) : Calendar {
 
@@ -20,40 +24,40 @@ export class CalendarService {
       plugins: [
         dayGridPlugin,
         timeGrigPlugin,
-        interactionPlugin,
+        interactionPlugin
       ],
       customButtons: {
 
         // header
-        selectedDay: {
-          text: fields.calendar.selectedDayButtonText,
-          click: (event, element) => this.changeToSelectedDay(event, element)
+        focus: {
+          text: fields.calendar.focusButtonText,
+          click: () => this.changeToSelectedDay()
         },
 
         // footer
         addEvent: {
           text: fields.calendar.addEventButtonText,
-          click: (event, element) => this.addEvent(event, element)
+          click: () => this.addEvent()
         },
         editEvent: {
           text: fields.calendar.editEventButtonText,
-          click: (event: MouseEvent, element: HTMLElement) => this.editEvent(event, element)
+          click: () => this.editEvent()
         },
         deleteEvent: {
           text: fields.calendar.deleteEventButtonText,
-          click: (event: MouseEvent, element: HTMLElement) => this.deleteEvent(event, element)
+          click: () => this.deleteEvent()
         }
       },
       headerToolbar: {
-        left: 'prev,next today selectedDay',
+        left: 'prev,next',
         center: 'title',
-        right: 'dayGridMonth,timeGridWeek,timeGridDay'
+        right: 'dayGridMonth focus,today'
       },
       footerToolbar: {
         center: 'addEvent editEvent deleteEvent'
       },
       initialView: 'dayGridMonth',
-      weekends: false,
+      weekends: true,
       editable: true,
       selectable: true,
       selectMirror: true,
@@ -64,103 +68,102 @@ export class CalendarService {
         minute: "2-digit",
         hour12: false
       },
-      dateClick: this.onDateClick.bind(this),
-      eventClick: this.onEventClick.bind(this),
       select: this.onSelection.bind(this),
       events: initialEvents
     });
 
     this.calendar.render();
-
     return this.calendar;
-  }
-
-  private onDateClick(res: any) {
-    // console.log(res);
-
-    //  let event = this.calendar.addEvent({
-    //    title: 'Commessa non disponibile',
-    //    start: res.dateStr + 'T09:00:00',
-    //    end: res.dateStr + 'T18:00:00',
-    //    allDay: false,
-    //    editable: true,
-    //    color: 'red'
-    //  });
-    //
-    // // TODO: in questo momento sto salvando degli oggetti di tipo EventImpl, devo salvare solo il json
-    // this.events.push(event);
-  }
-
-  private onEventClick(res: any) {
-    console.log("event clicked: " + res);
   }
 
   private onSelection(res: any) {
     this.selected = res;
-    // switch (res.view.type) {
-    //   case 'dayGridMonth':
-    //     console.log('dayGridMonth selected');
-    //     break;
-    //   case 'timeGridWeek':
-    //     console.log('timeGridWeek selected');
-    //     break;
-    //   case 'timeGridDay':
-    //     console.log('timeGridDay selected');
-    //     break;
-    // }
   }
 
-  private changeToSelectedDay(event: MouseEvent, element: HTMLElement) {
+  private changeToSelectedDay() {
     if(this.selected != null) {
       switch (this.selected.view.type) {
         case 'dayGridMonth':
-          if(this.isSingleDay()) {
+          if(CalendarService.isSingleDay(this.selected)) {
             this.calendar.changeView('timeGridDay', this.selected.startStr);
+          } else {
+            console.log('please select only one day');
           }
           break;
+        default:
+          console.log('case not managed: ' + this.selected);
       }
     }
   }
 
-  private addEvent(event: MouseEvent, element: HTMLElement) {
+  private addEvent() {
     if(this.selected != null) {
       switch (this.selected.view.type) {
         case 'dayGridMonth':
-          if(this.isSingleDay()) {
-            let event = this.calendar.addEvent({
-              title: 'Commessa non disponibile',
-              start: this.selected.startStr + 'T09:00:00',
-              end: this.selected.startStr + 'T18:00:00',
-              allDay: false,
-              editable: true,
-              color: 'red'
-            });
-          } else {
-            console.log('manage multiple day add event')
+          let startDate : Date = this.selected.start;
+          let endDate : Date = this.selected.end;
+
+          for (let date = startDate; date < endDate; date.setDate(date.getDate() + 1)) {
+            this.pushEvent(this.datePipe.transform(date, 'yyyy-MM-dd'));
           }
           break;
-        case 'timeGridWeek':
-          console.log('timeGridWeek selected');
-          break;
-        case 'timeGridDay':
-          console.log('timeGridDay selected');
-          break;
+        default:
+          console.log('case not managed: ' + this.selected);
       }
     }
   }
 
-  private editEvent(event: MouseEvent, element: HTMLElement) {
+  private editEvent() {
 
   }
 
-  private deleteEvent(event: MouseEvent, element: HTMLElement) {
+  private deleteEvent() {
+    let events: EventImpl[] = this.calendar.getEvents();
+    if (events !== undefined && events !== null) {
 
+      if (this.selected != null) {
+        switch (this.selected.view.type) {
+          case 'dayGridMonth':
+            let candidateEvents: EventImpl[] = events.filter(event => CalendarService.isInSelection(event, this.selected));
+            candidateEvents.forEach(candidateEvent => candidateEvent.remove());
+            break;
+          default:
+            console.log('case not managed: ' + this.selected);
+        }
+      }
+
+    }
   }
 
-  private isSingleDay() : boolean {
-    let start : Date = this.selected.start;
-    let end : Date = this.selected.end;
+  private static isSingleDay(selection : any) : boolean {
+    let start : Date = selection.start;
+    let end : Date = selection.end;
     return end.getTime() - start.getTime() === 86400000;
+  }
+
+  private static isInSelection(event: EventImpl, selection: any) : boolean {
+    let startDate: Date | null = selection.start;
+    let endDate: Date | null = selection.end;
+    let eventDate: Date | null = event.start;
+
+    if(startDate === null || endDate === null || eventDate === null)
+      return false;
+    else return startDate <= eventDate && eventDate < endDate;
+  }
+
+  /**
+   * Accepts a date in yyyy-mm-dd format.
+   * */
+  private pushEvent(date : string | null) : EventImpl | null {
+    if(date === null) return null;
+    else return this.calendar.addEvent({
+      title: 'Commessa non disponibile',
+      start: date + 'T09:00:00',
+      end: date + 'T18:00:00',
+      allDay: false,
+      editable: true,
+      color: 'red'
+    });
   }
 
 }
