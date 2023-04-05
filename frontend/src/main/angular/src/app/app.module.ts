@@ -18,6 +18,9 @@ import {AuthService} from "./services/auth/auth.service";
 import {LoggedPageComponent} from './features/structure/logged-page/logged-page.component';
 import {HttpClientModule} from "@angular/common/http";
 import {DatePipe} from "@angular/common";
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatSelectModule} from "@angular/material/select";
+import {MatInputModule} from "@angular/material/input";
 
 @NgModule({
   declarations: [
@@ -35,6 +38,9 @@ import {DatePipe} from "@angular/common";
     MatButtonModule,
     MatIconModule,
     MatDividerModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    MatInputModule,
     FeaturesModule,
     KeycloakAngularModule,
     HttpClientModule
