@@ -1,0 +1,16 @@
+<div class="general-content">
+
+    <cdk-virtual-scroll-viewport itemSize="50" class="commesse-viewport">
+        <div *cdkVirtualFor="let commessa of commesse" class="commesse-item">
+            <mat-card>
+                <mat-card-header>
+                    <mat-card-title>{{commessa.key}}</mat-card-title>
+                    <mat-card-subtitle>{{commessa.description}}</mat-card-subtitle>
+                </mat-card-header>
+                <mat-card-actions align="end">
+                    <button mat-button (click)="setDefault(commessa)">{{fields.setAsDefaultButtonText}}</button>
+                </mat-card-actions>
+            </mat-card>
+        </div>
+    </cdk-virtual-scroll-viewport>
+</div>

@@ -5,6 +5,8 @@ import timeGrigPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
 import {EventImpl} from "@fullcalendar/core/internal";
 import {DatePipe} from "@angular/common";
+import {CommesseService} from "../commesse/commesse.service";
+import {Commessa} from "../../models/commessa";
 
 @Injectable({
   providedIn: 'root'
@@ -12,10 +14,12 @@ import {DatePipe} from "@angular/common";
 export class CalendarService {
 
   calendar : Calendar;
-  selected : any = null;
+  selectedArea : any = null;
+  selectedEvent : any = null;
 
   constructor(
-    private datePipe : DatePipe
+    private datePipe : DatePipe,
+    private commesseService : CommesseService
   ) { }
 
   public buildCalendar(fullCalendarElement: HTMLElement, fields: any, initialEvents: any[]) : Calendar {
@@ -69,6 +73,7 @@ export class CalendarService {
         hour12: false
       },
       select: this.onSelection.bind(this),
+      eventClick: this.onEventClick.bind(this),
       events: initialEvents
     });
 
@@ -77,43 +82,53 @@ export class CalendarService {
   }
 
   private onSelection(res: any) {
-    this.selected = res;
+    this.selectedArea = res;
+    this.selectedEvent = null;
+  }
+
+  private onEventClick(res: any) {
+    this.selectedEvent = res;
+    this.selectedArea = null;
   }
 
   private changeToSelectedDay() {
-    if(this.selected != null) {
-      switch (this.selected.view.type) {
+    if(this.selectedArea != null) {
+      switch (this.selectedArea.view.type) {
         case 'dayGridMonth':
-          if(CalendarService.isSingleDay(this.selected)) {
-            this.calendar.changeView('timeGridDay', this.selected.startStr);
+          if(CalendarService.isSingleDay(this.selectedArea)) {
+            this.calendar.changeView('timeGridDay', this.selectedArea.startStr);
           } else {
             console.log('please select only one day');
           }
           break;
         default:
-          console.log('case not managed: ' + this.selected);
+          console.log('case not managed: ' + this.selectedArea);
       }
     }
   }
 
   private addEvent() {
-    if(this.selected != null) {
-      switch (this.selected.view.type) {
+    if(this.selectedArea != null) {
+      switch (this.selectedArea.view.type) {
         case 'dayGridMonth':
-          let startDate : Date = this.selected.start;
-          let endDate : Date = this.selected.end;
+          let startDate : Date = this.selectedArea.start;
+          let endDate : Date = this.selectedArea.end;
 
           for (let date = startDate; date < endDate; date.setDate(date.getDate() + 1)) {
             this.pushEvent(this.datePipe.transform(date, 'yyyy-MM-dd'));
           }
           break;
         default:
-          console.log('case not managed: ' + this.selected);
+          console.log('case not managed: ' + this.selectedArea);
       }
     }
   }
 
   private editEvent() {
+    if(this.selectedEvent != null) {
+      let event : EventImpl = this.selectedEvent.event;
+      console.log('Modifying event ' + event);
+    }
 
   }
 
@@ -121,15 +136,17 @@ export class CalendarService {
     let events: EventImpl[] = this.calendar.getEvents();
     if (events !== undefined && events !== null) {
 
-      if (this.selected != null) {
-        switch (this.selected.view.type) {
+      if (this.selectedArea != null) {
+        switch (this.selectedArea.view.type) {
           case 'dayGridMonth':
-            let candidateEvents: EventImpl[] = events.filter(event => CalendarService.isInSelection(event, this.selected));
+            let candidateEvents: EventImpl[] = events.filter(event => CalendarService.isInSelection(event, this.selectedArea));
             candidateEvents.forEach(candidateEvent => candidateEvent.remove());
             break;
           default:
-            console.log('case not managed: ' + this.selected);
+            console.log('case not managed: ' + this.selectedArea);
         }
+      } else if(this.selectedEvent != null) {
+        this.selectedEvent.event.remove();
       }
 
     }
@@ -156,14 +173,17 @@ export class CalendarService {
    * */
   private pushEvent(date : string | null) : EventImpl | null {
     if(date === null) return null;
-    else return this.calendar.addEvent({
-      title: 'Commessa non disponibile',
-      start: date + 'T09:00:00',
-      end: date + 'T18:00:00',
-      allDay: false,
-      editable: true,
-      color: 'red'
-    });
+    else {
+      let defaultCommessa : Commessa = this.commesseService.getDefault();
+      return this.calendar.addEvent({
+        title: defaultCommessa.key + ': ' + defaultCommessa.description,
+        start: date + 'T09:00:00',
+        end: date + 'T18:00:00',
+        allDay: false,
+        editable: true,
+        color: defaultCommessa.color
+      });
+    }
   }
 
 }

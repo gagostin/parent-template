@@ -21,6 +21,11 @@ import {DatePipe} from "@angular/common";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatSelectModule} from "@angular/material/select";
 import {MatInputModule} from "@angular/material/input";
+import {CommesseComponent} from './features/content/commesse/commesse.component';
+import {MatCardModule} from "@angular/material/card";
+import {MatGridListModule} from "@angular/material/grid-list";
+import {MatListModule} from "@angular/material/list";
+import {ScrollingModule} from "@angular/cdk/scrolling";
 
 @NgModule({
   declarations: [
@@ -28,6 +33,7 @@ import {MatInputModule} from "@angular/material/input";
     HeaderToolbarComponent,
     SidebarContainerComponent,
     LoggedPageComponent,
+    CommesseComponent
   ],
   imports: [
     BrowserModule,
@@ -41,6 +47,8 @@ import {MatInputModule} from "@angular/material/input";
     MatFormFieldModule,
     MatSelectModule,
     MatInputModule,
+    MatCardModule,
+    ScrollingModule,
     FeaturesModule,
     KeycloakAngularModule,
     HttpClientModule

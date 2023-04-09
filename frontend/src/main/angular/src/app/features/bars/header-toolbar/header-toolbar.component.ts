@@ -13,17 +13,6 @@ export class HeaderToolbarComponent extends AbstractComponent implements OnInit 
 
   @Output() onButtonClicked: EventEmitter<any> = new EventEmitter<any>();
 
-  omitted = [
-    {
-      name : 'prova1',
-      slug : 'prova1'
-    },
-    {
-      name : 'prova2',
-      slug : 'prova2'
-    }
-  ]
-
   constructor() {
     super('loggedPage');
   }

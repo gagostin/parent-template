@@ -9,13 +9,4 @@
   </button>
   {{fields.headerToolbarTitle}}
 
-  <span style="flex: 1 1 auto;" ></span>
-
-  <mat-form-field appearance="fill">
-    <mat-select [(value)]="omitted">
-      <mat-option *ngFor="let omitted of omitted" [value]="omitted.slug">
-        {{ omitted.name }}
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
 </mat-toolbar>

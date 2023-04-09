@@ -3,6 +3,7 @@
     "headerToolbarTitle" : "Monthly",
     "sidebarContainerHomeButtonText" : "Pagina iniziale",
     "sidebarContainerProfileButtonText" : "Profilo",
+    "sidebarContainerCommesseButtonText" : "Gestione commesse",
     "sidebarContainerLogoutButtonText" : "Esci"
   },
   "homePage" : {
@@ -12,6 +13,9 @@
       "editEventButtonText" : "Modifica evento",
       "deleteEventButtonText" : "Rimuovi evento"
     }
+  },
+  "commessePage" : {
+    "setAsDefaultButtonText" : "Imposta come predefinito"
   }
 
 }

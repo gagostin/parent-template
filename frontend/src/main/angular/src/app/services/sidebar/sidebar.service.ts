@@ -49,6 +49,10 @@ export class SidebarService {
     this.router.navigate(['/profile'])
   }
 
+  public actionCommesse() {
+    this.router.navigate(['/commesse'])
+  }
+
   public actionLogout() {
     this.keycloakService.logout();
   }
