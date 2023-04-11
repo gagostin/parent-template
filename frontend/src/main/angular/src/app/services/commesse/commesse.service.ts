@@ -11,32 +11,38 @@ export class CommesseService {
     {
       key: 'SMW',
       description: 'Smart Working',
-      color: 'red'
+      color: 'red',
+      image: 'home.jpeg'
     },
     {
       key: 'SED',
       description: 'Lavoro in sede',
-      color: 'blue'
+      color: 'blue',
+      image: 'ags-italia.jpeg'
     },
     {
       key: 'CLI',
       description: 'Lavoro dal cliente',
-      color: 'yellow'
+      color: 'yellow',
+      image: 'mobilize-fs.jpeg'
     },
     {
       key: 'PAR',
       description: 'Permesso annuo retribuito',
-      color: 'green'
+      color: 'green',
+      image: 'permesso.jpeg'
     },
     {
       key: 'FER',
       description: 'Giornata di ferie',
-      color: 'white'
+      color: 'white',
+      image: 'ferie.jpeg'
     },
     {
       key: 'MAL',
       description: 'Malattia',
-      color: 'black'
+      color: 'black',
+      image: 'malattia.jpeg'
     }
   ]
 

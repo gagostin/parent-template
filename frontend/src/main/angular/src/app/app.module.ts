@@ -23,9 +23,9 @@ import {MatSelectModule} from "@angular/material/select";
 import {MatInputModule} from "@angular/material/input";
 import {CommesseComponent} from './features/content/commesse/commesse.component';
 import {MatCardModule} from "@angular/material/card";
-import {MatGridListModule} from "@angular/material/grid-list";
-import {MatListModule} from "@angular/material/list";
 import {ScrollingModule} from "@angular/cdk/scrolling";
+import {MatRadioModule} from "@angular/material/radio";
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
   declarations: [
@@ -48,7 +48,9 @@ import {ScrollingModule} from "@angular/cdk/scrolling";
     MatSelectModule,
     MatInputModule,
     MatCardModule,
+    MatRadioModule,
     ScrollingModule,
+    FlexLayoutModule,
     FeaturesModule,
     KeycloakAngularModule,
     HttpClientModule
