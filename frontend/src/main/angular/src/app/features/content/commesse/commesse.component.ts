@@ -28,4 +28,8 @@ export class CommesseComponent extends AbstractComponent implements OnInit {
     this.commesseService.setDefault(commessa);
   }
 
+  isDefault(commessa : Commessa) : boolean {
+    return this.commesseService.getDefault() === commessa;
+  }
+
 }
