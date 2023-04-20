@@ -1,7 +1,7 @@
 package com.gago.rest.controllers;
 
-import com.gago.rest.models.Test;
-import com.gago.rest.services.TestService;
+import com.gago.rest.models.Commessa;
+import com.gago.rest.services.CommessaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -9,7 +9,6 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
 
-import java.util.Arrays;
 import java.util.List;
 
 import static org.hamcrest.Matchers.hasSize;
@@ -19,43 +18,37 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@WebMvcTest(TestController.class)
+@WebMvcTest(CommessaController.class)
 @ActiveProfiles({"test", "h2db"})
-public class TestControllerTest {
+public class CommessaControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
 
     @MockBean
-    private TestService service;
+    private CommessaService service;
 
     @org.junit.jupiter.api.Test
-    public void shouldReturnAllTestEntities() throws Exception {
-        List<Test> results = Arrays.asList(
-                Test.builder()
-                        .id("1")
-                        .key("HELLO")
-                        .value("WORLD")
-                        .build(),
-                Test.builder()
-                        .id("2")
-                        .key("CIAO")
-                        .value("MONDO")
+    public void shouldReturnAllCommesse() throws Exception {
+        List<Commessa> results = List.of(
+                Commessa.builder()
+                        .key("AAA")
+                        .description("A description")
+                        .color("red")
+                        .img("prova.jpeg")
                         .build()
         );
         when(service.findAll()).thenReturn(results);
 
-        this.mockMvc.perform(get("/tests")
+        this.mockMvc.perform(get("/commesse")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$", hasSize(2)))
-                .andExpect(jsonPath("$[0].id").value(1))
-                .andExpect(jsonPath("$[0].key").value("HELLO"))
-                .andExpect(jsonPath("$[0].value").value("WORLD"))
-                .andExpect(jsonPath("$[1].id").value(2))
-                .andExpect(jsonPath("$[1].key").value("CIAO"))
-                .andExpect(jsonPath("$[1].value").value("MONDO"));
+                .andExpect(jsonPath("$", hasSize(1)))
+                .andExpect(jsonPath("$[0].key").value("AAA"))
+                .andExpect(jsonPath("$[0].description").value("A description"))
+                .andExpect(jsonPath("$[0].color").value("red"))
+                .andExpect(jsonPath("$[0].img").value("prova.jpeg"));
 
         verify(service, times(1)).findAll();
     }

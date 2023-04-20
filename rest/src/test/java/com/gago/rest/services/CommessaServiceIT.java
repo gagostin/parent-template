@@ -1,6 +1,6 @@
 package com.gago.rest.services;
 
-import com.gago.rest.models.Test;
+import com.gago.rest.models.Commessa;
 import com.gago.rest.utils.ComponentsLoader;
 import com.gago.rest.utils.DatabaseLoader;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -16,17 +16,17 @@ import static org.junit.jupiter.api.Assertions.*;
 @ExtendWith(SpringExtension.class)
 @SpringBootTest(classes = {ComponentsLoader.class, DatabaseLoader.class})
 @ActiveProfiles("h2db")
-public class TestServiceIT {
+public class CommessaServiceIT {
 
     @Autowired
-    private TestService service;
+    private CommessaService service;
 
     @org.junit.jupiter.api.Test
     void findAllSuccessfully() {
-        List<Test> tests = service.findAll();
-        assertNotNull(tests);
-        assertFalse(tests.isEmpty());
-        assertEquals(1, tests.size());
+        List<Commessa> commesse = service.findAll();
+        assertNotNull(commesse);
+        assertFalse(commesse.isEmpty());
+        assertEquals(6, commesse.size());
     }
 
 }

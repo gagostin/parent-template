@@ -9,23 +9,26 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import java.io.Serializable;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
 @Entity
-@Table(name="test")
-public class Test implements Serializable {
+@Table(name="commessa")
+public class Commessa {
 
     @Id
-    @Column(name = "test_id")
-    private String id;
-
-    @Column(name = "test_key")
+    @Column(name="key")
     private String key;
 
-    @Column(name = "test_value")
-    private String value;
+    @Column(name="description")
+    private String description;
+
+    @Column(name="color")
+    private String color;
+
+    @Column(name="img")
+    private String img;
+
 }
