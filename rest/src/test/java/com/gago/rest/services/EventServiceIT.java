@@ -26,7 +26,7 @@ public class EventServiceIT {
 
     @org.junit.jupiter.api.Test
     void findAllSuccessfully() {
-        List<Event> events = service.findAll();
+        List<Event> events = service.findAll("54eb2f58-9503-4b29-8920-722d571026a4");
         assertNotNull(events);
         assertFalse(events.isEmpty());
         assertEquals(1, events.size());
@@ -54,7 +54,7 @@ public class EventServiceIT {
         assertFalse(ids.isEmpty());
         assertEquals(2, ids.size());
 
-        List<Event> events = service.findAll();
+        List<Event> events = service.findAll("54eb2f58-9503-4b29-8920-722d571026a4");
         assertNotNull(events);
         assertFalse(events.isEmpty());
         assertTrue(events.stream().anyMatch(e -> e.getId().equals(ids.get(0))));

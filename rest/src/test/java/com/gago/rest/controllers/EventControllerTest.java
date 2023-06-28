@@ -71,7 +71,7 @@ public class EventControllerTest {
                                 .build())
                         .build()
         );
-        when(service.findAll()).thenReturn(results);
+        when(service.findAll("54eb2f58-9503-4b29-8920-722d571026a4")).thenReturn(results);
 
         this.mockMvc.perform(get("/events")
                         .contentType(MediaType.APPLICATION_JSON))
@@ -89,7 +89,7 @@ public class EventControllerTest {
                 .andExpect(jsonPath("$[0].commessa.color").value("red"))
                 .andExpect(jsonPath("$[0].commessa.img").value("prova.jpeg"));
 
-        verify(service, times(1)).findAll();
+        verify(service, times(1)).findAll("54eb2f58-9503-4b29-8920-722d571026a4");
     }
 
     @org.junit.jupiter.api.Test

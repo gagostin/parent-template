@@ -7,6 +7,6 @@ import java.util.List;
 
 public interface EventRepository extends CrudRepository<Event, Integer> {
 
-    List<Event> findAll();
+    List<Event> findByUserId(String userId);
 
 }

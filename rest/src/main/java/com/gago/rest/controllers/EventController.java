@@ -23,8 +23,8 @@ public class EventController {
     private EventService eventService;
 
     @GetMapping
-    public ResponseEntity<List<Event>> findAll() {
-        List<Event> response = eventService.findAll();
+    public ResponseEntity<List<Event>> findAll(@AuthenticationPrincipal Principal principal) {
+        List<Event> response = eventService.findAll(principal.getName());
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 

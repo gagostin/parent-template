@@ -23,9 +23,9 @@ public class EventService {
     @Autowired
     private CommessaService commessaService;
 
-    public List<Event> findAll() {
+    public List<Event> findAll(String userId) {
         log.info("getAll method started");
-        List<Event> events = eventRepository.findAll();
+        List<Event> events = eventRepository.findByUserId(userId);
         log.info("getAll method ended with a response of {} event", events.size());
         return events;
     }
