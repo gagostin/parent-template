@@ -16,9 +16,9 @@ import javax.persistence.*;
 public class Event {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     @Column(name = "event_id")
-    private Integer id;
+    private Long id;
 
     @Column(name = "all_day")
     private Boolean allDay;
@@ -36,7 +36,7 @@ public class Event {
     private String userId;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "key")
+    @JoinColumn(name = "commessa_key")
     private Commessa commessa;
 
 }

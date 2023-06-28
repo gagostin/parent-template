@@ -29,7 +29,8 @@ public class KeycloakSecurityConfiguration extends KeycloakWebSecurityConfigurer
     protected void configure(HttpSecurity http) throws Exception {
         super.configure(http);
         http.authorizeRequests()
-                .antMatchers(HttpMethod.GET, "/tests").hasAnyRole(Role.ROLE_USER.getOnKeycloak())
+                .antMatchers(HttpMethod.GET, "/commesse").hasAnyRole(Role.ROLE_USER.getOnKeycloak())
+                .antMatchers(HttpMethod.GET, "/events").hasAnyRole(Role.ROLE_USER.getOnKeycloak())
                 .anyRequest()
                 .authenticated();
         http.csrf().disable();

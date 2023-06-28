@@ -9,4 +9,6 @@ public interface CommessaRepository extends CrudRepository<Commessa, Integer> {
 
     List<Commessa> findAll();
 
+    Commessa findByKey(String key);
+
 }

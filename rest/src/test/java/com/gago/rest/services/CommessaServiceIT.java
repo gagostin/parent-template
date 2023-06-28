@@ -3,6 +3,7 @@ package com.gago.rest.services;
 import com.gago.rest.models.Commessa;
 import com.gago.rest.utils.ComponentsLoader;
 import com.gago.rest.utils.DatabaseLoader;
+import com.gago.rest.utils.exceptions.NotFoundException;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -27,6 +28,21 @@ public class CommessaServiceIT {
         assertNotNull(commesse);
         assertFalse(commesse.isEmpty());
         assertEquals(6, commesse.size());
+    }
+
+    @org.junit.jupiter.api.Test
+    void findByKeySuccessfully() throws NotFoundException {
+        Commessa commessa = service.find("SMW");
+        assertNotNull(commessa);
+        assertEquals("SMW", commessa.getKey());
+        assertEquals("red", commessa.getColor());
+        assertEquals("Smart Working", commessa.getDescription());
+        assertEquals("home.jpeg", commessa.getImg());
+    }
+
+    @org.junit.jupiter.api.Test
+    void findByKeyReturnsNotFound() {
+        assertThrows(NotFoundException.class, () -> service.find("NAN"));
     }
 
 }

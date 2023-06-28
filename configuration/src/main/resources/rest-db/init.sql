@@ -1,8 +1,6 @@
 DROP TABLE IF EXISTS event;
 DROP TABLE IF EXISTS commessa;
 
-DROP SEQUENCE IF EXISTS event_id_seq;
-
 CREATE TABLE IF NOT EXISTS commessa (
     key VARCHAR(3) NOT NULL,
     description VARCHAR(200) UNIQUE NOT NULL,
@@ -12,7 +10,7 @@ CREATE TABLE IF NOT EXISTS commessa (
 );
 
 CREATE TABLE IF NOT EXISTS event (
-    event_id SERIAL NOT NULL,
+    event_id INTEGER AUTO_INCREMENT NOT NULL,
     all_day BOOLEAN NOT NULL,
     start_date VARCHAR(50) NOT NULL,
     end_date VARCHAR(50) NOT NULL,
