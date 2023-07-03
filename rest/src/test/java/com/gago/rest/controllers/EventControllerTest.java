@@ -23,8 +23,7 @@ import java.util.List;
 
 import static org.hamcrest.Matchers.hasSize;
 import static org.mockito.Mockito.*;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -57,7 +56,7 @@ public class EventControllerTest {
     public void shouldReturnAllEvents() throws Exception {
         List<Event> results = List.of(
                 Event.builder()
-                        .id(1L)
+                        .eventId(1L)
                         .allDay(false)
                         .startDate("2023-06-21T09:00:00+02:00")
                         .endDate("2023-06-21T18:00:00+02:00")
@@ -78,7 +77,7 @@ public class EventControllerTest {
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", hasSize(1)))
-                .andExpect(jsonPath("$[0].id").value(1))
+                .andExpect(jsonPath("$[0].eventId").value(1))
                 .andExpect(jsonPath("$[0].allDay").value(false))
                 .andExpect(jsonPath("$[0].startDate").value("2023-06-21T09:00:00+02:00"))
                 .andExpect(jsonPath("$[0].endDate").value("2023-06-21T18:00:00+02:00"))
@@ -145,13 +144,70 @@ public class EventControllerTest {
     }
 
     @org.junit.jupiter.api.Test
-    public void shouldDeleteEventSuccessfully() throws Exception {
+    public void shouldFindEventSuccessfully() throws Exception {
 
+        Event results = Event.builder()
+                .eventId(1L)
+                .allDay(false)
+                .startDate("2023-06-21T09:00:00+02:00")
+                .endDate("2023-06-21T18:00:00+02:00")
+                .editable(true)
+                .userId("54eb2f58-9503-4b29-8920-722d571026a4")
+                .commessa(Commessa.builder()
+                        .key("AAA")
+                        .description("A description")
+                        .color("red")
+                        .img("prova.jpeg")
+                        .build())
+                .build();
+
+        when(service.find(anyString(), anyLong())).thenReturn(results);
+
+        this.mockMvc.perform(get("/events/1")
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$").exists())
+                .andExpect(jsonPath("$.eventId").value(1L))
+                .andExpect(jsonPath("$.allDay").value(false))
+                .andExpect(jsonPath("$.startDate").value("2023-06-21T09:00:00+02:00"))
+                .andExpect(jsonPath("$.endDate").value("2023-06-21T18:00:00+02:00"))
+                .andExpect(jsonPath("$.editable").value(true))
+                .andExpect(jsonPath("$.userId").value("54eb2f58-9503-4b29-8920-722d571026a4"))
+                .andExpect(jsonPath("$.commessa.key").value("AAA"))
+                .andExpect(jsonPath("$.commessa.description").value("A description"))
+                .andExpect(jsonPath("$.commessa.color").value("red"))
+                .andExpect(jsonPath("$.commessa.img").value("prova.jpeg"));
+    }
+
+    @org.junit.jupiter.api.Test
+    public void shouldNotFindEvent() throws Exception {
+        doThrow(NotFoundException.class).when(service).find(anyString(), anyLong());
+
+        this.mockMvc.perform(get("/events/0")
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andDo(print())
+                .andExpect(status().isNotFound());
+    }
+
+    @org.junit.jupiter.api.Test
+    public void shouldDeleteEventSuccessfully() throws Exception {
+        doNothing().when(service).delete(anyString(), anyLong());
+
+        this.mockMvc.perform(delete("/events/2")
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andDo(print())
+                .andExpect(status().isOk());
     }
 
     @org.junit.jupiter.api.Test
     public void shouldNotFindEventToDelete() throws Exception {
+        doThrow(NotFoundException.class).when(service).delete(anyString(), anyLong());
 
+        this.mockMvc.perform(delete("/events/0")
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andDo(print())
+                .andExpect(status().isNotFound());
     }
 
     @org.junit.jupiter.api.Test

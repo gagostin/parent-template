@@ -46,9 +46,37 @@ public class EventService {
         Iterable<Event> createdEvents = eventRepository.saveAll(eventsToSave);
 
         List<Long> ids = new ArrayList<>();
-        createdEvents.forEach(createdEvent -> ids.add(createdEvent.getId()));
+        createdEvents.forEach(createdEvent -> ids.add(createdEvent.getEventId()));
 
         log.info("create method ended. Ids of events created: {}", ids);
         return ids;
     }
+
+    public Event find(String userId, Long eventId) throws NotFoundException {
+        log.info("find method started with eventId = {}", eventId);
+
+        Event event = eventRepository.findByUserIdAndEventId(userId, eventId);
+        if(event == null) {
+            log.error("Event with userId {} and eventId {} not found", userId, eventId);
+            throw new NotFoundException(String.format("Event with userId %s and eventId %s not found", userId, eventId));
+        }
+
+
+        return event;
+    }
+
+    @Transactional
+    public void delete(String userId, Long eventId) throws NotFoundException {
+        log.info("delete method started with userId = {} and eventId = {}", userId, eventId);
+
+        Event event = eventRepository.findByUserIdAndEventId(userId, eventId);
+        if(event == null) {
+            log.error("Event with userId {} and eventId {} not found", userId, eventId);
+            throw new NotFoundException(String.format("Event with userId %s and eventId %s not found", userId, eventId));
+        }
+
+        eventRepository.deleteByEventId(event.getEventId());
+        log.info("delete method ended successfully");
+    }
+
 }

@@ -9,7 +9,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
@@ -32,6 +31,18 @@ public class EventController {
     public ResponseEntity<List<Long>> create(@AuthenticationPrincipal Principal principal, @RequestBody List<EventRequest> events) throws NotFoundException {
         List<Long> ids = eventService.create(principal.getName(), events);
         return new ResponseEntity<>(ids, HttpStatus.CREATED);
+    }
+
+    @GetMapping("{eventId}")
+    public ResponseEntity<Event> find(@AuthenticationPrincipal Principal principal, @PathVariable("eventId") Long eventId) throws NotFoundException {
+        Event event = eventService.find(principal.getName(), eventId);
+        return new ResponseEntity<>(event, HttpStatus.OK);
+    }
+
+    @DeleteMapping("{eventId}")
+    public ResponseEntity<Void> delete(@AuthenticationPrincipal Principal principal, @PathVariable("eventId") Long eventId) throws NotFoundException {
+        eventService.delete(principal.getName(), eventId);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
 }

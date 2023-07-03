@@ -1,6 +1,5 @@
 package com.gago.rest.services;
 
-import com.gago.rest.models.Commessa;
 import com.gago.rest.models.Event;
 import com.gago.rest.models.requests.EventRequest;
 import com.gago.rest.utils.ComponentsLoader;
@@ -29,7 +28,6 @@ public class EventServiceIT {
         List<Event> events = service.findAll("54eb2f58-9503-4b29-8920-722d571026a4");
         assertNotNull(events);
         assertFalse(events.isEmpty());
-        assertEquals(1, events.size());
     }
 
     @org.junit.jupiter.api.Test
@@ -57,8 +55,54 @@ public class EventServiceIT {
         List<Event> events = service.findAll("54eb2f58-9503-4b29-8920-722d571026a4");
         assertNotNull(events);
         assertFalse(events.isEmpty());
-        assertTrue(events.stream().anyMatch(e -> e.getId().equals(ids.get(0))));
-        assertTrue(events.stream().anyMatch(e -> e.getId().equals(ids.get(1))));
+        assertTrue(events.stream().anyMatch(e -> e.getEventId().equals(ids.get(0))));
+        assertTrue(events.stream().anyMatch(e -> e.getEventId().equals(ids.get(1))));
+    }
+
+    @org.junit.jupiter.api.Test
+    void creationFailsForCommessaNotFound() {
+        assertThrows(NotFoundException.class, () -> service.create("54eb2f58-9503-4b29-8920-722d571026a4", List.of(
+                EventRequest.builder()
+                        .allDay(false)
+                        .startDate("2020-06-21T09:00:00+02:00")
+                        .endDate("2020-06-21T13:00:00+02:00")
+                        .editable(true)
+                        .commessaKey("NAN")
+                        .build()
+        )));
+    }
+
+    @org.junit.jupiter.api.Test
+    void findSuccessfully() throws NotFoundException {
+        Event event = service.find("54eb2f58-9503-4b29-8920-722d571026a4", 1L);
+
+        assertNotNull(event);
+        assertEquals(1, event.getEventId());
+        assertEquals(false, event.getAllDay());
+        assertEquals("2020-06-21T09:00:00+02:00", event.getStartDate());
+        assertEquals("2020-06-21T18:00:00+02:00", event.getEndDate());
+        assertEquals(true, event.getEditable());
+        assertEquals("54eb2f58-9503-4b29-8920-722d571026a4", event.getUserId());
+
+        assertNotNull(event.getCommessa());
+        assertEquals("SMW", event.getCommessa().getKey());
+    }
+
+    @org.junit.jupiter.api.Test
+    void findEventFailsForNotFound() throws NotFoundException {
+        assertThrows(NotFoundException.class, () -> service.find("54eb2f58-9503-4b29-8920-722d571026a4", 0L));
+    }
+
+    @org.junit.jupiter.api.Test
+    void deleteSuccessfully() throws NotFoundException {
+        service.delete("54eb2f58-9503-4b29-8920-722d571026a4", 2L);
+
+        assertThrows(NotFoundException.class, () -> service.find("54eb2f58-9503-4b29-8920-722d571026a4", 2L));
+    }
+
+    @org.junit.jupiter.api.Test
+    void deleteEventFailsForNotFound() throws NotFoundException {
+        assertThrows(NotFoundException.class, () -> service.delete("54eb2f58-9503-4b29-8920-722d571026a4", 0L));
     }
 
 }
