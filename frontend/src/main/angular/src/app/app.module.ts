@@ -1,4 +1,4 @@
-import {APP_INITIALIZER, NgModule} from '@angular/core';
+import {APP_INITIALIZER, ModuleWithProviders, NgModule, Type} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 
 import {AppRoutingModule} from './app-routing.module';
@@ -26,6 +26,33 @@ import {MatCardModule} from "@angular/material/card";
 import {ScrollingModule} from "@angular/cdk/scrolling";
 import {MatRadioModule} from "@angular/material/radio";
 import { FlexLayoutModule } from '@angular/flex-layout';
+import {environment} from "../environments/environment";
+import {MockModule} from "./mock/mock.module";
+
+let Modules: (any[] | Type<any> | ModuleWithProviders<{}>)[] = [
+  BrowserModule,
+  AppRoutingModule,
+  BrowserAnimationsModule,
+  MatToolbarModule,
+  MatSidenavModule,
+  MatButtonModule,
+  MatIconModule,
+  MatDividerModule,
+  MatFormFieldModule,
+  MatSelectModule,
+  MatInputModule,
+  MatCardModule,
+  MatRadioModule,
+  ScrollingModule,
+  FlexLayoutModule,
+  FeaturesModule,
+  KeycloakAngularModule,
+  HttpClientModule
+]
+
+if (environment.stub) {
+  Modules = [ MockModule, ...Modules];
+}
 
 @NgModule({
   declarations: [
@@ -36,24 +63,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     CommesseComponent
   ],
   imports: [
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    MatToolbarModule,
-    MatSidenavModule,
-    MatButtonModule,
-    MatIconModule,
-    MatDividerModule,
-    MatFormFieldModule,
-    MatSelectModule,
-    MatInputModule,
-    MatCardModule,
-    MatRadioModule,
-    ScrollingModule,
-    FlexLayoutModule,
-    FeaturesModule,
-    KeycloakAngularModule,
-    HttpClientModule
+    ...Modules
   ],
   providers: [
     KeycloakService,

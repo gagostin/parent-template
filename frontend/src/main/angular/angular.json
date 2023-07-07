@@ -68,6 +68,36 @@
               "extractLicenses": false,
               "sourceMap": true,
               "namedChunks": true
+            },
+            "stub": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
+              "scripts": [
+                {
+                  "input": "src/environments/environment.stub.ts",
+                  "inject": false,
+                  "bundleName": "environment"
+                }
+              ]
+            },
+            "dev": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
+              "scripts": [
+                {
+                  "input": "src/environments/environment.dev.ts",
+                  "inject": false,
+                  "bundleName": "environment"
+                }
+              ]
             }
           },
           "defaultConfiguration": "production"
@@ -80,6 +110,12 @@
             },
             "development": {
               "browserTarget": "angular:build:development"
+            },
+            "dev": {
+              "browserTarget": "angular:build:dev"
+            },
+            "stub": {
+              "browserTarget": "angular:build:stub"
             }
           },
           "defaultConfiguration": "development"

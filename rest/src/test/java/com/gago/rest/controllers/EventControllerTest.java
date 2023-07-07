@@ -48,7 +48,7 @@ public class EventControllerTest {
 
         Mockito.when(securityContext.getAuthentication()).thenReturn(authentication);
         Mockito.when(authentication.getPrincipal()).thenReturn(principal);
-        Mockito.when(principal.getName()).thenReturn("54eb2f58-9503-4b29-8920-722d571026a4");
+        Mockito.when(principal.getName()).thenReturn("e8bf1bce-112d-434a-bafa-a8f7defcce8c");
         SecurityContextHolder.setContext(securityContext);
     }
 
@@ -61,7 +61,7 @@ public class EventControllerTest {
                         .startDate("2023-06-21T09:00:00+02:00")
                         .endDate("2023-06-21T18:00:00+02:00")
                         .editable(true)
-                        .userId("54eb2f58-9503-4b29-8920-722d571026a4")
+                        .userId("e8bf1bce-112d-434a-bafa-a8f7defcce8c")
                         .commessa(Commessa.builder()
                                 .key("AAA")
                                 .description("A description")
@@ -70,7 +70,7 @@ public class EventControllerTest {
                                 .build())
                         .build()
         );
-        when(service.findAll("54eb2f58-9503-4b29-8920-722d571026a4")).thenReturn(results);
+        when(service.findAll("e8bf1bce-112d-434a-bafa-a8f7defcce8c")).thenReturn(results);
 
         this.mockMvc.perform(get("/events")
                         .contentType(MediaType.APPLICATION_JSON))
@@ -82,13 +82,13 @@ public class EventControllerTest {
                 .andExpect(jsonPath("$[0].startDate").value("2023-06-21T09:00:00+02:00"))
                 .andExpect(jsonPath("$[0].endDate").value("2023-06-21T18:00:00+02:00"))
                 .andExpect(jsonPath("$[0].editable").value(true))
-                .andExpect(jsonPath("$[0].userId").value("54eb2f58-9503-4b29-8920-722d571026a4"))
+                .andExpect(jsonPath("$[0].userId").value("e8bf1bce-112d-434a-bafa-a8f7defcce8c"))
                 .andExpect(jsonPath("$[0].commessa.key").value("AAA"))
                 .andExpect(jsonPath("$[0].commessa.description").value("A description"))
                 .andExpect(jsonPath("$[0].commessa.color").value("red"))
                 .andExpect(jsonPath("$[0].commessa.img").value("prova.jpeg"));
 
-        verify(service, times(1)).findAll("54eb2f58-9503-4b29-8920-722d571026a4");
+        verify(service, times(1)).findAll("e8bf1bce-112d-434a-bafa-a8f7defcce8c");
     }
 
     @org.junit.jupiter.api.Test
@@ -152,7 +152,7 @@ public class EventControllerTest {
                 .startDate("2023-06-21T09:00:00+02:00")
                 .endDate("2023-06-21T18:00:00+02:00")
                 .editable(true)
-                .userId("54eb2f58-9503-4b29-8920-722d571026a4")
+                .userId("e8bf1bce-112d-434a-bafa-a8f7defcce8c")
                 .commessa(Commessa.builder()
                         .key("AAA")
                         .description("A description")
@@ -173,7 +173,7 @@ public class EventControllerTest {
                 .andExpect(jsonPath("$.startDate").value("2023-06-21T09:00:00+02:00"))
                 .andExpect(jsonPath("$.endDate").value("2023-06-21T18:00:00+02:00"))
                 .andExpect(jsonPath("$.editable").value(true))
-                .andExpect(jsonPath("$.userId").value("54eb2f58-9503-4b29-8920-722d571026a4"))
+                .andExpect(jsonPath("$.userId").value("e8bf1bce-112d-434a-bafa-a8f7defcce8c"))
                 .andExpect(jsonPath("$.commessa.key").value("AAA"))
                 .andExpect(jsonPath("$.commessa.description").value("A description"))
                 .andExpect(jsonPath("$.commessa.color").value("red"))

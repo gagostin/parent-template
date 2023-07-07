@@ -25,14 +25,14 @@ public class EventServiceIT {
 
     @org.junit.jupiter.api.Test
     void findAllSuccessfully() {
-        List<Event> events = service.findAll("54eb2f58-9503-4b29-8920-722d571026a4");
+        List<Event> events = service.findAll("e8bf1bce-112d-434a-bafa-a8f7defcce8c");
         assertNotNull(events);
         assertFalse(events.isEmpty());
     }
 
     @org.junit.jupiter.api.Test
     void createSuccessfully() throws NotFoundException {
-        List<Long> ids = service.create("54eb2f58-9503-4b29-8920-722d571026a4", List.of(
+        List<Long> ids = service.create("e8bf1bce-112d-434a-bafa-a8f7defcce8c", List.of(
                 EventRequest.builder()
                         .allDay(false)
                         .startDate("2020-06-21T09:00:00+02:00")
@@ -52,7 +52,7 @@ public class EventServiceIT {
         assertFalse(ids.isEmpty());
         assertEquals(2, ids.size());
 
-        List<Event> events = service.findAll("54eb2f58-9503-4b29-8920-722d571026a4");
+        List<Event> events = service.findAll("e8bf1bce-112d-434a-bafa-a8f7defcce8c");
         assertNotNull(events);
         assertFalse(events.isEmpty());
         assertTrue(events.stream().anyMatch(e -> e.getEventId().equals(ids.get(0))));
@@ -61,7 +61,7 @@ public class EventServiceIT {
 
     @org.junit.jupiter.api.Test
     void creationFailsForCommessaNotFound() {
-        assertThrows(NotFoundException.class, () -> service.create("54eb2f58-9503-4b29-8920-722d571026a4", List.of(
+        assertThrows(NotFoundException.class, () -> service.create("e8bf1bce-112d-434a-bafa-a8f7defcce8c", List.of(
                 EventRequest.builder()
                         .allDay(false)
                         .startDate("2020-06-21T09:00:00+02:00")
@@ -74,7 +74,7 @@ public class EventServiceIT {
 
     @org.junit.jupiter.api.Test
     void findSuccessfully() throws NotFoundException {
-        Event event = service.find("54eb2f58-9503-4b29-8920-722d571026a4", 1L);
+        Event event = service.find("e8bf1bce-112d-434a-bafa-a8f7defcce8c", 1L);
 
         assertNotNull(event);
         assertEquals(1, event.getEventId());
@@ -82,7 +82,7 @@ public class EventServiceIT {
         assertEquals("2020-06-21T09:00:00+02:00", event.getStartDate());
         assertEquals("2020-06-21T18:00:00+02:00", event.getEndDate());
         assertEquals(true, event.getEditable());
-        assertEquals("54eb2f58-9503-4b29-8920-722d571026a4", event.getUserId());
+        assertEquals("e8bf1bce-112d-434a-bafa-a8f7defcce8c", event.getUserId());
 
         assertNotNull(event.getCommessa());
         assertEquals("SMW", event.getCommessa().getKey());
@@ -90,19 +90,19 @@ public class EventServiceIT {
 
     @org.junit.jupiter.api.Test
     void findEventFailsForNotFound() throws NotFoundException {
-        assertThrows(NotFoundException.class, () -> service.find("54eb2f58-9503-4b29-8920-722d571026a4", 0L));
+        assertThrows(NotFoundException.class, () -> service.find("e8bf1bce-112d-434a-bafa-a8f7defcce8c", 0L));
     }
 
     @org.junit.jupiter.api.Test
     void deleteSuccessfully() throws NotFoundException {
-        service.delete("54eb2f58-9503-4b29-8920-722d571026a4", 2L);
+        service.delete("e8bf1bce-112d-434a-bafa-a8f7defcce8c", 2L);
 
-        assertThrows(NotFoundException.class, () -> service.find("54eb2f58-9503-4b29-8920-722d571026a4", 2L));
+        assertThrows(NotFoundException.class, () -> service.find("e8bf1bce-112d-434a-bafa-a8f7defcce8c", 2L));
     }
 
     @org.junit.jupiter.api.Test
     void deleteEventFailsForNotFound() throws NotFoundException {
-        assertThrows(NotFoundException.class, () -> service.delete("54eb2f58-9503-4b29-8920-722d571026a4", 0L));
+        assertThrows(NotFoundException.class, () -> service.delete("e8bf1bce-112d-434a-bafa-a8f7defcce8c", 0L));
     }
 
 }

@@ -1,5 +1,6 @@
 export const environment = {
   production: true,
+  stub: false,
   keycloakConfig: {
     clientId: 'parent-template-frontend',
     realm: 'parent-template',
