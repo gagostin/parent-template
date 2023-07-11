@@ -45,4 +45,10 @@ public class EventController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
+    @PatchMapping("{eventId}")
+    public ResponseEntity<Event> update(@AuthenticationPrincipal Principal principal, @PathVariable("eventId") Long eventId, @RequestBody EventRequest eventRequest) throws NotFoundException {
+        Event updatedEvent = eventService.update(principal.getName(), eventId, eventRequest);
+        return new ResponseEntity<>(updatedEvent, HttpStatus.OK);
+    }
+
 }

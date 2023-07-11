@@ -79,4 +79,46 @@ public class EventService {
         log.info("delete method ended successfully");
     }
 
+    public Event update(String userId, Long eventId, EventRequest eventRequest) throws NotFoundException {
+        log.info("update method started with userId = {}, eventId = {} and request = {}", userId, eventId, eventRequest);
+
+        Event event = eventRepository.findByUserIdAndEventId(userId, eventId);
+        if(event == null) {
+            log.error("Event with userId {} and eventId {} not found", userId, eventId);
+            throw new NotFoundException(String.format("Event with userId %s and eventId %s not found", userId, eventId));
+        }
+
+        Commessa commessa = event.getCommessa();
+        if(!commessa.getKey().equals(eventRequest.getCommessaKey())) {
+            commessa = commessaService.find(eventRequest.getCommessaKey());
+        }
+
+        event.setEditable(
+                (eventRequest.getEditable() != null && !eventRequest.getEditable().equals(event.getEditable())) ?
+                        eventRequest.getEditable() :
+                        event.getEditable()
+        );
+        event.setStartDate(
+                (eventRequest.getStartDate() != null && !eventRequest.getStartDate().equals(event.getStartDate())) ?
+                        eventRequest.getStartDate() :
+                        event.getStartDate()
+        );
+        event.setEndDate(
+                (eventRequest.getEndDate() != null && !eventRequest.getEndDate().equals(event.getEndDate())) ?
+                        eventRequest.getEndDate() :
+                        event.getEndDate()
+        );
+        event.setAllDay(
+                (eventRequest.getAllDay() != null && !eventRequest.getAllDay().equals(event.getAllDay())) ?
+                        eventRequest.getAllDay() :
+                        event.getAllDay()
+        );
+        event.setCommessa(commessa);
+
+        log.info("trying to update event with data: {}", event);
+        event = eventRepository.save(event);
+
+        log.info("update method ended successfully");
+        return event;
+    }
 }

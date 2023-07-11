@@ -89,7 +89,7 @@ public class EventServiceIT {
     }
 
     @org.junit.jupiter.api.Test
-    void findEventFailsForNotFound() throws NotFoundException {
+    void findEventFailsForNotFound() {
         assertThrows(NotFoundException.class, () -> service.find("54eb2f58-9503-4b29-8920-722d571026a4", 0L));
     }
 
@@ -101,8 +101,40 @@ public class EventServiceIT {
     }
 
     @org.junit.jupiter.api.Test
-    void deleteEventFailsForNotFound() throws NotFoundException {
+    void deleteEventFailsForNotFound() {
         assertThrows(NotFoundException.class, () -> service.delete("54eb2f58-9503-4b29-8920-722d571026a4", 0L));
+    }
+
+    @org.junit.jupiter.api.Test
+    void updateSuccessfully() throws NotFoundException {
+        Event original = service.find("54eb2f58-9503-4b29-8920-722d571026a4", 3L);
+        assertNotNull(original);
+        assertEquals("2023-06-21T18:00:00+02:00", original.getEndDate());
+        assertNotNull(original.getCommessa());
+        assertEquals("SMW", original.getCommessa().getKey());
+
+        Event updated = service.update("54eb2f58-9503-4b29-8920-722d571026a4", 3L,
+                EventRequest.builder()
+                        .endDate("2023-06-21T14:00:00+02:00")
+                        .commessaKey("CLI")
+                        .build());
+        assertNotNull(updated);
+        assertEquals("2023-06-21T14:00:00+02:00", updated.getEndDate());
+        assertNotNull(updated.getCommessa());
+        assertEquals("CLI", updated.getCommessa().getKey());
+    }
+
+    @org.junit.jupiter.api.Test
+    void updateEventFailsForNotFound() {
+        assertThrows(NotFoundException.class, () -> service.update("54eb2f58-9503-4b29-8920-722d571026a4", 0L, EventRequest.builder().build()));
+    }
+
+    @org.junit.jupiter.api.Test
+    void updateEventFailsForCommessaNotFound() {
+        assertThrows(NotFoundException.class, () -> service.update("54eb2f58-9503-4b29-8920-722d571026a4", 3L,
+                EventRequest.builder()
+                        .commessaKey("NAN")
+                        .build()));
     }
 
 }

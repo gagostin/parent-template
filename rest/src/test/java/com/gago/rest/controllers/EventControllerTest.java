@@ -213,11 +213,54 @@ public class EventControllerTest {
     @org.junit.jupiter.api.Test
     public void shouldUpdateEventSuccessfully() throws Exception {
 
+        EventRequest request = EventRequest.builder()
+                .endDate("2023-06-21T14:00:00+02:00")
+                .commessaKey("CLI")
+                .build();
+
+        Event results = Event.builder()
+                .eventId(1L)
+                .allDay(false)
+                .startDate("2023-06-21T09:00:00+02:00")
+                .endDate("2023-06-21T14:00:00+02:00")
+                .editable(true)
+                .userId("54eb2f58-9503-4b29-8920-722d571026a4")
+                .commessa(Commessa.builder()
+                        .key("CLI")
+                        .description("Lavoro dal cliente")
+                        .color("yellow")
+                        .img("mobilize-fs.jpeg")
+                        .build())
+                .build();
+        when(service.update(anyString(), anyLong(), any(EventRequest.class))).thenReturn(results);
+
+        this.mockMvc.perform(patch("/events/1")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(mapper.writeValueAsString(request)))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$").exists())
+                .andExpect(jsonPath("$.eventId").value(1L))
+                .andExpect(jsonPath("$.allDay").value(false))
+                .andExpect(jsonPath("$.startDate").value("2023-06-21T09:00:00+02:00"))
+                .andExpect(jsonPath("$.endDate").value("2023-06-21T14:00:00+02:00"))
+                .andExpect(jsonPath("$.editable").value(true))
+                .andExpect(jsonPath("$.userId").value("54eb2f58-9503-4b29-8920-722d571026a4"))
+                .andExpect(jsonPath("$.commessa.key").value("CLI"))
+                .andExpect(jsonPath("$.commessa.description").value("Lavoro dal cliente"))
+                .andExpect(jsonPath("$.commessa.color").value("yellow"))
+                .andExpect(jsonPath("$.commessa.img").value("mobilize-fs.jpeg"));
     }
 
     @org.junit.jupiter.api.Test
     public void shouldNotFindEventToUpdate() throws Exception {
+        doThrow(NotFoundException.class).when(service).update(anyString(), anyLong(), any(EventRequest.class));
 
+        this.mockMvc.perform(patch("/events/0")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(mapper.writeValueAsString(EventRequest.builder().build())))
+                .andDo(print())
+                .andExpect(status().isNotFound());
     }
 
 
