@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "53a3686e-7281-4c4a-ac5f-fb0365a913b9",
+		"_postman_id": "3a033e5e-9d04-43c5-a3ec-cecceaf8fb5b",
 		"name": "Parent Template",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -123,7 +123,7 @@
 			]
 		},
 		{
-			"name": "Tests",
+			"name": "Commesse",
 			"item": [
 				{
 					"name": "Get All",
@@ -141,12 +141,201 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{rest-base-url}}/tests",
+							"raw": "{{rest-base-url}}/commesse",
 							"host": [
 								"{{rest-base-url}}"
 							],
 							"path": [
-								"tests"
+								"commesse"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access-token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{rest-base-url}}/commesse/SMW",
+							"host": [
+								"{{rest-base-url}}"
+							],
+							"path": [
+								"commesse",
+								"SMW"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Eventi",
+			"item": [
+				{
+					"name": "Get All",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access-token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{rest-base-url}}/events",
+							"host": [
+								"{{rest-base-url}}"
+							],
+							"path": [
+								"events"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access-token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{rest-base-url}}/events/3",
+							"host": [
+								"{{rest-base-url}}"
+							],
+							"path": [
+								"events",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access-token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n    {\r\n        \"allDay\": \"false\",\r\n        \"startDate\": \"2023-06-21T09:00:00+02:00\",\r\n        \"endDate\": \"2023-06-21T18:00:00+02:00\",\r\n        \"editable\": \"true\",\r\n        \"commessaKey\": \"SMW\"\r\n    }\r\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{rest-base-url}}/events",
+							"host": [
+								"{{rest-base-url}}"
+							],
+							"path": [
+								"events"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access-token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{rest-base-url}}/events/3",
+							"host": [
+								"{{rest-base-url}}"
+							],
+							"path": [
+								"events",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access-token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{   \r\n    \"allDay\": \"\",\r\n    \"startDate\": \"\",\r\n    \"endDate\": \"\",\r\n    \"editable\": \"\",\r\n    \"commessaKey\": \"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{rest-base-url}}/events/3",
+							"host": [
+								"{{rest-base-url}}"
+							],
+							"path": [
+								"events",
+								"3"
 							]
 						}
 					},
