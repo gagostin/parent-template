@@ -26,6 +26,7 @@ import {MatCardModule} from "@angular/material/card";
 import {ScrollingModule} from "@angular/cdk/scrolling";
 import {MatRadioModule} from "@angular/material/radio";
 import { FlexLayoutModule } from '@angular/flex-layout';
+import {NgxUiLoaderHttpModule, NgxUiLoaderModule} from "ngx-ui-loader";
 
 @NgModule({
   declarations: [
@@ -53,7 +54,41 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     FlexLayoutModule,
     FeaturesModule,
     KeycloakAngularModule,
-    HttpClientModule
+    HttpClientModule,
+    NgxUiLoaderModule.forRoot(
+      {
+        bgsColor: "#004a9f",
+        bgsOpacity: 0.5,
+        bgsPosition: "bottom-right",
+        bgsSize: 60,
+        bgsType: "ball-spin-clockwise",
+        blur: 5,
+        delay: 0,
+        fastFadeOut: true,
+        fgsColor: "#004a9f",
+        fgsPosition: "center-center",
+        fgsSize: 60,
+        fgsType: "ball-spin-clockwise",
+        gap: 24,
+        logoPosition: "center-center",
+        logoSize: 120,
+        logoUrl: "",
+        masterLoaderId: "master",
+        overlayBorderRadius: "0",
+        overlayColor: "rgba(40, 40, 40, 0.8)",
+        pbColor: "#004a9f",
+        pbDirection: "ltr",
+        pbThickness: 3,
+        hasProgressBar: true,
+        text: "Caricamento in corso",
+        textColor: "#FFFFFF",
+        textPosition: "center-center",
+        maxTime: -1,
+        minTime: 300
+      }),
+    NgxUiLoaderHttpModule.forRoot({
+      showForeground: true
+    })
   ],
   providers: [
     KeycloakService,
