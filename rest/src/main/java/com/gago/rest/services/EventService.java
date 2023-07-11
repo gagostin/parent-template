@@ -89,7 +89,7 @@ public class EventService {
         }
 
         Commessa commessa = event.getCommessa();
-        if(!commessa.getKey().equals(eventRequest.getCommessaKey())) {
+        if(eventRequest.getCommessaKey() != null && !commessa.getKey().equals(eventRequest.getCommessaKey())) {
             commessa = commessaService.find(eventRequest.getCommessaKey());
         }
 
