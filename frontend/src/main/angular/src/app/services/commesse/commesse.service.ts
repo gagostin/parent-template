@@ -1,57 +1,31 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {Commessa} from "../../models/commessa";
+import {HttpClient} from "@angular/common/http";
+import {environment} from "../../../environments/environment";
+import {ActivatedRouteSnapshot, Resolve, RouterStateSnapshot} from "@angular/router";
+import {throwError} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
 })
-export class CommesseService {
+export class CommesseService implements Resolve<any> {
 
-  default : Commessa;
-  commesse : Commessa[] = [
-    {
-      key: 'SMW',
-      description: 'Smart Working',
-      color: 'red',
-      image: 'home.jpeg'
-    },
-    {
-      key: 'SED',
-      description: 'Lavoro in sede',
-      color: 'blue',
-      image: 'ags-italia.jpeg'
-    },
-    {
-      key: 'CLI',
-      description: 'Lavoro dal cliente',
-      color: 'yellow',
-      image: 'mobilize-fs.jpeg'
-    },
-    {
-      key: 'PAR',
-      description: 'Permesso annuo retribuito',
-      color: 'green',
-      image: 'permesso.jpeg'
-    },
-    {
-      key: 'FER',
-      description: 'Giornata di ferie',
-      color: 'white',
-      image: 'ferie.jpeg'
-    },
-    {
-      key: 'MAL',
-      description: 'Malattia',
-      color: 'black',
-      image: 'malattia.jpeg'
-    }
-  ]
+  private default : Commessa;
 
-  constructor() {
-    this.setDefault(this.commesse[0])
+  constructor(
+    private http: HttpClient
+  ) {}
+
+  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
+    return this.list();
   }
 
-  getCommesse() : Commessa[] {
-    return this.commesse;
+  list() {
+    return this.http.get<Commessa[]>(environment.restBaseUrl + 'commesse').toPromise()
+      .then(
+        response => response,
+        error => throwError(error)
+      )
   }
 
   getDefault() : Commessa {
@@ -61,4 +35,9 @@ export class CommesseService {
   setDefault(commessa : Commessa) {
     this.default = commessa;
   }
+
+  isDefault(commessa : Commessa) {
+    return commessa === this.default;
+  }
+
 }

@@ -4,14 +4,14 @@
             <mat-card-header>
                 <mat-card-title>{{commessa.key}}</mat-card-title>
             </mat-card-header>
-            <img mat-card-image class="commesse-card-image" src="/assets/images/{{commessa.image}}">
+            <img mat-card-image class="commesse-card-image" src="/assets/images/{{commessa.img}}">
             <mat-card-content>
                 <p>
                     {{commessa.description}}
                 </p>
             </mat-card-content>
             <mat-card-actions>
-                <button mat-button [disabled]="isDefault(commessa)" (click)="setDefault(commessa)">{{fields.setAsDefaultButtonText}}</button>
+                <button mat-button [disabled]="commesseService.isDefault(commessa)" (click)="commesseService.setDefault(commessa)">{{fields.setAsDefaultButtonText}}</button>
             </mat-card-actions>
         </mat-card>
     </div>

@@ -8,13 +8,8 @@ export class AuthService {
 
   constructor(private keycloakService: KeycloakService) { }
 
-  getToken() : string {
-    let token : string = '';
-    this.keycloakService.getToken().then(
-      response => token = response,
-      error => console.log(error)
-    )
-    return token;
+  getToken() : Promise<string> {
+    return this.keycloakService.getToken();
   }
 
   getLoggedUser() {

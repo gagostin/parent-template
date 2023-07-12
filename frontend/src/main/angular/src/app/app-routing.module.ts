@@ -5,6 +5,7 @@ import {LoggedPageComponent} from "./features/structure/logged-page/logged-page.
 import {ProfileComponent} from "./features/content/profile/profile.component";
 import {HomeComponent} from "./features/content/home/home.component";
 import {CommesseComponent} from "./features/content/commesse/commesse.component";
+import {CommesseService} from "./services/commesse/commesse.service";
 
 const routes: Routes = [
   {
@@ -12,9 +13,21 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     data: { roles: ['admin', 'user'] },
     children: [
-      { path: 'home', component: HomeComponent },
-      { path: 'profile', component: ProfileComponent },
-      { path: 'commesse', component: CommesseComponent }
+      {
+        path: 'home',
+        component: HomeComponent
+      },
+      {
+        path: 'profile',
+        component: ProfileComponent
+      },
+      {
+        path: 'commesse',
+        component: CommesseComponent,
+        resolve: {
+          commesse : CommesseService
+        },
+      }
     ]
   }
 ];
