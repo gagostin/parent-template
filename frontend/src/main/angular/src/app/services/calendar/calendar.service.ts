@@ -8,6 +8,8 @@ import {DatePipe} from "@angular/common";
 import {CommesseService} from "../commesse/commesse.service";
 import {Commessa} from "../../models/commessa";
 import {Event} from "../../models/event";
+import {EventsService} from "../events/events.service";
+import {catchError} from "rxjs/operators";
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +22,8 @@ export class CalendarService {
 
   constructor(
     private datePipe : DatePipe,
-    private commesseService : CommesseService
+    private commesseService : CommesseService,
+    private eventsService : EventsService
   ) { }
 
   public buildCalendar(fullCalendarElement: HTMLElement, fields: any, initialEvents: Event[]) : Calendar {
@@ -130,7 +133,27 @@ export class CalendarService {
           let endDate : Date = this.selectedArea.end;
 
           for (let date = startDate; date < endDate; date.setDate(date.getDate() + 1)) {
-            this.pushEvent(this.datePipe.transform(date, 'yyyy-MM-dd'));
+            let eventRequest : any[] = [];
+            eventRequest.push({
+              allDay: false,
+              startDate: this.datePipe.transform(date, 'yyyy-MM-dd') + 'T09:00:00',
+              endDate: this.datePipe.transform(date, 'yyyy-MM-dd') + 'T18:00:00',
+              editable: true,
+              commessaKey: this.commesseService.getDefault().key
+            });
+
+            this.eventsService.create(eventRequest).toPromise().then(
+              response => {
+                response?.forEach(eventId => {
+                  this.eventsService.find(eventId).toPromise().then(
+                    response => this.pushEvent(response),
+                    error => catchError(error)
+                  );
+
+                })
+              },
+              error => catchError(error)
+            );
           }
           break;
         default:
@@ -155,7 +178,12 @@ export class CalendarService {
         switch (this.selectedArea.view.type) {
           case 'dayGridMonth':
             let candidateEvents: EventImpl[] = events.filter(event => CalendarService.isInSelection(event, this.selectedArea));
-            candidateEvents.forEach(candidateEvent => candidateEvent.remove());
+            candidateEvents.forEach(candidateEvent => {
+              this.eventsService.remove(+candidateEvent.id).toPromise().then(
+                () => candidateEvent.remove(),
+                error => catchError(error)
+              );
+            })
             break;
           default:
             console.log('case not managed: ' + this.selectedArea);
@@ -183,22 +211,16 @@ export class CalendarService {
     else return startDate <= eventDate && eventDate < endDate;
   }
 
-  /**
-   * Accepts a date in yyyy-mm-dd format.
-   * */
-  private pushEvent(date : string | null) : EventImpl | null {
-    if(date === null) return null;
-    else {
-      let defaultCommessa : Commessa = this.commesseService.getDefault();
+  private pushEvent(event : any) : EventImpl | null{
       return this.calendar.addEvent({
-        title: defaultCommessa.key + ': ' + defaultCommessa.description,
-        start: date + 'T09:00:00',
-        end: date + 'T18:00:00',
-        allDay: false,
-        editable: true,
-        color: defaultCommessa.color
+        id: event.eventId + '',
+        title: event.commessa.key + ': ' + event.commessa.description,
+        start: event.startDate,
+        end: event.endDate,
+        allDay: event.allDay,
+        editable: event.editable,
+        color: event.commessa.color
       });
-    }
   }
 
 }

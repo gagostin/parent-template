@@ -26,4 +26,15 @@ export class EventsService implements Resolve<any> {
       )
   }
 
+  create(eventRequest: { allDay: boolean; endDate: string; editable: boolean; commessaKey: string; startDate: string }[]) {
+    return this.http.post<number[]>(environment.restBaseUrl + 'events', eventRequest);
+  }
+
+  find(eventId: number) {
+    return this.http.get<Event[]>(environment.restBaseUrl + 'events/' + eventId);
+  }
+
+  remove(eventId: number) {
+    return this.http.delete<Event[]>(environment.restBaseUrl + 'events/' + eventId);
+  }
 }
