@@ -6,6 +6,7 @@ import {ProfileComponent} from "./features/content/profile/profile.component";
 import {HomeComponent} from "./features/content/home/home.component";
 import {CommesseComponent} from "./features/content/commesse/commesse.component";
 import {CommesseService} from "./services/commesse/commesse.service";
+import {EventsService} from "./services/events/events.service";
 
 const routes: Routes = [
   {
@@ -15,7 +16,10 @@ const routes: Routes = [
     children: [
       {
         path: 'home',
-        component: HomeComponent
+        component: HomeComponent,
+        resolve: {
+          events : EventsService
+        },
       },
       {
         path: 'profile',

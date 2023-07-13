@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {AbstractComponent} from "../../../commons/abstract-component";
 import {Calendar} from "@fullcalendar/core";
 import {CalendarService} from "../../../services/calendar/calendar.service";
+import {Event} from "../../../models/event";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-home',
@@ -11,17 +13,18 @@ import {CalendarService} from "../../../services/calendar/calendar.service";
 export class HomeComponent extends AbstractComponent implements OnInit {
 
   calendar: Calendar;
-
-  // TODO: recuperare eventi dal servizio dedicato
-  events: any[] = [];
+  events: Event[];
 
   constructor(
-      public calendarService : CalendarService
+    private route: ActivatedRoute,
+    public calendarService : CalendarService
   ) {
     super('homePage');
   }
 
   ngOnInit() {
+    this.events = this.route.snapshot.data.events;
+
     let calendarEl: HTMLElement = document.getElementById('calendar')!;
     this.calendar = this.calendarService.buildCalendar(calendarEl, this.fields, this.events);
   }

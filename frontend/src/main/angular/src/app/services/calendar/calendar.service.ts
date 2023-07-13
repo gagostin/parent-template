@@ -7,6 +7,7 @@ import {EventImpl} from "@fullcalendar/core/internal";
 import {DatePipe} from "@angular/common";
 import {CommesseService} from "../commesse/commesse.service";
 import {Commessa} from "../../models/commessa";
+import {Event} from "../../models/event";
 
 @Injectable({
   providedIn: 'root'
@@ -22,7 +23,21 @@ export class CalendarService {
     private commesseService : CommesseService
   ) { }
 
-  public buildCalendar(fullCalendarElement: HTMLElement, fields: any, initialEvents: any[]) : Calendar {
+  public buildCalendar(fullCalendarElement: HTMLElement, fields: any, initialEvents: Event[]) : Calendar {
+
+    let events : any[] = [];
+    initialEvents.forEach(initialEvent => {
+      let event = {
+        id: initialEvent.eventId,
+        title: initialEvent.commessa.key + ': ' + initialEvent.commessa.description,
+        start: initialEvent.startDate,
+        end: initialEvent.endDate,
+        allDay: initialEvent.allDay,
+        editable: initialEvent.editable,
+        color: initialEvent.commessa.color
+      }
+      events.push(event);
+    })
 
     this.calendar = new Calendar(fullCalendarElement, {
       plugins: [
@@ -74,7 +89,7 @@ export class CalendarService {
       },
       select: this.onSelection.bind(this),
       eventClick: this.onEventClick.bind(this),
-      events: initialEvents
+      events: events
     });
 
     this.calendar.render();
