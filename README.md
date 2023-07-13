@@ -34,14 +34,7 @@ docker cp {container_id}:/{dump_filename}.sql {pc_path}
 ```
 NB. The / is for "root": when the dump command was execute, I was in the root folder of docker container, so the dump file was created there)
 
-# Wordpress installation
-```
-username: admin
-password: admin
-email: parent-template-wordpress@yopmail.com
-site-name: parent-template
-```
-
-The url for the login is: ```http://localhost:10008/wp-admin```
-
 # Da fare:
+- Al momento /home cade sul calendar, quindi la default commessa non è settata nel servizio delle commesse. Trovare un modo per settarla oppure inserire il valore boolean isDefault nel rest (commessa di default per un singolo utente; tabella dedicata)
+ - Sistemare sidebar: quando tocco uno dei pulsanti, vorrei che si chiudesse e che il burger button si resettasse; quando tocco la parte di schermo oscurata il burger deve resettarsi allo stesso modo
+ - Creare una pagina per la gestione di tutti i catch error (una rotta /error dedicata)
