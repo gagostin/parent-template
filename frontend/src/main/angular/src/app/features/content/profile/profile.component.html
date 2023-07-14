@@ -4,7 +4,7 @@
     <mat-card>
 
       <mat-card-header class="title-centered">
-        <mat-card-title>Profile Information</mat-card-title>
+        <mat-card-title>Profilo Utente</mat-card-title>
       </mat-card-header>
 
       <br/>
@@ -14,47 +14,114 @@
         <div class="row">
           <div class="col-md-6">
             <mat-form-field class="full-width">
-              <input matInput="" placeholder="First name" [value]="'Giordano'" [readonly]=true>
+              <input matInput="" placeholder="Nome" [value]="'Giordano'" [readonly]=true>
             </mat-form-field>
           </div>
           <div class="col-md-6">
             <mat-form-field class="full-width">
-              <input matInput="" placeholder="Last name" [value]="'Agostini'" [readonly]=true>
+              <input matInput="" placeholder="Cognome" [value]="'Agostini'" [readonly]=true>
             </mat-form-field>
           </div>
         </div>
 
-        <br/>
-
         <div class="row">
-          <div class="col-md-12">
-            <mat-radio-group class="margin-left">
-              <mat-radio-button value="male"> M </mat-radio-button>
-              <mat-radio-button value="female"> F </mat-radio-button>
-            </mat-radio-group>
+          <div class="col-md-6">
+            <mat-form-field class="full-width">
+              <input matInput="" placeholder="Email" [value]="'giordano.agostini@yahoo.it'" [readonly]=true>
+            </mat-form-field>
+          </div>
+          <div class="col-md-6">
+            <mat-form-field class="full-width">
+              <input matInput="" placeholder="Codice fiscale" [value]="'GSTGDN89D17C773D'">
+            </mat-form-field>
           </div>
         </div>
 
-        <br/>
+        <div class="row">
+          <div class="col-md-6">
+            <mat-form-field class="full-width">
+              <input matInput="" placeholder="Indirizzo di residenza">
+            </mat-form-field>
+          </div>
+          <div class="col-md-3">
+            <mat-form-field class="full-width">
+              <input matInput="" placeholder="Città">
+            </mat-form-field>
+          </div>
+          <div class="col-md-3">
+            <mat-form-field class="full-width">
+              <input matInput="" placeholder="CAP">
+            </mat-form-field>
+          </div>
+        </div>
 
         <div class="row">
-          <div class="col-md-6 top-padding">
-            <mat-form-field class="full-width" appearance="fill">
-              <mat-label>Select DOB</mat-label>
+          <div class="col-md-6">
+            <mat-form-field class="full-width">
+              <mat-label>Data di nascita</mat-label>
               <input matInput [matDatepicker]="picker">
               <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
               <mat-datepicker #picker></mat-datepicker>
             </mat-form-field>
           </div>
-          <div class="col-sm-6">
+          <div class="col-md-3">
             <mat-form-field class="full-width">
-              <textarea matInput="" placeholder="Address"></textarea>
+              <mat-label>Età</mat-label>
+              <mat-select [(ngModel)]="selectedSex" name="age">
+                <mat-option *ngFor="let age of ageList" [value]="age.value">
+                  {{age.viewValue}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="col-md-3">
+            <mat-form-field class="full-width">
+              <mat-label>Sesso</mat-label>
+              <mat-select [(ngModel)]="selectedSex" name="sex">
+                <mat-option *ngFor="let sex of sexList" [value]="sex.value">
+                  {{sex.viewValue}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+
+      </mat-card-content>
+
+      <mat-card-actions align="end">
+        <button mat-raised-button="" color="primary">Salva</button>
+      </mat-card-actions>
+    </mat-card>
+  </form>
+
+  <br/>
+
+  <form class="form-container">
+    <mat-card>
+
+      <mat-card-header class="title-centered">
+        <mat-card-title>Cambio Password</mat-card-title>
+      </mat-card-header>
+
+      <br/>
+
+      <mat-card-content>
+        <div class="row">
+          <div class="col-md-6">
+            <mat-form-field class="full-width">
+              <input matInput="" placeholder="Password">
+            </mat-form-field>
+          </div>
+          <div class="col-md-6">
+            <mat-form-field class="full-width">
+              <input matInput="" placeholder="Conferma Password">
             </mat-form-field>
           </div>
         </div>
       </mat-card-content>
-      <mat-card-actions>
-        <button mat-raised-button="" color="primary">Save</button>
+
+      <mat-card-actions align="end">
+        <button mat-raised-button="" color="primary">Salva</button>
       </mat-card-actions>
     </mat-card>
   </form>
