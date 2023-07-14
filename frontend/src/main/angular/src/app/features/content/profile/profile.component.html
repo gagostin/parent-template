@@ -1,3 +1,62 @@
 <div class="general-content">
-    <p>profile works!</p>
+
+  <form class="form-container">
+    <mat-card>
+
+      <mat-card-header class="title-centered">
+        <mat-card-title>Profile Information</mat-card-title>
+      </mat-card-header>
+
+      <br/>
+
+      <mat-card-content>
+
+        <div class="row">
+          <div class="col-md-6">
+            <mat-form-field class="full-width">
+              <input matInput="" placeholder="First name" [value]="'Giordano'" [readonly]=true>
+            </mat-form-field>
+          </div>
+          <div class="col-md-6">
+            <mat-form-field class="full-width">
+              <input matInput="" placeholder="Last name" [value]="'Agostini'" [readonly]=true>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <br/>
+
+        <div class="row">
+          <div class="col-md-12">
+            <mat-radio-group class="margin-left">
+              <mat-radio-button value="male"> M </mat-radio-button>
+              <mat-radio-button value="female"> F </mat-radio-button>
+            </mat-radio-group>
+          </div>
+        </div>
+
+        <br/>
+
+        <div class="row">
+          <div class="col-md-6 top-padding">
+            <mat-form-field class="full-width" appearance="fill">
+              <mat-label>Select DOB</mat-label>
+              <input matInput [matDatepicker]="picker">
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+          </div>
+          <div class="col-sm-6">
+            <mat-form-field class="full-width">
+              <textarea matInput="" placeholder="Address"></textarea>
+            </mat-form-field>
+          </div>
+        </div>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-raised-button="" color="primary">Save</button>
+      </mat-card-actions>
+    </mat-card>
+  </form>
+
 </div>

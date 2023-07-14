@@ -18,14 +18,13 @@ import {AuthService} from "./services/auth/auth.service";
 import {LoggedPageComponent} from './features/structure/logged-page/logged-page.component';
 import {HttpClientModule} from "@angular/common/http";
 import {DatePipe} from "@angular/common";
-import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatSelectModule} from "@angular/material/select";
 import {MatInputModule} from "@angular/material/input";
 import {CommesseComponent} from './features/content/commesse/commesse.component';
 import {MatCardModule} from "@angular/material/card";
 import {ScrollingModule} from "@angular/cdk/scrolling";
 import {MatRadioModule} from "@angular/material/radio";
-import { FlexLayoutModule } from '@angular/flex-layout';
+import {FlexLayoutModule} from '@angular/flex-layout';
 import {NgxUiLoaderHttpModule, NgxUiLoaderModule} from "ngx-ui-loader";
 
 @NgModule({
@@ -45,7 +44,6 @@ import {NgxUiLoaderHttpModule, NgxUiLoaderModule} from "ngx-ui-loader";
     MatButtonModule,
     MatIconModule,
     MatDividerModule,
-    MatFormFieldModule,
     MatSelectModule,
     MatInputModule,
     MatCardModule,

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {SidebarService} from "../../../services/sidebar/sidebar.service";
+import {ProfileService} from "../../../services/profile/profile.service";
 
 @Component({
   selector: 'app-logged-page',
@@ -9,10 +10,16 @@ import {SidebarService} from "../../../services/sidebar/sidebar.service";
 export class LoggedPageComponent implements OnInit {
 
   constructor(
-    private sidebarService: SidebarService
+    private sidebarService: SidebarService,
+    private profileService: ProfileService
   ) {
     this.sidebarService.init();
-    this.sidebarService.actionHome();
+
+    this.profileService.exists().toPromise().then(
+      () => this.sidebarService.actionHome(),
+      () => this.sidebarService.actionProfile()
+    )
+
   }
 
   ngOnInit(): void {
