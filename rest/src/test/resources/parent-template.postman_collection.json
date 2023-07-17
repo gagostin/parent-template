@@ -342,6 +342,74 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "Profili",
+			"item": [
+				{
+					"name": "Find",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access-token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{rest-base-url}}/profiles",
+							"host": [
+								"{{rest-base-url}}"
+							],
+							"path": [
+								"profiles"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access-token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"fiscalCode\": \"\",\r\n    \"address\": \"\",\r\n    \"city\": \"\",\r\n    \"postalCode\": \"\",\r\n    \"birthDate\": \"\",\r\n    \"age\": \"\",\r\n    \"gender\": \"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{rest-base-url}}/profiles",
+							"host": [
+								"{{rest-base-url}}"
+							],
+							"path": [
+								"profiles"
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		}
 	]
 }

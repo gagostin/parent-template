@@ -61,7 +61,6 @@ public class EventService {
             throw new NotFoundException(String.format("Event with userId %s and eventId %s not found", userId, eventId));
         }
 
-
         return event;
     }
 

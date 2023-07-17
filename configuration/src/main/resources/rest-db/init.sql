@@ -1,5 +1,6 @@
 DROP TABLE IF EXISTS event;
 DROP TABLE IF EXISTS commessa;
+DROP TABLE IF EXISTS profile;
 
 CREATE TABLE IF NOT EXISTS commessa (
     key VARCHAR(3) NOT NULL,
@@ -19,4 +20,20 @@ CREATE TABLE IF NOT EXISTS event (
     commessa_key VARCHAR(3) NOT NULL,
     PRIMARY KEY (event_id),
     CONSTRAINT fk_event_commessa_key FOREIGN KEY(commessa_key) REFERENCES commessa (key)
+);
+
+CREATE TABLE IF NOT EXISTS profile (
+    profile_id INTEGER AUTO_INCREMENT NOT NULL,
+    user_id VARCHAR(100) UNIQUE NOT NULL,
+    name VARCHAR(50) NOT NULL,
+    surname VARCHAR(50) NOT NULL,
+    email VARCHAR(200) NOT NULL,
+    fiscal_code VARCHAR(16),
+    address VARCHAR(255),
+    city VARCHAR(255),
+    postal_code VARCHAR(10),
+    birth_date VARCHAR(20),
+    age INTEGER,
+    gender VARCHAR(1),
+    PRIMARY KEY (profile_id)
 );
