@@ -47,4 +47,49 @@ public class ProfileService {
 
         return profile;
     }
+
+    public Profile update(String userId, ProfileRequest profileRequest) throws NotFoundException {
+        log.info("patch method started with userId = {}", userId);
+
+        Profile profile = find(userId);
+        profile.setFiscalCode(
+                (profileRequest.getFiscalCode() != null && !profileRequest.getFiscalCode().equals(profile.getFiscalCode())) ?
+                        profileRequest.getFiscalCode() :
+                        profile.getFiscalCode()
+        );
+        profile.setAddress(
+                (profileRequest.getAddress() != null && !profileRequest.getAddress().equals(profile.getAddress())) ?
+                        profileRequest.getAddress() :
+                        profile.getAddress()
+        );
+        profile.setCity(
+                (profileRequest.getCity() != null && !profileRequest.getCity().equals(profile.getCity())) ?
+                        profileRequest.getCity() :
+                        profile.getCity()
+        );
+        profile.setPostalCode(
+                (profileRequest.getPostalCode() != null && !profileRequest.getPostalCode().equals(profile.getPostalCode())) ?
+                        profileRequest.getPostalCode() :
+                        profile.getPostalCode()
+        );
+        profile.setBirthDate(
+                (profileRequest.getBirthDate() != null && !profileRequest.getBirthDate().equals(profile.getBirthDate())) ?
+                        profileRequest.getBirthDate() :
+                        profile.getBirthDate()
+        );
+        profile.setAge(
+                (profileRequest.getAge() != null && !profileRequest.getAge().equals(profile.getAge())) ?
+                        profileRequest.getAge() :
+                        profile.getAge()
+        );
+        profile.setGender(
+                (profileRequest.getGender() != null && !profileRequest.getGender().equals(profile.getGender())) ?
+                        profileRequest.getGender() :
+                        profile.getGender()
+        );
+
+        profile = profileRepository.save(profile);
+        log.info("patch method ended. Updated: {}", profile);
+        return profile;
+    }
 }

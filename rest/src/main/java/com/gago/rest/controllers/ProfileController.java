@@ -36,5 +36,10 @@ public class ProfileController {
         return new ResponseEntity<>(profile, HttpStatus.CREATED);
     }
 
+    @PatchMapping
+    public ResponseEntity<Profile> update(@AuthenticationPrincipal Principal principal, @RequestBody ProfileRequest profileRequest) throws NotFoundException {
+        Profile profile = profileService.update(principal.getName(), profileRequest);
+        return new ResponseEntity<>(profile, HttpStatus.OK);
+    }
 
 }

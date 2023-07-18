@@ -32,7 +32,7 @@ CREATE TABLE IF NOT EXISTS profile (
     user_id VARCHAR(100) UNIQUE NOT NULL,
     name VARCHAR(50) NOT NULL,
     surname VARCHAR(50) NOT NULL,
-    email VARCHAR(200) NOT NULL,
+    email VARCHAR(200) UNIQUE NOT NULL,
     fiscal_code VARCHAR(16),
     address VARCHAR(255),
     city VARCHAR(255),

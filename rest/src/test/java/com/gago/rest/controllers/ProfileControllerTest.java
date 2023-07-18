@@ -29,8 +29,7 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.*;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -147,6 +146,55 @@ public class ProfileControllerTest {
         doThrow(NotFoundException.class).when(service).find(anyString());
 
         this.mockMvc.perform(get("/profiles")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(mapper.writeValueAsString(ProfileRequest.builder().build())))
+                .andDo(print())
+                .andExpect(status().isNotFound());
+    }
+
+    @org.junit.jupiter.api.Test
+    public void shouldUpdateProfile() throws Exception {
+        Profile response = Profile.builder()
+                .profileId(1L)
+                .userId("54eb2f58-9503-4b29-8920-722d571026a4")
+                .name("Test")
+                .surname("User")
+                .email("test.user@monthly.com")
+                .fiscalCode("TSTUSR03E10H501L")
+                .address("Via delle medaglie d'oro")
+                .city("Rome")
+                .postalCode("00166")
+                .birthDate("10/05/2003")
+                .age(23)
+                .gender("M")
+                .build();
+
+        when(service.update(anyString(), any(ProfileRequest.class))).thenReturn(response);
+
+        this.mockMvc.perform(patch("/profiles")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(mapper.writeValueAsString(ProfileRequest.builder().address("Via delle medaglie d'oro").build())))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.profileId").value(1))
+                .andExpect(jsonPath("$.userId").value("54eb2f58-9503-4b29-8920-722d571026a4"))
+                .andExpect(jsonPath("$.name").value("Test"))
+                .andExpect(jsonPath("$.surname").value("User"))
+                .andExpect(jsonPath("$.email").value("test.user@monthly.com"))
+                .andExpect(jsonPath("$.fiscalCode").value("TSTUSR03E10H501L"))
+                .andExpect(jsonPath("$.address").value("Via delle medaglie d'oro"))
+                .andExpect(jsonPath("$.city").value("Rome"))
+                .andExpect(jsonPath("$.postalCode").value("00166"))
+                .andExpect(jsonPath("$.birthDate").value("10/05/2003"))
+                .andExpect(jsonPath("$.age").value(23))
+                .andExpect(jsonPath("$.gender").value("M"));
+    }
+
+    @org.junit.jupiter.api.Test
+    public void shouldNotFindProfileToUpdate() throws Exception {
+        doThrow(NotFoundException.class).when(service).update(anyString(), any(ProfileRequest.class));
+
+        this.mockMvc.perform(patch("/profiles")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(mapper.writeValueAsString(ProfileRequest.builder().build())))
                 .andDo(print())

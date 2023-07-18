@@ -71,4 +71,27 @@ public class ProfileServiceIT {
         assertThrows(NotFoundException.class, () -> profileService.find("54eb2f58-9503-4b29-8920-notexisting0"));
     }
 
+    @org.junit.jupiter.api.Test
+    void updateProfileSuccessfully() throws NotFoundException {
+        Profile profile = profileService.update("7cb96f8e-4573-4529-a75a-4362c268f75e", ProfileRequest.builder().address("Via delle medaglie d'oro 10").build());
+        assertNotNull(profile);
+        assertEquals(2L, profile.getProfileId());
+        assertEquals("7cb96f8e-4573-4529-a75a-4362c268f75e", profile.getUserId());
+        assertEquals("Test", profile.getName());
+        assertEquals("User", profile.getSurname());
+        assertEquals("test.user.update@monthly.com", profile.getEmail());
+        assertEquals("TSTUSR03E10H501L", profile.getFiscalCode());
+        assertEquals("Via delle medaglie d'oro 10", profile.getAddress());
+        assertEquals("Rome", profile.getCity());
+        assertEquals("00166", profile.getPostalCode());
+        assertEquals("10/05/2003", profile.getBirthDate());
+        assertEquals(23, profile.getAge());
+        assertEquals("M", profile.getGender());
+    }
+
+    @org.junit.jupiter.api.Test
+    void profileToUpdateNotFound() {
+        assertThrows(NotFoundException.class, () -> profileService.update("54eb2f58-9503-4b29-8920-notexisting0", ProfileRequest.builder().build()));
+    }
+
 }

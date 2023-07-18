@@ -408,6 +408,42 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access-token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"fiscalCode\": \"\",\r\n    \"address\": \"\",\r\n    \"city\": \"\",\r\n    \"postalCode\": \"\",\r\n    \"birthDate\": \"\",\r\n    \"age\": \"\",\r\n    \"gender\": \"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{rest-base-url}}/profiles",
+							"host": [
+								"{{rest-base-url}}"
+							],
+							"path": [
+								"profiles"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		}

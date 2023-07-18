@@ -34,7 +34,11 @@ public class KeycloakSecurityConfiguration extends KeycloakWebSecurityConfigurer
                 .antMatchers(HttpMethod.GET, "/events").hasAnyRole(Role.ROLE_USER.getOnKeycloak())
                 .antMatchers(HttpMethod.GET, "/events/{eventId:[\\d+]}").hasAnyRole(Role.ROLE_USER.getOnKeycloak())
                 .antMatchers(HttpMethod.DELETE, "/events/{eventId:[\\d+]}").hasAnyRole(Role.ROLE_USER.getOnKeycloak())
+                .antMatchers(HttpMethod.PATCH, "/events/{eventId:[\\d+]}").hasAnyRole(Role.ROLE_USER.getOnKeycloak())
                 .antMatchers(HttpMethod.POST, "/events").hasAnyRole(Role.ROLE_USER.getOnKeycloak())
+                .antMatchers(HttpMethod.GET, "/profiles").hasAnyRole(Role.ROLE_USER.getOnKeycloak())
+                .antMatchers(HttpMethod.POST, "/profiles").hasAnyRole(Role.ROLE_USER.getOnKeycloak())
+                .antMatchers(HttpMethod.PATCH, "/profiles").hasAnyRole(Role.ROLE_USER.getOnKeycloak())
                 .anyRequest()
                 .authenticated();
         http.csrf().disable();
