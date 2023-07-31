@@ -1,27 +1,25 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {AbstractComponent} from "../../../commons/abstract-component";
+import {SidebarService} from "../../../services/sidebar/sidebar.service";
 
 @Component({
   selector: 'app-header-toolbar',
   templateUrl: './header-toolbar.component.html',
   styleUrls: ['./header-toolbar.component.scss']
 })
-export class HeaderToolbarComponent extends AbstractComponent implements OnInit {
+export class HeaderToolbarComponent extends AbstractComponent {
 
   @Input() title: string;
-  @Input() opened: boolean;
-
   @Output() onButtonClicked: EventEmitter<any> = new EventEmitter<any>();
 
-  constructor() {
+  constructor(
+    public sidebarService : SidebarService
+  ) {
     super('loggedPage');
   }
 
-  ngOnInit(): void {
-  }
-
   onClick() {
-    this.opened = !this.opened;
-    this.onButtonClicked.emit(this.opened);
+    this.sidebarService.setOpened(!this.sidebarService.isOpened());
+    this.onButtonClicked.emit(this.sidebarService.isOpened());
   }
 }

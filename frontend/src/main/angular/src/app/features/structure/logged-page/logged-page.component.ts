@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {SidebarService} from "../../../services/sidebar/sidebar.service";
 import {ProfileService} from "../../../services/profile/profile.service";
+import {throwError} from "rxjs";
 
 @Component({
   selector: 'app-logged-page',
@@ -17,7 +18,26 @@ export class LoggedPageComponent implements OnInit {
 
     this.profileService.exists().toPromise().then(
       () => this.sidebarService.actionHome(),
-      () => this.sidebarService.actionProfile()
+      error => {
+        switch (error.status) {
+          case 404:
+            this.profileService.create({
+              fiscalCode: '',
+              address: '',
+              city: '',
+              postalCode: '',
+              birthDate: '',
+              age: 0,
+              gender: ''
+            }).toPromise().then(
+              () => this.sidebarService.actionHome(),
+              error => throwError(error)
+            )
+            break;
+          default:
+            throwError(error);
+        }
+      }
     )
 
   }

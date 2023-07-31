@@ -35,9 +35,5 @@ docker cp {container_id}:/{dump_filename}.sql {pc_path}
 NB. The / is for "root": when the dump command was execute, I was in the root folder of docker container, so the dump file was created there)
 
 # Da fare:
-- Creare patch per /profiles su strato rest
-- Agganciare chiamate /profiles al front
-- Gestire la logged page con pulsanti disattivati se al primo accesso
 - Al momento /home cade sul calendar, quindi la default commessa non è settata nel servizio delle commesse. Trovare un modo per settarla oppure inserire il valore boolean isDefault nel rest (commessa di default per un singolo utente; tabella dedicata)
-- Sistemare sidebar: quando tocco uno dei pulsanti, vorrei che si chiudesse e che il burger button si resettasse; quando tocco la parte di schermo oscurata il burger deve resettarsi allo stesso modo
 - Creare una pagina per la gestione di tutti i catch error (una rotta /error dedicata)

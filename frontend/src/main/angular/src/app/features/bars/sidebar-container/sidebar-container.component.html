@@ -1,4 +1,4 @@
-<mat-sidenav-container class="sidebar-container">
+<mat-sidenav-container class="sidebar-container" [hasBackdrop]="true" (backdropClick)="this.sidebarService.close()">
 
   <mat-sidenav class="sidebar">
 

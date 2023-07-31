@@ -16,6 +16,8 @@
   },
   "commessePage" : {
     "setAsDefaultButtonText" : "Imposta come predefinito"
-  }
+  },
+  "profilePage" : {
 
+  }
 }

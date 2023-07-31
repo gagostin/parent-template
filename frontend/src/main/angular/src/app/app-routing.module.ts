@@ -7,6 +7,7 @@ import {HomeComponent} from "./features/content/home/home.component";
 import {CommesseComponent} from "./features/content/commesse/commesse.component";
 import {CommesseService} from "./services/commesse/commesse.service";
 import {EventsService} from "./services/events/events.service";
+import {ProfileService} from "./services/profile/profile.service";
 
 const routes: Routes = [
   {
@@ -23,7 +24,10 @@ const routes: Routes = [
       },
       {
         path: 'profile',
-        component: ProfileComponent
+        component: ProfileComponent,
+        resolve: {
+          profile : ProfileService
+        },
       },
       {
         path: 'commesse',

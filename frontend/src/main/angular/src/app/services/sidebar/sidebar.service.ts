@@ -3,12 +3,15 @@ import {MatSidenav} from "@angular/material/sidenav";
 import {KeycloakService} from "keycloak-angular";
 import {Router} from "@angular/router";
 import {UserInformation} from "../../models/auth";
+import {throwError} from "rxjs";
+import {MatDrawerToggleResult} from "@angular/material/sidenav/drawer";
 
 @Injectable({
   providedIn: 'root'
 })
 export class SidebarService {
 
+  private opened: boolean = false;
   private sidenav: MatSidenav;
   public userInformation: UserInformation = new UserInformation();
 
@@ -33,28 +36,48 @@ export class SidebarService {
     this.sidenav = sidenav;
   }
 
-  public open() {
+  public open() : Promise<MatDrawerToggleResult> {
+    this.setOpened(true);
     return this.sidenav.open();
   }
 
-  public close() {
+  public close() : Promise<MatDrawerToggleResult>{
+    this.setOpened(false);
     return this.sidenav.close();
   }
 
   public actionHome() {
-    this.router.navigate(['/home'])
+    this.close().then(
+      () => this.router.navigate(['/home']),
+      error => throwError(error)
+    )
+
   }
 
   public actionProfile() {
-    this.router.navigate(['/profile'])
+    this.close().then(
+      () => this.router.navigate(['/profile']),
+      error => throwError(error)
+    )
   }
 
   public actionCommesse() {
-    this.router.navigate(['/commesse'])
+    this.close().then(
+      () => this.router.navigate(['/commesse']),
+      error => throwError(error)
+    )
   }
 
   public actionLogout() {
     this.keycloakService.logout();
+  }
+
+  public setOpened(opened : boolean) {
+    this.opened = opened;
+  }
+
+  public isOpened() : boolean {
+    return this.opened;
   }
 
 }
