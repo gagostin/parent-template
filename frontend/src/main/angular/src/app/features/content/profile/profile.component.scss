@@ -11,3 +11,15 @@
 .form-container {
   margin: 0;
 }
+
+.mat-form {
+  color: var(--fc-button-text-color);
+  border-color: var(--fc-button-border-color);
+  background-color: var(--fc-button-border-color);
+}
+
+.mat-form:hover {
+  color: var(--fc-button-text-color);
+  border-color: var(--fc-button-active-bg-color);
+  background-color: var(--fc-button-active-bg-color);
+}
