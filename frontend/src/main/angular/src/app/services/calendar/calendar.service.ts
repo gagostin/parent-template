@@ -188,7 +188,10 @@ export class CalendarService {
             console.log('case not managed: ' + this.selectedArea);
         }
       } else if(this.selectedEvent != null) {
-        this.selectedEvent.event.remove();
+        this.eventsService.remove(+this.selectedEvent.event.id).toPromise().then(
+          () => this.selectedEvent.event.remove(),
+          error => catchError(error)
+        );
       }
 
     }
