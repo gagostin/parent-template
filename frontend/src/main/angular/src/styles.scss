@@ -4,7 +4,14 @@ html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 .general-content {
-  height: calc(100vh - 98px);
+  height: calc(100vh - 65px);
   padding: 20px;
   border-radius: 10px;
 }
+
+.fc, .fc-daygrid-day-number, .fc-col-header-cell-cushion, .fc-event-title, .fc-event-time {
+  color: black;
+  text-decoration: none;
+}
+
+

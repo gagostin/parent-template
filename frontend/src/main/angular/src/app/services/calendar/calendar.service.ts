@@ -6,7 +6,6 @@ import interactionPlugin from "@fullcalendar/interaction";
 import {EventImpl} from "@fullcalendar/core/internal";
 import {DatePipe} from "@angular/common";
 import {CommesseService} from "../commesse/commesse.service";
-import {Commessa} from "../../models/commessa";
 import {Event} from "../../models/event";
 import {EventsService} from "../events/events.service";
 import {catchError} from "rxjs/operators";
