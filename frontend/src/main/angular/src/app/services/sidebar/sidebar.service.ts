@@ -61,13 +61,6 @@ export class SidebarService {
     )
   }
 
-  public actionCommesse() {
-    this.close().then(
-      () => this.router.navigate(['/commesse']),
-      error => throwError(error)
-    )
-  }
-
   public actionLogout() {
     this.keycloakService.logout();
   }

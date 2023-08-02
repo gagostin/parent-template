@@ -9,6 +9,9 @@ import {CommesseService} from "../commesse/commesse.service";
 import {Event} from "../../models/event";
 import {EventsService} from "../events/events.service";
 import {catchError} from "rxjs/operators";
+import {MatDialog} from "@angular/material/dialog";
+import {CommesseComponent} from "../../features/content/commesse/commesse.component";
+import {Commessa} from "../../models/commessa";
 
 @Injectable({
   providedIn: 'root'
@@ -16,13 +19,15 @@ import {catchError} from "rxjs/operators";
 export class CalendarService {
 
   calendar : Calendar;
+  commesse : Commessa[];
   selectedArea : any = null;
   selectedEvent : any = null;
 
   constructor(
     private datePipe : DatePipe,
     private commesseService : CommesseService,
-    private eventsService : EventsService
+    private eventsService : EventsService,
+    public dialogManager: MatDialog
   ) { }
 
   public buildCalendar(fullCalendarElement: HTMLElement, fields: any, initialEvents: Event[]) : Calendar {
@@ -55,6 +60,11 @@ export class CalendarService {
           click: () => this.changeToSelectedDay()
         },
 
+        commessa: {
+          text: fields.calendar.commessaButtonText,
+          click: () => this.showCommesseDialog()
+        },
+
         // footer
         addEvent: {
           text: fields.calendar.addEventButtonText,
@@ -72,7 +82,7 @@ export class CalendarService {
       headerToolbar: {
         left: 'prev,next',
         center: 'title',
-        right: 'dayGridMonth focus,today'
+        right: 'dayGridMonth focus,today commessa'
       },
       footerToolbar: {
         center: 'addEvent editEvent deleteEvent'
@@ -122,6 +132,13 @@ export class CalendarService {
           console.log('case not managed: ' + this.selectedArea);
       }
     }
+  }
+
+  private showCommesseDialog() {
+    this.dialogManager.open(CommesseComponent, {
+      data: this.getCommesse(),
+      disableClose: true
+    });
   }
 
   private addEvent() {
@@ -223,6 +240,14 @@ export class CalendarService {
         editable: event.editable,
         color: event.commessa.color
       });
+  }
+
+  public setCommesse(commesse : Commessa[]) {
+    this.commesse = commesse;
+  }
+
+  public getCommesse() : Commessa[] {
+    return this.commesse;
   }
 
 }

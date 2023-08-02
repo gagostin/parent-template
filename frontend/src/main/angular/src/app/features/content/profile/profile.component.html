@@ -4,7 +4,7 @@
     <mat-card>
 
       <mat-card-header class="title-centered">
-        <mat-card-title>Profilo Utente</mat-card-title>
+        <mat-card-title>{{fields.profileSectionTitle}}</mat-card-title>
       </mat-card-header>
 
       <br/>
@@ -14,25 +14,12 @@
         <div class="row">
           <div class="col-md-6">
             <mat-form-field class="full-width">
-              <input id="name" matInput="" placeholder="Nome" [value]="profile.name" [readonly]=true>
+              <input id="name" matInput="" placeholder="{{fields.nameLabel}}" [value]="profile.name" [readonly]=true>
             </mat-form-field>
           </div>
           <div class="col-md-6">
             <mat-form-field class="full-width">
-              <input id="surname" matInput="" placeholder="Cognome" [value]="profile.surname" [readonly]=true>
-            </mat-form-field>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col-md-6">
-            <mat-form-field class="full-width">
-              <input id="email" matInput="" placeholder="Email" [value]="profile.email" [readonly]=true>
-            </mat-form-field>
-          </div>
-          <div class="col-md-6">
-            <mat-form-field class="full-width">
-              <input id="fiscalCode" formControlName="fiscalCode" matInput="" placeholder="Codice fiscale">
+              <input id="surname" matInput="" placeholder="{{fields.surnameLabel}}" [value]="profile.surname" [readonly]=true>
             </mat-form-field>
           </div>
         </div>
@@ -40,17 +27,30 @@
         <div class="row">
           <div class="col-md-6">
             <mat-form-field class="full-width">
-              <input id="address" formControlName="address" matInput="" placeholder="Indirizzo di residenza">
+              <input id="email" matInput="" placeholder="{{fields.emailLabel}}" [value]="profile.email" [readonly]=true>
+            </mat-form-field>
+          </div>
+          <div class="col-md-6">
+            <mat-form-field class="full-width">
+              <input id="fiscalCode" formControlName="fiscalCode" matInput="" placeholder="{{fields.fiscalCodeLabel}}">
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6">
+            <mat-form-field class="full-width">
+              <input id="address" formControlName="address" matInput="" placeholder="{{fields.addressLabel}}">
             </mat-form-field>
           </div>
           <div class="col-md-3">
             <mat-form-field class="full-width">
-              <input id="city" formControlName="city" matInput="" placeholder="Città">
+              <input id="city" formControlName="city" matInput="" placeholder="{{fields.cityLabel}}">
             </mat-form-field>
           </div>
           <div class="col-md-3">
             <mat-form-field class="full-width">
-              <input id="postalCode" formControlName="postalCode" matInput="" placeholder="CAP">
+              <input id="postalCode" formControlName="postalCode" matInput="" placeholder="{{fields.postalCodeLabel}}">
             </mat-form-field>
           </div>
         </div>
@@ -58,7 +58,7 @@
         <div class="row">
           <div class="col-md-6">
             <mat-form-field class="full-width">
-              <mat-label>Data di nascita</mat-label>
+              <mat-label>{{fields.birthDateLabel}}</mat-label>
               <input
                 id="birthDate"
                 formControlName="birthDate"
@@ -69,7 +69,7 @@
           </div>
           <div class="col-md-3">
             <mat-form-field class="full-width">
-              <mat-label>Età</mat-label>
+              <mat-label>{{fields.ageLabel}}</mat-label>
               <mat-select id="age" formControlName="age">
                 <mat-option *ngFor="let age of ageList" [value]="age.value">
                   {{age.viewValue}}
@@ -79,7 +79,7 @@
           </div>
           <div class="col-md-3">
             <mat-form-field class="full-width">
-              <mat-label>Sesso</mat-label>
+              <mat-label>{{fields.genderLabel}}</mat-label>
               <mat-select id="gender" formControlName="gender">
                 <mat-option *ngFor="let sex of sexList" [value]="sex.value">
                   {{sex.viewValue}}
@@ -92,7 +92,7 @@
       </mat-card-content>
 
       <mat-card-actions align="end">
-        <button mat-raised-button="" color="form" type="submit">Salva</button>
+        <button mat-raised-button="" color="form" type="submit">{{fields.saveButtonText}}</button>
       </mat-card-actions>
     </mat-card>
   </form>
@@ -103,7 +103,7 @@
     <mat-card>
 
       <mat-card-header class="title-centered">
-        <mat-card-title>Cambio Password</mat-card-title>
+        <mat-card-title>{{fields.passwordSectionTitle}}</mat-card-title>
       </mat-card-header>
 
       <br/>
@@ -112,19 +112,19 @@
         <div class="row">
           <div class="col-md-6">
             <mat-form-field class="full-width">
-              <input matInput="" placeholder="Password">
+              <input matInput="" placeholder="{{fields.passwordLabel}}">
             </mat-form-field>
           </div>
           <div class="col-md-6">
             <mat-form-field class="full-width">
-              <input matInput="" placeholder="Conferma Password">
+              <input matInput="" placeholder="{{fields.confirmPasswordLabel}}">
             </mat-form-field>
           </div>
         </div>
       </mat-card-content>
 
       <mat-card-actions align="end">
-        <button mat-raised-button="" color="form">Salva</button>
+        <button mat-raised-button="" color="form">{{fields.saveButtonText}}</button>
       </mat-card-actions>
     </mat-card>
   </form>

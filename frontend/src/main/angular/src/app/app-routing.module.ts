@@ -19,7 +19,8 @@ const routes: Routes = [
         path: 'home',
         component: HomeComponent,
         resolve: {
-          events : EventsService
+          events : EventsService,
+          commesse : CommesseService
         },
       },
       {
@@ -27,13 +28,6 @@ const routes: Routes = [
         component: ProfileComponent,
         resolve: {
           profile : ProfileService
-        },
-      },
-      {
-        path: 'commesse',
-        component: CommesseComponent,
-        resolve: {
-          commesse : CommesseService
         },
       }
     ]

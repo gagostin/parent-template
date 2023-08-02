@@ -9,15 +9,31 @@
   "homePage" : {
     "calendar" : {
       "focusButtonText" : "focus",
+      "commessaButtonText" : "commessa",
       "addEventButtonText" : "Aggiungi evento",
       "editEventButtonText" : "Modifica evento",
       "deleteEventButtonText" : "Rimuovi evento"
     }
   },
   "commessePage" : {
-    "setAsDefaultButtonText" : "Imposta come predefinito"
+    "pageTitle" : "Seleziona una commessa",
+    "pageCloseButton" : "Chiudi"
   },
   "profilePage" : {
-
+    "profileSectionTitle" : "Profilo Utente",
+    "nameLabel" : "Nome",
+    "surnameLabel" : "Cognome",
+    "emailLabel" : "Email",
+    "fiscalCodeLabel" : "Codice fiscale",
+    "addressLabel" : "Indirizzo di residenza",
+    "cityLabel" : "Città",
+    "postalCodeLabel" : "CAP",
+    "birthDateLabel" : "Data di nascita",
+    "ageLabel" : "Età",
+    "genderLabel" : "Sesso",
+    "saveButtonText" : "Salva",
+    "passwordSectionTitle" : "Cambia la password",
+    "passwordLabel" : "Password",
+    "confirmPasswordLabel" : "Conferma password"
   }
 }

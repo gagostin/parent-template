@@ -1,18 +1,18 @@
-<div style="padding: 20px;" fxLayout="row wrap" fxLayoutGap="16px grid">
-    <div fxFlex="25%" fxFlex.xs="100%" fxFlex.sm="33%" *ngFor="let commessa of commesse">
-        <mat-card class="commesse-card mat-elevation-z4">
-            <mat-card-header>
-                <mat-card-title>{{commessa.key}}</mat-card-title>
-            </mat-card-header>
-            <img mat-card-image class="commesse-card-image" src="/assets/images/{{commessa.img}}">
-            <mat-card-content>
-                <p>
-                    {{commessa.description}}
-                </p>
-            </mat-card-content>
-            <mat-card-actions>
-                <button mat-button [disabled]="commesseService.isDefault(commessa)" (click)="commesseService.setDefault(commessa)">{{fields.setAsDefaultButtonText}}</button>
-            </mat-card-actions>
-        </mat-card>
+<h1 mat-dialog-title>{{fields.pageTitle}}</h1>
+<mat-dialog-content class="row">
+  <div
+    class="commessa-row mat-elevation-z4"
+    *ngFor="let commessa of commesse"
+    (click)="commesseService.setDefault(commessa)"
+    [ngClass]="{'commessa-row-selected': commesseService.isDefault(commessa)}"
+  >
+    <img mat-card-image src="/assets/images/{{commessa.img}}" alt="">
+    <div>
+      <h2>{{commessa.key}}</h2>
+      <p>{{commessa.description}}</p>
     </div>
-</div>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close class="commessa-close-button">{{fields.pageCloseButton}}</button>
+</mat-dialog-actions>

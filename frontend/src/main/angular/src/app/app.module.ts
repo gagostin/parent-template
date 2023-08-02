@@ -26,6 +26,7 @@ import {ScrollingModule} from "@angular/cdk/scrolling";
 import {MatRadioModule} from "@angular/material/radio";
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {NgxUiLoaderHttpModule, NgxUiLoaderModule} from "ngx-ui-loader";
+import {MatDialogModule} from "@angular/material/dialog";
 
 @NgModule({
   declarations: [
@@ -86,7 +87,8 @@ import {NgxUiLoaderHttpModule, NgxUiLoaderModule} from "ngx-ui-loader";
       }),
     NgxUiLoaderHttpModule.forRoot({
       showForeground: true
-    })
+    }),
+    MatDialogModule
   ],
   providers: [
     KeycloakService,

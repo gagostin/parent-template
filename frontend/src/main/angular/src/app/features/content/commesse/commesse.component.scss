@@ -1,4 +1,37 @@
-mat-card img {
-  object-fit: cover;
-  height: 180px;
+.commessa-row {
+  overflow: hidden;
+  background: #ffff;
+  padding: 1rem;
+  margin: 0 0 1rem 0;
+  display: grid;
+  grid-template-columns: 100px 1fr 100px;
+}
+
+.commessa-row img {
+  width: 75px;
+  height: 75px;
+  float: left;
+  margin: 0 1rem 0 0;
+}
+
+.commessa-row h2 {
+  margin: 0 0 0.5rem 0;
+}
+
+.commessa-row-selected {
+  color: var(--fc-button-text-color);
+  border-color: var(--fc-button-border-color);
+  background-color: var(--fc-button-border-color);
+}
+
+.commessa-close-button {
+  color: var(--fc-button-text-color);
+  border-color: var(--fc-button-border-color);
+  background-color: var(--fc-button-border-color);
+}
+
+.commessa-close-button:hover {
+  color: var(--fc-button-text-color);
+  border-color: var(--fc-button-active-bg-color);
+  background-color: var(--fc-button-active-bg-color);
 }

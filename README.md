@@ -35,7 +35,5 @@ docker cp {container_id}:/{dump_filename}.sql {pc_path}
 NB. The / is for "root": when the dump command was execute, I was in the root folder of docker container, so the dump file was created there)
 
 # Da fare:
-- Eliminare la pagina di gestione commesse: trovare un modo per gestirle sul calendar
-- gestire conflitti tra bootstrap e material (al momento gli stili del calendar sono in conflitto da quando ho installato bootstrap)
-- Al momento /home cade sul calendar, quindi la default commessa non è settata nel servizio delle commesse. Trovare un modo per settarla oppure inserire il valore boolean isDefault nel rest (commessa di default per un singolo utente; tabella dedicata)
+- Implementare un dialog per la modifica eventi
 - Creare una pagina per la gestione di tutti i catch error (una rotta /error dedicata)

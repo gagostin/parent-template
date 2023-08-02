@@ -1,28 +1,21 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Inject} from '@angular/core';
 import {AbstractComponent} from "../../../commons/abstract-component";
 import {CommesseService} from "../../../services/commesse/commesse.service";
 import {Commessa} from "../../../models/commessa";
-import {ActivatedRoute} from "@angular/router";
+import {MAT_DIALOG_DATA} from "@angular/material/dialog";
 
 @Component({
   selector: 'app-commesse',
   templateUrl: './commesse.component.html',
   styleUrls: ['./commesse.component.scss']
 })
-export class CommesseComponent extends AbstractComponent implements OnInit {
-
-  commesse : Commessa[];
+export class CommesseComponent extends AbstractComponent {
 
   constructor(
-    private route: ActivatedRoute,
-    public commesseService : CommesseService
+    public commesseService : CommesseService,
+    @Inject(MAT_DIALOG_DATA) public commesse: Commessa[],
   ) {
     super('commessePage')
-  }
-
-  ngOnInit(): void {
-    this.commesse = this.route.snapshot.data.commesse;
-    this.commesseService.setDefault(this.commesse[0]);
   }
 
 }
