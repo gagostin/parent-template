@@ -37,4 +37,8 @@ export class EventsService implements Resolve<any> {
   remove(eventId: number) {
     return this.http.delete<Event[]>(environment.restBaseUrl + 'events/' + eventId);
   }
+
+  update(eventId: number, eventRequest : { allDay: boolean; endDate: string; editable: boolean; commessaKey: string; startDate: string }) {
+    return this.http.patch<Event>(environment.restBaseUrl + 'events/' + eventId, eventRequest);
+  }
 }

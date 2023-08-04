@@ -1,0 +1,62 @@
+<h1 mat-dialog-title>{{fields.pageTitle}}</h1>
+<mat-dialog-content class="row">
+    <form class="form-container" [formGroup]="updateEventForm">
+        <div class="row">
+            <div class="col-md-6">
+                <mat-form-field>
+                    <mat-label>{{fields.commessaField}}</mat-label>
+                    <mat-select id="commessa" formControlName="commessa" [value]="getCommessaKeyFromTitle(event)">
+                        <mat-option *ngFor="let commessa of commesse" [value]="commessa.key">
+                            {{commessa.key}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+
+            <div class="col-md-6">
+                <mat-form-field class="full-width">
+                    <mat-label>{{fields.dateField}}</mat-label>
+                    <input
+                            id="date"
+                            formControlName="date"
+                            matInput [matDatepicker]="picker">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <mat-form-field appearance="outline">
+                    <mat-label>{{fields.startField}}</mat-label>
+                    <input
+                            id="start"
+                            formControlName="start"
+                            type="time"
+                            matInput
+                            name="week"
+                            min="09:00"
+                            max="18:00" />
+                </mat-form-field>
+            </div>
+            <div class="col-md-6">
+                <mat-form-field appearance="outline">
+                    <mat-label>{{fields.endField}}</mat-label>
+                    <input
+                            id="end"
+                            formControlName="end"
+                            type="time"
+                            matInput
+                            name="week"
+                            min="09:00"
+                            max="18:00" />
+                </mat-form-field>
+            </div>
+        </div>
+    </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button mat-button class="action-button" (click)="onSubmit()">{{fields.saveButtonLabel}}</button>
+    <button mat-button class="action-button" (click)="onClose()">{{fields.closeButtonLabel}}</button>
+</mat-dialog-actions>

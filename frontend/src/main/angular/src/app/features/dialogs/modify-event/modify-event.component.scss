@@ -1,0 +1,11 @@
+.action-button {
+  color: var(--fc-button-text-color);
+  border-color: var(--fc-button-border-color);
+  background-color: var(--fc-button-border-color);
+}
+
+.action-button:hover {
+  color: var(--fc-button-text-color);
+  border-color: var(--fc-button-active-bg-color);
+  background-color: var(--fc-button-active-bg-color);
+}

@@ -10,8 +10,9 @@ import {Event} from "../../models/event";
 import {EventsService} from "../events/events.service";
 import {catchError} from "rxjs/operators";
 import {MatDialog} from "@angular/material/dialog";
-import {CommesseComponent} from "../../features/content/commesse/commesse.component";
+import {CommesseComponent} from "../../features/dialogs/commesse/commesse.component";
 import {Commessa} from "../../models/commessa";
+import {ModifyEventComponent} from "../../features/dialogs/modify-event/modify-event.component";
 
 @Injectable({
   providedIn: 'root'
@@ -24,10 +25,10 @@ export class CalendarService {
   selectedEvent : any = null;
 
   constructor(
-    private datePipe : DatePipe,
-    private commesseService : CommesseService,
-    private eventsService : EventsService,
-    public dialogManager: MatDialog
+      private datePipe : DatePipe,
+      private commesseService : CommesseService,
+      private eventsService : EventsService,
+      public dialogManager: MatDialog
   ) { }
 
   public buildCalendar(fullCalendarElement: HTMLElement, fields: any, initialEvents: Event[]) : Calendar {
@@ -154,21 +155,21 @@ export class CalendarService {
               allDay: false,
               startDate: this.datePipe.transform(date, 'yyyy-MM-dd') + 'T09:00:00',
               endDate: this.datePipe.transform(date, 'yyyy-MM-dd') + 'T18:00:00',
-              editable: true,
+              editable: false,
               commessaKey: this.commesseService.getDefault().key
             });
 
             this.eventsService.create(eventRequest).toPromise().then(
-              response => {
-                response?.forEach(eventId => {
-                  this.eventsService.find(eventId).toPromise().then(
-                    response => this.pushEvent(response),
-                    error => catchError(error)
-                  );
+                response => {
+                  response?.forEach(eventId => {
+                    this.eventsService.find(eventId).toPromise().then(
+                        response => this.pushEvent(response),
+                        error => catchError(error)
+                    );
 
-                })
-              },
-              error => catchError(error)
+                  })
+                },
+                error => catchError(error)
             );
           }
           break;
@@ -181,7 +182,39 @@ export class CalendarService {
   private editEvent() {
     if(this.selectedEvent != null) {
       let event : EventImpl = this.selectedEvent.event;
-      console.log('Modifying event ' + event);
+
+      let dialogRef = this.dialogManager.open(ModifyEventComponent, {
+        data: [event, this.commesse],
+        disableClose: true
+      });
+
+      dialogRef.afterClosed().subscribe(
+          data => {
+            if(data !== undefined) {
+              let eventRequest = {
+                allDay: false,
+                startDate: this.datePipe.transform(data.date, 'yyyy-MM-dd') + 'T' + data.start + ':00',
+                endDate: this.datePipe.transform(data.date, 'yyyy-MM-dd') + 'T' + data.end + ':00',
+                editable: false,
+                commessaKey: data.commessa
+              }
+
+              this.eventsService.update(data.eventId, eventRequest).toPromise().then(
+                  response => {
+                    if(response !== undefined) {
+                      event.remove();
+
+                      this.eventsService.find(response.eventId).toPromise().then(
+                          response => this.pushEvent(response),
+                          error => catchError(error)
+                      );
+                    }
+                  },
+                  error => catchError(error)
+              );
+            }
+          }
+      );
     }
 
   }
@@ -196,8 +229,8 @@ export class CalendarService {
             let candidateEvents: EventImpl[] = events.filter(event => CalendarService.isInSelection(event, this.selectedArea));
             candidateEvents.forEach(candidateEvent => {
               this.eventsService.remove(+candidateEvent.id).toPromise().then(
-                () => candidateEvent.remove(),
-                error => catchError(error)
+                  () => candidateEvent.remove(),
+                  error => catchError(error)
               );
             })
             break;
@@ -206,8 +239,8 @@ export class CalendarService {
         }
       } else if(this.selectedEvent != null) {
         this.eventsService.remove(+this.selectedEvent.event.id).toPromise().then(
-          () => this.selectedEvent.event.remove(),
-          error => catchError(error)
+            () => this.selectedEvent.event.remove(),
+            error => catchError(error)
         );
       }
 
@@ -231,15 +264,15 @@ export class CalendarService {
   }
 
   private pushEvent(event : any) : EventImpl | null{
-      return this.calendar.addEvent({
-        id: event.eventId + '',
-        title: event.commessa.key + ': ' + event.commessa.description,
-        start: event.startDate,
-        end: event.endDate,
-        allDay: event.allDay,
-        editable: event.editable,
-        color: event.commessa.color
-      });
+    return this.calendar.addEvent({
+      id: event.eventId + '',
+      title: event.commessa.key + ': ' + event.commessa.description,
+      start: event.startDate,
+      end: event.endDate,
+      allDay: event.allDay,
+      editable: event.editable,
+      color: event.commessa.color
+    });
   }
 
   public setCommesse(commesse : Commessa[]) {

@@ -15,7 +15,7 @@
       "deleteEventButtonText" : "Rimuovi evento"
     }
   },
-  "commessePage" : {
+  "commesseDialog" : {
     "pageTitle" : "Seleziona una commessa",
     "pageCloseButton" : "Chiudi"
   },
@@ -35,5 +35,14 @@
     "passwordSectionTitle" : "Cambia la password",
     "passwordLabel" : "Password",
     "confirmPasswordLabel" : "Conferma password"
+  },
+  "modifyEventDialog" : {
+    "pageTitle" : "Modifica evento",
+    "commessaField" : "Seleziona una commessa",
+    "dateField" : "Imposta una data",
+    "startField" : "Imposta un orario di inizio",
+    "endField" : "Imposta un orario di fine",
+    "saveButtonLabel" : "Salva",
+    "closeButtonLabel" : "Annulla"
   }
 }

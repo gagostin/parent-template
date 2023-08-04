@@ -15,7 +15,7 @@ export class CommesseComponent extends AbstractComponent {
     public commesseService : CommesseService,
     @Inject(MAT_DIALOG_DATA) public commesse: Commessa[],
   ) {
-    super('commessePage')
+    super('commesseDialog')
   }
 
 }

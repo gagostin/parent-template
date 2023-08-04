@@ -35,5 +35,4 @@ docker cp {container_id}:/{dump_filename}.sql {pc_path}
 NB. The / is for "root": when the dump command was execute, I was in the root folder of docker container, so the dump file was created there)
 
 # Da fare:
-- Implementare un dialog per la modifica eventi
 - Creare una pagina per la gestione di tutti i catch error (una rotta /error dedicata)
