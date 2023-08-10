@@ -83,7 +83,7 @@ export class CalendarService {
       headerToolbar: {
         left: 'prev,next',
         center: 'title',
-        right: 'dayGridMonth focus,today commessa'
+        right: 'dayGridMonth timeGridWeek focus,today commessa'
       },
       footerToolbar: {
         center: 'addEvent editEvent deleteEvent'
@@ -144,13 +144,14 @@ export class CalendarService {
 
   private addEvent() {
     if(this.selectedArea != null) {
+
+      let startDate : Date = this.selectedArea.start;
+      let endDate : Date = this.selectedArea.end;
+      let eventRequest : any[] = [];
+
       switch (this.selectedArea.view.type) {
         case 'dayGridMonth':
-          let startDate : Date = this.selectedArea.start;
-          let endDate : Date = this.selectedArea.end;
-
           for (let date = startDate; date < endDate; date.setDate(date.getDate() + 1)) {
-            let eventRequest : any[] = [];
             eventRequest.push({
               allDay: false,
               startDate: this.datePipe.transform(date, 'yyyy-MM-dd') + 'T09:00:00',
@@ -158,24 +159,36 @@ export class CalendarService {
               editable: false,
               commessaKey: this.commesseService.getDefault().key
             });
-
-            this.eventsService.create(eventRequest).toPromise().then(
-                response => {
-                  response?.forEach(eventId => {
-                    this.eventsService.find(eventId).toPromise().then(
-                        response => this.pushEvent(response),
-                        error => catchError(error)
-                    );
-
-                  })
-                },
-                error => catchError(error)
-            );
+          }
+          break;
+        case 'timeGridWeek':
+        case 'timeGridDay':
+          for (let date = startDate; date < endDate; date.setDate(date.getDate() + 1)) {
+            eventRequest.push({
+              allDay: false,
+              startDate: this.datePipe.transform(date, 'yyyy-MM-dd') + 'T' + startDate.toTimeString().split(' ')[0],
+              endDate: this.datePipe.transform(date, 'yyyy-MM-dd') + 'T' + endDate.toTimeString().split(' ')[0],
+              editable: false,
+              commessaKey: this.commesseService.getDefault().key
+            });
           }
           break;
         default:
           console.log('case not managed: ' + this.selectedArea);
       }
+
+      this.eventsService.create(eventRequest).toPromise().then(
+          response => {
+            response?.forEach(eventId => {
+              this.eventsService.find(eventId).toPromise().then(
+                  response => this.pushEvent(response),
+                  error => catchError(error)
+              );
+
+            })
+          },
+          error => catchError(error)
+      );
     }
   }
 
