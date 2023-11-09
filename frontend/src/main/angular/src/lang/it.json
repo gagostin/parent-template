@@ -32,9 +32,7 @@
     "ageLabel" : "Età",
     "genderLabel" : "Sesso",
     "saveButtonText" : "Salva",
-    "passwordSectionTitle" : "Cambia la password",
-    "passwordLabel" : "Password",
-    "confirmPasswordLabel" : "Conferma password"
+    "accountManagementText" : "Vai alla gestione del tuo account"
   },
   "modifyEventDialog" : {
     "pageTitle" : "Modifica evento",

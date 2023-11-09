@@ -1,11 +1,13 @@
 import {Component, OnInit} from '@angular/core';
 import {Profile} from "../../../models/profile";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {AbstractComponent} from "../../../commons/abstract-component";
 import {ProfileService} from "../../../services/profile/profile.service";
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {throwError} from "rxjs";
 import {DatePipe} from "@angular/common";
+import {AuthService} from "../../../services/auth/auth.service";
+import {environment} from "../../../../environments/environment";
 
 @Component({
   selector: 'app-profile',
@@ -19,10 +21,15 @@ export class ProfileComponent extends AbstractComponent implements OnInit {
 
   profile: Profile;
   personalInformation: FormGroup;
+  passwordInformation: FormGroup;
+
+  private accountManagementUrl : string = `${environment.keycloakConfig.url}/realms/${environment.keycloakConfig.realm}/account`;
 
   constructor(
     private route: ActivatedRoute,
-    public profileService : ProfileService,
+    private router: Router,
+    private profileService : ProfileService,
+    private authService: AuthService,
     private formBuilder: FormBuilder,
     private datePipe: DatePipe
   ) {
@@ -51,10 +58,15 @@ export class ProfileComponent extends AbstractComponent implements OnInit {
       gender: this.profile.gender
     });
 
+    this.passwordInformation = this.formBuilder.group({
+      oldPassword: '',
+      newPassword: '',
+      newPasswordConfirmation: ''
+    });
+
   }
 
-  onSubmit() {
-    console.info(this.personalInformation.value);
+  onUpdateProfile() {
 
     let birthDate = this.datePipe.transform(this.personalInformation.value.birthDate, 'MM/dd/yyyy');
     if(birthDate == null) birthDate = '';
@@ -73,6 +85,10 @@ export class ProfileComponent extends AbstractComponent implements OnInit {
       profile => console.log("profile correctly updated: response=[" + profile + "]"),
       error => throwError(error)
     )
+  }
+
+  navigateToAccountManagement() {
+    window.location.href = this.accountManagementUrl;
   }
 
 }

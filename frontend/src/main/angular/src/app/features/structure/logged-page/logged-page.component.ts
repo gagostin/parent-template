@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {SidebarService} from "../../../services/sidebar/sidebar.service";
 import {ProfileService} from "../../../services/profile/profile.service";
 import {throwError} from "rxjs";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-logged-page',
@@ -11,6 +12,7 @@ import {throwError} from "rxjs";
 export class LoggedPageComponent implements OnInit {
 
   constructor(
+    private router: Router,
     private sidebarService: SidebarService,
     private profileService: ProfileService
   ) {
@@ -43,6 +45,7 @@ export class LoggedPageComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.router.navigate(['/home']);
   }
 
   openSidebar(event: boolean) {

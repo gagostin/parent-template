@@ -1,6 +1,6 @@
 <div class="general-content">
 
-  <form class="form-container" [formGroup]="personalInformation" (ngSubmit)="onSubmit()">
+  <form class="form-container" [formGroup]="personalInformation" (ngSubmit)="onUpdateProfile()">
     <mat-card>
 
       <mat-card-header class="title-centered">
@@ -89,42 +89,15 @@
           </div>
         </div>
 
+        <div class="row">
+          <span class="link-text" (click)="navigateToAccountManagement()">{{fields.accountManagementText}}</span>
+        </div>
+
+
       </mat-card-content>
 
       <mat-card-actions align="end">
         <button mat-raised-button="" color="form" type="submit">{{fields.saveButtonText}}</button>
-      </mat-card-actions>
-    </mat-card>
-  </form>
-
-  <br/>
-
-  <form class="form-container">
-    <mat-card>
-
-      <mat-card-header class="title-centered">
-        <mat-card-title>{{fields.passwordSectionTitle}}</mat-card-title>
-      </mat-card-header>
-
-      <br/>
-
-      <mat-card-content>
-        <div class="row">
-          <div class="col-md-6">
-            <mat-form-field class="full-width">
-              <input matInput="" placeholder="{{fields.passwordLabel}}">
-            </mat-form-field>
-          </div>
-          <div class="col-md-6">
-            <mat-form-field class="full-width">
-              <input matInput="" placeholder="{{fields.confirmPasswordLabel}}">
-            </mat-form-field>
-          </div>
-        </div>
-      </mat-card-content>
-
-      <mat-card-actions align="end">
-        <button mat-raised-button="" color="form">{{fields.saveButtonText}}</button>
       </mat-card-actions>
     </mat-card>
   </form>

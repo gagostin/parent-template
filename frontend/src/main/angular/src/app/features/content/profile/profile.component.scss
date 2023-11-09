@@ -23,3 +23,9 @@
   border-color: var(--fc-button-active-bg-color);
   background-color: var(--fc-button-active-bg-color);
 }
+
+.link-text {
+  color: blue;
+  text-decoration: underline;
+  cursor: pointer;
+}
