@@ -4,10 +4,10 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {AbstractComponent} from "../../../commons/abstract-component";
 import {ProfileService} from "../../../services/profile/profile.service";
 import {FormBuilder, FormGroup} from "@angular/forms";
-import {throwError} from "rxjs";
 import {DatePipe} from "@angular/common";
 import {AuthService} from "../../../services/auth/auth.service";
 import {environment} from "../../../../environments/environment";
+import {GenericErrorService} from "../../../services/generic-error/generic-error.service";
 
 @Component({
   selector: 'app-profile',
@@ -31,7 +31,8 @@ export class ProfileComponent extends AbstractComponent implements OnInit {
     private profileService : ProfileService,
     private authService: AuthService,
     private formBuilder: FormBuilder,
-    private datePipe: DatePipe
+    private datePipe: DatePipe,
+    private genericErrorService: GenericErrorService
   ) {
     super('profilePage')
   }
@@ -83,7 +84,7 @@ export class ProfileComponent extends AbstractComponent implements OnInit {
       }
     ).toPromise().then(
       profile => console.log("profile correctly updated: response=[" + profile + "]"),
-      error => throwError(error)
+      error => this.genericErrorService.goToErrorPage(error)
     )
   }
 

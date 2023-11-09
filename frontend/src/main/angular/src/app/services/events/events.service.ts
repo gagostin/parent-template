@@ -1,9 +1,9 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {ActivatedRouteSnapshot, Resolve, RouterStateSnapshot} from "@angular/router";
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../../../environments/environment";
-import {throwError} from "rxjs";
 import {Event} from "../../models/event";
+import {GenericErrorService} from "../generic-error/generic-error.service";
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +11,8 @@ import {Event} from "../../models/event";
 export class EventsService implements Resolve<any> {
 
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    private genericErrorService: GenericErrorService
   ) {}
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
@@ -22,7 +23,7 @@ export class EventsService implements Resolve<any> {
     return this.http.get<Event[]>(environment.restBaseUrl + 'events').toPromise()
       .then(
         response => response,
-        error => throwError(error)
+        error => this.genericErrorService.goToErrorPage(error)
       )
   }
 

@@ -7,6 +7,7 @@ import {HomeComponent} from "./features/content/home/home.component";
 import {CommesseService} from "./services/commesse/commesse.service";
 import {EventsService} from "./services/events/events.service";
 import {ProfileService} from "./services/profile/profile.service";
+import {GenericErrorComponent} from "./features/content/generic-error/generic-error.component";
 
 const routes: Routes = [
   {
@@ -28,6 +29,10 @@ const routes: Routes = [
         resolve: {
           profile : ProfileService
         },
+      },
+      {
+        path: 'error',
+        component: GenericErrorComponent
       }
     ]
   }

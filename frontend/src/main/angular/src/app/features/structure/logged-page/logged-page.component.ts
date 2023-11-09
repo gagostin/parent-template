@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {SidebarService} from "../../../services/sidebar/sidebar.service";
 import {ProfileService} from "../../../services/profile/profile.service";
-import {throwError} from "rxjs";
 import {Router} from "@angular/router";
+import {GenericErrorService} from "../../../services/generic-error/generic-error.service";
 
 @Component({
   selector: 'app-logged-page',
@@ -14,7 +14,8 @@ export class LoggedPageComponent implements OnInit {
   constructor(
     private router: Router,
     private sidebarService: SidebarService,
-    private profileService: ProfileService
+    private profileService: ProfileService,
+    private genericErrorService: GenericErrorService
   ) {
     this.sidebarService.init();
 
@@ -33,11 +34,11 @@ export class LoggedPageComponent implements OnInit {
               gender: ''
             }).toPromise().then(
               () => this.sidebarService.actionHome(),
-              error => throwError(error)
+              error => this.genericErrorService.goToErrorPage(error)
             )
             break;
           default:
-            throwError(error);
+            this.genericErrorService.goToErrorPage(error)
         }
       }
     )

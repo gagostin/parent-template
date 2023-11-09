@@ -3,7 +3,6 @@
     "headerToolbarTitle" : "Monthly",
     "sidebarContainerHomeButtonText" : "Pagina iniziale",
     "sidebarContainerProfileButtonText" : "Profilo",
-    "sidebarContainerCommesseButtonText" : "Gestione commesse",
     "sidebarContainerLogoutButtonText" : "Esci"
   },
   "homePage" : {
@@ -33,6 +32,12 @@
     "genderLabel" : "Sesso",
     "saveButtonText" : "Salva",
     "accountManagementText" : "Vai alla gestione del tuo account"
+  },
+  "genericErrorPage" : {
+    "pageTitle" : "Errore imprevisto",
+    "pageSubTitle" : "Sembra che ci sia stato un errore",
+    "genericErrorText" : "Contattare l'assistenza per poter proseguire con l'operazione",
+    "backToHomeText" : "Torna alla home"
   },
   "modifyEventDialog" : {
     "pageTitle" : "Modifica evento",

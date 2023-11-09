@@ -31,6 +31,7 @@ import {ModifyEventComponent} from './features/dialogs/modify-event/modify-event
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MAT_DATE_LOCALE} from "@angular/material/core";
+import {GenericErrorComponent} from './features/content/generic-error/generic-error.component';
 
 @NgModule({
     declarations: [
@@ -39,7 +40,8 @@ import {MAT_DATE_LOCALE} from "@angular/material/core";
         SidebarContainerComponent,
         LoggedPageComponent,
         CommesseComponent,
-        ModifyEventComponent
+        ModifyEventComponent,
+        GenericErrorComponent
     ],
     imports: [
         BrowserModule,

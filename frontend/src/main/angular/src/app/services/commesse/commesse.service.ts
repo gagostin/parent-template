@@ -3,7 +3,7 @@ import {Commessa} from "../../models/commessa";
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../../../environments/environment";
 import {ActivatedRouteSnapshot, Resolve, RouterStateSnapshot} from "@angular/router";
-import {throwError} from "rxjs";
+import {GenericErrorService} from "../generic-error/generic-error.service";
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +13,8 @@ export class CommesseService implements Resolve<any> {
   private default : Commessa;
 
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    private genericErrorService: GenericErrorService
   ) {}
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
@@ -24,7 +25,7 @@ export class CommesseService implements Resolve<any> {
     return this.http.get<Commessa[]>(environment.restBaseUrl + 'commesse').toPromise()
       .then(
         response => response,
-        error => throwError(error)
+        error => this.genericErrorService.goToErrorPage(error)
       )
   }
 

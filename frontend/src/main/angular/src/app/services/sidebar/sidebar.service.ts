@@ -3,8 +3,8 @@ import {MatSidenav} from "@angular/material/sidenav";
 import {KeycloakService} from "keycloak-angular";
 import {Router} from "@angular/router";
 import {UserInformation} from "../../models/auth";
-import {throwError} from "rxjs";
 import {MatDrawerToggleResult} from "@angular/material/sidenav/drawer";
+import {GenericErrorService} from "../generic-error/generic-error.service";
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +17,8 @@ export class SidebarService {
 
   constructor(
     private keycloakService: KeycloakService,
-    private router: Router
+    private router: Router,
+    private genericErrorService: GenericErrorService
   ) {}
 
   public init() {
@@ -28,7 +29,7 @@ export class SidebarService {
         this.userInformation.email = response.email;
         this.userInformation.username = response.username;
       },
-      errors => console.log(errors)
+      errors => this.genericErrorService.goToErrorPage(errors)
     );
   }
 
@@ -49,7 +50,7 @@ export class SidebarService {
   public actionHome() {
     this.close().then(
       () => this.router.navigate(['/home']),
-      error => throwError(error)
+      error => this.genericErrorService.goToErrorPage(error)
     )
 
   }
@@ -57,7 +58,7 @@ export class SidebarService {
   public actionProfile() {
     this.close().then(
       () => this.router.navigate(['/profile']),
-      error => throwError(error)
+      error => this.genericErrorService.goToErrorPage(error)
     )
   }
 

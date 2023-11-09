@@ -8,11 +8,11 @@ import {DatePipe} from "@angular/common";
 import {CommesseService} from "../commesse/commesse.service";
 import {Event} from "../../models/event";
 import {EventsService} from "../events/events.service";
-import {catchError} from "rxjs/operators";
 import {MatDialog} from "@angular/material/dialog";
 import {CommesseComponent} from "../../features/dialogs/commesse/commesse.component";
 import {Commessa} from "../../models/commessa";
 import {ModifyEventComponent} from "../../features/dialogs/modify-event/modify-event.component";
+import {GenericErrorService} from "../generic-error/generic-error.service";
 
 @Injectable({
   providedIn: 'root'
@@ -28,6 +28,7 @@ export class CalendarService {
       private datePipe : DatePipe,
       private commesseService : CommesseService,
       private eventsService : EventsService,
+      private genericErrorService : GenericErrorService,
       public dialogManager: MatDialog
   ) { }
 
@@ -81,9 +82,9 @@ export class CalendarService {
         }
       },
       headerToolbar: {
-        left: 'prev,next',
+        left: 'prev,next commessa',
         center: 'title',
-        right: 'dayGridMonth timeGridWeek focus,today commessa'
+        right: 'dayGridMonth timeGridWeek focus,today'
       },
       footerToolbar: {
         center: 'addEvent editEvent deleteEvent'
@@ -182,12 +183,12 @@ export class CalendarService {
             response?.forEach(eventId => {
               this.eventsService.find(eventId).toPromise().then(
                   response => this.pushEvent(response),
-                  error => catchError(error)
+                  error => this.genericErrorService.goToErrorPage(error)
               );
 
             })
           },
-          error => catchError(error)
+          error => this.genericErrorService.goToErrorPage(error)
       );
     }
   }
@@ -219,11 +220,11 @@ export class CalendarService {
 
                       this.eventsService.find(response.eventId).toPromise().then(
                           response => this.pushEvent(response),
-                          error => catchError(error)
+                          error => this.genericErrorService.goToErrorPage(error)
                       );
                     }
                   },
-                  error => catchError(error)
+                  error => this.genericErrorService.goToErrorPage(error)
               );
             }
           }
@@ -243,7 +244,7 @@ export class CalendarService {
             candidateEvents.forEach(candidateEvent => {
               this.eventsService.remove(+candidateEvent.id).toPromise().then(
                   () => candidateEvent.remove(),
-                  error => catchError(error)
+                  error => this.genericErrorService.goToErrorPage(error)
               );
             })
             break;
@@ -253,7 +254,7 @@ export class CalendarService {
       } else if(this.selectedEvent != null) {
         this.eventsService.remove(+this.selectedEvent.event.id).toPromise().then(
             () => this.selectedEvent.event.remove(),
-            error => catchError(error)
+            error => this.genericErrorService.goToErrorPage(error)
         );
       }
 

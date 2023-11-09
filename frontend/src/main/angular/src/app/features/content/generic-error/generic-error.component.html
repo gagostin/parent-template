@@ -1,0 +1,19 @@
+<section>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12 mt-5">
+        <div class="col-sm-offset-1 text-center">
+          <h1 class="text-center">{{fields.pageTitle}}</h1>
+          <div class="generic_error_bg" style="background-image: url('/assets/images/generic_error.gif')"></div>
+          <div class="generic_error_content_box">
+            <h3>{{fields.pageSubTitle}}</h3>
+            <p>{{errorText}}</p>
+            <a routerLink="/home" class="generic_error_link">
+              <i class="fa fa-arrow-left" aria-hidden="true"></i> {{fields.backToHomeText}}
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
