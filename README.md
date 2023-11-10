@@ -36,4 +36,3 @@ NB. The / is for "root": when the dump command was execute, I was in the root fo
 
 # Da fare:
 - Mettere dei controlli sugli orari nella creazione degli eventi. Lo start non può essere superiore all'end
-- Creare una pagina per la gestione di tutti i catch error (una rotta /error dedicata)

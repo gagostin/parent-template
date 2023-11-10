@@ -47,5 +47,11 @@
     "endField" : "Imposta un orario di fine",
     "saveButtonLabel" : "Salva",
     "closeButtonLabel" : "Annulla"
+  },
+  "calendarSnackbarDialog": {
+    "addEventError": "Non è stato selezionato alcun giorno sul calendario per aggiungere l'evento",
+    "editEventError": "Non è stato selezionato alcun evento da modificare",
+    "deleteEventError": "Non è stato selezionato alcun evento da eliminare",
+    "startEndDateIncompatibilityError": "L'orario di inizio di un evento non può essere successivo alla sua fine"
   }
 }

@@ -32,86 +32,97 @@ import {MatDatepickerModule} from "@angular/material/datepicker";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MAT_DATE_LOCALE} from "@angular/material/core";
 import {GenericErrorComponent} from './features/content/generic-error/generic-error.component';
+import {MAT_SNACK_BAR_DEFAULT_OPTIONS, MatSnackBarModule} from "@angular/material/snack-bar";
+import { CalendarSnackbarComponent } from './features/dialogs/calendar-snackbar/calendar-snackbar.component';
 
 @NgModule({
-    declarations: [
-        AppComponent,
-        HeaderToolbarComponent,
-        SidebarContainerComponent,
-        LoggedPageComponent,
-        CommesseComponent,
-        ModifyEventComponent,
-        GenericErrorComponent
-    ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        BrowserAnimationsModule,
-        MatToolbarModule,
-        MatSidenavModule,
-        MatButtonModule,
-        MatIconModule,
-        MatDividerModule,
-        MatSelectModule,
-        MatInputModule,
-        MatCardModule,
-        MatRadioModule,
-        MatDatepickerModule,
-        ScrollingModule,
-        FlexLayoutModule,
-        FeaturesModule,
-        KeycloakAngularModule,
-        HttpClientModule,
-        NgxUiLoaderModule.forRoot(
-            {
-                bgsColor: "#004a9f",
-                bgsOpacity: 0.5,
-                bgsPosition: "bottom-right",
-                bgsSize: 60,
-                bgsType: "ball-spin-clockwise",
-                blur: 5,
-                delay: 0,
-                fastFadeOut: true,
-                fgsColor: "#004a9f",
-                fgsPosition: "center-center",
-                fgsSize: 60,
-                fgsType: "ball-spin-clockwise",
-                gap: 24,
-                logoPosition: "center-center",
-                logoSize: 120,
-                logoUrl: "",
-                masterLoaderId: "master",
-                overlayBorderRadius: "0",
-                overlayColor: "rgba(40, 40, 40, 0.8)",
-                pbColor: "#004a9f",
-                pbDirection: "ltr",
-                pbThickness: 3,
-                hasProgressBar: true,
-                text: "Caricamento in corso",
-                textColor: "#FFFFFF",
-                textPosition: "center-center",
-                maxTime: -1,
-                minTime: 300
-            }),
-        NgxUiLoaderHttpModule.forRoot({
-            showForeground: true
-        }),
-        MatDialogModule,
-        FormsModule,
-        ReactiveFormsModule
-    ],
-    providers: [
-        KeycloakService,
-        {
-            provide: APP_INITIALIZER,
-            useFactory: initializeKeycloak,
-            multi: true,
-            deps: [ KeycloakService ]
-        },
-        { provide: MAT_DATE_LOCALE, useValue: 'en-GB' },
-        AuthService,
-        DatePipe
-    ],
-    bootstrap: [AppComponent]
+  declarations: [
+    AppComponent,
+    HeaderToolbarComponent,
+    SidebarContainerComponent,
+    LoggedPageComponent,
+    CommesseComponent,
+    ModifyEventComponent,
+    GenericErrorComponent,
+    CalendarSnackbarComponent
+  ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    MatToolbarModule,
+    MatSidenavModule,
+    MatButtonModule,
+    MatIconModule,
+    MatDividerModule,
+    MatSelectModule,
+    MatInputModule,
+    MatCardModule,
+    MatRadioModule,
+    MatSnackBarModule,
+    MatDatepickerModule,
+    ScrollingModule,
+    FlexLayoutModule,
+    FeaturesModule,
+    KeycloakAngularModule,
+    HttpClientModule,
+    NgxUiLoaderModule.forRoot(
+      {
+        bgsColor: "#004a9f",
+        bgsOpacity: 0.5,
+        bgsPosition: "bottom-right",
+        bgsSize: 60,
+        bgsType: "ball-spin-clockwise",
+        blur: 5,
+        delay: 0,
+        fastFadeOut: true,
+        fgsColor: "#004a9f",
+        fgsPosition: "center-center",
+        fgsSize: 60,
+        fgsType: "ball-spin-clockwise",
+        gap: 24,
+        logoPosition: "center-center",
+        logoSize: 120,
+        logoUrl: "",
+        masterLoaderId: "master",
+        overlayBorderRadius: "0",
+        overlayColor: "rgba(40, 40, 40, 0.8)",
+        pbColor: "#004a9f",
+        pbDirection: "ltr",
+        pbThickness: 3,
+        hasProgressBar: true,
+        text: "Caricamento in corso",
+        textColor: "#FFFFFF",
+        textPosition: "center-center",
+        maxTime: -1,
+        minTime: 300
+      }),
+    NgxUiLoaderHttpModule.forRoot({
+      showForeground: true
+    }),
+    MatDialogModule,
+    FormsModule,
+    ReactiveFormsModule
+  ],
+  providers: [
+    KeycloakService,
+    {
+      provide: APP_INITIALIZER,
+      useFactory: initializeKeycloak,
+      multi: true,
+      deps: [ KeycloakService ]
+    },
+    { provide: MAT_DATE_LOCALE, useValue: 'en-GB' },
+    { provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: {
+        duration: 2500,
+        panelClass: ["calendar-snackbar"],
+        horizontalPosition: 'center',
+        verticalPosition: 'bottom'
+      }
+    },
+    AuthService,
+    DatePipe
+  ],
+  bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -13,11 +13,14 @@ import {CommesseComponent} from "../../features/dialogs/commesse/commesse.compon
 import {Commessa} from "../../models/commessa";
 import {ModifyEventComponent} from "../../features/dialogs/modify-event/modify-event.component";
 import {GenericErrorService} from "../generic-error/generic-error.service";
+import {MatSnackBar} from "@angular/material/snack-bar";
+import {CalendarSnackbarComponent} from "../../features/dialogs/calendar-snackbar/calendar-snackbar.component";
+import {AbstractComponent} from "../../commons/abstract-component";
 
 @Injectable({
   providedIn: 'root'
 })
-export class CalendarService {
+export class CalendarService extends AbstractComponent {
 
   calendar : Calendar;
   commesse : Commessa[];
@@ -29,8 +32,11 @@ export class CalendarService {
       private commesseService : CommesseService,
       private eventsService : EventsService,
       private genericErrorService : GenericErrorService,
-      public dialogManager: MatDialog
-  ) { }
+      public dialogManager: MatDialog,
+      public snackBar: MatSnackBar
+  ) {
+    super('calendarSnackbarDialog');
+  }
 
   public buildCalendar(fullCalendarElement: HTMLElement, fields: any, initialEvents: Event[]) : Calendar {
 
@@ -190,6 +196,8 @@ export class CalendarService {
           },
           error => this.genericErrorService.goToErrorPage(error)
       );
+    } else {
+      this.openSnackbar(this.fields.addEventError);
     }
   }
 
@@ -213,22 +221,28 @@ export class CalendarService {
                 commessaKey: data.commessa
               }
 
-              this.eventsService.update(data.eventId, eventRequest).toPromise().then(
+              if(eventRequest.startDate >= eventRequest.endDate) {
+                this.openSnackbar(this.fields.startEndDateIncompatibilityError);
+              } else {
+                this.eventsService.update(data.eventId, eventRequest).toPromise().then(
                   response => {
-                    if(response !== undefined) {
+                    if (response !== undefined) {
                       event.remove();
 
                       this.eventsService.find(response.eventId).toPromise().then(
-                          response => this.pushEvent(response),
-                          error => this.genericErrorService.goToErrorPage(error)
+                        response => this.pushEvent(response),
+                        error => this.genericErrorService.goToErrorPage(error)
                       );
                     }
                   },
                   error => this.genericErrorService.goToErrorPage(error)
-              );
+                );
+              }
             }
           }
       );
+    } else {
+      this.openSnackbar(this.fields.editEventError);
     }
 
   }
@@ -256,6 +270,8 @@ export class CalendarService {
             () => this.selectedEvent.event.remove(),
             error => this.genericErrorService.goToErrorPage(error)
         );
+      } else {
+        this.openSnackbar(this.fields.deleteEventError);
       }
 
     }
@@ -287,6 +303,10 @@ export class CalendarService {
       editable: event.editable,
       color: event.commessa.color
     });
+  }
+
+  private openSnackbar(message : string) {
+    this.snackBar.openFromComponent(CalendarSnackbarComponent, {data: message});
   }
 
   public setCommesse(commesse : Commessa[]) {
