@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: rest-db
+  namespace: parent-template
+spec:
+  serviceName: rest-db-service
+  replicas: 1
+  selector:
+    matchLabels:
+      app: rest-db
+  template:
+    metadata:
+      labels:
+        app: rest-db
+    spec:
+      containers:
+        - name: rest-db
+          image: "localhost:5000/parent-template/rest-db"
+          imagePullPolicy: Never
+          env:
+            - name: POSTGRES_USER
+              value: "rest-admin"
+            - name: POSTGRES_PASSWORD
+              value: "password"
+            - name: POSTGRES_DB
+              value: "rest-db"
+          volumeMounts:
+            - name: rest-db-pgdata
+              mountPath: /var/lib/postgresql/data
+      volumes:
+        - name: rest-db-pgdata
+          persistentVolumeClaim:
+            claimName: rest-db-pgdata-claim

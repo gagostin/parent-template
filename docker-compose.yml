@@ -8,8 +8,8 @@ services:
       context: docker/rest-db
     volumes:
       - rest-db-pgdata:/var/lib/postgresql/data
-      - ./docker/rest-db/resources/init.sql:/docker-entrypoint-initdb.d/init.sql
-      - ./docker/rest-db/resources/testdata.sql:/docker-entrypoint-initdb.d/testdata.sql
+#      - ./docker/rest-db/resources/init.sql:/docker-entrypoint-initdb.d/init.sql
+#      - ./docker/rest-db/resources/testdata.sql:/docker-entrypoint-initdb.d/testdata.sql
     env_file:
       - docker/rest-db/resources/rest-db.env
     ports:
@@ -35,17 +35,21 @@ services:
     - ${STACK_OFFSET}04:80
 
   keycloak-db:
-    image: postgres:14
+    image: ${STACK_NAME}/keycloak-db
+    build:
+      context: docker/keycloak-db
     volumes:
       - keycloak-db-pgdata:/var/lib/postgresql/data
-      - ./docker/keycloak-db/init.sql:/docker-entrypoint-initdb.d/init.sql
+#      - ./docker/keycloak-db/init.sql:/docker-entrypoint-initdb.d/init.sql
     env_file:
-      - docker/keycloak-db/keycloak-db.env
+      - docker/keycloak-db/resources/keycloak-db.env
     ports:
       - ${STACK_OFFSET}05:5432
 
   keycloak:
-    image: jboss/keycloak:16.1.1
+    image: ${STACK_NAME}/keycloak
+    build:
+      context: docker/keycloak
     env_file:
       - docker/keycloak/keycloak.env
     ports:
