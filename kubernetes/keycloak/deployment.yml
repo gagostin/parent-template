@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: keycloak
+  namespace: parent-template
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: keycloak
+  template:
+    metadata:
+      labels:
+        app: keycloak
+    spec:
+      containers:
+        - name: keycloak
+          image: "localhost:5000/parent-template/keycloak"
+          env:
+            - name: KEYCLOAK_USER
+              value: "admin"
+            - name: KEYCLOAK_PASSWORD
+              value: "admin"
+            - name: KEYCLOAK_LOGLEVEL
+              value: "DEBUG"
+            - name: DB_VENDOR
+              value: "POSTGRES"
+            - name: DB_ADDR
+              value: "keycloak-db-service"
+            - name: DB_DATABASE
+              value: "keycloak"
+            - name: DB_USER
+              value: "keycloak-admin"
+            - name: DB_PASSWORD
+              value: "password"
+            - name: KEYCLOAK_FRONTEND_URL
+              value: "http://localhost:8080/auth"
+          ports:
+            - containerPort: 8080

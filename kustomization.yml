@@ -16,3 +16,5 @@ resources:
   - kubernetes/keycloak-db/persistent-volume-claim.yml
   - kubernetes/keycloak-db/stateful-set.yml
   - kubernetes/keycloak-db/service.yml
+  - kubernetes/keycloak/deployment.yml
+  - kubernetes/keycloak/service.yml
