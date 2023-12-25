@@ -14,10 +14,12 @@ spec:
       labels:
         app: keycloak-db
     spec:
+      imagePullSecrets:
+        - name: ghcr-secret
       containers:
         - name: keycloak-db
-          image: "localhost:5000/parent-template/keycloak-db"
-          imagePullPolicy: Never
+          image: "ghcr.io/gagostin/parent-template/keycloak-db"
+          imagePullPolicy: Always
           env:
             - name: POSTGRES_USER
               value: "keycloak-admin"

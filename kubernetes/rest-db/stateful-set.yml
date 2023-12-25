@@ -14,10 +14,12 @@ spec:
       labels:
         app: rest-db
     spec:
+      imagePullSecrets:
+        - name: ghcr-secret
       containers:
         - name: rest-db
-          image: "localhost:5000/parent-template/rest-db"
-          imagePullPolicy: Never
+          image: "ghcr.io/gagostin/parent-template/rest-db"
+          imagePullPolicy: Always
           env:
             - name: POSTGRES_USER
               value: "rest-admin"

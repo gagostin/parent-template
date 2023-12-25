@@ -8,6 +8,7 @@ kind: Kustomization
 
 resources:
   - kubernetes/namespace.yml
+  - kubernetes/secret.yml
   - kubernetes/rest-db/persistent-volume.yml
   - kubernetes/rest-db/persistent-volume-claim.yml
   - kubernetes/rest-db/stateful-set.yml
