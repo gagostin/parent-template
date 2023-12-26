@@ -8,6 +8,6 @@ spec:
     app: keycloak
   ports:
     - protocol: TCP
-      port: 8080
+      port: 10006
       targetPort: 8080
   type: LoadBalancer

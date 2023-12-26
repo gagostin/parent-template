@@ -37,6 +37,6 @@ spec:
             - name: DB_PASSWORD
               value: "password"
             - name: KEYCLOAK_FRONTEND_URL
-              value: "http://localhost:8080/auth"
+              value: "http://localhost:10006/auth"
           ports:
             - containerPort: 8080
