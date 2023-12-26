@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rest
+  namespace: parent-template
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: rest
+  template:
+    metadata:
+      labels:
+        app: rest
+    spec:
+      imagePullSecrets:
+        - name: ghcr-secret
+      containers:
+        - name: rest
+          image: "ghcr.io/gagostin/parent-template/rest"
+          imagePullPolicy: Always
+          env:
+            - name: JAVA_OPTS
+              value: "-Dspring.config.location=/usr/local/tomcat/lib/rest/application.properties"
+          ports:
+            - containerPort: 8080
