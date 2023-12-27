@@ -9,5 +9,5 @@ spec:
   ports:
     - protocol: TCP
       port: 10004
-      targetPort: 4200
+      targetPort: 80
   type: LoadBalancer

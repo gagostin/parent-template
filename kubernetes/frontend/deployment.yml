@@ -20,4 +20,4 @@ spec:
           image: "ghcr.io/gagostin/parent-template/frontend"
           imagePullPolicy: Always
           ports:
-            - containerPort: 4200
+            - containerPort: 80
