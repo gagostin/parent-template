@@ -21,3 +21,5 @@ resources:
   - kubernetes/keycloak/service.yml
   - kubernetes/rest/deployment.yml
   - kubernetes/rest/service.yml
+  - kubernetes/frontend/deployment.yml
+  - kubernetes/frontend/service.yml
