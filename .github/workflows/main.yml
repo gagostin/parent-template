@@ -37,6 +37,16 @@ jobs:
       - name: Build Docker containers
         if: startsWith(github.ref, 'refs/tags/release')
         run: |
+          TAG=${GITHUB_REF#refs/tags/}
           docker-compose build
           echo $CR_PAT | docker login ghcr.io -u $GITHUB_REPOSITORY --password-stdin
-          docker-compose push
+          docker tag $GITHUB_REPOSITORY_NAME/rest-db:latest ghcr.io/$GITHUB_REPOSITORY/rest-db:$TAG
+          docker tag $GITHUB_REPOSITORY_NAME/rest:latest ghcr.io/$GITHUB_REPOSITORY/rest:$TAG
+          docker tag $GITHUB_REPOSITORY_NAME/keycloak-db:latest ghcr.io/$GITHUB_REPOSITORY/keycloak-db:$TAG
+          docker tag $GITHUB_REPOSITORY_NAME/keycloak:latest ghcr.io/$GITHUB_REPOSITORY/keycloak:$TAG
+          docker tag $GITHUB_REPOSITORY_NAME/frontend:latest ghcr.io/$GITHUB_REPOSITORY/frontend:$TAG
+          docker push ghcr.io/$GITHUB_REPOSITORY/rest-db:$TAG
+          docker push ghcr.io/$GITHUB_REPOSITORY/rest:$TAG
+          docker push ghcr.io/$GITHUB_REPOSITORY/keycloak-db:$TAG
+          docker push ghcr.io/$GITHUB_REPOSITORY/keycloak:$TAG
+          docker push ghcr.io/$GITHUB_REPOSITORY/frontend:$TAG
