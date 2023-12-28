@@ -3,7 +3,7 @@ version: '3.8'
 services:
 
   rest-db:
-    image: ${STACK_NAME}/rest-db
+    image: ${STACK_NAME}/rest-db:${STACK_VERSION}
     build:
       context: docker/rest-db
     volumes:
@@ -16,7 +16,7 @@ services:
       - ${STACK_OFFSET}01:5432
 
   rest:
-    image: ${STACK_NAME}/rest
+    image: ${STACK_NAME}/rest:${STACK_VERSION}
     build:
       context: rest
     env_file:
@@ -28,14 +28,14 @@ services:
       - rest-db
 
   frontend:
-    image: ${STACK_NAME}/frontend
+    image: ${STACK_NAME}/frontend:${STACK_VERSION}
     build:
       context: frontend
     ports:
     - ${STACK_OFFSET}04:80
 
   keycloak-db:
-    image: ${STACK_NAME}/keycloak-db
+    image: ${STACK_NAME}/keycloak-db:${STACK_VERSION}
     build:
       context: docker/keycloak-db
     volumes:
@@ -47,7 +47,7 @@ services:
       - ${STACK_OFFSET}05:5432
 
   keycloak:
-    image: ${STACK_NAME}/keycloak
+    image: ${STACK_NAME}/keycloak:${STACK_VERSION}
     build:
       context: docker/keycloak
     env_file:
