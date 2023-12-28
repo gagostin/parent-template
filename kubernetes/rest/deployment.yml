@@ -22,5 +22,13 @@ spec:
           env:
             - name: JAVA_OPTS
               value: "-Dspring.config.location=/usr/local/tomcat/lib/rest/application.properties"
+          volumeMounts:
+            - name: rest-configmap-volume
+              mountPath: /usr/local/tomcat/lib/rest
           ports:
             - containerPort: 8080
+
+      volumes:
+        - name: rest-configmap-volume
+          configMap:
+            name: rest-configmap

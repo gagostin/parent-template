@@ -10,4 +10,5 @@ spec:
     - protocol: TCP
       port: 10006
       targetPort: 8080
+  externalTrafficPolicy: Local
   type: LoadBalancer

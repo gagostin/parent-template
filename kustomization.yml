@@ -7,19 +7,25 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
 resources:
-  - kubernetes/namespace.yml
-  - kubernetes/secret.yml
-  - kubernetes/rest-db/persistent-volume.yml
-  - kubernetes/rest-db/persistent-volume-claim.yml
-  - kubernetes/rest-db/stateful-set.yml
-  - kubernetes/rest-db/service.yml
-  - kubernetes/keycloak-db/persistent-volume.yml
-  - kubernetes/keycloak-db/persistent-volume-claim.yml
-  - kubernetes/keycloak-db/stateful-set.yml
-  - kubernetes/keycloak-db/service.yml
-  - kubernetes/keycloak/deployment.yml
-  - kubernetes/keycloak/service.yml
-  - kubernetes/rest/deployment.yml
-  - kubernetes/rest/service.yml
-  - kubernetes/frontend/deployment.yml
-  - kubernetes/frontend/service.yml
+#  - kubernetes/namespace.yml
+#  - kubernetes/secret.yml
+#
+#  - kubernetes/keycloak-db/persistent-volume.yml
+#  - kubernetes/keycloak-db/persistent-volume-claim.yml
+#  - kubernetes/keycloak-db/stateful-set.yml
+#  - kubernetes/keycloak-db/service.yml
+#
+#  - kubernetes/keycloak/deployment.yml
+#  - kubernetes/keycloak/service.yml
+#
+#  - kubernetes/rest-db/persistent-volume.yml
+#  - kubernetes/rest-db/persistent-volume-claim.yml
+#  - kubernetes/rest-db/stateful-set.yml
+#  - kubernetes/rest-db/service.yml
+
+#  - kubernetes/rest/configmap.yml
+#  - kubernetes/rest/deployment.yml
+#  - kubernetes/rest/service.yml
+
+#  - kubernetes/frontend/deployment.yml
+#  - kubernetes/frontend/service.yml

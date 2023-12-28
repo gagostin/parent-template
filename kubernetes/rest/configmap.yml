@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: rest-configmap
+  namespace: parent-template
+data:
+  application.properties: |
+    logging.level.root=INFO
+  
+    server.port=8080
+    
+    keycloak.realm=parent-template
+    keycloak.auth-server-url=http://keycloak-service:10006/auth
+    keycloak.ssl-required=external
+    keycloak.resource=parent-template-backend
+    keycloak.credentials.secret=cK9aG6hPPwMolN2lFBOMWJxBA1RrnSqG
+    keycloak.use-resource-role-mappings=true
+    keycloak.bearer-only=true
+
+  db.properties: |
+    entities.location=com.gago.rest.models
+
+    postgres.drivers=org.postgresql.Driver
+    postgres.url=jdbc:postgresql://rest-db-service/rest-db
+    postgres.username=rest-admin
+    postgres.password=password
+    postgres.dialect=org.hibernate.dialect.PostgreSQL10Dialect
