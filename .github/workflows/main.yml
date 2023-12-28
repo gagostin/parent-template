@@ -38,7 +38,7 @@ jobs:
         run: |
           TAG=0.0.0     
           docker-compose build
-          echo $CR_PAT | docker login ghcr.io -u $GITHUB_REPOSITORY --password-stdin
+          docker login ghcr.io -u $GITHUB_REPOSITORY -p $CR_PAT
           docker tag $GITHUB_REPOSITORY_NAME/rest-db:latest ghcr.io/$GITHUB_REPOSITORY/rest-db:$TAG
           docker tag $GITHUB_REPOSITORY_NAME/rest:latest ghcr.io/$GITHUB_REPOSITORY/rest:$TAG
           docker tag $GITHUB_REPOSITORY_NAME/keycloak-db:latest ghcr.io/$GITHUB_REPOSITORY/keycloak-db:$TAG
