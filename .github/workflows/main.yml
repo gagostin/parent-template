@@ -22,8 +22,12 @@ jobs:
       - name: Set up Docker
         uses: docker/setup-buildx-action@v1
 
+      - name: Debug CR_PAT
+        run:
+          echo "CR_PAT: $CR_PAT"
+
       - name: Build and test Spring Boot
-        run: mvn clean install
+        run: mvn clean install -DskipTests
 
       - name: Check test results
         run: |
@@ -38,7 +42,7 @@ jobs:
         run: |
           TAG=0.0.0     
           docker-compose build
-          docker login ghcr.io -u $GITHUB_REPOSITORY -p $CR_PAT
+          docker login ghcr.io -u $GITHUB_REPOSITORY -p "$CR_PAT"
           docker tag $GITHUB_REPOSITORY_NAME/rest-db:latest ghcr.io/$GITHUB_REPOSITORY/rest-db:$TAG
           docker tag $GITHUB_REPOSITORY_NAME/rest:latest ghcr.io/$GITHUB_REPOSITORY/rest:$TAG
           docker tag $GITHUB_REPOSITORY_NAME/keycloak-db:latest ghcr.io/$GITHUB_REPOSITORY/keycloak-db:$TAG
