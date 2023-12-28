@@ -36,17 +36,16 @@ jobs:
 
       - name: Build Docker containers
         run: |
-          TAG=0.0.0
           docker-compose build
           docker images
           docker login ghcr.io -u ${{ github.repository }} -p ${{ secrets.CR_PAT }}
-          docker tag ${{ github.event.repository.name }}/rest-db ghcr.io/${{ github.repository }}/rest-db:$TAG
-          docker tag ${{ github.event.repository.name }}/rest ghcr.io/${{ github.repository }}/rest:$TAG
-          docker tag ${{ github.event.repository.name }}/keycloak-db ghcr.io/${{ github.repository }}/keycloak-db:$TAG
-          docker tag ${{ github.event.repository.name }}/keycloak ghcr.io/${{ github.repository }}/keycloak:$TAG
-          docker tag ${{ github.event.repository.name }}/frontend ghcr.io/${{ github.repository }}/frontend:$TAG
-          docker push ghcr.io/${{ github.repository }}/rest-db:$TAG
-          docker push ghcr.io/${{ github.repository }}/rest:$TAG
-          docker push ghcr.io/${{ github.repository }}/keycloak-db:$TAG
-          docker push ghcr.io/${{ github.repository }}/keycloak:$TAG
-          docker push ghcr.io/${{ github.repository }}/frontend:$TAG
+          docker tag ${{ github.event.repository.name }}/rest-db ghcr.io/${{ github.repository }}/rest-db:0.0.0
+          docker tag ${{ github.event.repository.name }}/rest ghcr.io/${{ github.repository }}/rest:0.0.0
+          docker tag ${{ github.event.repository.name }}/keycloak-db ghcr.io/${{ github.repository }}/keycloak-db:0.0.0
+          docker tag ${{ github.event.repository.name }}/keycloak ghcr.io/${{ github.repository }}/keycloak:0.0.0
+          docker tag ${{ github.event.repository.name }}/frontend ghcr.io/${{ github.repository }}/frontend:0.0.0
+          docker push ghcr.io/${{ github.repository }}/rest-db:0.0.0
+          docker push ghcr.io/${{ github.repository }}/rest:0.0.0
+          docker push ghcr.io/${{ github.repository }}/keycloak-db:0.0.0
+          docker push ghcr.io/${{ github.repository }}/keycloak:0.0.0
+          docker push ghcr.io/${{ github.repository }}/frontend:0.0.0
